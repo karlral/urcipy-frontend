@@ -1,0 +1,29 @@
+<p-sidebar [(visible)]="gfg" [baseZIndex]="10000">
+
+  <ng-template pTemplate="header">
+    <h1>Administrador</h1>
+  </ng-template>
+
+  <ng-template pTemplate="content" class="contenido">
+
+    <!-- <p-button icon="pi pi-user"  [routerLink]="'/admin/regional'" styleClass="p-button-success"
+      label="Regional"></p-button>
+      <br><br>
+      <p-button icon="pi pi-user" [routerLink]="'/admin/regional'" styleClass="p-button-success"
+      label="Regional"></p-button>-->
+
+
+    <p-panelMenu [model]="items"></p-panelMenu>
+
+  </ng-template>
+
+
+</p-sidebar>
+<div class="contenedor">
+  <p-button icon="pi pi-list" (click)="gfg = true"></p-button>
+
+  <p-button icon="pi pi-power-off" *ngIf="isLoggedIn && user" (click)="logout()"
+    styleClass="p-button-danger"></p-button>
+</div>
+
+<app-dashboard></app-dashboard>

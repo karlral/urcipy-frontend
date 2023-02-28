@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<p-toast></p-toast>
+<div class="container" [ngStyle]="{backgroundColor:'var(--blue-100)'}">
+    <div class="text-center mt20">
+        <img src="../../../assets/login.png" alt="" width="100" height="100">
+    </div>
+    <h1 class="text-center">Inicio de Sesion</h1>
+    <div class="login-item">
+        <form (ngSubmit)="formSubmit()">
+            <span class="p-float-label form-field">
+                <input id="username" type="text" pInputText [(ngModel)]="loginData.username" name="username"
+                    required >
+                <label for="username" class="user">  Nombre de usuario</label>
+
+            </span>
+            
+            <span class="p-float-label form-field">
+                <input id="password" type="password" pInputText [(ngModel)]="loginData.password" name="password"
+                    required>
+                <label for="password" class="lock">  La contraseña debe ser valido</label>
+            </span>
+
+            <span class="p-float-label form-field">
+                <button pButton pRipple label="Iniciar Session" type="submit" class="p-button-raised"></button>
+                <br>
+                <button pButton pRipple label="Limpiar" type="reset"
+                    class="p-button-raised p-button-secondary"></button>
+    
+            </span>
+            
+
+        </form>
+    </div>
+</div>
+
+
+

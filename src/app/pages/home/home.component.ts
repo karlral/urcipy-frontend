@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  value: Date;
+
+  constructor() {
+    this.value=new Date();
+  }
 
 }
