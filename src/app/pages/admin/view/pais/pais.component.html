@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+    </ng-template>
+
+</p-toolbar>
+
+
+
+
+<p-table #dt [value]="paises" [rows]="10" [paginator]="true" [globalFilterFields]="['nompais','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idpais"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        <h2 class="m-0">Paises</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nompais" style="min-width:15rem">Nombre <p-sortIcon field="nompais"></p-sortIcon></th>
+            <th>Nacionalidad</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pais>
+        <tr>
+            <td>{{pais.idpais}}</td>
+            <td>{{pais.nompais}}</td>
+            <td>{{pais.nacionalidad}}</td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editPais(pais)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePais(pais)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="paisDialog" [style]="{width: '450px'}" header="Pais" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        
+
+        
+        <div class="field">
+            <label for="nompais">Nombre</label>
+            <input type="text" pInputText id="nompais" [(ngModel)]="pais.nompais" required autofocus />
+            <small class="p-error" *ngIf="submitted && !pais.nompais">Nombre de pais es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="nacionalidad">Nacionalidad</label>
+            <input type="text" pInputText id="nacionalidad" [(ngModel)]="pais.nacionalidad" required autofocus />
+            <small class="p-error" *ngIf="submitted && !pais.nacionalidad">Nacionalidad  es
+                requerido.</small>
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePais()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

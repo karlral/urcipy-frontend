@@ -1,0 +1,33 @@
+.contenedor{
+    width: 100%;
+}
+.field{
+    width: calc(100%/3 - 20px);
+}
+.field input{
+    width: 100%;
+}
+
+.regional-image {
+    width: 150px;
+    margin: 0 auto 2rem auto;
+    display: block;
+}
+
+@media (max-width: 991.98px) {
+    .field{
+        width: calc(100%/2 - 20px);
+    }
+   
+    
+ }
+ 
+ @media (max-width:584px) {
+    
+    .contenedor{
+        max-width: 100%;
+    }
+    .field{
+        width: 100%;
+    }
+}

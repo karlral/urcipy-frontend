@@ -1,1 +1,68 @@
-<p>signup works!</p>
+<app-navbar></app-navbar>
+<p-toast></p-toast>
+<div class="container" [ngStyle]="{backgroundColor:'var(--blue-100)'}">
+    <div class="text-center mt20">
+        <img src="../../../assets/singup.png" alt="" width="100" height="100">
+    </div>
+    <h1 class="text-center">Registrese aqui</h1>
+    <div class="login-item">
+        <form (ngSubmit)="formSubmit()">
+            <span class="p-float-label form-field">
+                <input id="username" type="text" pInputText [(ngModel)]="user.username" name="username"
+                    required >
+                <label for="username" >  Nombre de usuario</label>
+                <small class="p-error" *ngIf="!user.username">El usuario es requerindo</small>
+            </span>
+            
+            <span class="p-float-label form-field">
+                <input id="password" type="password" pInputText [(ngModel)]="user.password" name="password"
+                    required>
+                <label for="password" >  Contraseña</label>
+                <small class="p-error" *ngIf="!user.password">la Contraseña es requerida</small>
+            </span>
+
+            <span class="p-float-label form-field">
+                <input id="nombre" type="text" pInputText [(ngModel)]="user.nombre" name="nombre"
+                    required>
+                <label for="nombre" >  Nombre</label>
+                <small  class="p-error" *ngIf="!user.nombre">El nombre es requerindo</small>
+            </span>
+
+            <span class="p-float-label form-field">
+                <input id="apellido" type="text" pInputText [(ngModel)]="user.apellido" name="apellido"
+                    required>
+                <label for="apellido" >  Contraseña</label>
+                <small  class="p-error" *ngIf="!user.apellido">El apellido es requerindo</small>
+            </span>
+            
+
+            <span class="p-float-label form-field">
+                <input id="email" type="email" pInputText [(ngModel)]="user.email" name="email"
+                    required>
+                <label for="email" >  Email</label>
+                <small  class="p-error" *ngIf="!user.email">El email es requerindo</small>
+            </span>
+
+            <span class="p-float-label form-field">
+                <input id="telefono" type="text" pInputText [(ngModel)]="user.telefono" name="telefono"
+                    required>
+                <label for="telefono" >  Telefono</label>
+                <small  class="p-error" *ngIf="!user.telefono">El telefono es requerindo</small>
+            </span>
+
+
+            <span class="p-float-label form-field">
+                <button pButton pRipple label="Registrar" type="submit" class="p-button-raised"></button>
+                <br>
+                <button pButton pRipple label="Limpiar" type="reset"
+                    class="p-button-raised p-button-secondary"></button>
+    
+            </span>
+            
+
+        </form>
+    </div>
+</div>
+
+
+

@@ -1,3 +1,11 @@
+<div class="contenedornav">
+  <p-button icon="pi pi-list" (click)="abrir()"></p-button>
+
+  <h2 class="m-0">Administrador</h2>
+
+  <p-button icon="pi pi-power-off" *ngIf="isLoggedIn && user" (click)="logout()"
+    styleClass="p-button-danger"></p-button>
+</div>
 <p-sidebar [(visible)]="gfg" [baseZIndex]="10000">
 
   <ng-template pTemplate="header">
@@ -15,15 +23,22 @@
 
     <p-panelMenu [model]="items"></p-panelMenu>
 
+    <p-button icon="pi pi-caret-left"  (click)="cerrar()"
+    styleClass="p-button-danger alineacionizquierda"></p-button>
+
   </ng-template>
 
 
+
 </p-sidebar>
-<div class="contenedor">
-  <p-button icon="pi pi-list" (click)="gfg = true"></p-button>
 
-  <p-button icon="pi pi-power-off" *ngIf="isLoggedIn && user" (click)="logout()"
-    styleClass="p-button-danger"></p-button>
-</div>
+<section class="container">
+  <aside [style.width.%]="ancho">    
+</aside>
+  <div class="main-body"><app-dashboard></app-dashboard></div>
+</section>
 
-<app-dashboard></app-dashboard>
+
+
+
+

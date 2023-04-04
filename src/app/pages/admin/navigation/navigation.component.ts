@@ -26,22 +26,26 @@ export class NavigationComponent {
   gfg:boolean=true;
 
   items: MenuItem[] = [];
-
-
+  ancho!: number;
 constructor(private breakpointObserver: BreakpointObserver,
   public login:LoginService,private router:Router) {}
 
 
 ngOnInit(): void {
+  
+  
   this.user=this.login.getUser();
   this.isLoggedIn=this.login.isLoggedIn();
 
   this.items = [{
     label: 'Principal',
     items: [
-        {label: 'New', icon: 'pi pi-plus', url: 'http://www.primefaces.org/primeng'},
-        {label: 'Regional', icon: 'pi pi-download', routerLink: ['/admin/regional']},
-        {label: 'Recent Files', icon: 'pi pi-download', routerLink: ['/pagename'], queryParams: {'recent': 'true'}}
+      {label: 'Pais', icon: 'pi pi-download', routerLink: ['/admin/pais']},
+      {label: 'Ciudad', icon: 'pi pi-refresh', routerLink: ['/admin/ciudad']},
+      {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/regional']},
+      {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/club']},
+      {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/categoria']},
+      {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/corredor']}
     ]
 },
 {
@@ -55,6 +59,19 @@ ngOnInit(): void {
 ];
 }
 
+public cerrar(){
+  this.gfg=false;
+      this.ancho=0;
+  
+}
+
+public abrir(){
+  
+  
+    this.gfg=true;
+  this.ancho=29;
+  //.style.width = "400px";
+}
 public logout(){
   this.login.logout();
   window.location.reload();

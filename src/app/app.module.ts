@@ -16,8 +16,11 @@ import {TableModule} from 'primeng/table';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-
-
+import {DropdownModule} from 'primeng/dropdown';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,8 +32,14 @@ import { authInterceptorProviders } from './service/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { NavigationComponent } from './pages/admin/navigation/navigation.component';
-import { RegionalComponent } from './pages/admin/view/regional/regional/regional.component';
+import { RegionalComponent } from './pages/admin/view/regional/regional.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { PaisComponent } from './pages/admin/view/pais/pais.component';
+import { CiudadComponent } from './pages/admin/view/ciudad/ciudad.component';
+import { ClubComponent } from './pages/admin/view/club/club.component';
+import { CategoriaComponent } from './pages/admin/view/categoria/categoria.component';
+import { CorredorComponent } from './pages/admin/view/corredor/corredor.component';
+import { EventoComponent } from './pages/admin/view/evento/evento.component';
 
 
 
@@ -46,7 +55,13 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     UserDashboardComponent,
     NavigationComponent,
     RegionalComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PaisComponent,
+    CiudadComponent,
+    ClubComponent,
+    CategoriaComponent,
+    CorredorComponent,
+    EventoComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +80,12 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     TableModule,
     PanelMenuModule,
     DialogModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DropdownModule,
+    InputSwitchModule,
+    InputNumberModule,
+    RadioButtonModule,
+    InputTextareaModule
 
   ],  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

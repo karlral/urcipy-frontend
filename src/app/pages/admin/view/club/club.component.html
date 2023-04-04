@@ -1,0 +1,141 @@
+<p-toast></p-toast>
+
+
+<p-table #dt [value]="clubes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomclub']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idclub"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-0"
+            (click)="openNew()"></button>
+            <h2 class="m-0">Clubes</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nomclub" style="min-width:15rem">Nombre <p-sortIcon field="nomclub"></p-sortIcon></th>
+            <th>Regional</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-club>
+        <tr>
+            <td>{{club.idclub}}</td>
+            <td>{{club.nomclub}}</td>
+            <td>{{club.regional.nomregional}}</td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editClub(club)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteClub(club)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="clubDialog" [style]="{width: '450px'}" header="Club" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        
+
+        
+        <div class="field">
+            <label for="nomclub">Nombre</label>
+            <input type="text" pInputText id="nomclub" [(ngModel)]="club.nomclub" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.nomclub">Nombre de club es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="presidente">Presidente</label>
+            <input type="text" pInputText id="presidente" [(ngModel)]="club.presidente" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.nomclub">Nombre del presidente requerido.</small>
+        </div>
+        <div class="field">
+            <label for="telepresi">Telefono Presidente</label>
+            <input type="text" pInputText id="telepresi" [(ngModel)]="club.telepresi" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.telepresi">Nombre de club es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="vicepresidente">Vicepresidente</label>
+            <input type="text" pInputText id="vicepresidente" [(ngModel)]="club.vicepresidente" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.vicepresidente">Nombre de club es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="telvice">Tel. Vicepresidente</label>
+            <input type="text" pInputText id="telvice" [(ngModel)]="club.telvice" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.telvice">Nombre de club es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="telefono">Telefono</label>
+            <input type="text" pInputText id="telefono" [(ngModel)]="club.telefono" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.telefono">Nombre de club es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="text" pInputText id="email" [(ngModel)]="club.email" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.email">Nombre de club es requerido.</small>
+        </div>
+        
+            <img [src]="club.ruta =='' ? '/assets/noimagen.png' : mediaLocation+club.ruta" [alt]="club.ruta"
+            class="imagen-carga" *ngIf="club.ruta">
+            <img [src]="preview"  class="imagen-carga" *ngIf="preview">
+
+            <div class="field">
+                <label for="ruta" class="form-label">Seleccionar logo</label>
+                <input id="ruta" name="ruta" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
+                    (change)="selectFile($event)">
+                {{fileName}}
+            </div>
+        
+
+        
+
+            <img [src]="club.rutagrande =='' ? '/assets/noimagen.png' : mediaLocation+club.rutagrande" [alt]="club.rutagrande"
+            class="imagen-carga" *ngIf="club.rutagrande">
+            <img [src]="preview2"  class="imagen-carga" *ngIf="preview2">
+
+            <div class="field">
+                <label for="rutagrande" class="form-label">Seleccionar logo Grande</label>
+                <input id="rutagrande" name="rutagrande" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
+                    (change)="selectFile2($event)">
+                {{fileName2}}
+            </div>
+        
+           
+
+
+        <div class="field">
+            <label for="regional">Regional</label>
+            <p-dropdown [options]="regionales" [(ngModel)]="club.regional" placeholder="Seleccionar un regional" 
+            optionLabel="nomregional" [showClear]="true" appendTo="body"></p-dropdown>
+
+        </div>
+        
+
+        <!-- <div class="field">
+            <label for="nacionalidad">Nacionalidad</label>
+            <input type="text" pInputText id="nacionalidad" [(ngModel)]="club.nacionalidad" required autofocus />
+            <small class="p-error" *ngIf="submitted && !club.nacionalidad">Nacionalidad  es
+                requerido.</small>
+        </div> -->
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveClub()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

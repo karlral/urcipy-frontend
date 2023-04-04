@@ -19,10 +19,9 @@ export class RegionalComponent {
   regionales: Regional[] = [];
 
   // para agregar
-
   url?: String;
   currentFile?: File;
-  message = '';
+ 
   fileName = '';
   preview = '';
 

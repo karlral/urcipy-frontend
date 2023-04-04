@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { NavigationComponent } from './pages/admin/navigation/navigation.component';
-import { RegionalComponent } from './pages/admin/view/regional/regional/regional.component';
+import { CategoriaComponent } from './pages/admin/view/categoria/categoria.component';
+import { CiudadComponent } from './pages/admin/view/ciudad/ciudad.component';
+import { ClubComponent } from './pages/admin/view/club/club.component';
+import { CorredorComponent } from './pages/admin/view/corredor/corredor.component';
+import { PaisComponent } from './pages/admin/view/pais/pais.component';
+import { RegionalComponent } from './pages/admin/view/regional/regional.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -38,8 +43,28 @@ const routes: Routes = [
         path:'',
         component:WelcomeComponent
       },{
+        path:'pais',
+        component:PaisComponent,
+        
+      },{
+        path:'ciudad',
+        component:CiudadComponent,
+        
+      },{
         path:'regional',
         component:RegionalComponent,
+        
+      },{
+        path:'club',
+        component:ClubComponent,
+        
+      },{
+        path:'categoria',
+        component:CategoriaComponent,
+        
+      },{
+        path:'corredor',
+        component:CorredorComponent,
         
       }
     ]

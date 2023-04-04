@@ -1,0 +1,151 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="categoriaes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomcategoria','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idcategoria"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+            <button pButton pRipple icon="pi pi-update" class="p-button-success mr-2"
+            (click)="rellenarDataTable()"></button>
+        <h2 class="m-0">Categoriaes</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nomcategoria" style="min-width:15rem">Nombre <p-sortIcon field="nomcategoria"></p-sortIcon></th>
+            <th>Nacionalidad</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-categoria>
+        <tr>
+            <td>{{categoria.idcategoria}}</td>
+            <td>{{categoria.nomcategoria}}</td>
+            <td>{{categoria.nomcorto}}</td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editCategoria(categoria)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteCategoria(categoria)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="categoriaDialog" [style]="{width: '450px'}" header="Categoria" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        
+        <div class="field">
+            <label for="nomcategoria">Nombre</label>
+            <input type="text" pInputText id="nomcategoria" [(ngModel)]="categoria.nomcategoria" required autofocus />
+            <small class="p-error" *ngIf="submitted && !categoria.nomcategoria">Nombre de categoria es requerido.</small>
+        </div>
+       
+        <div class="field">
+            <label for="nomcorto" >Nombre Corto</label>
+            <input type="text" pInputText id="nomcorto" [(ngModel)]="categoria.nomcorto" required autofocus />
+            <small class="p-error" *ngIf="submitted && !categoria.nomcorto">Nombre Corto  es
+                requerido.</small>
+        </div>
+
+        <label>Edad</label>
+        <div class="formgrid grid" style="justify-content: space-around;">
+            
+            <div class="field col-12 md:col-3">
+                <label for="edadinicio" style="display: block">Desde</label>
+                <p-inputNumber [(ngModel)]="categoria.edadinicio" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="edadinicio"
+                [min]="0" [max]="100"
+                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                </p-inputNumber>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label for="edadfin" style="display: block">Hasta</label>
+                <p-inputNumber [(ngModel)]="categoria.edadfin" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="edadfin"
+                [min]="0" [max]="100"
+                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="formgrid grid" style="justify-content: space-around;">
+
+            <div class="field">
+                <label for="tipo">Tipo</label>
+                <p-dropdown [options]="tipos" [(ngModel)]="categoria.tipo" id="tipo"  
+                placeholder="Elegir Tipo de Categoria" optionLabel="label" optionValue="value" 
+                [showClear]="true" appendTo="body"></p-dropdown>
+            </div>
+           
+            <div class="field">
+                <label class="mb-3">Sexo</label>
+                <div class="formgrid grid">
+                    <div class="field-radiobutton col-6">
+                        <p-radioButton id="category1" name="sexo" value="1" [(ngModel)]="categoria.sexo"></p-radioButton>
+                        <label for="category1">Masculino</label>
+                    </div>
+                    <div class="field-radiobutton col-6">
+                        <p-radioButton id="category2" name="sexo" value="0" [(ngModel)]="categoria.sexo"></p-radioButton>
+                        <label for="category2">Femenino</label>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="formgrid grid" style="justify-content: space-around;">
+            <div class="field col-12 md:col-3">
+                <label for="orden" style="display: block">Orden</label>
+                <p-inputNumber [(ngModel)]="categoria.orden" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="orden"
+                [min]="0" [max]="30"
+                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                </p-inputNumber>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label for="tanda" style="display: block">Tanda</label>
+                <p-inputNumber [(ngModel)]="categoria.tanda" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="tanda"
+                [min]="0" [max]="30"
+                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                </p-inputNumber>
+            </div>
+        </div>
+
+        <div class="formgrid grid" style="justify-content: space-around;">
+
+            <div class="field">
+                <label for="activo" class="mr-2">Activo</label>
+                <p-inputSwitch id="activo" [(ngModel)]="categoria.activo" ></p-inputSwitch>
+            </div>
+
+            <div class="field">
+                <label for="ascenso" class="mr-2">Ascenso</label>
+                <p-inputSwitch id="ascenso" [(ngModel)]="categoria.ascenso"  ></p-inputSwitch>
+            </div>
+        </div>
+        <div class="field">
+            <label for="regional">Categoria de</label>
+            <p-dropdown [options]="regionales" [(ngModel)]="categoria.activonacional" placeholder="Seleccionar un regional" 
+            optionLabel="nomregional" optionValue="idregional" [showClear]="true" appendTo="body"></p-dropdown>
+
+        </div>
+
+        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCategoria()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
