@@ -40,12 +40,12 @@ ngOnInit(): void {
   this.items = [{
     label: 'Principal',
     items: [
-      {label: 'Pais', icon: 'pi pi-download', routerLink: ['/admin/pais']},
-      {label: 'Ciudad', icon: 'pi pi-refresh', routerLink: ['/admin/ciudad']},
-      {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/regional']},
-      {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/club']},
-      {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/categoria']},
-      {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/corredor']}
+      {label: 'Pais', icon: 'pi pi-download', routerLink: ['/admin/acceso/pais']},
+      {label: 'Ciudad', icon: 'pi pi-refresh', routerLink: ['/admin/acceso/ciudad']},
+      {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/regional']},
+      {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/club']},
+      {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
+      {label: 'Corredor Anterior', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor-back']}
     ]
 },
 {

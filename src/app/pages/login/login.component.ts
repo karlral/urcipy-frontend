@@ -76,7 +76,7 @@ export class LoginComponent {
           if (this.loginService.getUserRole() == "ADMINISTRADOR") {
             //dashboard admin
             //window.location.href='/admin'; 
-            this.router.navigate(['admin']);
+            this.router.navigate(['admin/acceso']);
             this.loginService.loginStatusSubjec.next(true);
           } else if (this.loginService.getUserRole() == "NORMAL") {
             // user dashboard

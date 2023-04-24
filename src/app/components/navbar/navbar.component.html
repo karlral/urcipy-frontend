@@ -5,7 +5,7 @@
   </div>
   <h2 style="padding: 0;">Sistema Campeonatos Regionales</h2>
   <div class="p-toolbar-group-end">
-
+    <p-button icon="pi pi-server" [routerLink]="'/corre/corre'"></p-button>
 
     <p-button icon="pi pi-user" *ngIf="!login.isLoggedIn()" [routerLink]="'/login'"
       styleClass="p-button-success"></p-button>
