@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
-import { parse } from 'date-fns';
+
 
 import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';

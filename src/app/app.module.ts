@@ -19,6 +19,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { authInterceptorProviders } from './service/auth.interceptor';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { ResumenComponent } from './pages/index/resumen/resumen.component';
+import { PortafolioComponent } from './pages/index/portafolio/portafolio.component';
+import { BlogComponent } from './pages/index/blog/blog.component';
+import { ContactoComponent } from './pages/index/contacto/contacto.component';
 
 
 
@@ -31,6 +35,10 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     LoginComponent,
     SignupComponent,
     UserDashboardComponent,
+    ResumenComponent,
+    PortafolioComponent,
+    BlogComponent,
+    ContactoComponent
 
     
   ],

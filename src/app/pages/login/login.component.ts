@@ -112,4 +112,7 @@ export class LoginComponent {
     )
 
   }
+  goresumen(){
+    this.router.navigate(['/resumen']);
+  }
 }

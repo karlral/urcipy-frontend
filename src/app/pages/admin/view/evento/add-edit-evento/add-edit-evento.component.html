@@ -1,0 +1,212 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} Evento</span>
+    </ng-template>
+    <form [formGroup]="eventoForm" class="evento-form">
+
+        <div class="field">
+            <label for="nomevento">Nombre Evento</label>
+            <input type="text" pInputText id="nomevento" formControlName="nomevento" required autofocus placeholder="Nombre Evento"
+                class="prime UPPERCASE" />
+            <small class="p-error block" *ngIf="
+                eventoForm.controls['nomevento'].invalid && 
+                eventoForm.controls['nomevento'].dirty">Nombre Evento de evento es requerido.</small>
+        </div>
+        <div class="field">
+
+            <label for="fecha">Fecha Evento</label>
+            <p-calendar formControlName="fecha" id="fecha" appendTo="body" autoWidth="false"
+                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"></p-calendar>
+            <small class="p-error" *ngIf="
+            eventoForm.controls['fecha'].invalid && 
+            eventoForm.controls['fecha'].dirty">Fecha del evento es requerido.</small>
+        
+        </div>
+
+        <div class="field">
+            <label for="nombre">Club</label>
+            <p-dropdown [options]="clubes" formControlName="club"  placeholder="Seleccionar un club" autoWidth="false"
+            [filter]="true" [filterBy]="'nomclub'" 
+                [style]="{'width':'100%'}" optionLabel="nomclub" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+
+        <div class="field">
+                <label for="activo">Evento Activo</label>
+                <p-dropdown [options]="activos" formControlName="activo" id="activo" 
+                    placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+                    <small class="p-error" *ngIf="
+                        eventoForm.controls['activo'].invalid && 
+                        eventoForm.controls['activo'].dirty">Activacion de evento es
+                        requerido.</small>
+        </div> 
+
+        <div class="field">
+            <label for="direccion">Direccion</label>
+            <input type="text" pInputText id="direccion" formControlName="direccion" required placeholder="Direccion"
+                class="prime" />
+        </div>
+        <div class="field">
+            <label for="orden">Orden Eventos</label>
+            <p-dropdown [options]="ordenes" formControlName="orden" id="orden" 
+                    placeholder="Seleccionar Orden de carrera" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="tipoevento">Tipo Carrera</label>
+            <p-dropdown [options]="tipoeventos" formControlName="tipoevento" id="tipoevento" 
+                    placeholder="Seleccionar tipo de carrera" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="modo">Modo</label>
+            <p-dropdown [options]="modos" formControlName="modo" id="modo" 
+                    placeholder="Seleccionar modo del evento" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="verencuesta">Ver encuesta</label>
+            <p-dropdown [options]="verencuestas" formControlName="verencuesta" id="verencuesta" 
+                    placeholder="Seleccionar para habilitar encuesta" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        <div class="field">
+            <label for="ranqueable">Carrera Rankeable</label>
+            <p-dropdown [options]="ranqueables" formControlName="ranqueable" id="ranqueable" 
+                    placeholder="Seleccionar el modo de rankear" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="preinscrip">Habilitar preinscripciones</label>
+            <p-dropdown [options]="preinscripciones" formControlName="preinscrip" id="preinscrip" 
+                    placeholder="Seleccionar modo inscripcion" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Puntaje Doble</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="doble1" name="doble" value="1" formControlName="doble"></p-radioButton>
+                    <label for="doble1">SI</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="doble2" name="doble" value="0" formControlName="doble"></p-radioButton>
+                    <label for="doble2">NO</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="km">KM PRINCIPAL</label>
+            <p-inputNumber inputId="km" formControlName="km" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['km'].invalid && 
+                        eventoForm.controls['km'].dirty">Km de la principal es
+                        requerido.</small>
+        </div>
+
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="kmpromo">KM PROMO</label>
+            <p-inputNumber inputId="kmpromo" formControlName="kmpromo" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['kmpromo'].invalid && 
+                        eventoForm.controls['kmpromo'].dirty">Km de la promocional es
+                        requerido.</small>
+        </div>
+
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="kmmenor">KM MENOR</label>
+            <p-inputNumber inputId="kmmenor" formControlName="kmmenor" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['kmmenor'].invalid && 
+                        eventoForm.controls['kmmenor'].dirty">km del menor es
+                        requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="informacion">Informacion</label>
+            <textarea rows="5" cols="40" pInputTextarea formControlName="informacion" class="prime" required></textarea>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['informacion'].invalid && 
+                        eventoForm.controls['informacion'].dirty">Informacion del evento es
+                        requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="locales">Locales</label>
+            <textarea rows="5" cols="40" pInputTextarea formControlName="locales" class="prime" required></textarea>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['locales'].invalid && 
+                        eventoForm.controls['locales'].dirty">Locales del evento es
+                        requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="deposito">Deposito</label>
+            <textarea rows="5" cols="40" pInputTextarea formControlName="deposito" class="prime" required></textarea>
+            <small class="p-error" *ngIf="
+                        eventoForm.controls['deposito'].invalid && 
+                        eventoForm.controls['deposito'].dirty">Deposito del evento es
+                        requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="urlcategoria">URL Mapa Principal</label>
+            <input type="text" pInputText id="urlpromocional" formControlName="urlpromocional" placeholder="Direccion del mapa principal" class="prime" />     
+        </div>
+        <div class="field">
+            <label for="urlpromocional">URL Mapa Promocional</label>
+            <input type="text" pInputText id="urlpromocional" formControlName="urlpromocional" placeholder="Direccion del mapa promo." class="prime" />     
+        </div>
+        <div class="field">
+            <label for="contacto">Contacto Informatico</label>
+            <input type="text" pInputText id="contacto" formControlName="contacto" required placeholder="Whatsapp del contacto"
+                class="prime" />
+            <small class="p-error" *ngIf="
+                eventoForm.controls['contacto'].invalid && 
+                eventoForm.controls['contacto'].dirty">Contacto del evento es requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="fondocolor">Color de fondo</label>
+            <input type="text" pInputText id="fondocolor" formControlName="fondocolor" placeholder="color de fondo" class="prime" />     
+        </div>
+
+        <!-- <div class="field">
+            <img [src]="evento.foto =='' ? '/assets/noimagen.png' : mediaLocation+evento.foto"
+                [alt]="evento.foto" class="regional-image" *ngIf="evento.foto">
+            <img [src]="preview" class="regional-image" *ngIf="preview">
+
+        </div> -->
+
+
+        <div class="field">
+            <label for="fondo" class="form-label">Seleccionar fondo</label>
+            <input id="fondo" name="fondo"  class="form-control"
+                accept="image/gif, image/jpeg, image/png" type="file" (change)="selectFile($event)">
+                <input type="hidden" name="oculto" formControlName="foto"/>
+                <p *ngIf="fileName" class="pl-4 align-middle mb-0">{{fileName}}</p>
+        </div>
+       
+
+
+
+    </form>
+
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="addEditEvento()" label="{{modalType}}" styleClass="p-button-text"
+            [disabled]="eventoForm.invalid"></p-button>
+
+
+    </ng-template>
+
+</p-dialog>

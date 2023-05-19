@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddEditCorredorComponent } from './add-edit-corredor.component';
-import { CatCorredorComponent } from '../cat-corredor/cat-corredor.component';
+import { CatCorredorComponent } from '../../../../../components/cat-corredor/cat-corredor.component';
 
 import { ButtonModule } from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';

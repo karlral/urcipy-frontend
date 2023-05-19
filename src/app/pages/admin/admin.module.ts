@@ -32,10 +32,9 @@ import { PaisComponent } from './view/pais/pais.component';
 import { CiudadComponent } from './view/ciudad/ciudad.component';
 import { ClubComponent } from './view/club/club.component';
 import { CategoriaComponent } from './view/categoria/categoria.component';
-import { EventoComponent } from './view/evento/evento.component';
 
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
-import { Corredor_backComponent } from './view/corredor_back/corredor_back.component';
+
 
 
 
@@ -49,9 +48,7 @@ import { Corredor_backComponent } from './view/corredor_back/corredor_back.compo
     PaisComponent,
     CiudadComponent,
     ClubComponent,
-    CategoriaComponent,
-    Corredor_backComponent,
-    EventoComponent
+    CategoriaComponent
   ],
   imports: [
     CommonModule,

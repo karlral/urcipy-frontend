@@ -6,7 +6,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CategoriaComponent } from './view/categoria/categoria.component';
 import { CiudadComponent } from './view/ciudad/ciudad.component';
 import { ClubComponent } from './view/club/club.component';
-import { Corredor_backComponent } from './view/corredor_back/corredor_back.component';
 import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -42,11 +41,14 @@ const routes: Routes = [
         path:'categoria',
         component:CategoriaComponent,
         
-      },{
-        path:'corredor-back',
-        component:Corredor_backComponent,
-        
+      },
+      {
+        path:'corredor', loadChildren:()=> import('../admin/view/corredor/corredor.module').then(m => m.CorredorModule)
+      },
+      {
+        path:'evento', loadChildren:()=> import('../admin/view/evento/evento.module').then(m => m.EventoModule)
       }
+
     ]
     
   }
