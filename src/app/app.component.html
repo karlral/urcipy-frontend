@@ -6,11 +6,12 @@
   <div class="inline-menu-container">
     <!-- <span class="status">Estoy disponible como Freelance</span> -->
     <ul class="inline-menu">
-        <li class="about menu-item"><a routerLink="/resumen">Calendario</a></li>
-        <li class="portfolio menu-item">Inscripción</li>
-        <li class="blog menu-item">Historial</li>
-        <li class="contact menu-item">Puntajes</li>
-        <li id="close" class="menu-item"><i class="ion-ios-close-empty"></i></li>
+        <li class="about menu-item"><a routerLink="/resumen" >Calendario</a></li>
+        <li class="about menu-item"><a routerLink="/portfolio">Inscripción</a></li>
+        <li class="about menu-item"><a routerLink="/blog">Historial</a></li>
+        <li class="about menu-item"><a routerLink="/contact">Puntajes</a></li>
+        <li id="maxi" class="menu-item"><a routerLink="/"><i class="ion-chevron-left"></i></a></li>
+        <li id="close" class="menu-item"><a routerLink="/"><i class="ion-ios-close-empty"></i></a></li>
     </ul>
   </div>
   <section class="home">
@@ -34,38 +35,51 @@
             </div>
         </div>
         <div class="menu-blocks">
+            <a routerLink="/resumen">
             <div class="about-block menu-block">
+                
                 <div class="about-block-container">
                     <h2 class="about menu-item">Calendario</h2>
                 </div>
+                
             </div>
-            <div class="portfolio-block  menu-block">
+            </a>
+            <a routerLink="/portfolio">
+            <div class="portfolio-block  menu-block">     
                 <div class="portfolio-block-container">
                     <h2 class="portfolio menu-item">Inscripciones</h2>
                 </div>
+                
             </div>
+            </a>
+            <a routerLink="/blog">
             <div class="blog-block  menu-block">
                 <div class="blog-block-container">
                     <h2 class="blog menu-item">Historial</h2>
                 </div>
             </div>
+            </a>
+            <a routerLink="/contact">
             <div class="contact-block  menu-block">
                 <div class="contact-block-container">
                     <h2 class="contact menu-item">Resultado y Puntajes</h2>
                 </div>
             </div>
+            </a>
+            <a routerLink="/sistema">
             <div class="sistema-block  menu-block">
                 <div class="sistema-block-container">
                     <h2 class="sistema menu-item">Sistema</h2>
                 </div>
             </div>
+        </a>
         </div>
   
         <div class="content-blocks about">
-          <app-resumen></app-resumen>
+          <router-outlet></router-outlet>
         </div>
   
-        <div class="content-blocks portfolio">
+        <!-- <div class="content-blocks portfolio">
           <app-portafolio></app-portafolio>
         </div>
         <div class="content-blocks blog">
@@ -73,11 +87,11 @@
         </div>
         <div class="content-blocks contact">
             <app-contacto></app-contacto>
-        </div> 
+        </div>  -->
   
-        <div class="content-blocks sistema sistema-ancho">
+        <!-- <div class="content-blocks-sistema sistema">
             <router-outlet></router-outlet>
-        </div>
+        </div> -->
 
         <div class="content-blocks pop">
             <div id="close-pop" class="close-pop">Cerrar <i class="ion-ios-close-empty"></i></div>

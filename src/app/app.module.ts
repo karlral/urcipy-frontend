@@ -9,6 +9,8 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {ToastModule} from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,6 +25,8 @@ import { ResumenComponent } from './pages/index/resumen/resumen.component';
 import { PortafolioComponent } from './pages/index/portafolio/portafolio.component';
 import { BlogComponent } from './pages/index/blog/blog.component';
 import { ContactoComponent } from './pages/index/contacto/contacto.component';
+import { RegistrocorredorComponent } from './pages/index/registrocorredor/registrocorredor.component';
+import { EventobusComponent } from './pages/index/eventobus/eventobus.component';
 
 
 
@@ -38,7 +42,9 @@ import { ContactoComponent } from './pages/index/contacto/contacto.component';
     ResumenComponent,
     PortafolioComponent,
     BlogComponent,
-    ContactoComponent
+    ContactoComponent,
+    RegistrocorredorComponent,
+    EventobusComponent
 
     
   ],
@@ -51,7 +57,8 @@ import { ContactoComponent } from './pages/index/contacto/contacto.component';
     ToolbarModule,
     ToastModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    CheckboxModule
     
   ],  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -10,9 +10,9 @@
                         <img [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" />
                         
                         <div class="botones">
-                           <button type="submit" class="btn inscrip">INSCRIBETE</button>
-                        
-                            <button type="submit" class="btn list">LISTA DE INSCRIPTOS</button> 
+                           <button type="submit" [routerLink]="['/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
+                           
+                            <button type="submit" [routerLink]="[{outlets: {'frente':['resumen']}}]" class="btn list">LISTA DE INSCRIPTOS</button> 
                         </div>
                         
                     </div>

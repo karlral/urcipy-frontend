@@ -23,8 +23,8 @@ export class EventopubService {
   public obtenerEventoActivo(activo:any){
     return this.http.get(`${baserUrl}/eventopub/activo/${activo}`);
   }
-  public obtenerEvento(idevento:any){
-    return this.http.get(`${baserUrl}/eventopub/${idevento}`);
+  public obtenerEvento(idevento:any):Observable<Evento>{
+    return this.http.get<Evento>(`${baserUrl}/eventopub/${idevento}`);
   }
 
 }

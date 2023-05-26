@@ -9,13 +9,13 @@
     justify-content: space-between;
 }
 
- .container{
+ .contendor{
   display: flex;
  }
- .container .main-body{
+ .contendor .principal-body{
   width: 100%;
  }
- .container aside{
+ .contendor aside{
    width: 0;
    overflow-y: auto;
    transition: all 0.5s;

@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { BlogComponent } from './pages/index/blog/blog.component';
 import { ContactoComponent } from './pages/index/contacto/contacto.component';
+import { EventobusComponent } from './pages/index/eventobus/eventobus.component';
 import { PortafolioComponent } from './pages/index/portafolio/portafolio.component';
+import { RegistrocorredorComponent } from './pages/index/registrocorredor/registrocorredor.component';
 import { ResumenComponent } from './pages/index/resumen/resumen.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -15,7 +17,12 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
 const routes: Routes = [
 
   {
-    path:'',
+    path:'sistema1',
+    component:LoginComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'sistema',
     component:LoginComponent,
     pathMatch:'full'
   },
@@ -46,11 +53,19 @@ const routes: Routes = [
     component:ResumenComponent,
     pathMatch:'full'
   },{
-    path:'portafolio',
+    path:'portfolio',
     component:PortafolioComponent,
     pathMatch:'full'
   },{
-    path:'contacto',
+    path:'eventobus/:idevento',
+    component:EventobusComponent,
+    pathMatch:'full'
+  },{
+    path:'registrocorredor',
+    component:RegistrocorredorComponent,
+    pathMatch:'full'
+  },{
+    path:'contact',
     component:ContactoComponent,
     pathMatch:'full'
   },{

@@ -5,7 +5,7 @@
     Theme Name: Alpha | Personal vCard Template
     Version: 1.0
     Last change: 17/08/2017
-    Developer: LionCoders - http://www.lion-coders.com
+   
 
 -------------------------------------------------------------------*/
 
@@ -676,6 +676,12 @@ h2.menu-item:after {
     top: 0;
 }
 
+.inline-menu-container.acomodar {
+    width: 80%;
+    left: 10%;
+    right: 10%;
+}
+
 .status {
     color: #333;
     line-height: 38px;
@@ -839,7 +845,28 @@ h2.menu-item:after {
     overflow-y: scroll;
     top: 100%;
     left: 30%;
-    background: #FFF;
+   /*  background: #FFF; */
+    transition: opacity 0.7s ease-out;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+}
+.content-blocks.maximizar {
+   
+    width: 100%;
+    
+    left: 0%;
+    
+}
+.content-blocks-sistema {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.5;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 100%;
+    left: 0%;
+    background: #FFF; 
     transition: opacity 0.7s ease-out;
     z-index: 1;
     -webkit-overflow-scrolling: touch;
@@ -864,6 +891,10 @@ h2.menu-item:after {
 	opacity: 1;
     top: 0;
 }
+.content-blocks-sistema.showx {
+	opacity: 1;
+    top: 0;
+}
 
 .home-container {
     left: 20%;
@@ -874,6 +905,11 @@ h2.menu-item:after {
 .menu4 .content-blocks {
     width: 80%;
     left: 20%;
+}
+.menu4 .content-blocks-sistema {
+    width: 60%;
+    left: 20%;
+    right: 20%;
 }
 
 .content {
@@ -911,7 +947,7 @@ h2.menu-item:after {
 .block-title {
     font-size: 24px;
     text-transform: uppercase;
-    color: #333;
+    color: #fff;
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 30px;
@@ -2335,14 +2371,14 @@ h4.package {
         width: 400px;
         left: 300px;
     }
-    .content-blocks,
+    /* .content-blocks,
     .content-blocks.pop.showx,
     .inline-menu-container,
     .close-pop {
         width: 1024px;
         left: auto;
         right: 0;
-    }
+    } */
         /***URCIPY*/
     
       /*   .sistema-ancho {
@@ -2632,7 +2668,7 @@ h4.package {
 
 @media (max-width:800px) and (orientation:landscape) {
     .home {
-        background: url(../images/bg.jpg) #333 30% 30%;
+        background: url(../images/bg/demo.jpeg) #333 30% 30%;
         overflow-y: scroll;
     }
     .name-block,
@@ -2774,6 +2810,9 @@ h4.package {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
         padding: 0 0 0 0;
+    }
+    .name-block-container.showx{
+        display: none;
     }
     h2.menu-item {
         line-height: 3em;
