@@ -7,7 +7,7 @@
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
-            <h2 class="m-0">Eventoes</h2>
+            <h2 class="m-0">Eventos</h2>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
@@ -27,7 +27,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-evento>
         <tr>
-            <td><img [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" width="100" class="shadow-4" /></td>
+            <td><img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" width="100" class="shadow-4" /></td>
 
             <td>{{evento.nomevento | uppercase}}</td>
             <td>{{evento.club.nomclub}}</td>

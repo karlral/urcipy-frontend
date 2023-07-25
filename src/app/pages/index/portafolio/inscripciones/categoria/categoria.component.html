@@ -1,0 +1,47 @@
+
+<div id="categoria" class="mx-auto" >
+
+    <p-table [value]="participantes" sortField="corredor.categoria.nomcorto" sortMode="single"
+        dataKey="corredor.categoria.nomcorto" rowGroupMode="subheader" groupRowsBy="corredor.categoria.nomcorto">
+        <ng-template pTemplate="header">
+            <tr>  
+                <th ><h1 class="titulo">Por Categoria</h1></th>  
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="groupheader" let-partici let-rowIndex="rowIndex" let-expanded="expanded">
+            <tr>
+                <td  class="flex">
+
+                    
+                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >{{partici.corredor.categoria.nomcorto}}</span>
+                    <span class="font-bold   ml-2 flex align-items-center" >{{calculateCategoriaTotal(partici.corredor.categoria.nomcorto)}}</span>
+                    
+                    <div class="flex align-items-center">
+                        <button type="button" pButton pRipple [pRowToggler]="partici"
+                        class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
+                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                    </button>
+                    </div>
+                    
+                </td>
+            </tr>
+        </ng-template>
+       
+        <ng-template pTemplate="rowexpansion" let-partici>
+            <tr>
+                <td class="flex  corredor" style="background: orange;" >
+
+                    <div class="flex">
+                        <img [alt]="partici.corredor.club.ruta"
+                        [src]="mediaLocation+partici.corredor.club.ruta"
+                        width="70"  />
+                    </div>
+
+                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor.nombre}} {{partici.corredor.apellido}}</h5>
+                   
+                </td> 
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

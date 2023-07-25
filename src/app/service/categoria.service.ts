@@ -15,6 +15,7 @@ export class CategoriaService {
   public listarCategoriaes():Observable<Categoria[]>{
     return this.http.get<Categoria[]>(`${baserUrl}/categoria/`);
   }
+  
   public obtenerCategoria(idcategoria:any){
     return this.http.get(`${baserUrl}/categoria/${idcategoria}`);
   }
@@ -27,5 +28,9 @@ export class CategoriaService {
   }
   public actualizarCategoria(categoria:any){
     return this.http.put(`${baserUrl}/categoria/`,categoria);
+  }
+
+  public listarCategoriaActivo():Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/`);
   }
 }

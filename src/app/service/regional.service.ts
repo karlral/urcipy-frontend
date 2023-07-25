@@ -26,4 +26,9 @@ export class RegionalService {
   public actualizarRegional(regional:any){
     return this.http.put(`${baserUrl}/regional/`,regional);
   }
+
+  //publicos
+  public obtenerRegionalPub(idregional:any):Observable<Regional>{
+    return this.http.get<Regional>(`${baserUrl}/regionalpub/${idregional}`);
+  }
 }

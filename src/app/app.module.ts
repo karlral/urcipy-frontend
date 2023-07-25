@@ -10,7 +10,9 @@ import {ToastModule} from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-
+import { OrderListModule } from 'primeng/orderlist';
+import { TableModule } from 'primeng/table';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,8 +27,19 @@ import { ResumenComponent } from './pages/index/resumen/resumen.component';
 import { PortafolioComponent } from './pages/index/portafolio/portafolio.component';
 import { BlogComponent } from './pages/index/blog/blog.component';
 import { ContactoComponent } from './pages/index/contacto/contacto.component';
-import { RegistrocorredorComponent } from './pages/index/registrocorredor/registrocorredor.component';
-import { EventobusComponent } from './pages/index/eventobus/eventobus.component';
+import { RegistrocorredorComponent } from './pages/index/portafolio/eventobus/registrocorredor/registrocorredor.component';
+
+import { CategoriasComponent } from './pages/index/contacto/categorias/categorias.component';
+import { PuntajecorredorComponent } from './pages/index/contacto/categorias/puntajecorredor/puntajecorredor.component';
+import { EventosComponent } from './pages/index/contacto/eventos/eventos.component';
+import { InscripcionesComponent } from './pages/index/portafolio/inscripciones/inscripciones.component';
+import { EventobusComponent } from './pages/index/portafolio/eventobus/eventobus.component';
+import { CategoriaComponent } from './pages/index/portafolio/inscripciones/categoria/categoria.component';
+import { ClubComponent } from './pages/index/portafolio/inscripciones/club/club.component';
+import { ResultadosComponent } from './pages/index/contacto/eventos/resultados/resultados.component';
+import { ClubpuntajeComponent } from './pages/index/contacto/clubpuntaje/clubpuntaje.component';
+import { ClubpuntajedetComponent } from './pages/index/contacto/clubpuntaje/clubpuntajedet/clubpuntajedet.component';
+import { CampeonesComponent } from './pages/index/blog/campeones/campeones.component';
 
 
 
@@ -44,7 +57,17 @@ import { EventobusComponent } from './pages/index/eventobus/eventobus.component'
     BlogComponent,
     ContactoComponent,
     RegistrocorredorComponent,
-    EventobusComponent
+    EventobusComponent,
+    InscripcionesComponent,
+    ClubComponent,
+    CategoriaComponent,
+    CategoriasComponent,
+    PuntajecorredorComponent,
+    EventosComponent,
+    ResultadosComponent,
+    ClubpuntajeComponent,
+    ClubpuntajedetComponent,
+    CampeonesComponent
 
     
   ],
@@ -58,7 +81,11 @@ import { EventobusComponent } from './pages/index/eventobus/eventobus.component'
     ToastModule,
     ButtonModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    OrderListModule,
+    TableModule,
+    ScrollPanelModule
+
     
   ],  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

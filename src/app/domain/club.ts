@@ -11,5 +11,6 @@ export interface Club {
     email:string,
     ruta:string,
     rutagrande:string,
-    regional: Regional
+    regional: Regional,
+    cantidad?:number
 }

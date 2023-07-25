@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/domain/evento';
 import { Datasys } from 'src/app/service/datasys';
-import { EventopubService } from 'src/app/service/eventopub.service';
+import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from "primeng/api";
 import { Club } from 'src/app/domain/club';
 import { Regional } from 'src/app/domain/regional';
-import { ParticipubService } from 'src/app/service/participub.service';
+import { ParticipanteService } from 'src/app/service/participante.service';
+import { Participante } from 'src/app/domain/participante';
+import { Corredor } from 'src/app/domain/corredor';
+import { Usuario } from 'src/app/domain/usuario';
+import { Categoria } from 'src/app/domain/categoria';
+import { Ciudad } from 'src/app/domain/ciudad';
+import { Pais } from 'src/app/domain/pais';
 
 @Component({
   selector: 'app-eventobus',
@@ -20,6 +26,32 @@ export class EventobusComponent implements OnInit{
   idevento!:number ;
   mediaLocation = `${baserUrl}/media/`;
 
+  categoria:Categoria={
+    idcategoria: 0,
+    nomcategoria: '',
+    activo: false,
+    nomcorto: '',
+    orden: 0,
+    tanda: 0,
+    ascenso: false,
+    activonacional: 0,
+    edadinicio: 0,
+    edadfin: 0,
+    sexo: 0,
+    tipo: 0
+  }
+
+  usuario:Usuario={
+    idusuario: 0,
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    perfil: '',
+    email: '',
+    username: '',
+    password: '',
+    enabled: false
+  }
   regional:Regional={
     idregional: 0,
     nomregional: '',
@@ -39,6 +71,51 @@ export class EventobusComponent implements OnInit{
     rutagrande: '',
     regional: this.regional
   }
+  pais:Pais={
+    idpais: 0,
+    nompais: '',
+    nacionalidad: ''
+  }
+
+ciudad:Ciudad={
+  idciudad: 0,
+  nomciudad: '',
+  pais: this.pais
+}
+
+  corredor:Corredor={
+    idcorredor: 0,
+    nombre: '',
+    apellido: '',
+    ci: '',
+    sexo: 0,
+    fecnac: new Date,
+    telefono: '',
+    direccion: '',
+    email: '',
+    verificar: 0,
+    nacionalidad: '',
+    carnet: '',
+    carnetatras: '',
+    foto: '',
+    cidelante: '',
+    tipocat: 0,
+    tutorp: '',
+    citp: '',
+    licencia: 0,
+    modificar: false,
+    gruposanguineo: '',
+    puntua: false,
+    fecmodi: new Date,
+    montopuntua: 0,
+    carnetfpc: false,
+    observacion: '',
+    categoria: this.categoria,
+    ciudad: this.ciudad,
+    club: this.club,
+    usuario: this.usuario
+  }
+
   evento: Evento= {
     idevento: 0,
     fecha: new Date,
@@ -69,26 +146,56 @@ export class EventobusComponent implements OnInit{
     fondo: '',
     club: this.club
   };
+
+  participante:Participante={
+    idparticipante: 0,
+    fecha: new Date,
+    pagado: 0,
+    nrogiro: '',
+    costo: 0,
+    dorsal: 0,
+    puesto: 0,
+    puestocat: 0,
+    puntaje: 0,
+    tiempo: new Date,
+    participo: 0,
+    completo: 0,
+    descalif: 0,
+    promedio: 0,
+    km: 0,
+    orden: 0,
+    puntajeaux: 0,
+    puntua: 0,
+    totalpuntos: 0,
+    acobrar: 0,
+    corredor: this.corredor,
+    evento: this.evento,
+    regional: this.regional
+  }
+
+  
   ordenes:{label:string,value:number}[]=[
     { label: 'Primera', value: 1 }
   ];
 
   ordenevento='';
-  ci!:string;
+  ci:string='';
   selectedTerminos:boolean=false;
+  inscripto:boolean=false;
+
 
   constructor( private activatedRoute:ActivatedRoute,
-    private eventoService: EventopubService,
+    private eventoService: EventoService,
     private datasys:Datasys,
     private messageService: MessageService,
-    private participub:ParticipubService,
+    private participanteService:ParticipanteService,
     private router: Router
     ) { }
   
   ngOnInit(): void {
     this.idevento=this.activatedRoute.snapshot.params["idevento"];
 
-    this.eventoService.obtenerEvento(this.idevento).subscribe(
+    this.eventoService.obtenerEventoPub(this.idevento).subscribe(
       {
         next: (e: Evento) => {
           this.evento = e;
@@ -120,10 +227,12 @@ export class EventobusComponent implements OnInit{
 
       return;
     }
-    this.participub.inscribirPartiCi(this.ci).subscribe(
+    this.participanteService.inscribirPartiCi(this.ci).subscribe(
       (data: any) => {
         console.log(data);
-        this.router.navigate(['eventobus']);
+        //this.router.navigate(['eventobus']);
+        this.participante=data;
+        this.inscripto=true;
         
 
       }, (error) => {
@@ -132,7 +241,7 @@ export class EventobusComponent implements OnInit{
         this.messageService.add({
           severity: "error",
           summary: "Atencion",
-          detail: "Cedula de identidad no encontrada, digite sin puntos o falta registrar."
+          detail: "No se encontro el servicio de busqueda de participante"
         });
 
       }

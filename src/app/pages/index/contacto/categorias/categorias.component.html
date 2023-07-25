@@ -1,0 +1,66 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">PUNTAJES</h3>
+        <div class="row">
+
+            
+
+                <p-table id="tabla" [value]="puncorredores" sortField="categoria" sortMode="single" dataKey="categoria"
+                    rowGroupMode="subheader" groupRowsBy="categoria">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>
+                                <h1 class="titulo">CATEGORIAS</h1>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="groupheader" let-corredor let-expanded="expanded">
+                        <tr>
+                            <td class="flex">
+
+
+                                <span
+                                    class="flex-1 flex align-items-center  font-bold   ml-2">{{corredor.categoria}}</span>
+
+
+
+                                <div class="flex align-items-center">
+                                    <button type="button" pButton pRipple [pRowToggler]="corredor"
+                                        class="p-button-text p-button-rounded p-button-plain font-bold ml-3 "
+                                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                                    </button>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="rowexpansion" let-corredor>
+                        <tr>
+
+                            <td class="flex " >
+                                
+                                    
+                                    <span
+                                        class="flex-1 flex align-items-center  " style="font-size: 12px;">{{corredor.orden}} - {{corredor.corredor}}</span>
+                                    <button type="button" pButton pRipple routerLink="/puntos/{{corredor.idcorredor}}"
+                                    [ngStyle]="{backgroundColor:'var(--indigo-600)', color: 'var(--indigo-50)'}"
+                                    class="p-button-text p-button-rounded p-button-plain font-bold ml-3 reasonButton"
+                                    >{{corredor.puntaje}}
+
+                                </button>
+                                
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+
+            
+
+
+
+        </div>
+    </div>
+</section>

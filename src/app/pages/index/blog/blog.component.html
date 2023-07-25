@@ -1,32 +1,62 @@
 <section class="content">
     <div class="block-content">
-        <h3 class="block-title">Mi Blog</h3>
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <!-- <div *ngFor="let blox of cv.blog">
-                  <div class="post">
-                    <div class="post-thumbnail">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" [src]="getVideoIframe(blox.src)" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="post-title">
-                        <a href="#"><h2>{{ blox.titulo }}</h2></a>
-                        <p class="post-info">
-                            <span class="post-author">{{ blox.autor }}</span>
-                            <span class="slash"></span>
-                            <span class="post-date">{{ blox.fecha }}</span>
-                            <span class="slash"></span>
-                            <span class="post-catetory">{{ blox.categoria }}</span>
-                        </p>
-                    </div>
-                    <div class="post-body">
-                        <a class="btn" target="_blank" href="{{ blox.url }}">Ver Mas</a>
-                    </div>
-                  </div>
-                </div> -->
-            </div>
-        </div>
-    </div>
-  </section>
+      <h3 class="block-title">HISTORIAL</h3>
+      <div class="row">
   
+        <p-table id="tabla" [value]="anhocats" sortField="ano" sortMode="single" dataKey="ano"
+        rowGroupMode="subheader" groupRowsBy="ano">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    <h2 class="titulo" style="width: 375px; text-align: center; font-weight: 700;">CAMPEONES URCI</h2>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="groupheader" let-anhocat let-expanded="expanded">
+            <tr>
+                <td class="flex">
+
+                    <h1 class="flex-1 flex align-items-center justify-content-center font-bold  ">{{anhocat.ano}}</h1>
+
+                    <div class="flex align-items-center">
+                        <button type="button" pButton pRipple [pRowToggler]="anhocat"
+                            class="p-button-text p-button-rounded p-button-plain font-bold ml-3 "
+                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                        </button>
+                    </div>
+
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-anhocat>
+            <tr>
+
+                <td class="flex " >
+                    
+                        
+                        <span
+                            class="flex-1 flex align-items-center justify-content-center font-bold  " >{{anhocat.nomcorto}}</span>
+
+                        <button type="button" pButton pRipple routerLink="/campeones/{{anhocat.ano}}/{{anhocat.idcategoriah}}"
+                        [ngStyle]="{backgroundColor:'var(--indigo-600)', color: 'var(--indigo-50)'}"
+                        class="p-button-text p-button-rounded p-button-plain font-bold ml-3 reasonButton"
+                        [icon]="'pi pi-chevron-right'"
+                        > 
+
+
+                    </button>
+                    
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+
+
+      </div>
+    </div>
+  
+  </section>

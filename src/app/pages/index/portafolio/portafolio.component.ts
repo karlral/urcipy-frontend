@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/domain/evento';
 import { Datasys } from 'src/app/service/datasys';
-import { EventopubService } from 'src/app/service/eventopub.service';
+import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
 
 @Component({
@@ -16,7 +16,7 @@ export class PortafolioComponent implements OnInit{
   ordenes:{label:string,value:number}[]=[];
 
   constructor( 
-    private eventoService: EventopubService,
+    private eventoService: EventoService,
     private datasys:Datasys
     
     ) { }
@@ -27,7 +27,7 @@ export class PortafolioComponent implements OnInit{
       this.ordenes=data;
     });
 
-    this.eventoService.listarEventosActivos().subscribe(
+    this.eventoService.listarEventosActivosPub().subscribe(
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;

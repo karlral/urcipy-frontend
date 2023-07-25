@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Punclub } from '../domain/custom/punclub';
+import { Punclubpartici } from '../domain/custom/punclubpartici';
+import { Puncorredor } from '../domain/custom/puncorredor';
+import { Puntocorredor } from '../domain/custom/puntocorredor';
+
 import { Participante } from '../domain/participante';
 import baserUrl from './helper';
 
@@ -27,4 +32,36 @@ export class ParticipanteService {
   public actualizarParticipante(participante:any){
     return this.http.put(`${baserUrl}/participante/`,participante);
   }
+
+/**PUBLICOS */
+
+public inscribirPartiCi(ci:any){
+  return this.http.get(`${baserUrl}/participub/${ci}`);
+}
+
+public listarParticipantesActivos(activo:any):Observable<Participante[]>{
+  return this.http.get<Participante[]>(`${baserUrl}/participub/activo/${activo}`);
+}
+
+public listarParticipantesByEvento(idevento:any):Observable<Participante[]>{
+  return this.http.get<Participante[]>(`${baserUrl}/participub/evento/${idevento}`);
+}
+
+public listarParticipantesProceso():Observable<Participante[]>{
+  return this.http.get<Participante[]>(`${baserUrl}/participub/proceso/`);
+}
+
+public pubListarPuntajeCorredor():Observable<Puncorredor[]>{
+  return this.http.get<Puncorredor[]>(`${baserUrl}/participub/puntaje/`);
+}
+
+public pubListarPuntosByIdCorredor(idcorredor:any):Observable<Puntocorredor[]>{
+  return this.http.get<Puntocorredor[]>(`${baserUrl}/participub/puntaje/${idcorredor}`);
+}
+public pubListarPuntosInClub(tipo:any):Observable<Punclub[]>{
+  return this.http.get<Punclub[]>(`${baserUrl}/participub/punclub/${tipo}`);
+}
+public pubListarPuntosByClubPartici(tipo:any,idclub:any):Observable<Punclubpartici[]>{
+  return this.http.get<Punclubpartici[]>(`${baserUrl}/participub/punclub/${tipo}/${idclub}`);
+}
 }

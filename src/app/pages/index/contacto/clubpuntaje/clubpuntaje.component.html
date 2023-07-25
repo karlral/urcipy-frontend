@@ -1,0 +1,39 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">PUNTAJE CLUB</h3>
+        <div class="row">
+
+            <p-table [value]="punclubes">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <h1 class="titulo">CLUB {{tipo | uppercase}}</h1>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-club let-rowIndex="rowIndex">
+                    <tr>
+                        <td class="flex">
+                            <div class="flex align-items-center">
+                                <img [alt]="club.ruta" [src]="mediaLocation+club.ruta"
+                                    width="70" />
+                            </div>
+
+                            <span class="flex-1 flex align-items-center  " style="font-size: 12px;">{{club.nomclub}}</span>
+
+                            <button type="button" pButton pRipple routerLink="/clubpuntajedet/{{tipo}}/{{club.idclub}}"
+                            [ngStyle]="{backgroundColor:'var(--indigo-600)', color: 'var(--indigo-50)'}"
+                            class="p-button-text p-button-rounded p-button-plain font-bold ml-3 reasonButton">
+                                {{club.puntaje}}
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+
+            </p-table>
+
+        </div>
+    </div>
+</section>

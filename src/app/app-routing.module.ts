@@ -3,14 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { BlogComponent } from './pages/index/blog/blog.component';
+import { CategoriasComponent } from './pages/index/contacto/categorias/categorias.component';
 import { ContactoComponent } from './pages/index/contacto/contacto.component';
-import { EventobusComponent } from './pages/index/eventobus/eventobus.component';
+import { EventosComponent } from './pages/index/contacto/eventos/eventos.component';
+import { ResultadosComponent } from './pages/index/contacto/eventos/resultados/resultados.component';
+import { PuntajecorredorComponent } from './pages/index/contacto/categorias/puntajecorredor/puntajecorredor.component';
+import { EventobusComponent } from './pages/index/portafolio/eventobus/eventobus.component';
+import { InscripcionesComponent } from './pages/index/portafolio/inscripciones/inscripciones.component';
+
 import { PortafolioComponent } from './pages/index/portafolio/portafolio.component';
-import { RegistrocorredorComponent } from './pages/index/registrocorredor/registrocorredor.component';
 import { ResumenComponent } from './pages/index/resumen/resumen.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { ClubpuntajeComponent } from './pages/index/contacto/clubpuntaje/clubpuntaje.component';
+import { ClubpuntajedetComponent } from './pages/index/contacto/clubpuntaje/clubpuntajedet/clubpuntajedet.component';
+import { CampeonesComponent } from './pages/index/blog/campeones/campeones.component';
 
 
 
@@ -61,16 +69,51 @@ const routes: Routes = [
     component:EventobusComponent,
     pathMatch:'full'
   },{
-    path:'registrocorredor',
-    component:RegistrocorredorComponent,
+    path:'inscripciones/:activo',
+    component:InscripcionesComponent,
     pathMatch:'full'
   },{
     path:'contact',
     component:ContactoComponent,
     pathMatch:'full'
   },{
+    path:'puntos/:idcorredor',
+    component:PuntajecorredorComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'categorias',
+    component:CategoriasComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'eventos',
+    component:EventosComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'resultados/:idevento',
+    component:ResultadosComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'clubpuntaje/:tipo',
+    component:ClubpuntajeComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'clubpuntajedet/:tipo/:idclub',
+    component:ClubpuntajedetComponent,
+    pathMatch:'full'
+  },
+  {
     path:'blog',
     component:BlogComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'campeones/:anho/:idcat',
+    component:CampeonesComponent,
     pathMatch:'full'
   }
 ];

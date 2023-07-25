@@ -27,4 +27,24 @@ export class EventoService {
   public actualizarEvento(evento:any){
     return this.http.put(`${baserUrl}/evento/`,evento);
   }
+
+  //publico
+  public listarEventosPub():Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/`);
+  }
+  public listarEventosModoPub(modo:any):Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/${modo}`);
+  }
+  public listarEventosCulminadosPub():Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/culminados`);
+  }
+  public listarEventosActivosPub():Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/activos`);
+  }
+  public obtenerEventoActivoPub(activo:any):Observable<Evento>{
+    return this.http.get<Evento>(`${baserUrl}/eventopub/activo/${activo}`);
+  }
+  public obtenerEventoPub(idevento:any):Observable<Evento>{
+    return this.http.get<Evento>(`${baserUrl}/eventopub/${idevento}`);
+  }
 }

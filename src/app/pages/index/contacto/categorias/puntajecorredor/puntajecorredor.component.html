@@ -1,0 +1,59 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">PUNTAJES</h3>
+        <div class="row">
+            
+                <div class="card">
+                    <div class="face front">
+                        
+                        <!--img *ngIf="evento.fondo" [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" /-->
+                        <img *ngIf="puntocorredor.ruta" [src]="mediaLocation+puntocorredor.ruta" [alt]="puntocorredor.ruta" />
+                        <table>
+                            <tbody>
+                            <tr>
+                            <td ><span  style=" font-weight:  bold;">Corredor</span></td>
+                            <td><span >{{puntocorredor.corredor}}</span></td>
+                            </tr>
+                            <tr>
+                            <td ><span  style=" font-weight:  bold;">Categoria</span></td>
+                            <td ><span >{{puntocorredor.categoria}}</span></td>
+                            </tr>
+                            
+                            
+                            </tbody>
+                            </table>
+                            
+                        <table id="tablapuntos">
+                            <thead>
+                                <tr>
+                                    <th>Evento</th>
+                                    <th>Categoria</th>
+                                    <th class="ancho">POS CAT</th>
+                                    <th class="ancho">PUN TOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let puntaje of puntoscorredor">
+                                    <td>{{puntaje.evento}}</td>
+                                    <td>{{puntaje.categoria}}</td>
+                                    <td class="centrar">{{puntaje.puestocat}}</td>
+                                    <td class="centrar">{{puntaje.puntaje}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                     <!--    <div class="botones">
+                            
+                           <button type="submit" [routerLink]="['/categorias']" class="btn inscrip">IR A CATEGORIAS</button>
+                           
+                        </div> -->
+                        
+                    </div>
+                    
+                </div>
+            
+            
+        </div>
+    </div>
+  </section>
+  

@@ -1,0 +1,122 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Club } from 'src/app/domain/club';
+import { Evento } from 'src/app/domain/evento';
+
+import { Participante } from 'src/app/domain/participante';
+import { Regional } from 'src/app/domain/regional';
+import { EventoService } from 'src/app/service/evento.service';
+import baserUrl from 'src/app/service/helper';
+import { ParticipanteService } from 'src/app/service/participante.service';
+
+
+@Component({
+  selector: 'app-inscripciones',
+  templateUrl: './inscripciones.component.html',
+  styleUrls: ['./inscripciones.component.css']
+})
+export class InscripcionesComponent  implements OnInit{
+  activo!:number ;
+  visible:any;
+  mediaLocation = `${baserUrl}/media/`;
+
+  regional:Regional={
+    idregional: 0,
+    nomregional: '',
+    nomcorto: '',
+    logo: ''
+  }
+  club:Club={
+    idclub: 0,
+    nomclub: '',
+    presidente: '',
+    telepresi: '',
+    vicepresidente: '',
+    telvice: '',
+    telefono: '',
+    email: '',
+    ruta: '',
+    rutagrande: '',
+    regional: this.regional
+  }
+  evento:Evento={
+    idevento: 0,
+    fecha: new Date,
+    nomevento: '',
+    activo: 0,
+    direccion: '',
+    orden: 0,
+    tipoevento: 0,
+    modo: 0,
+    verencuesta: 0,
+    ranqueable: 0,
+    preinscrip: 0,
+    doble: 0,
+    km: 0,
+    kmpromo: 0,
+    kmmenor: 0,
+    informacion: '',
+    locales: '',
+    deposito: '',
+    urlpromocional: '',
+    urlcategoria: '',
+    contacto: '',
+    montopric: 0,
+    montopris: 0,
+    montomenc: 0,
+    montomens: 0,
+    fondocolor: '',
+    fondo: '',
+    club: this.club
+  };
+
+  participantes!:Participante[];
+
+  constructor( private activatedRoute:ActivatedRoute,
+    private eventoService: EventoService,
+    private participanteService:ParticipanteService
+    ) { }
+  
+  ngOnInit(): void {
+    this.activo=this.activatedRoute.snapshot.params["activo"];
+
+    this.participanteService.listarParticipantesActivos(this.activo).subscribe(
+      {
+        next: (p: Participante[]) => {
+          this.participantes = p;
+          //console.log(this.eventoes);
+          
+        },
+        error: (error) => {
+          console.log(error);
+          
+        },
+        complete: () => console.info('completo evento')
+      });
+
+      
+
+    this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
+      {
+        next: (e: Evento) => {
+          this.evento = e;
+          //console.log(this.eventoes);
+          
+        },
+        error: (error) => {
+          console.log(error);
+          
+        },
+        complete: () => console.info('completo evento')
+      });
+
+   //   console.log(this.visible);
+
+  }
+
+  buttonSubmit(visible:string){
+    this.visible=visible;
+   // console.log(this.visible);
+  }
+
+}

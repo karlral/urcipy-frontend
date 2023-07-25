@@ -1,0 +1,16 @@
+<div class="wrapperBx">
+  <div class="cardBx">
+    <div class="imgBx">
+      <img class="logo-image" *ngIf="participante.corredor.nombre!=''" [src]="mediaLocation+participante.corredor.club.ruta"  alt="foto club" />
+    </div>
+    <div class="contentBx">
+      <h2>{{participante.corredor.nombre+" "+participante.corredor.apellido}}</h2>
+      <h3>{{participante.corredor.categoria.nomcorto}}</h3>
+    
+    </div>
+    <div class="color">
+        <h3>INSCRIPTO</h3>
+        <img class="logo-image" *ngIf="participante.evento.fondo" [src]="mediaLocation+participante.evento.fondo" [alt]="participante.evento.fondo" />
+    </div>
+  </div>
+</div>

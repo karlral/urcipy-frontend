@@ -3,27 +3,24 @@
         <h3 class="block-title">Inscripcion</h3>
         <div class="row">
             
-            <div *ngFor="let evento of eventoes" class="col-md-6 col-sm-6">
+            <div *ngFor="let evento of eventoes" >
                 <div class="card">
                     <div class="face front">
                         <h3 class="onetop">Fecha {{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
-                        <img [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" />
+                        <!--img [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" /-->
+                        <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
                         
                         <div class="botones">
                            <button type="submit" [routerLink]="['/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
                            
-                            <button type="submit" [routerLink]="[{outlets: {'frente':['resumen']}}]" class="btn list">LISTA DE INSCRIPTOS</button> 
+                            <button type="submit" [routerLink]="['/inscripciones',evento.activo]" class="btn list">LISTA DE INSCRIPTOS</button> 
                         </div>
                         
                     </div>
                     
                 </div>
-            </div>
-            
-
-            
+            </div>    
         </div>
     </div>
-
-  </section>
+</section>
   

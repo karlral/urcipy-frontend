@@ -677,9 +677,9 @@ h2.menu-item:after {
 }
 
 .inline-menu-container.acomodar {
-    width: 80%;
-    left: 10%;
-    right: 10%;
+    width: 100%;
+    left: 0%;
+    right: 0%;
 }
 
 .status {
@@ -2988,8 +2988,23 @@ h4.package {
     .comment .col-sm-10 {
         width: 83.3333%;
     }
-}
 
+    
+}
+@media (max-width:450px) {
+	
+    .inline-menu  {
+        margin-right: 0px;
+        justify-content: space-between;
+    }
+    .inline-menu li {
+        padding: 0 7px;
+        
+    }
+   .inline-menu-container {
+    font-size: 13px;
+    }
+} 
 @media (max-width:375px) {
 	.home {
 		position: relative;
@@ -2997,6 +3012,16 @@ h4.package {
     .menu4 .home {
         height: 100vh;
     }
+    .inline-menu-container {
+        font-size: 12px;
+        right: 0px;
+        
+    }
+    .inline-menu li {
+        padding: 0 5px;
+
+    }
+
 }
 
 @media (max-width:360px) {

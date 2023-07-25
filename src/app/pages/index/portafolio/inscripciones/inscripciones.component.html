@@ -1,0 +1,40 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">Lista de Inscripcion</h3>
+        <div class="row">
+
+
+            <div *ngIf="!visible" class="wrapper">
+                <div class="card">
+                    <div class="face front">
+                        
+                        <!--img *ngIf="evento.fondo" [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" /-->
+                        <img *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+                        
+                        <div class="botones">
+                           
+                           <button (click)="buttonSubmit('categoria')" class="btn inscrip">CATEGORIA</button>
+   
+                          
+                           <button (click)="buttonSubmit('club')" class="btn list">CLUB</button> 
+
+                           
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>  
+
+            
+            <app-club *ngIf="visible=='club'"
+            [participantes]="participantes"
+            ></app-club>
+
+            <app-categoria *ngIf="visible=='categoria'"
+            [participantes]="participantes"
+            ></app-categoria>
+
+        </div>
+    </div>
+</section>

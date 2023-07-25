@@ -1,0 +1,83 @@
+<section class="content">
+
+  <div class="block-content">
+
+    <h3 class="block-title">Inscripcion - {{ordenevento}} Fecha</h3>
+    <div class="row">
+
+    
+     
+
+      <div *ngIf="!inscripto" class="wrapper">
+        <img class="logo-image" *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+
+        <h1>{{evento.fecha | date: 'dd/MM/yyyy'}}</h1>
+        <h3>Presentacion</h3>
+        <div class="box-text">
+          <pre>{{evento.informacion}}</pre>
+        </div>
+        <h3>Informacion</h3>
+        <div class="box-text">
+          <pre>{{evento.locales}}</pre>
+          <button class="btn outline">
+            <div class="icon"><i class="fa-solid fa-plane"></i></div>Mapa del trayecto
+          </button>
+        </div>
+
+        <h3>Formas de pagos</h3>
+        <div class="box-text">
+          <pre>{{evento.deposito}}</pre>
+        </div>
+
+
+        <h3>Inscribirse</h3>
+        <div class="box-text">
+          <div class="wrapper-login">
+            <div class="form-box login">
+
+
+              <form (ngSubmit)="formSubmit()">
+                <div class="field">
+                  <label  >Terminos de Participacion</label>
+                  
+                        <p-scrollPanel [style]="{ width: '100%', height: '200px','color':'bisque','border-color':'bisque','border-width': '2px' ,'border-style': 'solid' }" >
+                          <p >
+                              Lorem, ipsum dolor sit amet consectetur adipisicing e,lit. Maiores repellat autem voluptatem quo, corrupti soluta, id animi nostrum ducimus adipisci odit libero dolores minus tenetur atque. Quasi dolor aspernatur vitae minima, error reprehenderit officiis eum nobis nisi voluptate voluptas sed ratione. Inventore aut nobis 
+                          </p>
+                      </p-scrollPanel>
+                </div>
+                <p-toast></p-toast>
+               
+
+                <span class="field-checkbox ">
+                  <p-checkbox name="grupo" [binary]="true" [(ngModel)]="selectedTerminos"
+                    inputId="selected"></p-checkbox>
+                  <label for="selected" class="cblanco">Click para aceptar
+                  </label>
+                </span>
+
+                <span class="p-float-label form-field  input-box">
+                  <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" required>
+                  <label for="ci" class="cblanco"> Cedula de identidad</label>
+
+                </span>
+
+                <button pButton pRipple label="Inscribirse" type="submit"
+                  class=" btn-box p-button-raised p-button-secondary" [disabled]="!selectedTerminos"></button>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-registrocorredor *ngIf="inscripto" 
+      [participante]="participante"
+      ></app-registrocorredor>
+
+    </div>
+  </div>
+
+</section>

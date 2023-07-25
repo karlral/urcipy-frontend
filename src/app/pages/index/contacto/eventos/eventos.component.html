@@ -1,0 +1,40 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">RESULTADOS</h3>
+        <div class="row">
+
+            <p-table [value]="eventos">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <h1 class="titulo">Evento</h1>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-evento let-rowIndex="rowIndex">
+                    <tr>
+                        <td class="flex">
+                            <div class="flex align-items-center">
+                                <img [alt]="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande"
+                                    width="70" />
+                            </div>
+
+                            <span class="flex-1 flex align-items-center  font-bold   ml-2">{{evento.nomevento}}</span>
+
+                            <div class="flex align-items-center">
+                                <button type="button" pButton pRipple [routerLink]="['/resultados',evento.idevento]"
+                                    class="p-button-text p-button-rounded p-button-plain font-bold ml-3 "
+                                    [icon]="'pi pi-chevron-right'">
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+
+            </p-table>
+
+        </div>
+    </div>
+</section>

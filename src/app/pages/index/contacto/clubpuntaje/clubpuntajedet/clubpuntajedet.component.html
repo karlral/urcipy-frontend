@@ -1,0 +1,103 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title"> DETALLES PUNTAJES</h3>
+        <div class="row">
+
+            <div id="tabla">
+                <p-table [value]="punclubparticipantes" dataKey="nomevento" rowGroupMode="subheader"
+                    groupRowsBy="nomevento" [scrollable]="true" scrollHeight="600px">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th  style="text-align: center;"   >
+                                
+                                <h2 class="titulo">PUNTAJE {{tipo | uppercase}}</h2>
+                                
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="groupheader" let-partici >
+                        <tr pRowGroupHeader>
+                            <td class="flex">
+
+                                <div class="flex align-items-center">
+                                    <img [alt]="partici.rutagrande"
+                                    [src]="mediaLocation+partici.rutagrande"
+                                    width="70"  />
+                                </div>
+
+                                <span
+                                    class="flex-1 flex align-items-center justify-content-center  font-bold   ml-2">{{partici.nomevento}}</span>
+
+
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="groupfooter" let-partici>
+                        <tr>
+                            <td colspan="1" class="text-right font-bold pr-2">Sub Total: {{calculatePuntosSubTotal(partici.nomevento)}}</td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-partici let-rowIndex="rowIndex">
+                        <tr>
+                            <td class="flex p-0">
+                                <span class="flex-1 flex align-items-center mx-2 text-xs">{{partici.partici}}</span>
+                                <span class="flex align-items-center mx-2 text-xs"> {{partici.puntaje}}</span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 
+<p-table [value]="customers" sortField="representative.name" sortMode="single" 
+[scrollable]="true" scrollHeight="400px" rowGroupMode="subheader" 
+groupRowsBy="representative.name" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="groupheader" let-customer>
+        <tr pRowGroupHeader>
+            <td colspan="5">
+                <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
+                <span class="font-bold ml-2">{{customer.representative.name}}</span>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="groupfooter" let-customer>
+        <tr>
+            <td colspan="5" class="text-right font-bold pr-6">Total Customers: {{calculateCustomerTotal(customer.representative.name)}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+        <tr>
+            <td>
+                {{customer.name}}
+            </td>
+            <td>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px">
+                <span class="ml-1 vertical-align-middle">{{customer.country.name}}</span>
+            </td>
+            <td>
+                {{customer.company}}
+            </td>
+            <td>
+                <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)"></p-tag>
+            </td>
+            <td>
+                {{customer.date}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table> -->

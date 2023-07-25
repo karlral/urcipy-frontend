@@ -10,7 +10,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             (click)="openNew()"></button>
             <button pButton pRipple icon="pi pi-update" class="p-button-success mr-2"
             (click)="rellenarDataTable()"></button>
-        <h2 class="m-0">Categoriaes</h2>
+        <h2 class="m-0">Categorias</h2>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
