@@ -14,8 +14,8 @@ export class EventoService {
   public listarEventoes():Observable<Evento[]>{
     return this.http.get<Evento[]>(`${baserUrl}/evento/`);
   }
-  public obtenerEvento(idevento:any){
-    return this.http.get(`${baserUrl}/evento/${idevento}`);
+  public obtenerEvento(idevento:any):Observable<Evento>{
+    return this.http.get<Evento>(`${baserUrl}/evento/${idevento}`);
   }
 
   public agregarEvento(evento:any){

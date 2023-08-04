@@ -96,6 +96,16 @@
     transform: perspective(600px) rotateY(360deg);
 }
 
+.card .front .btn{
+    width: 80%;
+    padding: 10px;
+    font-size: 20px;   
+    margin-top: 0;
+    
+}
+.card .front .inscrip{
+    width: 80%;    
+}
 
 @media (max-width: 450px){
     .content {

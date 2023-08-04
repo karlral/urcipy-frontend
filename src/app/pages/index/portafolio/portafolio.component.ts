@@ -31,7 +31,7 @@ export class PortafolioComponent implements OnInit{
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
-          //console.log(this.eventoes);
+         
         },
         error: (error) => {
           console.log(error);

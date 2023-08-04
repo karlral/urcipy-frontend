@@ -42,8 +42,10 @@
   font-size: 10em;
   font-weight: 800;
   font-style: italic;
-  color: rgba(255,255,25,0.05)
+  /* color: rgba(255,255,25,0.05) */
+  color: rgba(24, 173, 11, 0.486)
 }
+
 
 .wrapperBx .cardBx .imgBx{
   position: absolute;
@@ -76,6 +78,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   /* text-align: center; */
   transition: 1s;
   z-index: 10;
@@ -92,6 +95,8 @@
   color: #fff;
   margin: 0;
   padding: 0;
+  width: 90%;
+  text-align: center;
 }
 .wrapperBx .cardBx .contentBx h3{
   color: #fff;

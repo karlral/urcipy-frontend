@@ -59,7 +59,7 @@ export class CampeonesComponent  implements OnInit {
      {
        next: (dato: Campeones[]) => {
          this.campeoness = dato;
-          console.log(this.campeoness);
+       
           this.campeon=this.campeoness[0];
        },
        error: (error) => {

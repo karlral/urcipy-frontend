@@ -61,7 +61,7 @@ export class CategoriaComponent {
     this.regionalService.listarRegionales().subscribe(
       (dato:any) => {
         this.regionales=dato;
-        console.log(this.regionales);
+       
       },(error) => {
         console.log(error);
         this.messageService.add({
@@ -78,7 +78,7 @@ export class CategoriaComponent {
       {
         next: (dato: Categoria[]) => {
           this.categoriaes = dato;
-          console.log(this.categoriaes);
+       //   console.log(this.categoriaes);
         },
         error: (error) => {
           console.log(error);
@@ -153,7 +153,7 @@ export class CategoriaComponent {
     }
     else {
 
-      console.log(this.categoria);
+     
 
       this.categoriaService.agregarCategoria(this.categoria).subscribe(
         {

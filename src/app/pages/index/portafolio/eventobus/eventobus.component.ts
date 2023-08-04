@@ -199,7 +199,7 @@ ciudad:Ciudad={
       {
         next: (e: Evento) => {
           this.evento = e;
-          //console.log(this.eventoes);
+         
           this.datasys.getOrdenes().then(data=>{
             this.ordenes=data;
             this.ordenevento=this.ordenes[this.evento.orden-1].label
@@ -227,9 +227,9 @@ ciudad:Ciudad={
 
       return;
     }
-    this.participanteService.inscribirPartiCi(this.ci).subscribe(
+    this.participanteService.inscribirPartiCi(this.idevento,this.ci).subscribe(
       (data: any) => {
-        console.log(data);
+        
         //this.router.navigate(['eventobus']);
         this.participante=data;
         this.inscripto=true;
@@ -239,9 +239,10 @@ ciudad:Ciudad={
         console.log(error);
         
         this.messageService.add({
-          severity: "error",
+          key: 'bc',
+          severity: "info",
           summary: "Atencion",
-          detail: "No se encontro el servicio de busqueda de participante"
+          detail: "No se encontro el numero de CI del corredor, complete sin puntos."
         });
 
       }

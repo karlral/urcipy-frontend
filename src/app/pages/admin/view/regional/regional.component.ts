@@ -44,7 +44,6 @@ export class RegionalComponent {
       {
         next: (dato: Regional[]) => {
           this.regionales = dato;
-          console.log(this.regionales);
         },
         error: (error) => {
           console.log(error);
@@ -226,7 +225,7 @@ export class RegionalComponent {
         const reader = new FileReader();
   
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+         
           this.preview = e.target.result;
         };
   

@@ -55,4 +55,17 @@ ngOnInit(): void {
     return total;
   }
 
+  calculatePuntosTotal() {
+    let total = 0;
+  
+    if (this.punclubparticipantes) {
+        for (let partici of this.punclubparticipantes) {
+           
+                total=total+partici.puntaje;
+           
+        }
+    }
+  
+    return total;
+  }
 }

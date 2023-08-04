@@ -43,7 +43,7 @@ export class CiudadComponent {
       {
         next: (dato: Ciudad[]) => {
           this.ciudades = dato;
-          console.log(this.ciudades);
+        
         },
         error: (error) => {
           console.log(error);
@@ -59,7 +59,7 @@ export class CiudadComponent {
       this.paisService.listarPaises().subscribe(
         (dato:any) => {
           this.paises=dato;
-          console.log(this.paises);
+        
         },(error) => {
           console.log(error);
           this.messageService.add({
@@ -127,7 +127,7 @@ export class CiudadComponent {
 
       this.ciudades.push(this.ciudad);
       console.log("antes de agregar ");
-      console.log(this.ciudad);
+     
 
       this.ciudadService.agregarCiudad(this.ciudad).subscribe(
         {

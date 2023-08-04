@@ -39,7 +39,7 @@ constructor(
       {
         next: (dato: Categoria[]) => {
           this.categorias = dato;
-          // console.log(this.categorias);
+         
         },
         error: (error) => {
           console.log(error);
@@ -81,7 +81,7 @@ this.categoria={
 
           if(element.sexo==this.sexo && element.tipo==this.tipocat  && edad>=element.edadinicio && edad<=element.edadfin){
             this.categoria=element;
-           // console.log(element);
+           
            this.emitCategoria.emit(element);
             break;
           }

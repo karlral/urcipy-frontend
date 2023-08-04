@@ -26,7 +26,7 @@ ngOnInit(): void {
     {
       next: (r: Regional) => {
         this.regional = r;
-        console.log(this.regional);
+       
         
       },
       error: (error) => {

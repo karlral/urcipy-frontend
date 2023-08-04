@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Participante } from 'src/app/domain/participante';
+import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import baserUrl from 'src/app/service/helper';
 
 @Component({
@@ -11,20 +11,20 @@ export class ClubComponent implements OnInit{
  
   mediaLocation = `${baserUrl}/media/`;
 
-  @Input()  participantes!:Participante[];
+  @Input()  inscripciones!:Inscripcion[];
 
    ngOnInit(): void {
-//    console.log(this.participantes);
-    this.participantes.forEach(partici => {
+
+    this.inscripciones.forEach(partici => {
       
-      partici.corredor.club.cantidad = this.calculateCorredorTotal(partici.corredor.club.nomclub);
+      partici.cantidad = this.calculateCorredorTotal(partici.club);
 
     });
 
 
-    this.participantes.forEach(partici => {
+    this.inscripciones.forEach(partici => {
       
-      partici.corredor.club.nomclub = partici.corredor.club.cantidad?.toString().padStart(2, '0')+" "+partici.corredor.club.nomclub;  
+      partici.club = partici.cantidad?.toString().padStart(2, '0')+" "+partici.club;  
 
      
     });
@@ -36,9 +36,9 @@ export class ClubComponent implements OnInit{
   calculateCorredorTotal(name:string) {
     let total = 0;
 
-    if (this.participantes) {
-        for (let partici of this.participantes) {
-            if (partici.corredor.club.nomclub === name) {
+    if (this.inscripciones) {
+        for (let partici of this.inscripciones) {
+            if (partici.club === name) {
                 total++;
             }
 

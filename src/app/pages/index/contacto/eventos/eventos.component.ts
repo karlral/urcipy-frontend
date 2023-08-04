@@ -26,7 +26,7 @@ export class EventosComponent  implements OnInit{
       {
         next: (e: Evento[]) => {
           this.eventos = e;
-          console.log(this.eventos);
+          
           
         },
         error: (error) => {

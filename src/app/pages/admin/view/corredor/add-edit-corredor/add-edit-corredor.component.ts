@@ -134,7 +134,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       this.modalType="Editar";
       
       this.corredorForm.patchValue(this.selectedCorredor);
-//      console.log(this.selectedCorredor.fecnac);
+
       const fecha2= new Date(this.selectedCorredor.fecnac);
 
       this.corredorForm.controls['fecnac'].setValue(fecha2);
@@ -184,7 +184,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       {
         next: (dato: Ciudad[]) => {
           this.ciudades = dato;
-          //  console.log(this.ciudades);
+       
         },
         error: (error) => {
           console.log(error);
@@ -200,7 +200,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     this.clubService.listarClubes().subscribe(
       (dato: any) => {
         this.clubes = dato;
-        // console.log(this.clubes);
+        
       }, (error) => {
         console.log(error);
         this.messageService.add({
@@ -218,7 +218,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     this.paisService.listarPaises().subscribe(
       (dato: any) => {
         this.paises = dato;
-        //  console.log(this.paises);
+       
       }, (error) => {
         console.log(error);
         this.messageService.add({
@@ -238,7 +238,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
   }
 
   mostrarVarCorredor() {
-    console.log(this.corredorForm.value);
+    
   }
 
   addEditCorredor() {
@@ -251,7 +251,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       this.mediaService.uploadFile(formData).subscribe(
         {
           next: response => {
-            console.log('response', response);
+          
             this.url = response.url;
           },
           error: errores => {
@@ -270,8 +270,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
 
     if (this.selectedCorredor) {
 
-//console.log(this.selectedCorredor);
-//console.log(this.corredorForm.value);
+
 
       this.corredorService.actualizarCorredor(this.corredorForm.value).subscribe(
         {
@@ -295,14 +294,13 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     }
     else {
 
-     // console.log("antes de agregar ");
-     // console.log(this.corredorForm);
+  
 
       this.corredorService.agregarCorredor(this.corredorForm.value).subscribe(
         {
           next: (dato) => {
 
-            //console.log(dato);
+           
             this.clickAddEdit.emit(dato);
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
@@ -340,7 +338,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        console.log(e.target.result);
+  
         this.preview = e.target.result;
       };
 

@@ -6,9 +6,9 @@
     <div class="row">
 
     
-     
+     <div *ngIf="!inscripto" class="centro">
 
-      <div *ngIf="!inscripto" class="wrapper">
+      <div  class="wrapper">
         <img class="logo-image" *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
 
         <h1>{{evento.fecha | date: 'dd/MM/yyyy'}}</h1>
@@ -42,11 +42,11 @@
                   
                         <p-scrollPanel [style]="{ width: '100%', height: '200px','color':'bisque','border-color':'bisque','border-width': '2px' ,'border-style': 'solid' }" >
                           <p >
-                              Lorem, ipsum dolor sit amet consectetur adipisicing e,lit. Maiores repellat autem voluptatem quo, corrupti soluta, id animi nostrum ducimus adipisci odit libero dolores minus tenetur atque. Quasi dolor aspernatur vitae minima, error reprehenderit officiis eum nobis nisi voluptate voluptas sed ratione. Inventore aut nobis 
+                            <strong>Termino 1:</strong>  Reconozco que participar de la Competencia de Ciclismo, es una actividad con alto riesgo. Por lo tanto, declaro que me encuentro realmente apto/a y adecuadamente entrenado/a para participar en esta prueba. Acepto toda decisión de un Oficial de la carrera respecto a mi capacidad de poder completar o no la competencia. Asimismo, acepto la decisión de cualquiera de las opiniones de los organizadores de la Competencia, en caso de que decidan ordenarme abandonar la competencia por cuestiones de salud u otro motivo que se consideren. Asumo todos los riesgos asociados con participar en esta competencia, de cualquier índole que fueran, caídas, accidentes, lesiones de todo tipo, etc., abarcadora de las consecuencias del clima, incluyendo temperatura y/o humedad, tránsito vehicular y condiciones del camino, todos los riesgos conocidos y apreciados por mí. <strong>Termino 2:</strong> Habiendo leído esta documentación, conociendo estos hechos y considerando su aceptación a participar en la carrera, yo, en mi nombre y en el de cualquier persona que actúe en mi representación, libero a los organizadores  y/o coordinadores de la carrera, voluntarios y a todos los auspiciantes, sus representantes y sucesores de todo reclamo y responsabilidad de cualquier tipo que surja de mi participación en este evento, aunque esta  responsabilidad pueda surgir de negligencia o culposidad de parte de las personas nombradas en esta declaración, así como cualquier extravío, robo y/o hurto que pudiera sufrir. <strong>Termino 3:</strong> Autorizo a los organizadores de la prueba y auspiciantes al uso de fotografía, películas, videos y grabaciones y cualquier tipo de medio que registre el evento haciendo uso legítimo, sin compensación alguna.
                           </p>
                       </p-scrollPanel>
                 </div>
-                <p-toast></p-toast>
+                <p-toast position="bottom-center" key="bc"></p-toast>
                
 
                 <span class="field-checkbox ">
@@ -73,7 +73,9 @@
         </div>
       </div>
 
-      <app-registrocorredor *ngIf="inscripto" 
+    </div>
+
+      <app-registrocorredor *ngIf="inscripto"
       [participante]="participante"
       ></app-registrocorredor>
 

@@ -23,7 +23,7 @@ export class SignupComponent {
   ngOnInit(): void {
   }
   formSubmit(){
-    console.log(this.user);
+    
     if(this.user.username == '' || this.user.username==null){
      
       this.messageService.add({ severity: 'info', summary: 'Aceptar', detail: 'El nombre de usuario es requerido', life: 3000 });
@@ -39,7 +39,7 @@ export class SignupComponent {
     
     this.userService.anadirUsuario(this.user).subscribe(
       (data) => {
-        console.log(data);
+   
 //        alert('Usuario guardado con exito');
         this.messageService.add({ severity: 'success', summary: 'Aceptar', detail: 'Usuario guaradado con exito', life: 3000 });
 

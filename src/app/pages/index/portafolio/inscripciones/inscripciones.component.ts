@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Club } from 'src/app/domain/club';
+import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import { Evento } from 'src/app/domain/evento';
 
 import { Participante } from 'src/app/domain/participante';
@@ -70,7 +71,7 @@ export class InscripcionesComponent  implements OnInit{
     club: this.club
   };
 
-  participantes!:Participante[];
+  inscripciones!:Inscripcion[];
 
   constructor( private activatedRoute:ActivatedRoute,
     private eventoService: EventoService,
@@ -82,16 +83,16 @@ export class InscripcionesComponent  implements OnInit{
 
     this.participanteService.listarParticipantesActivos(this.activo).subscribe(
       {
-        next: (p: Participante[]) => {
-          this.participantes = p;
-          //console.log(this.eventoes);
+        next: (p: Inscripcion[]) => {
+          this.inscripciones = p;
+        
           
         },
         error: (error) => {
           console.log(error);
           
         },
-        complete: () => console.info('completo evento')
+        complete: () => console.info('completo inscripcion')
       });
 
       
@@ -100,7 +101,6 @@ export class InscripcionesComponent  implements OnInit{
       {
         next: (e: Evento) => {
           this.evento = e;
-          //console.log(this.eventoes);
           
         },
         error: (error) => {
@@ -110,13 +110,12 @@ export class InscripcionesComponent  implements OnInit{
         complete: () => console.info('completo evento')
       });
 
-   //   console.log(this.visible);
 
   }
 
   buttonSubmit(visible:string){
     this.visible=visible;
-   // console.log(this.visible);
+   
   }
 
 }

@@ -72,7 +72,7 @@ regio:Regional={
       {
         next: (dato: Club[]) => {
           this.clubes = dato;
-          console.log(this.clubes);
+         
         },
         error: (error) => {
           console.log(error);
@@ -88,7 +88,7 @@ regio:Regional={
       this.regionalService.listarRegionales().subscribe(
         (dato:any) => {
           this.regionales=dato;
-          console.log(this.regionales);
+      
         },(error) => {
           console.log(error);
           this.messageService.add({
@@ -143,7 +143,7 @@ regio:Regional={
 
       this.mediaService.uploadFile(formData).subscribe(
         { next: response =>{
-          console.log('response',response);
+         
           this.url=response.url;
         },
         error: errores => {
@@ -163,7 +163,7 @@ regio:Regional={
 
       this.mediaService.uploadFile(formData).subscribe(
         { next: response =>{
-          console.log('response',response);
+        
           this.url2=response.url2;
         },
         error: errores => {
@@ -203,7 +203,7 @@ regio:Regional={
 
       this.clubes.push(this.club);
       console.log("antes de agregar ");
-      console.log(this.club);
+      
 
       this.clubService.agregarClub(this.club).subscribe(
         {
@@ -294,7 +294,7 @@ regio:Regional={
         const reader = new FileReader();
   
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+         
           this.preview = e.target.result;
         };
   
@@ -319,7 +319,7 @@ regio:Regional={
         const reader = new FileReader();
   
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+      
           this.preview2 = e.target.result;
         };
   

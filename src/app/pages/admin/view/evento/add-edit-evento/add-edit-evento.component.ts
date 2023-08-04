@@ -90,7 +90,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       this.modalType="Editar";
       
       this.eventoForm.patchValue(this.selectedEvento);
-//      console.log(this.selectedEvento.fecnac);
+
       const fecha2= new Date(this.selectedEvento.fecha);
 
       this.eventoForm.controls['fecha'].setValue(fecha2);
@@ -174,7 +174,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     this.clubService.listarClubes().subscribe(
       (dato: any) => {
         this.clubes = dato;
-        // console.log(this.clubes);
+     
       }, (error) => {
         console.log(error);
         this.messageService.add({
@@ -194,7 +194,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   }
 
   mostrarVarEvento() {
-    console.log(this.eventoForm.value);
+    
   }
 
   addEditEvento() {
@@ -227,8 +227,6 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
 
     if (this.selectedEvento) {
 
-//console.log(this.selectedEvento);
-//console.log(this.eventoForm.value);
 
       this.eventoService.actualizarEvento(this.eventoForm.value).subscribe(
         {
@@ -252,14 +250,13 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     }
     else {
 
-     // console.log("antes de agregar ");
-     // console.log(this.eventoForm);
+    
 
       this.eventoService.agregarEvento(this.eventoForm.value).subscribe(
         {
           next: (dato) => {
 
-            //console.log(dato);
+           
             this.clickAddEdit.emit(dato);
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El evento ha sido agregada con exito', life: 3000 });
@@ -296,13 +293,13 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       console.log(this.fileName);
       this.eventoForm.controls['fondo'].setValue(this.fileName ? this.fileName : '');
       /*** para mostrar antes de enviar y guardar */
-console.log(this.eventoForm);
+
       this.preview = '';
 
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        console.log(e.target.result);
+  
         this.preview = e.target.result;
       };
 

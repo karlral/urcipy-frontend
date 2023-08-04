@@ -36,7 +36,7 @@ export class PaisComponent {
       {
         next: (dato: Pais[]) => {
           this.paises = dato;
-          console.log(this.paises);
+         
         },
         error: (error) => {
           console.log(error);

@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Inscripcion } from '../domain/custom/inscripcion';
 import { Punclub } from '../domain/custom/punclub';
 import { Punclubpartici } from '../domain/custom/punclubpartici';
 import { Puncorredor } from '../domain/custom/puncorredor';
 import { Puntocorredor } from '../domain/custom/puntocorredor';
+import { Resultado } from '../domain/custom/resultado';
 
 import { Participante } from '../domain/participante';
 import baserUrl from './helper';
@@ -35,16 +37,16 @@ export class ParticipanteService {
 
 /**PUBLICOS */
 
-public inscribirPartiCi(ci:any){
-  return this.http.get(`${baserUrl}/participub/${ci}`);
+public inscribirPartiCi(idevento:any,ci:any){
+  return this.http.get(`${baserUrl}/participub/inscrip/${idevento}/${ci}`);
 }
 
-public listarParticipantesActivos(activo:any):Observable<Participante[]>{
-  return this.http.get<Participante[]>(`${baserUrl}/participub/activo/${activo}`);
+public listarParticipantesActivos(activo:any):Observable<Inscripcion[]>{
+  return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}`);
 }
 
-public listarParticipantesByEvento(idevento:any):Observable<Participante[]>{
-  return this.http.get<Participante[]>(`${baserUrl}/participub/evento/${idevento}`);
+public listarParticipantesByEvento(idevento:any):Observable<Resultado[]>{
+  return this.http.get<Resultado[]>(`${baserUrl}/participub/evento/${idevento}`);
 }
 
 public listarParticipantesProceso():Observable<Participante[]>{

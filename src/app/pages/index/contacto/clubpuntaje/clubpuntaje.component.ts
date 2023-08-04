@@ -29,8 +29,7 @@ export class ClubpuntajeComponent implements  OnInit {
      {
        next: (dato: Punclub[]) => {
          this.punclubes = dato;
-          /* this.punclub=this.puntoscorredor[0]; */  
-         console.log(this.punclubes);
+        
        },
        error: (error) => {
          console.log(error);

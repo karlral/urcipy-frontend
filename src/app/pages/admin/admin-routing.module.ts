@@ -43,10 +43,10 @@ const routes: Routes = [
         
       },
       {
-        path:'corredor', loadChildren:()=> import('../admin/view/corredor/corredor.module').then(m => m.CorredorModule)
+        path:'corredor', loadChildren:()=> import('./view/corredor/corredor.module').then(m => m.CorredorModule)
       },
       {
-        path:'evento', loadChildren:()=> import('../admin/view/evento/evento.module').then(m => m.EventoModule)
+        path:'evento', loadChildren:()=> import('./view/evento/evento.module').then(m => m.EventoModule)
       }
 
     ]

@@ -7,7 +7,7 @@
         <div class="field">
             <label for="nombre">Nombre</label>
             <input type="text" pInputText id="nombre" formControlName="nombre" required autofocus placeholder="Nombre"
-                class="prime UPPERCASE" />
+                class="prime UPPERCASE" [style]="{'width':'100%'}"/>
             <small class="p-error block" *ngIf="
                 corredorForm.controls['nombre'].invalid && 
                 corredorForm.controls['nombre'].dirty">Nombre de corredor es requerido.</small>
@@ -112,7 +112,8 @@
             <label for="nombre">Club</label>
 
             <p-dropdown [options]="clubes" formControlName="club" placeholder="Seleccionar un club" autoWidth="false"
-                [style]="{'width':'100%'}" optionLabel="nomclub" [showClear]="true" appendTo="body"></p-dropdown>
+            [filter]="true" [filterBy]="'nomclub'"    
+            [style]="{'width':'100%'}" optionLabel="nomclub" [showClear]="true" appendTo="body"></p-dropdown>
 
         </div>
 
@@ -192,13 +193,13 @@
             </div>
         </div>
 
-        <div class="field">
-            <img [src]="selectedCorredor.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.foto"
-                [alt]="selectedCorredor.foto" class="regional-image" *ngIf="selectedCorredor.foto">
-            <!-- <img [src]="preview" class="regional-image" *ngIf="preview"> -->
+        <!-- <div class="field">
+            <img *ngIf="selectedCorredor.foto" [src]="selectedCorredor.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.foto"
+                [alt]="selectedCorredor.foto" class="regional-image" >
+             <img [src]="preview" class="regional-image" *ngIf="preview"> 
 
         </div>
-
+ -->
 
         <div class="field">
             <label for="foto" class="form-label">Seleccionar foto</label>

@@ -1,27 +1,31 @@
 <div id="club" class="mx-auto" >
 
-    <p-table [value]="participantes" sortField="corredor.club.nomclub" sortMode="single" [sortOrder]="-1"
-        dataKey="corredor.club.nomclub" rowGroupMode="subheader" groupRowsBy="corredor.club.nomclub">
+    <p-table [value]="inscripciones" sortField="club" sortMode="single" [sortOrder]="-1"
+        dataKey="club" rowGroupMode="subheader" groupRowsBy="club">
         <ng-template pTemplate="header">
             <tr>  
-                <th pSortableColumn="corredor.club.nomclub"><h1 class="titulo">Por Club</h1></th>  
+                <th pSortableColumn="club"><h1 class="titulo">Por Club</h1></th>  
             </tr>
         </ng-template>
         <ng-template pTemplate="groupheader" let-partici let-rowIndex="rowIndex" let-expanded="expanded">
             <tr >
                 <td  class="flex">
                     <div class="flex align-items-center">
-                        <img [alt]="partici.corredor.club.nomclub"
-                        [src]="mediaLocation+partici.corredor.club.ruta"
+                        <img [alt]="partici.club"
+                        [src]="mediaLocation+partici.ruta"
                         width="70"  />
                     </div>
                     
-                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >{{partici.corredor.club.nomclub}}</span>
-                  
+                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >{{partici.club}}</span>
+                    
+                    <span class="flex align-items-center  font-bold   mxn-2" >{{partici.cantidad}}</span>
+                    
                     <div class="flex align-items-center">
                         <button type="button" pButton pRipple [pRowToggler]="partici"
                         class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
                         [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                        
+
                     </button>
                     </div>
                     
@@ -32,8 +36,8 @@
         <ng-template pTemplate="rowexpansion" let-partici>
             <tr>
                 <td class="flex flex-column align-items-center justify-content-center corredor" >
-                   <h4> {{partici.corredor.nombre}} {{partici.corredor.apellido}}</h4>
-                   <h5> {{partici.corredor.categoria.nomcorto}}</h5>
+                   <h4> {{partici.corredor}} </h4>
+                   <h5> {{partici.categoria}}</h5>
                 </td> 
             </tr>
         </ng-template>

@@ -4,8 +4,8 @@
         <div class="row">
 
             <div id="tabla">
-                <p-table [value]="participantes" dataKey="categoria.nomcorto" rowGroupMode="subheader"
-                    groupRowsBy="categoria.nomcorto">
+                <p-table [value]="resultados" dataKey="categoria" rowGroupMode="subheader"
+                    groupRowsBy="categoria">
                     <ng-template pTemplate="header">
                         <tr>
                             <th  style="text-align: center;"   >
@@ -22,7 +22,7 @@
 
 
                                 <span
-                                    class="flex-1 flex align-items-center  font-bold   ml-2">{{partici.categoria.nomcorto}}</span>
+                                    class="flex-1 flex align-items-center  font-bold   ml-2">{{partici.categoria}}</span>
 
                                 <div class="flex align-items-center">
                                     <button type="button" pButton pRipple [pRowToggler]="partici"
@@ -39,8 +39,8 @@
                         <tr>
                             <td class="flex p-0">
                                 <span class="flex align-items-center mx-2 text-xs">{{partici.puestocat}}</span>
-                                <span class="flex-1 flex align-items-center text-xs"> {{partici.corredor.nombre}}
-                                    {{partici.corredor.apellido}}</span>
+                                <span class="flex-1 flex align-items-center text-xs"> {{partici.corredor}}
+                                    </span>
                                 <span class="flex align-items-center mx-2 text-xs"> {{partici.tiempo}}</span>
                             </td>
                         </tr>

@@ -30,7 +30,7 @@ export class EventoComponent implements OnInit {
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
-          //console.log(this.eventoes);
+         
         },
         error: (error) => {
           console.log(error);
@@ -58,8 +58,7 @@ export class EventoComponent implements OnInit {
   saveEventoToList(newData:Evento){
     if (this.selectedEvento){
       const eventoIndex = this.eventoes.findIndex(data => data.idevento=== newData.idevento);
-      console.log(newData);
-      console.log(eventoIndex);
+     
       this.eventoes[eventoIndex]=newData;
     }else{
       this.eventoes.unshift(newData);

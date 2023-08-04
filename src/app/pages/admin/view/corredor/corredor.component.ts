@@ -30,7 +30,7 @@ export class CorredorComponent implements OnInit {
       {
         next: (datos: Corredor[]) => {
           this.corredores = datos;
-          //console.log(this.corredores);
+         
         },
         error: (error) => {
           console.log(error);
@@ -58,8 +58,7 @@ export class CorredorComponent implements OnInit {
   saveCorredorToList(newData:Corredor){
     if (this.selectedCorredor){
       const corredorIndex = this.corredores.findIndex(data => data.idcorredor=== newData.idcorredor);
-      console.log(newData);
-      console.log(corredorIndex);
+  
       this.corredores[corredorIndex]=newData;
     }else{
       this.corredores.unshift(newData);

@@ -50,7 +50,7 @@ export class LoginComponent {
 
     this.loginService.generateToken(this.loginData).subscribe(
       (data: any) => {
-        console.log(data);
+        
         this.loginService.loginUser(data.token);
 
         /*** probamos  */
@@ -62,7 +62,7 @@ export class LoginComponent {
         /*** */
         this.loginService.getCurrentUser().subscribe((user: any) => {
           this.loginService.setUser(user);
-          console.log(user);
+        
           console.log("Cargamos el usuario");
 
           /**Prueba */
