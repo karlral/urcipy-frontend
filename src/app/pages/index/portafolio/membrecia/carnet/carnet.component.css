@@ -1,0 +1,128 @@
+
+  
+.fondo{
+  font-family: 'Poppins', sans-serif;
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0px;
+    
+}
+
+.wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    height: 379px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+   /* backdrop-filter: blur(20px);*/
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
+.imgwrapper{
+ /* background-image: url('http://localhost:8080/urcipy/media/virtualfrente.png') ;*/
+ background-image: url('https://www.urcipy.org/urcipy/media/virtualfrente.png') ;
+ /*background-image: url('http://137.184.183.19:8080/urcipy/media/virtualfrente.png') ;*/
+ 
+}
+
+.wrapperone h1{
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px; 
+ 
+}
+
+.wrapperone .credencial{
+  position: absolute;
+  top: 155px;
+  left: 190px;
+  
+}
+
+.wrapperone h2{   
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #0f3a16;
+}
+.wrapperone .corredor{
+  position: absolute;
+  top: 220px;
+  left: 10px;
+}
+
+.wrapperone h3{
+  color: #0f3a16;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 2px;
+}
+
+.wrapperone .categoria{
+  position: absolute;
+  top: 250px;
+  left: 10px;
+}
+
+.wrapperone .club{
+  position: absolute;
+  top: 270px;
+  left: 10px;
+}
+
+.imgwrappertwo{
+  margin-top: 20px;
+  /*background-image: url('http://localhost:8080/urcipy/media/virtualatras.jpg') ;*/
+  background-image: url('https://www.urcipy.org/urcipy/media/virtualatras.jpg') ;
+  /*background-image: url('http://137.184.183.19:8080/urcipy/media/virtualatras.jpg') ;*/
+  
+}
+
+.wrappertwo h2{   
+  font-weight: 600;
+  /*letter-spacing: 1px;
+  color: #0f3a16;*/
+}
+
+.wrappertwo .credencial{
+  position: absolute;
+  top: 23px;
+  left: 180px;
+}
+.wrappertwo .nombre{
+  position: absolute;
+  top: 65px;
+  left: 180px;
+}
+.wrappertwo .apellido{
+  position: absolute;
+  top: 100px;
+  left: 180px;
+}
+.wrappertwo .club{
+  position: absolute;
+  top: 140px;
+  left: 180px;
+}
+.wrappertwo .fecnac{
+  position: absolute;
+  top: 180px;
+  left: 180px;
+}
+.wrappertwo .categoria{
+  position: absolute;
+  top: 220px;
+  left: 180px;
+}

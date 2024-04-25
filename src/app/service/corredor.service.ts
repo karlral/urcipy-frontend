@@ -27,4 +27,8 @@ export class CorredorService {
   public actualizarCorredor(corredor:any){
     return this.http.put(`${baserUrl}/corredor/`,corredor);
   }
+  /**PUBLICOS */
+  public pubObtenerCorredorCi(ci:any){
+    return this.http.get(`${baserUrl}/correpub/${ci}`);
+  }
 }

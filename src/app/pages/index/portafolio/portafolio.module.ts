@@ -16,6 +16,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TableModule } from 'primeng/table';
 import { RegistrocorredorComponent } from './eventobus/registrocorredor/registrocorredor.component';
+import { MembreciaComponent } from './membrecia/membrecia.component';
+import { CarnetComponent } from './membrecia/carnet/carnet.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { RegistrocorredorComponent } from './eventobus/registrocorredor/registro
   RegistrocorredorComponent,
   InscripcionesComponent,
   CategoriaComponent,
-  ClubComponent
+  ClubComponent,
+  MembreciaComponent,
+  CarnetComponent
 ],
   imports: [
     CommonModule,

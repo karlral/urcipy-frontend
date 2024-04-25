@@ -190,7 +190,7 @@
             <label for="fondo" class="form-label">Seleccionar fondo</label>
             <input id="fondo" name="fondo"  class="form-control"
                 accept="image/gif, image/jpeg, image/png" type="file" (change)="selectFile($event)">
-                <input type="hidden" name="oculto" formControlName="foto"/>
+                <input type="hidden" name="oculto" formControlName="fondo"/>
                 <p *ngIf="fileName" class="pl-4 align-middle mb-0">{{fileName}}</p>
         </div>
        
