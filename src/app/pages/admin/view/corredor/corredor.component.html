@@ -1,6 +1,12 @@
 <p-toast></p-toast>
 
-<p-table #dt [value]="corredores" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']"
+<app-buscorredor *ngIf="displaySearch"
+   
+    (clickSearch)="corredorSearch($event)"
+>
+</app-buscorredor>
+
+<p-table *ngIf="!displaySearch" #dt [value]="corredoresmen" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcorredor"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
@@ -8,6 +14,8 @@
         <div class="flex align-items-center justify-content-between">
             <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
             <h2 class="m-0">Corredores</h2>
+            <button pButton pRipple icon="pi pi-search" class="p-button-secondary ml-2" (click)="showSearch()"></button>
+
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
@@ -19,7 +27,7 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Cod.</th>
-            <th pSortableColumn="nombre" style="min-width:15rem">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+            <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
             <th>Club</th>
             
             <th></th>
@@ -28,13 +36,13 @@
     <ng-template pTemplate="body" let-corredor>
         <tr>
             <td>{{corredor.idcorredor}}</td>
-            <td>{{corredor.nombre}}</td>
-            <td>{{corredor.club.nomclub}}</td>
+            <td>{{corredor.corredor}}</td>
+            <td>{{corredor.club}}</td>
             
             
             <td>
                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                    (click)="editCorredor(corredor)"></button>
+                    (click)="editCorredor(corredor.idcorredor)"></button>
                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                     (click)="deleteCorredor(corredor)"></button> 
             </td>

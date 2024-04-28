@@ -9,7 +9,6 @@ import { Ciudad } from 'src/app/domain/ciudad';
 import { Club } from 'src/app/domain/club';
 import { Pais } from 'src/app/domain/pais';
 import { Usuario } from 'src/app/domain/usuario';
-import { CategoriaService } from 'src/app/service/categoria.service';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
@@ -118,7 +117,6 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
 
 
   constructor(private fb: FormBuilder,
-    private categoriaService: CategoriaService,
     private ciudadService: CiudadService,
     private clubService: ClubService,
     private paisService: PaisService,

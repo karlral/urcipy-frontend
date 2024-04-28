@@ -9,7 +9,6 @@ import { ClubComponent } from './view/club/club.component';
 import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { BuscorredorComponent } from './view/buscorredor/buscorredor.component';
 
 
 const routes: Routes = [
@@ -43,11 +42,7 @@ const routes: Routes = [
         component:CategoriaComponent,
         
       }
-      ,{
-        path:'buscorredor',
-        component:BuscorredorComponent,
-        
-      },
+      ,
       {
         path:'corredor', loadChildren:()=> import('./view/corredor/corredor.module').then(m => m.CorredorModule)
       },

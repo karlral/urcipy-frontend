@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Corredor } from '../domain/corredor';
 import baserUrl from './helper';
+import { Corredormen } from '../domain/custom/corredormen';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class CorredorService {
   }
   public actualizarCorredor(corredor:any){
     return this.http.put(`${baserUrl}/corredor/`,corredor);
+  }
+
+  public listarCorredoresmen(buscado:string):Observable<Corredormen[]>{
+    return this.http.get<Corredormen[]>(`${baserUrl}/corredor/bus/${buscado}`);
   }
   /**PUBLICOS */
   public pubObtenerCorredorCi(ci:any){

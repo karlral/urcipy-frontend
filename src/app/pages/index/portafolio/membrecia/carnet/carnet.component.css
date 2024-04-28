@@ -126,3 +126,109 @@
   top: 220px;
   left: 180px;
 }
+
+
+  @media (max-width: 450px){
+    .fondo{
+      
+       
+        margin-top: 60px;
+        
+    }
+    
+    .wrapper{
+        
+        max-width: 300px;
+        height: 200px;
+        border-radius: 10px;
+
+    }
+    
+    .wrapperone h1{
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px; 
+     
+    }
+    
+    .wrapperone .credencial{
+      position: absolute;
+      top: 65px;
+      left: 90px;
+      
+    }
+    
+    .wrapperone h2{   
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #0f3a16;
+        padding: 0;
+    }
+    .wrapperone .corredor{
+      position: absolute;
+      top: 115px;
+      left: 5px;
+    }
+    
+    .wrapperone h3{
+      color: #0f3a16;
+      font-weight: 300;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 1px;
+    }
+    
+    .wrapperone .categoria{
+      position: absolute;
+      top: 130px;
+      left: 5px;
+    }
+    
+    .wrapperone .club{
+      position: absolute;
+      top: 140px;
+      left: 5px;
+    }
+
+/*****************/
+.wrappertwo h2{   
+  font-weight: 600;
+  font-size: 13px;
+  /*letter-spacing: 1px;
+  color: #0f3a16;*/
+}
+
+.wrappertwo .credencial{
+  position: absolute;
+  top: 8px;
+  left: 100px;
+}
+.wrappertwo .nombre{
+  position: absolute;
+  top: 26px;
+  left: 75px;
+}
+.wrappertwo .apellido{
+  position: absolute;
+  top: 46px;
+  left: 75px;
+}
+.wrappertwo .club{
+  position: absolute;
+  top: 65px;
+  left: 75px;
+}
+.wrappertwo .fecnac{
+  position: absolute;
+  top: 85px;
+  left: 75px;
+}
+.wrappertwo .categoria{
+  position: absolute;
+  top: 105px;
+  left: 75px;
+}
+
+  }

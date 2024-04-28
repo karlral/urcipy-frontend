@@ -1,0 +1,28 @@
+<p-toast></p-toast>
+<div class="fondo">
+    <div class="wrapper" >
+        <div class="form-box login">
+
+            
+                <form (ngSubmit)="formSubmit()">
+                    <span class="p-float-label form-field  input-box">
+                        
+                        <input id="buscado" type="text" pInputText [(ngModel)]="buscado" name="buscado"
+                            required>
+                            
+                        <label for="buscado" class="user cblanco">CI-NOMBRE-APELLIDO-CLUB</label>
+
+                    </span>
+
+                    <button pButton pRipple label="Buscar" type="submit"
+                        class=" btn-box p-button-raised p-button-secondary mb-1"></button>
+                    
+                        
+                </form>
+                
+          
+        </div>
+    </div>
+
+    
+</div>

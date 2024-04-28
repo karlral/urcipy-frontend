@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
 
 import { Corredor } from 'src/app/domain/corredor';
+import { Corredormen } from 'src/app/domain/custom/corredormen';
 import { CorredorService } from 'src/app/service/corredor.service';
 
 @Component({
@@ -13,8 +14,12 @@ import { CorredorService } from 'src/app/service/corredor.service';
 })
 export class CorredorComponent implements OnInit {
   corredores: Corredor[] = [];
-  selectedCorredor:any=null;
+   selectedCorredor:any=null;
   displayAddEditModal=false;
+ 
+  corredoresmen:Corredormen[]=[];
+  displaySearch=true;
+  buscado:string="";
 
   constructor( private messageService: MessageService,
     private corredorService: CorredorService,
@@ -22,7 +27,7 @@ export class CorredorComponent implements OnInit {
     
     ) { }
   ngOnInit(): void {
-    this.rellenarDataTable();
+   // this.rellenarDataTable();
   }
 
   rellenarDataTable(){
@@ -50,6 +55,7 @@ export class CorredorComponent implements OnInit {
     this.displayAddEditModal=true;
 
   }
+  
 
   hideModal(isClosed:boolean){
     this.displayAddEditModal=!isClosed;
@@ -66,9 +72,26 @@ export class CorredorComponent implements OnInit {
     
   }
 
-  editCorredor(editData:any){
-    this.selectedCorredor=editData;
-    this.displayAddEditModal=true;
+  editCorredor(v_idcorredor:number){
+    
+    this.corredorService.obtenerCorredor(v_idcorredor).subscribe(
+      {
+        next: (dato) => {
+          this.selectedCorredor = dato;
+          
+          this.displayAddEditModal=true;         
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Corredor",
+            detail: "Error al cargar la corredor"
+          });
+        },
+        complete: () => console.info('completo corredor')
+      });
+
   }
 
   deleteCorredor(deleteData:any){
@@ -102,5 +125,31 @@ export class CorredorComponent implements OnInit {
     
   }
 
+  corredorSearch(buscado:string){
+    console.log('Buscamos la cantidad de registros con '+buscado);
+    this.displaySearch=false;
+    this.corredorService.listarCorredoresmen(buscado).subscribe(
+      {
+        next: (datos: Corredormen[]) => {
+          this.corredoresmen = datos;
+         
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Corredor",
+            detail: "Error al cargar la corredor"
+          });
+        },
+        complete: () => console.info('completo corredor')
+      });
+
+  }
+
+  showSearch(){
+    this.buscado="";
+    this.displaySearch=true;
+  }
 }
 

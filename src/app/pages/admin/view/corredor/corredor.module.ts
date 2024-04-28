@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { CorredorComponent } from './corredor.component';
+import { BuscorredorComponent } from './buscorredor/buscorredor.component';
 
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
@@ -17,7 +20,8 @@ import { AddEditCorredorModule } from './add-edit-corredor/add-edit-corredor.mod
 
 @NgModule({
   declarations: [
-    CorredorComponent
+    CorredorComponent,
+    BuscorredorComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,8 @@ import { AddEditCorredorModule } from './add-edit-corredor/add-edit-corredor.mod
     ButtonModule,
     CorredorRoutingModule,
     AddEditCorredorModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    FormsModule
   ],  providers: [authInterceptorProviders]
 })
 export class CorredorModule { }
