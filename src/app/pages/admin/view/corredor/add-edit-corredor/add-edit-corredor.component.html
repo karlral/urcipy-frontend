@@ -3,7 +3,8 @@
     <ng-template pTemplate="header">
         <span class="text-xl font-bold">{{modalType}} Corredor</span>
     </ng-template>
-    <form [formGroup]="corredorForm" class="corredor-form">
+    
+    <form [formGroup]="corredorForm" class="inline" >
         <div class="field">
             <label for="nombre">Nombre</label>
             <input type="text" pInputText id="nombre" formControlName="nombre" required autofocus placeholder="Nombre"
@@ -73,7 +74,7 @@
                 <small class="p-error" *ngIf="
                 corredorForm.controls['fecnac'].invalid && 
                 corredorForm.controls['fecnac'].dirty">Fecha de Nacimiento de corredor es requerido.</small>
-            <small>{{corredorForm.value.fecnac}}</small>
+            <!--small>{{corredorForm.value.fecnac}}</small-->
             </div>
 
             <div class="field">
@@ -134,19 +135,40 @@
         </div>
 
 
-        <div class="field flex align-items-center justify-content-evenly flex-wrap">
-            <label for="carnetfpc" class="mr-2">Carnet FPC</label>
-            <p-inputSwitch id="carnetfpc" formControlName="carnetfpc"></p-inputSwitch>
+        <div class="field">
+            <label class="mb-3">Tipo de Carnet</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="carnetfpc0" name="carnetfpc" value="0"
+                        formControlName="carnetfpc"></p-radioButton>
+                    <label for="carnetfpc0">No</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="carnetfpc1" name="carnetfpc" value="1"
+                        formControlName="carnetfpc"></p-radioButton>
+                    <label for="carnetfpc1">FPC</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="carnetfpc2" name="carnetfpc" value="2"
+                        formControlName="carnetfpc"></p-radioButton>
+                    <label for="carnetfpc2">URCI</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="carnetfpc3" name="carnetfpc" value="3"
+                        formControlName="carnetfpc"></p-radioButton>
+                    <label for="carnetfpc3">FMC</label>
+                </div>
+            </div>
         </div>
 
         <div class="field flex align-items-center justify-content-evenly flex-wrap">
             <label for="modificar" class="mr-2">Modificar</label>
             <p-inputSwitch id="modificar" formControlName="modificar"></p-inputSwitch>
         </div>
-        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+        <!--div class="field flex align-items-center justify-content-evenly flex-wrap">
             <label for="puntua" class="mr-2">Puntua</label>
             <p-inputSwitch id="puntua" formControlName="puntua"></p-inputSwitch>
-        </div>
+        </div-->
 
 
 
@@ -205,7 +227,7 @@
             <label for="foto" class="form-label">Seleccionar foto</label>
             <input id="foto" name="foto" class="form-control" 
                 accept="image/gif, image/jpeg, image/png" type="file" (change)="selectFile($event)">
-            <p>hola mundo</p>
+            <!--p>{{selectedCorredor.foto}}</p-->
         </div>
         <div class="field">
             <!--label  class="form-label">Modificado: {{fecmodi}}</label-->

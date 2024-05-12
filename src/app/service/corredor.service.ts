@@ -32,6 +32,12 @@ export class CorredorService {
   public listarCorredoresmen(buscado:string):Observable<Corredormen[]>{
     return this.http.get<Corredormen[]>(`${baserUrl}/corredor/bus/${buscado}`);
   }
+  public puntuarCorredor(idcorredor:any){
+    return this.http.put(`${baserUrl}/corredor/puntua/`,idcorredor);
+  }
+  public despuntuarCorredor(idcorredor:any){
+    return this.http.put(`${baserUrl}/corredor/despuntua/`,idcorredor);
+  }
   /**PUBLICOS */
   public pubObtenerCorredorCi(ci:any){
     return this.http.get(`${baserUrl}/correpub/${ci}`);

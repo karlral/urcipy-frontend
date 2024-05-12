@@ -18,6 +18,19 @@ export class CorredorComponent implements OnInit {
   displayAddEditModal=false;
  
   corredoresmen:Corredormen[]=[];
+  selectedCorredormen:Corredormen={
+    idcorredor: 0,
+    nombre: '',
+    apellido: '',
+    club: '',
+    fecnac: new Date,
+    categoria: '',
+    fecmodi: new Date,
+    corredor: '',
+    carnetfpc: 0,
+    foto: '',
+    puntua: 0
+  };
   displaySearch=true;
   buscado:string="";
 
@@ -62,12 +75,18 @@ export class CorredorComponent implements OnInit {
   }
 
   saveCorredorToList(newData:Corredor){
+    this.selectedCorredormen.idcorredor=newData.idcorredor;
+    this.selectedCorredormen.corredor=newData.nombre+" "+newData.apellido;
+    this.selectedCorredormen.categoria=newData.categoria.nomcategoria;
+    this.selectedCorredormen.club=newData.club.nomclub;
+    this.selectedCorredormen.puntua=newData.puntua;
+
     if (this.selectedCorredor){
-      const corredorIndex = this.corredores.findIndex(data => data.idcorredor=== newData.idcorredor);
+      const corredorIndex = this.corredoresmen.findIndex(data => data.idcorredor=== newData.idcorredor);
   
-      this.corredores[corredorIndex]=newData;
+      this.corredoresmen[corredorIndex]=this.selectedCorredormen;
     }else{
-      this.corredores.unshift(newData);
+      this.corredoresmen.unshift(this.selectedCorredormen);
     }
     
   }
@@ -78,6 +97,7 @@ export class CorredorComponent implements OnInit {
       {
         next: (dato) => {
           this.selectedCorredor = dato;
+         // console.log(this.selectedCorredor);
           
           this.displayAddEditModal=true;         
         },
@@ -96,7 +116,7 @@ export class CorredorComponent implements OnInit {
 
   deleteCorredor(deleteData:any){
     this.confirmationService.confirm({
-      message: 'Estas seguro de que quieres borrar ' + deleteData.nombre + '?',
+      message: 'Estas seguro de que quieres borrar ' + deleteData.corredor + '?',
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -105,7 +125,7 @@ export class CorredorComponent implements OnInit {
           {
             next: (data) => {
 
-              this.corredores = this.corredores.filter(val => val.idcorredor !== deleteData.idcorredor);
+              this.corredoresmen = this.corredoresmen.filter(val => val.idcorredor !== deleteData.idcorredor);
               
               this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Corredor Borrado', life: 3000 });
             },
@@ -151,5 +171,70 @@ export class CorredorComponent implements OnInit {
     this.buscado="";
     this.displaySearch=true;
   }
+
+  activaPuntuaCorredor(activeData:any){
+    this.confirmationService.confirm({
+      message: 'Activar para puntuar el corredor ' + activeData.corredor + '?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+
+        this.corredorService.puntuarCorredor(activeData.idcorredor).subscribe(
+          {
+            next: (data) => {
+
+              const corredorIndex = this.corredoresmen.findIndex(data => data.idcorredor=== activeData.idcorredor);
+              this.corredoresmen[corredorIndex].puntua=1;
+        
+              this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Corredor Puntua', life: 3000 });
+            },
+            error: (error) => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al activar para puntuar el corredor', life: 3000 });
+
+            },
+            complete: () => {
+              console.log('Completado');
+            }
+          }
+        );
+
+
+      }
+    });
+    
+  }
+
+  desactivaPuntuaCorredor(activeData:any){
+    this.confirmationService.confirm({
+      message: 'Desactivar para puntuar el corredor ' + activeData.corredor + '?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+
+        this.corredorService.despuntuarCorredor(activeData.idcorredor).subscribe(
+          {
+            next: (data) => {
+
+              const corredorIndex = this.corredoresmen.findIndex(data => data.idcorredor=== activeData.idcorredor);
+              this.corredoresmen[corredorIndex].puntua=0;
+        
+              this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Corredor ya NO Puntua', life: 3000 });
+            },
+            error: (error) => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al desactivar para puntuar el corredor', life: 3000 });
+
+            },
+            complete: () => {
+              console.log('Completado');
+            }
+          }
+        );
+
+
+      }
+    });
+    
+  }
+
 }
 

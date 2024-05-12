@@ -5,6 +5,7 @@ import { MessageService } from "primeng/api";
 import { Corredormen } from 'src/app/domain/custom/corredormen';
 
 import { CorredorService } from 'src/app/service/corredor.service';
+import baserUrl from 'src/app/service/helper';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { CorredorService } from 'src/app/service/corredor.service';
   providers: [MessageService]
 })
 export class MembreciaComponent {
-
+  mediaLocation = `${baserUrl}/media/`;
   buscado="";
    
   corredor!:Corredormen;

@@ -27,8 +27,9 @@
     
 </div>
 
-<app-carnet *ngIf="inscripto"
+<app-carnet *ngIf="inscripto && corredor.carnetfpc==2"
       [corredor]="corredor"
       ></app-carnet>
-
+      
+<img *ngIf="inscripto && corredor.carnetfpc==1" [src]="mediaLocation+corredor.foto" width="100%" style="max-width: 500px; margin-top: 60px;" alt="carnet FPC imagen">
   

@@ -3,19 +3,33 @@
  }
  
 .contenedornav{
-  display: flex;
+    display: flex;
     flex-direction: row;  
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: #232323 !important;
+}
+ .contenedor{
+  display: flex;
+  background-color:  #232323 !important;
+ }
+ .contenedor .principal-body{
+  width: 100%;
+  /*height: 100%;*/
+  height: 93vh;
+ }
+ .contenedor:after{
+  content: 'URCi';
+  position: absolute;
+  top: 0;
+  left: 35%;
+  font-size: 6em;
+  font-weight: 800;
+  font-style: italic; 
+  color: rgba(24, 173, 11, 0.486)
 }
 
- .contendor{
-  display: flex;
- }
- .contendor .principal-body{
-  width: 100%;
- }
- .contendor aside{
+ .contenedor aside{
    width: 0;
    overflow-y: auto;
    transition: all 0.5s;

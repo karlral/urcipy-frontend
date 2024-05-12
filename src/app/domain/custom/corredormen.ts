@@ -7,5 +7,8 @@ export interface Corredormen {
     fecnac:Date,
     categoria:string,
     fecmodi:Date,
-    corredor: string
+    corredor: string,
+    carnetfpc: number,
+    foto: string,
+    puntua: number
 }

@@ -24,7 +24,7 @@
     position: relative;
     max-width: 375px;
     width: 90%;
-    height: 100vh;
+    height: 120vh;
     margin-top: 16px;
   }
   .card .face{
@@ -33,7 +33,7 @@
     height: 100%;
     backface-visibility: hidden;
     border-radius: 10px;
-    overflow: hidden;
+   /* overflow: hidden;*/
     transition: .5s;
   }
   .card .front{

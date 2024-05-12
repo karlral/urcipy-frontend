@@ -86,7 +86,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
     ci: ['', Validators.required],
-    sexo: [0, Validators.required],
+    sexo: [-1, Validators.required],
     fecnac: [this.fechaant, Validators.required],
     telefono: ['', Validators.required],
     direccion: [''],
@@ -103,10 +103,10 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     licencia: [0],
     modificar: [false],
     gruposanguineo: [''],
-    puntua: [true],
+    puntua: [0],
     fecmodi: [this.fecha],
     montopuntua: [0],
-    carnetfpc: [false],
+    carnetfpc: [0],
     observacion: [''],
     categoria: [this.eCategoria],
     ciudad: [null],
@@ -129,7 +129,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedCorredor){
-      this.modalType="Editar";
+      this.modalType="Guardar";
       
       this.corredorForm.patchValue(this.selectedCorredor);
 
@@ -144,7 +144,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
         nacionalidad:"Paraguaya",
         tipocat:1,
         sexo:1,
-        puntua:true,
+        puntua:0,
         fecmodi:this.fecha,
         verificar:0
 
