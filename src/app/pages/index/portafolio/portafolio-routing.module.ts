@@ -6,13 +6,13 @@ import { PortafolioComponent } from './portafolio.component';
 import { MembreciaComponent } from './membrecia/membrecia.component';
 
 const routes: Routes = [
-  /*{
+  {
     path:'',
     component:PortafolioComponent,
     pathMatch:'full'
-  },*/
+  },
   {
-    path:'',
+    path:'membresia',
     component:MembreciaComponent,
     pathMatch:'full'
   },

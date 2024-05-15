@@ -8,9 +8,10 @@
     <ul class="inline-menu">
         <li id="maxi" class="menu-item"><a routerLink="/"><i class="ion-chevron-left"></i></a></li>
         <li class="about menu-item"><a routerLink="/resumen" >Calendario</a></li>
-        <li class="about menu-item"><a routerLink="/portfolio">Membresia</a></li>
+        <li class="about menu-item"><a routerLink="/portfolio">Inscripciones</a></li>
         <li class="about menu-item"><a routerLink="/blog">Historial</a></li>
         <li class="about menu-item"><a routerLink="/contact">Puntajes</a></li>
+        <li class="about menu-item"><a routerLink="/portfolio/membresia">Membresia</a></li>
         
         <li id="close" class="menu-item"><a routerLink="/"><i class="ion-ios-close-empty"></i></a></li>
     </ul>
@@ -37,21 +38,17 @@
         </div>
         <div class="menu-blocks">
             <a routerLink="/resumen">
-            <div class="about-block menu-block">
-                
+            <div class="about-block menu-block">                
                 <div class="about-block-container">
                     <h2 class="about menu-item">Calendario</h2>
-                </div>
-                
+                </div>              
             </div>
             </a>
             <a routerLink="/portfolio">
             <div class="portfolio-block  menu-block">     
                 <div class="portfolio-block-container">
-                    <!--h2 class="portfolio menu-item">Inscripciones</h2-->
-                    <h2 class="portfolio menu-item">Membresia</h2>
-                </div>
-                
+                    <h2 class="portfolio menu-item">Inscripciones</h2>
+                </div>               
             </div>
             </a>
             <a routerLink="/blog">
@@ -68,13 +65,21 @@
                 </div>
             </div>
             </a>
+            <a routerLink="/portfolio/membresia">
+                <div class="membresia-block  menu-block">
+                    <div class="membresia-block-container">
+                        <h2 class="membresia menu-item">Membresia</h2>
+                    </div>
+                </div>
+            </a>
             <a routerLink="/sistema">
             <div class="sistema-block  menu-block">
                 <div class="sistema-block-container">
                     <h2 class="sistema menu-item">Sistema</h2>
                 </div>
             </div>
-        </a>
+            </a>
+            
         </div>
   
         <div class="content-blocks about">

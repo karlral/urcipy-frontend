@@ -156,6 +156,14 @@
 
     });
 
+    //On Click Open Membresia Block
+    $(document).on('click','.membresia-block, .menu-item.membresia', function() {
+        $('.content-blocks').removeClass('showx');
+        $('.content-blocks.about').addClass('showx');
+        $('.menu-item').removeClass('active');
+        $('.menu-item.membresia').addClass('active');
+ 
+    });
     //On Click Close Blocks
     $(document).on('click','#close', function() {
         $('.name-block').removeClass('reverse');

@@ -17,7 +17,11 @@
                         <h3>{{evento.nomevento | uppercase}}</h3>
                         <p>{{evento.informacion}}</p>
                         <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
-                        <button *ngIf="evento.activo == 1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
+                        <button *ngIf="evento.activo == 1 && evento.preinscrip==1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
+
+                        <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3"  target="_blank" rel="noopener noreferrer" class="btn inscrip">
+                            INSCRIBETE
+                        </a>
                     </div>
                 </div>
             </div>

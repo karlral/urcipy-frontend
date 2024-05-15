@@ -168,7 +168,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     this.preinscripciones = [
       { label: 'NO',   value: 0 },
       { label: 'SI',  value: 1 },
-      { label: 'LISTADO',  value: 2 }
+      { label: 'LISTADO',  value: 2 },
+      { label: 'Link Externo',  value: 3 }
     ];
 
     this.clubService.listarClubes().subscribe(

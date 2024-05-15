@@ -626,9 +626,14 @@ h2.contact.menu-item:before {
     content: '04';
 }
 
-h2.sistema.menu-item:before {
+h2.membresia.menu-item:before {
     content: '05';
 }
+
+h2.sistema.menu-item:before {
+    content: '06';
+}
+
 
 .menu-block:hover h2.menu-item:before {
     top: -20px;
@@ -1112,7 +1117,7 @@ h2.menu-item:after {
 .about-block-container {
     display: table-cell;
     vertical-align: middle;
-    padding: 150px 0 0 70px;
+    padding: 140px 0 0 0px;
     -ms-transform: rotate(34deg);
     -webkit-transform: rotate(34deg);
     transform: rotate(34deg);
@@ -2320,6 +2325,120 @@ h4.package {
 
 /*-------------------------------------------------------------------
 
+                        9. MEMBRESIA BLOCK
+
+-------------------------------------------------------------------*/
+
+.membresia-block {
+    position: absolute;
+    width: 430px;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* border-left: none; */
+    display: table;
+    transition: all 0.5s;
+    z-index: 1
+}
+
+.dark .membresia-block {
+    border: 1px solid rgba(51, 51, 51, 0.4);
+}
+
+.membresia-block:hover {
+    border: 15px solid rgba(255, 255, 255, 0.1);
+}
+
+.membresia-block-container {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 140px 0 0 0px;
+    -ms-transform: rotate(34deg);
+    -webkit-transform: rotate(34deg);
+    transform: rotate(34deg);
+}
+
+.membresia-from {
+    margin-top: 30px;
+}
+
+.membresia-content {
+    display: table;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.membresia-icon {
+    width: 60px;
+    vertical-align: top;
+    font-size: 30px;
+    text-align: center;
+    color: #666;
+}
+
+.membresia-details,
+.membresia-icon {
+    display: table-cell;
+}
+
+.membresia-details h5,
+.membresia-details p {
+    margin-bottom: 0;
+}
+
+.error-form {
+    float: right;
+    margin: -24px 2px 0 0;
+    position: relative;
+    top: 0;
+}
+
+.error-form i:before {
+    color: #C33;
+    font-size: 100%;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.alert-success {
+    text-align: left;
+}
+
+#membresia_form .form-control {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #727272;
+    border-radius: 0;
+    width: 100%;
+    font-size: 14px;
+    transition: all .3s;
+}
+
+#membresia_form .form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #666;
+}
+
+#membresia_form textarea {
+    resize: none;
+}
+
+#map {
+    height: 400px;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.map-marker {
+    background: url('../images/map-marker.png') no-repeat;
+    height: 75px;
+    width: 80px;
+}
+
+/*-------------------------------------------------------------------
+
                         10. RESPONSIVE
 
 -------------------------------------------------------------------*/
@@ -2366,6 +2485,13 @@ h4.package {
         transform: rotate(-34deg);
         left: 675px;
         top: 620px;
+    }
+    .membresia-block {
+        -ms-transform: rotate(-34deg);
+        -webkit-transform: rotate(-34deg);
+        transform: rotate(-34deg);
+        left: 1193px;
+        top: -100px;
     }
     .name-block.reverse {
         width: 400px;
@@ -2422,8 +2548,8 @@ h4.package {
         -ms-transform: rotate(-34deg);
         -webkit-transform: rotate(-34deg);
         transform: rotate(-34deg);
-        left: 1067px;
-        top: 48px;
+        left: 1077px;
+        top: 63px;
     }
     .sistema-block {
         -ms-transform: rotate(-34deg);
@@ -2431,6 +2557,13 @@ h4.package {
         transform: rotate(-34deg);
         left: 363px;
         top: 540px;
+    }
+    .membresia-block {
+        -ms-transform: rotate(-34deg);
+        -webkit-transform: rotate(-34deg);
+        transform: rotate(-34deg);
+        left: 882px;
+        top: -175px;
     }
     /***URCIPY*/
     
@@ -2489,8 +2622,8 @@ h4.package {
         -ms-transform: rotate(-34deg);
         -webkit-transform: rotate(-34deg);
         transform: rotate(-34deg);
-        left: 900px;
-        top: -70px;
+        left: 1007px;
+        top: 87px;
         width: 350px;
         height: 300px;
     }
@@ -2500,6 +2633,15 @@ h4.package {
         transform: rotate(-34deg);
         left: 400px;
         top: 435px;
+        width: 350px;
+        height: 300px;
+    }
+    .membresia-block {
+        -ms-transform: rotate(-34deg);
+        -webkit-transform: rotate(-34deg);
+        transform: rotate(-34deg);
+        left: 839px;
+        top: -160px;
         width: 350px;
         height: 300px;
     }
@@ -2555,6 +2697,15 @@ h4.package {
         transform: rotate(-34deg);
         left: 386px;
         top: 531px;
+        width: 350px;
+        height: 200px;
+    }
+    .membresia-block {
+        -ms-transform: rotate(-34deg);
+        -webkit-transform: rotate(-34deg);
+        transform: rotate(-34deg);
+        left: 792px;
+        top: -150px;
         width: 350px;
         height: 200px;
     }
@@ -2637,6 +2788,13 @@ h4.package {
         left: 9px;
         top: 780px;
     }
+    .membresia-block {
+        -ms-transform: rotate(-34deg);
+        -webkit-transform: rotate(-34deg);
+        transform: rotate(-34deg);
+        left: 209px;
+        top: 780px;
+    }
     .project {
         width: 50%;
     }
@@ -2676,7 +2834,8 @@ h4.package {
     .portfolio-block,
     .blog-block,
     .contact-block,
-    .sistema-block {
+    .sistema-block,
+    .membresia-block {
         position: relative;
         -ms-transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
@@ -2697,7 +2856,8 @@ h4.package {
     .portfolio-block-container,
     .blog-block-container,
     .contact-block-container,
-    .sistema-block-container {
+    .sistema-block-container,
+    .membresia-block-container {
         -ms-transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -2776,7 +2936,8 @@ h4.package {
     .portfolio-block,
     .blog-block,
     .contact-block,
-    .sistema-block  {
+    .sistema-block,
+    .membresia-block  {
         position: relative;
         -ms-transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
@@ -2789,14 +2950,13 @@ h4.package {
         left: 0;
         top: 0;
     }
-    .sistema-block {
-        border-bottom: none;
-    }
+    
     .about-block:hover,
     .portfolio-block:hover,
     .blog-block:hover,
     .contact-block:hover,
-    .sistema-block:hover {
+    .sistema-block:hover,
+    .membresia-block:hover {
         border: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     }
@@ -2805,7 +2965,8 @@ h4.package {
     .portfolio-block-container,
     .blog-block-container,
     .contact-block-container,
-    .sistema-block-container  {
+    .sistema-block-container,
+    .membresia-block-container  {
         -ms-transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
