@@ -1,62 +1,28 @@
 <section class="content">
     <div class="block-content">
-      <h3 class="block-title">HISTORIAL</h3>
-      <div class="row">
-  
-        <p-table id="tabla" [value]="anhocats" sortField="ano" sortMode="single" dataKey="ano"
-        rowGroupMode="subheader" groupRowsBy="ano">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>
-                    <h2 class="titulo" style="width: 375px; text-align: center; font-weight: 700;">CAMPEONES URCI</h2>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="groupheader" let-anhocat let-expanded="expanded">
-            <tr>
-                <td class="flex">
-
-                    <h1 class="flex-1 flex align-items-center justify-content-center font-bold  ">{{anhocat.ano}}</h1>
-
-                    <div class="flex align-items-center">
-                        <button type="button" pButton pRipple [pRowToggler]="anhocat"
-                            class="p-button-text p-button-rounded p-button-plain font-bold ml-3 "
-                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
-                        </button>
-                    </div>
-
-                </td>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="rowexpansion" let-anhocat>
-            <tr>
-
-                <td class="flex " >
-                    
+        <h3 class="block-title">CAMPEONES | HISTORIAL</h3>
+        <div class="row">
+            
+                <div class="card">
+                    <div class="face front">
                         
-                        <span
-                            class="flex-1 flex align-items-center justify-content-center font-bold  " >{{anhocat.nomcorto}}</span>
+                        <img *ngIf="regional.logo" [src]="mediaLocation+regional.logo" [alt]="regional.logo" />
+                        
+                        <div class="botones">
+                           
+                            <button type="submit" [routerLink]="['/blog/campeon']" class="btn inscrip">CAMPEONES</button>
+                            
+                           <button type="submit" [routerLink]="['/blog/historial']" class="btn list">HISTORIAL</button> 
 
-                        <button type="button" pButton pRipple routerLink="/blog/campeones/{{anhocat.ano}}/{{anhocat.idcategoriah}}"
-                        [ngStyle]="{backgroundColor:'var(--indigo-600)', color: 'var(--indigo-50)'}"
-                        class="p-button-text p-button-rounded p-button-plain font-bold ml-3 reasonButton"
-                        [icon]="'pi pi-chevron-right'"
-                        > 
-
-
-                    </button>
+                           
+                        </div>
+                        
+                    </div>
                     
-                </td>
-
-            </tr>
-        </ng-template>
-    </p-table>
-
-
-
-
-      </div>
+                </div>
+             
+            
+        </div>
     </div>
-  
   </section>
+  

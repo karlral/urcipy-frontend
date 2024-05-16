@@ -29,10 +29,10 @@ constructor(private messageService: MessageService, private corredorService: Cor
 ngOnInit(): void {
 }
 
-formSubmit() {
+formSubmit(buscado:string) {
+  
 
-
-  if (this.buscado.trim() == '' || this.buscado.trim() == null) {
+  if (buscado.trim() == '' || buscado.trim() == null) {
     /* console.log('Click en el boton de login'+this.loginData.username);*/
 
     this.messageService.add({
@@ -44,7 +44,7 @@ formSubmit() {
     return;
   }
 
-  this.corredorService.pubObtenerCorredorCi(this.buscado).subscribe(
+  this.corredorService.pubObtenerCorredorCi(buscado).subscribe(
     (data: any) => {
       
       this.corredor=data;

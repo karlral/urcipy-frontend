@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
-import { CampeonesComponent } from './campeones/campeones.component';
+import { CampeonesComponent } from './campeon/campeones/campeones.component';
+import { CampeonComponent } from './campeon/campeon.component';
+import { HistorialComponent } from './historial/historial.component';
 
 const routes: Routes = [
   
@@ -13,6 +15,16 @@ const routes: Routes = [
   {
     path:'campeones/:anho/:idcat',
     component:CampeonesComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'campeon',
+    component:CampeonComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'historial',
+    component:HistorialComponent,
     pathMatch:'full'
   }
 ];

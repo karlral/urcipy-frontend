@@ -114,8 +114,12 @@
 
             <div class="field">
                 <label for="nombre">Categoria Calculada</label>
-                <app-cat-corredor [fecnac]="corredorForm.value.fecnac" [sexo]="corredorForm.value.sexo"
-                    [tipocat]="corredorForm.value.tipocat" (emitCategoria)="cargarCategoria($event)"></app-cat-corredor>
+                <app-cat-corredor 
+                    [fecnac]="corredorForm.value.fecnac" 
+                    [sexo]="corredorForm.value.sexo"
+                    [tipocat]="corredorForm.value.tipocat"
+                    (emitCategoria)="cargarCategoria($event)">
+                </app-cat-corredor>
 
             </div>
         </fieldset>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddEditCorredorComponent } from './add-edit-corredor.component';
-import { CatCorredorComponent } from '../../../../../components/cat-corredor/cat-corredor.component';
 
 import { ButtonModule } from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
@@ -13,11 +12,11 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    AddEditCorredorComponent,
-    CatCorredorComponent
+    AddEditCorredorComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +30,7 @@ import {CalendarModule} from 'primeng/calendar';
     RadioButtonModule,
     InputTextareaModule,
     CalendarModule,
+    SharedModule
 
 
   ],

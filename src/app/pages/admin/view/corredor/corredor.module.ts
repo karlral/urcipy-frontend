@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { CorredorComponent } from './corredor.component';
-import { BuscorredorComponent } from './buscorredor/buscorredor.component';
 
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
@@ -15,13 +14,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
 import { CorredorRoutingModule } from './corredor-routing.module';
 import { AddEditCorredorModule } from './add-edit-corredor/add-edit-corredor.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    CorredorComponent,
-    BuscorredorComponent
+    CorredorComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +32,8 @@ import { AddEditCorredorModule } from './add-edit-corredor/add-edit-corredor.mod
     CorredorRoutingModule,
     AddEditCorredorModule,
     ConfirmDialogModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],  providers: [authInterceptorProviders]
 })
 export class CorredorModule { }

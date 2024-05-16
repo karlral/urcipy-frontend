@@ -18,6 +18,7 @@ import { TableModule } from 'primeng/table';
 import { RegistrocorredorComponent } from './eventobus/registrocorredor/registrocorredor.component';
 import { MembreciaComponent } from './membrecia/membrecia.component';
 import { CarnetComponent } from './membrecia/carnet/carnet.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CarnetComponent } from './membrecia/carnet/carnet.component';
     ButtonModule,
     InputTextModule,
     CheckboxModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    SharedModule
   ]
 })
 export class PortafolioModule { }

@@ -1,7 +1,5 @@
-import { Component, EventEmitter,  Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter,  Input,  Output } from '@angular/core';
 import { MessageService } from "primeng/api";
-import { CorredorService } from 'src/app/service/corredor.service';
 
 @Component({
   selector: 'app-buscorredor',
@@ -13,12 +11,13 @@ export class BuscorredorComponent  {
   
   buscado:string="";
 
+  @Input() title: any;
   
   @Output() clickSearch: EventEmitter<any> = new EventEmitter<any>();
 
   
 
-constructor(private messageService: MessageService, private corredorService: CorredorService, private router: Router) { }
+constructor(private messageService: MessageService) { }
   
 
 formSubmit() {
