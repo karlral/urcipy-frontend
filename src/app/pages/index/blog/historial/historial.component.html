@@ -6,7 +6,7 @@
 >
 </app-buscorredor>
 
-<p-table *ngIf="!displaySearch" #dt [value]="corredores" [rows]="10" [paginator]="true" [globalFilterFields]="['nomevento']"
+<p-table *ngIf="!displaySearch" #dt styleClass="p-datatable-sm" [value]="corredores" [rows]="10" [paginator]="true" [globalFilterFields]="['nomevento']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idparticipante"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 

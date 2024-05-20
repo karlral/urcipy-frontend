@@ -10,12 +10,35 @@
 
 
 
-<p-table #dt [value]="paises" [rows]="10" [paginator]="true" [globalFilterFields]="['nompais','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+<p-table  #dt styleClass="p-datatable-sm" [value]="paises" [rows]="10" [paginator]="true" [globalFilterFields]="['nompais','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
 [rowHover]="true" dataKey="idpais"
 currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
 <ng-template pTemplate="caption">
+
     <div class="flex align-items-center justify-content-between">
+        <div class="flex"> 
+            <button type="button"
+            pButton 
+            pRipple 
+            icon="pi pi-file"
+            (click)="dt.exportCSV()" 
+            (click)="toast()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"> 
+            </button> 
+            <button type="button"
+                            pButton pRipple
+                            icon="pi pi-file-excel"
+                            (click)="exportExcel2()"
+                            class="p-button-outlined p-button-success"
+                            class="p-button-success "
+                            pTooltip="XLS"
+                            label="Export"
+                            tooltipPosition="bottom">
+                    </button>
+        </div> 
         <h2 class="m-0">Paises</h2>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>

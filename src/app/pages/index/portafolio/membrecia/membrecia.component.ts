@@ -16,8 +16,9 @@ import baserUrl from 'src/app/service/helper';
 })
 export class MembreciaComponent {
   mediaLocation = `${baserUrl}/media/`;
-  buscado="";
-   
+  
+ ci="";
+
   corredor!:Corredormen;
   inscripto:boolean=false;
 
@@ -31,19 +32,8 @@ ngOnInit(): void {
 
 formSubmit(buscado:string) {
   
-
-  if (buscado.trim() == '' || buscado.trim() == null) {
-    /* console.log('Click en el boton de login'+this.loginData.username);*/
-
-    this.messageService.add({
-      severity: "error",
-      summary: "Login",
-      detail: "No se encontro el numero de CI del corredor, complete sin puntos."
-    });
-
-    return;
-  }
-
+  this.ci=buscado;
+  
   this.corredorService.pubObtenerCorredorCi(buscado).subscribe(
     (data: any) => {
       
@@ -57,7 +47,9 @@ formSubmit(buscado:string) {
         });
         this.inscripto=false;
       }else{
+      
         this.inscripto=true;
+        
       }
       
 

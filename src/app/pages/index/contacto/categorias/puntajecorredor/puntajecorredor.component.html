@@ -8,7 +8,7 @@
                         
                         <!--img *ngIf="evento.fondo" [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" /-->
                         <img *ngIf="puntocorredor.ruta" [src]="mediaLocation+puntocorredor.ruta" [alt]="puntocorredor.ruta" />
-                        <table>
+                        <table styleClass="p-datatable-sm">
                             <tbody>
                             <tr>
                             <td ><span  style=" font-weight:  bold;">Corredor</span></td>
@@ -23,7 +23,7 @@
                             </tbody>
                             </table>
                             
-                        <table id="tablapuntos">
+                        <table id="tablapuntos" styleClass="p-datatable-sm">
                             <thead>
                                 <tr>
                                     <th>Evento</th>

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-pais',
@@ -11,7 +13,7 @@ import { PaisService } from 'src/app/service/pais.service';
   providers: [ConfirmationService, MessageService]
 })
 export class PaisComponent {
-
+  @ViewChild('dt') table!: Table;
 
   paises: Pais[] = [];
 
@@ -183,6 +185,43 @@ export class PaisComponent {
     });
   }
 
+  toast(){ 
+    this.messageService.add({ 
+        severity: "success", 
+        detail: "Success! CSV file downloaded"
+    }); 
+}
 
-  
+exportExcel2() {
+  import('xlsx').then((xlsx) => {
+      const worksheet = xlsx.utils.json_to_sheet(
+          this.table.filteredValue
+              ? this.table.filteredValue
+              : this.paises
+      );
+      const workbook = {
+          Sheets: { data: worksheet },
+          SheetNames: ['data'],
+      };
+      const excelBuffer: any = xlsx.write(workbook, {
+          bookType: 'xlsx',
+          type: 'array',
+      });
+      this.saveAsExcelFile(excelBuffer, 'paises');
+  });
+}
+
+saveAsExcelFile(buffer: any, fileName: string): void {
+  let EXCEL_TYPE =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE,
+  });
+  FileSaver.saveAs(
+      data,
+      fileName + '_' + new Date().getTime() + EXCEL_EXTENSION
+  );
+}
+
 }

@@ -50,7 +50,7 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
     ClubComponent,
     CategoriaComponent
   ],
-  imports: [
+  imports: [   
     CommonModule,
     AdminRoutingModule,
     CalendarModule,

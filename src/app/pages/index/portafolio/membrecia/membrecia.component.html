@@ -12,3 +12,7 @@
       
 <img *ngIf="inscripto && corredor.carnetfpc==1" [src]="mediaLocation+corredor.foto" width="100%" style="max-width: 500px; margin-top: 60px;" alt="carnet FPC imagen">
   
+
+<a *ngIf="inscripto && corredor.carnetfpc==3" style="margin-top: 100px; margin-left: 100px;" href="https://www.fmc.com.py/licencias/consulta?numero={{ci}}" target="_blank" rel="noopener noreferrer" class="p-button font-bold">
+    Ver Licencia FMC
+</a>
