@@ -9,6 +9,7 @@ import { ClubComponent } from './view/club/club.component';
 import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ListParticipantesComponent } from './view/list-participantes/list-participantes.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
         path:'categoria',
         component:CategoriaComponent,
         
+      },{
+        path:'listpart/:activo',
+        component:ListParticipantesComponent,
+        pathMatch:'full'
       }
       ,
       {

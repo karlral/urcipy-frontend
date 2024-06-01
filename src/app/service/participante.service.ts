@@ -10,6 +10,7 @@ import { Resultado } from '../domain/custom/resultado';
 
 import { Participante } from '../domain/participante';
 import baserUrl from './helper';
+import { Inscriptos } from '../domain/custom/inscriptos';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ParticipanteService {
   }
   public actualizarParticipante(participante:any){
     return this.http.put(`${baserUrl}/participante/`,participante);
+  }
+
+  public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
+    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}`);
   }
 
 /**PUBLICOS */

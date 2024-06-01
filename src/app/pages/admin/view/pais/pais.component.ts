@@ -192,7 +192,7 @@ export class PaisComponent {
     }); 
 }
 
-exportExcel2() {
+/*exportExcel2() {
   import('xlsx').then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(
           this.table.filteredValue
@@ -222,6 +222,6 @@ saveAsExcelFile(buffer: any, fileName: string): void {
       data,
       fileName + '_' + new Date().getTime() + EXCEL_EXTENSION
   );
-}
+}*/
 
 }

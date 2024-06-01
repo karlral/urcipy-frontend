@@ -4,7 +4,6 @@ import { Club } from 'src/app/domain/club';
 import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import { Evento } from 'src/app/domain/evento';
 
-import { Participante } from 'src/app/domain/participante';
 import { Regional } from 'src/app/domain/regional';
 import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';

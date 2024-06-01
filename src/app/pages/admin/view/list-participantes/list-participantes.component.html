@@ -1,0 +1,62 @@
+
+
+<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button type="button"
+            pButton pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel2()"
+            class="p-button-outlined p-button-success"
+            class="p-button-success "
+            pTooltip="XLS"
+            label="Export"
+            tooltipPosition="bottom">
+    </button>
+
+            <h2 class="m-0">Corredores Inscriptos</h2>
+            
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>C.I.</th>
+            <th>Fecha</th>
+            <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
+            <th>Sexo</th>
+            <th>Fecha Nac.</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>Club</th>
+            <th>Categoria</th>
+            <th>Km</th>
+            <th>Dorsal</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-corredor>
+        <tr>
+            <td>{{corredor.ci}}</td>
+            <td>{{corredor.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{corredor.corredor}}</td>
+            <td>{{corredor.sexo==1 ? 'M':'F'}}</td>
+            <td>{{corredor.fecnac | date: 'dd/MM/yyyy'}}</td>
+            <td>{{corredor.pais}}</td>
+            <td>{{corredor.ciudad}}</td>
+            <td>{{corredor.club}}</td>
+            <td>{{corredor.categoria}}</td>
+            <td>{{corredor.km}}</td>
+            <td>{{corredor.dorsal}}</td>
+            
+           
+        </tr>
+    </ng-template>
+</p-table>

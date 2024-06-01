@@ -51,8 +51,9 @@ ngOnInit(): void {
     ]
 },
 {
-    label: 'Edit',
+    label: 'Procesos',
     items: [
+      {label: 'Lista Inscriptos Evento', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/1']},
         {label: 'Undo', icon: 'pi pi-refresh'},
         {label: 'Redo', icon: 'pi pi-repeat'}
     ]
