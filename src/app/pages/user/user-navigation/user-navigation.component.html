@@ -1,0 +1,38 @@
+<div class="contenedornav">
+    <p-button icon="pi pi-list" (click)="abrir()"></p-button>
+  
+    <h2 class="m-0">Usuario</h2>
+  
+    <p-button icon="pi pi-power-off" *ngIf="isLoggedIn && user" (click)="logout()"
+      styleClass="p-button-danger"></p-button>
+  </div>
+  <p-sidebar [(visible)]="gfg" [baseZIndex]="10000" appendTo="body">
+  
+    <ng-template pTemplate="header">
+      <h2>Usuario</h2>
+    </ng-template>
+  
+    <ng-template pTemplate="content" class="contenido">
+  
+  
+      <p-panelMenu [model]="items"></p-panelMenu>
+  
+      <p-button icon="pi pi-caret-left"  (click)="cerrar()"
+      styleClass="p-button-danger alineacionizquierda"></p-button>
+  
+    </ng-template>
+  
+  
+  
+  </p-sidebar>
+  
+  <section class="contenedor">
+    <aside [style.width.%]="ancho">    </aside>
+    <div class="principal-body"><app-user-dashboard></app-user-dashboard></div>
+  </section>
+  
+  
+  
+  
+  
+  

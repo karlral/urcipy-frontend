@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
-
 
 
 
 const routes: Routes = [
 
   {
-    path:'user',
-    component:UserDashboardComponent,
-    pathMatch:'full'
-  } ,
-  {
+    path:'user',loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
+  } ,{
     path:'sistema', loadChildren:()=> import('./pages/system/system.module').then(m => m.SystemModule)
   },  {
     path:'admin', loadChildren:()=> import('./pages/admin/admin.module').then(m => m.AdminModule)

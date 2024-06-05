@@ -47,17 +47,24 @@ ngOnInit(): void {
       {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
       {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor/corre']},
       {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/evento/evento']},
-      {label: 'Buscar', icon: 'pi pi-search', routerLink: ['/admin/acceso/buscorredor']}
+      
     ]
 },
 {
     label: 'Procesos',
     items: [
-      {label: 'Lista Inscriptos Evento', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/1']},
-        {label: 'Undo', icon: 'pi pi-refresh'},
-        {label: 'Redo', icon: 'pi pi-repeat'}
+      {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/1']},
+      {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/2']},
+       
     ]
 },
+{
+  label: 'Usuarios',
+  items: [
+    {label: 'Crear Usuario Normal', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/signup']},
+      
+  ]
+}
 
 ];
 }

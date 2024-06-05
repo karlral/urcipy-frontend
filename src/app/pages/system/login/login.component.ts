@@ -82,7 +82,7 @@ export class LoginComponent {
             // user dashboard
             //window.location.href='/user-dashboard';
             console.log('Entramos en el usuario');
-            this.router.navigate(['user-dashboard']);
+            this.router.navigate(['user/access']);
             this.loginService.loginStatusSubjec.next(true);
           } else {
             this.loginService.logout();

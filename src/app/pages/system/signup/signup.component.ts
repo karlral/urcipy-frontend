@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { MessageService } from "primeng/api";
+import { Usuario } from 'src/app/domain/usuario';
 
 @Component({
   selector: 'app-signup',
@@ -9,13 +10,16 @@ import { MessageService } from "primeng/api";
   providers: [MessageService]
 })
 export class SignupComponent {
-  public user={
-    username:'',
-    password:'',
-    nombre:'',
-    apellido:'',
-    email:'',
-    telefono:''
+  public user:Usuario={
+    username: '',
+    password: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    telefono: '',
+    idusuario: 0,
+    perfil: '',
+    enabled: false
   }
 
   constructor(private userService:UserService,private messageService: MessageService) { }

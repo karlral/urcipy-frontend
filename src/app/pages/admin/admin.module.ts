@@ -34,7 +34,6 @@ import { ClubComponent } from './view/club/club.component';
 import { CategoriaComponent } from './view/categoria/categoria.component';
 
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
-import { ListParticipantesComponent } from './view/list-participantes/list-participantes.component';
 
 
 
@@ -49,8 +48,7 @@ import { ListParticipantesComponent } from './view/list-participantes/list-parti
     PaisComponent,
     CiudadComponent,
     ClubComponent,
-    CategoriaComponent,
-    ListParticipantesComponent
+    CategoriaComponent
   ],
   imports: [   
     CommonModule,

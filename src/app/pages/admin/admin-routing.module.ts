@@ -9,7 +9,6 @@ import { ClubComponent } from './view/club/club.component';
 import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { ListParticipantesComponent } from './view/list-participantes/list-participantes.component';
 
 
 const routes: Routes = [
@@ -42,22 +41,25 @@ const routes: Routes = [
         path:'categoria',
         component:CategoriaComponent,
         
-      },{
-        path:'listpart/:activo',
-        component:ListParticipantesComponent,
-        pathMatch:'full'
       }
       ,
+      {
+        path:'listpart', loadChildren:()=> import('./view/list-participantes/list-participantes.module').then(m => m.ListParticipantesModule)
+      },
       {
         path:'corredor', loadChildren:()=> import('./view/corredor/corredor.module').then(m => m.CorredorModule)
       },
       {
         path:'evento', loadChildren:()=> import('./view/evento/evento.module').then(m => m.EventoModule)
+      },
+      {
+        path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
 
     ]
     
   }
+  
 ];
 
 @NgModule({
