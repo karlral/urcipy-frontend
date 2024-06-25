@@ -22,7 +22,8 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <th>Cod.</th>
             <th pSortableColumn="nomcategoria" style="min-width:15rem">Nombre <p-sortIcon field="nomcategoria"></p-sortIcon></th>
-            <th>Nacionalidad</th>
+            <th>Trayecto</th>
+            <th>Km</th>
             <th></th>
         </tr>
     </ng-template>
@@ -30,8 +31,8 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <td>{{categoria.idcategoria}}</td>
             <td>{{categoria.nomcategoria}}</td>
-            <td>{{categoria.nomcorto}}</td>
-
+            <td>{{categoria.trayecto.nomtrayecto}}</td>
+            <td>{{categoria.trayecto.km}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                     (click)="editCategoria(categoria)"></button>
@@ -132,10 +133,18 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
                 <p-inputSwitch id="ascenso" [(ngModel)]="categoria.ascenso"  ></p-inputSwitch>
             </div>
         </div>
+        <div class="formgrid grid" style="justify-content: space-around;">
+
+            <div class="field">
+                <label for="activonacional" class="mr-2">Activo Nacional</label>
+                <p-inputSwitch id="activonacional" [(ngModel)]="categoria.activonacional" ></p-inputSwitch>
+            </div>
+
+        </div>
         <div class="field">
-            <label for="regional">Categoria de</label>
-            <p-dropdown [options]="regionales" [(ngModel)]="categoria.activonacional" placeholder="Seleccionar un regional" 
-            optionLabel="nomregional" optionValue="idregional" [showClear]="true" appendTo="body"></p-dropdown>
+            <label for="trayecto">Categoria del</label>
+            <p-dropdown [options]="trayectos" [(ngModel)]="categoria.trayecto" placeholder="Seleccionar el trayecto" 
+            optionLabel="nomtrayecto"  [showClear]="true" appendTo="body"></p-dropdown>
 
         </div>
 

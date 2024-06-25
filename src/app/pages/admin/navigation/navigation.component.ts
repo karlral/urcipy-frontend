@@ -44,6 +44,7 @@ ngOnInit(): void {
       {label: 'Ciudad', icon: 'pi pi-refresh', routerLink: ['/admin/acceso/ciudad']},
       {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/regional']},
       {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/club']},
+      {label: 'Trayecto', icon: 'pi pi-download', routerLink: ['/admin/acceso/trayecto']},
       {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
       {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor/corre']},
       {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/evento/evento']},

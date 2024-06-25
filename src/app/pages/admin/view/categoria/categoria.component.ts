@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Categoria } from 'src/app/domain/categoria';
-import { Regional } from 'src/app/domain/regional';
+import { Trayecto } from 'src/app/domain/trayecto';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { RegionalService } from 'src/app/service/regional.service';
+import { TrayectoService } from 'src/app/service/trayecto.service';
 
 @Component({
   selector: 'app-categoria',
@@ -18,7 +19,11 @@ export class CategoriaComponent {
   categoriaes: Categoria[] = [];
 
   // para agregar
-
+trayecto :Trayecto={
+  idtrayecto: 0,
+  nomtrayecto: '',
+  km: 0
+}
 
   categoria: Categoria = {
     idcategoria: 0,
@@ -32,10 +37,11 @@ export class CategoriaComponent {
     edadinicio: 0,
     edadfin: 0,
     sexo: 0,
-    tipo: 0
+    tipo: 0,
+    trayecto: this.trayecto
   };
 
-  regionales:Regional[]=[];
+  trayectos:Trayecto[]=[];
 
 
   submitted = false;
@@ -45,7 +51,7 @@ export class CategoriaComponent {
  
 
   constructor(private messageService: MessageService,private categoriaService: CategoriaService,
-    private regionalService: RegionalService,
+    private trayectoService: TrayectoService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -58,16 +64,16 @@ export class CategoriaComponent {
     ];
     //console.log(this.tipos);
 
-    this.regionalService.listarRegionales().subscribe(
+    this.trayectoService.listarTrayectoes().subscribe(
       (dato:any) => {
-        this.regionales=dato;
+        this.trayectos=dato;
        
       },(error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
-          summary: "Regional",
-          detail: "Error al cargar el Regional"
+          summary: "Trayecto",
+          detail: "Error al cargar el Trayecto"
         });       
       }
     );
@@ -105,7 +111,8 @@ export class CategoriaComponent {
       edadinicio: 0,
       edadfin: 0,
       sexo: 0,
-      tipo: 0
+      tipo: 0,
+      trayecto: this.trayecto
     };
     return cat;
   }

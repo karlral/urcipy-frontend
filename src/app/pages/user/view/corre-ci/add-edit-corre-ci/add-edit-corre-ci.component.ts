@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-
-
-
 import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';
 import { Club } from 'src/app/domain/club';
@@ -19,16 +16,16 @@ import { MediaService } from 'src/app/service/media.service';
 import { PaisService } from 'src/app/service/pais.service';
 
 @Component({
-  selector: 'app-add-edit-corredor',
-  templateUrl: './add-edit-corredor.component.html',
-  styleUrls: ['./add-edit-corredor.component.css']
+  selector: 'app-add-edit-corre-ci',
+  templateUrl: './add-edit-corre-ci.component.html',
+  styleUrls: ['./add-edit-corre-ci.component.css']
 })
-export class AddEditCorredorComponent implements OnInit, OnChanges {
-  @Input() displayAddEditModal: boolean = true;
+export class AddEditCorreCiComponent  implements OnInit, OnChanges {
+
   @Input() selectedCorredor:any=null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
+ 
 
   modalType="Agregar";
 
@@ -64,7 +61,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     edadfin: 0,
     sexo: 0,
     tipo: 0,
-    trayecto: this.trayecto
+    trayecto:this.trayecto
   };
 
   // para agregar
@@ -99,7 +96,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     telefono: ['', Validators.required],
     direccion: [''],
     email: [''],
-    verificar: [0],
+    verificar: [2],
     nacionalidad: ['Paraguaya', Validators.required],
     carnet: [''],
     carnetatras: [''],
@@ -140,6 +137,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       this.modalType="Guardar";
       
       this.corredorForm.patchValue(this.selectedCorredor);
+     
 
       const fecha2= new Date(this.selectedCorredor.fecnac);
 
@@ -154,7 +152,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
         sexo:1,
         puntua:0,
         fecmodi:this.fecha,
-        verificar:0
+        verificar:2
 
       });
       this.modalType="Agregar";
@@ -243,9 +241,6 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     this.clickClose.emit(true);
   }
 
-  mostrarVarCorredor() {
-    
-  }
 
   addEditCorredor() {
 
@@ -282,7 +277,6 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
         {
           next: (dato) => {
 
-            this.clickAddEdit.emit(dato);
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'La corredor ha sido actualizada con exito', life: 3000 });
             this.closeModal();
           }, error: (error) => {
@@ -305,7 +299,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
           next: (dato) => {
 
            
-            this.clickAddEdit.emit(dato);
+           
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
 

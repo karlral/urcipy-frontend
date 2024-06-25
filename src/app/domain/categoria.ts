@@ -1,3 +1,5 @@
+import { Trayecto } from "./trayecto";
+
 export interface Categoria {
     idcategoria: number,
         nomcategoria: string,
@@ -10,5 +12,6 @@ export interface Categoria {
         edadinicio:number,
         edadfin:number,
         sexo:number,
-        tipo:number
+        tipo:number,
+        trayecto:Trayecto
 }

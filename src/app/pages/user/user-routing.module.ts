@@ -16,6 +16,9 @@ const routes: Routes = [
       },
       {
         path:'listpart', loadChildren:()=> import('../admin/view/list-participantes/list-participantes.module').then(m => m.ListParticipantesModule)
+      },
+      {
+        path:'correci', loadChildren:()=> import('./view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
       }
 
     ]

@@ -15,6 +15,7 @@ import { Usuario } from 'src/app/domain/usuario';
 import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';
 import { Pais } from 'src/app/domain/pais';
+import { Trayecto } from 'src/app/domain/trayecto';
 
 @Component({
   selector: 'app-eventobus',
@@ -26,6 +27,11 @@ export class EventobusComponent implements OnInit{
   idevento!:number ;
   mediaLocation = `${baserUrl}/media/`;
 
+  trayecto:Trayecto={
+    idtrayecto: 0,
+    nomtrayecto: '',
+    km: 0
+  }
   categoria:Categoria={
     idcategoria: 0,
     nomcategoria: '',
@@ -38,7 +44,8 @@ export class EventobusComponent implements OnInit{
     edadinicio: 0,
     edadfin: 0,
     sexo: 0,
-    tipo: 0
+    tipo: 0,
+    trayecto:this.trayecto
   }
 
   usuario:Usuario={

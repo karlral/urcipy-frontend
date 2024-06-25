@@ -9,6 +9,7 @@ import { ClubComponent } from './view/club/club.component';
 import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { TrayectoComponent } from './view/trayecto/trayecto.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
       },{
         path:'club',
         component:ClubComponent,
+        
+      },{
+        path:'trayecto',
+        component:TrayectoComponent,
         
       },{
         path:'categoria',

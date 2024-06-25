@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Categoria } from 'src/app/domain/categoria';
+import { Trayecto } from 'src/app/domain/trayecto';
 import { CategoriaService } from 'src/app/service/categoria.service';
 
 @Component({
@@ -17,6 +18,12 @@ export class CatCorredorComponent implements OnInit, OnChanges {
 
   categorias: Categoria[] = [];
 
+  trayecto:Trayecto={
+    idtrayecto: 0,
+    nomtrayecto: '',
+    km: 0
+  }
+
   categoria: Categoria = {
     idcategoria: 0,
     nomcategoria: 'No encontrado',
@@ -29,7 +36,8 @@ export class CatCorredorComponent implements OnInit, OnChanges {
     edadinicio: 0,
     edadfin: 0,
     sexo: 0,
-    tipo: 0
+    tipo: 0,
+    trayecto:this.trayecto
   };
 
   edad = 0;
@@ -65,7 +73,8 @@ export class CatCorredorComponent implements OnInit, OnChanges {
       edadinicio: 0,
       edadfin: 0,
       sexo: 0,
-      tipo: 0
+      tipo: 0,
+      trayecto:this.trayecto
     };
     if (this.fecnac) {
       var fechaActual: Date = new Date();

@@ -2,6 +2,7 @@
 
 <app-buscorredor *ngIf="displaySearch"
     [title]="'CI-NOMBRE-APELLIDO-CLUB-CAT'"
+    [cantletter]="2"
     (clickSearch)="corredorSearch($event)"
 >
 </app-buscorredor>
@@ -13,7 +14,7 @@
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
-            <h2 class="m-0">Corredores</h2>
+            <h2 class="m-0">CORRE</h2>
             <button pButton pRipple icon="pi pi-search" class="p-button-secondary ml-2" (click)="showSearch()"></button>
 
             <span class="p-input-icon-left">

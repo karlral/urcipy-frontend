@@ -40,7 +40,8 @@ ngOnInit(): void {
     label: 'Procesos',
     items: [
       {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-search', routerLink: ['/user/access/listpart/1']},
-      {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/user/access/listpart/2']}
+      {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/user/access/listpart/2']},
+      {label: 'Corredores', icon: 'pi pi-search', routerLink: ['/user/access/correci']}
     ]
 },
 
