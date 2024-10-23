@@ -1,0 +1,43 @@
+
+<div id="categoria" class="mx-auto" >
+
+
+    <p-table [value]="categorias" sortField="tanda" sortMode="single"
+        dataKey="tanda" rowGroupMode="subheader" groupRowsBy="tanda">
+        <ng-template pTemplate="header">
+            <tr>  
+                <th ><h1 class="titulo">Tandas</h1></th>  
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="groupheader" let-categoria let-rowIndex="rowIndex" let-expanded="expanded">
+            <tr>
+                <td  class="flex">
+
+                    
+                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >Tanda {{categoria.tanda}} - {{categoria.horario}}hs - {{categoria.trayecto.km}}km</span>
+                    
+                    <div class="flex align-items-center">
+                        <button type="button" pButton pRipple [pRowToggler]="categoria"
+                        class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
+                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                    </button>
+                    </div>
+                    
+                </td>
+            </tr>
+        </ng-template>
+       
+        
+        <ng-template pTemplate="rowexpansion" let-categoria>
+            <tr>
+                <td class="flex flex-column align-items-center justify-content-center corredor"  >
+
+                    <h5  > {{categoria.nomcorto}}</h5>
+                   
+                </td> 
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

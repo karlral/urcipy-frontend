@@ -45,7 +45,8 @@ export class EventobusComponent implements OnInit{
     edadfin: 0,
     sexo: 0,
     tipo: 0,
-    trayecto:this.trayecto
+    trayecto:this.trayecto,
+    horario:''
   }
 
   usuario:Usuario={

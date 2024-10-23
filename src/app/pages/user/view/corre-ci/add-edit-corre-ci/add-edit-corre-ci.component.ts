@@ -61,7 +61,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     edadfin: 0,
     sexo: 0,
     tipo: 0,
-    trayecto:this.trayecto
+    trayecto:this.trayecto,
+    horario:''
   };
 
   // para agregar

@@ -15,10 +15,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TableModule } from 'primeng/table';
+import { TreeTableModule } from 'primeng/treetable';
+
 import { RegistrocorredorComponent } from './eventobus/registrocorredor/registrocorredor.component';
 import { MembreciaComponent } from './membrecia/membrecia.component';
 import { CarnetComponent } from './membrecia/carnet/carnet.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TandasComponent } from './inscripciones/tandas/tandas.component';
+
 
 
 @NgModule({
@@ -29,7 +33,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   CategoriaComponent,
   ClubComponent,
   MembreciaComponent,
-  CarnetComponent
+  CarnetComponent,
+  TandasComponent
 ],
   imports: [
     CommonModule,
@@ -41,7 +46,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InputTextModule,
     CheckboxModule,
     ScrollPanelModule,
-    SharedModule
+    SharedModule,
+    TreeTableModule
   ]
 })
 export class PortafolioModule { }

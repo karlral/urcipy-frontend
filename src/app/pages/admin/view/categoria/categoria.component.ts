@@ -38,7 +38,8 @@ trayecto :Trayecto={
     edadfin: 0,
     sexo: 0,
     tipo: 0,
-    trayecto: this.trayecto
+    trayecto: this.trayecto,
+    horario:''
   };
 
   trayectos:Trayecto[]=[];
@@ -84,7 +85,7 @@ trayecto :Trayecto={
       {
         next: (dato: Categoria[]) => {
           this.categoriaes = dato;
-       //   console.log(this.categoriaes);
+          console.log(this.categoriaes);
         },
         error: (error) => {
           console.log(error);
@@ -112,7 +113,8 @@ trayecto :Trayecto={
       edadfin: 0,
       sexo: 0,
       tipo: 0,
-      trayecto: this.trayecto
+      trayecto: this.trayecto,
+      horario:''
     };
     return cat;
   }

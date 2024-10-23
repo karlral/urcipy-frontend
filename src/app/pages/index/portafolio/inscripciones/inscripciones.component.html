@@ -16,7 +16,9 @@
                            <button (click)="buttonSubmit('categoria')" class="btn inscrip">CATEGORIA</button>
    
                           
-                           <button (click)="buttonSubmit('club')" class="btn list">CLUB</button> 
+                           <button (click)="buttonSubmit('club')" class="btn list">CLUB</button>
+                           
+                           <button (click)="buttonSubmit('tanda')" class="btn list">TANDA</button>
 
                            
                         </div>
@@ -34,6 +36,11 @@
             <app-categoria *ngIf="visible=='categoria'"
             [inscripciones]="inscripciones"
             ></app-categoria>
+
+            <app-tandas *ngIf="visible=='tanda'"
+            [categorias]="categorias"
+            ></app-tandas>
+
 
         </div>
     </div>

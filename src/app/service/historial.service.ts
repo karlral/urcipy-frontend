@@ -12,7 +12,14 @@ export class HistorialService {
 
   constructor(private http:HttpClient) { }
 
-  public pubListarCorredor(ci:any):Observable<Historial[]>{
+  public listarHistorial():Observable<Historial[]>{
+    return this.http.get<Historial[]>(`${baserUrl}/historial/`);
+  }
+  public listarHistorialAnual():Observable<Historial[]>{
+    return this.http.get<Historial[]>(`${baserUrl}/historial/anual/`);
+  }
+
+  public pubListarHistorial(ci:any):Observable<Historial[]>{
     return this.http.get<Historial[]>(`${baserUrl}/historialpub/${ci}`);
   }
 }

@@ -105,13 +105,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         </div>
 
         <div class="formgrid grid" style="justify-content: space-around;">
-            <div class="field col-12 md:col-3">
-                <label for="orden" style="display: block">Orden</label>
-                <p-inputNumber [(ngModel)]="categoria.orden" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="orden"
-                [min]="0" [max]="30"
-                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
-                </p-inputNumber>
-            </div>
+           
             <div class="field col-12 md:col-3">
                 <label for="tanda" style="display: block">Tanda</label>
                 <p-inputNumber [(ngModel)]="categoria.tanda" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="tanda"
@@ -119,8 +113,25 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
                 decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
                 </p-inputNumber>
             </div>
+            <div class="field col-12 md:col-3">
+                <label for="orden" style="display: block">Orden</label>
+                <p-inputNumber [(ngModel)]="categoria.orden" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="orden"
+                [min]="0" [max]="30"
+                decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                </p-inputNumber>
+            </div>
         </div>
-
+        <div class="field">
+            <label for="horario" >Horario</label>
+            <input type="text" pInputText id="horario" [(ngModel)]="categoria.horario" required autofocus />
+            <small class="p-error" *ngIf="submitted && !categoria.horario">Hora es
+                requerido.</small>
+        </div>
+        <div class="field">
+            <label for="trayecto">Trayecto de la categoria</label>
+            <p-dropdown [options]="trayectos" [(ngModel)]="categoria.trayecto" placeholder="Seleccionar el trayecto" 
+            optionLabel="nomtrayecto"  [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
         <div class="formgrid grid" style="justify-content: space-around;">
 
             <div class="field">
@@ -141,12 +152,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             </div>
 
         </div>
-        <div class="field">
-            <label for="trayecto">Categoria del</label>
-            <p-dropdown [options]="trayectos" [(ngModel)]="categoria.trayecto" placeholder="Seleccionar el trayecto" 
-            optionLabel="nomtrayecto"  [showClear]="true" appendTo="body"></p-dropdown>
-
-        </div>
+        
 
         
     </ng-template>

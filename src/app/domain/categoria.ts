@@ -13,5 +13,6 @@ export interface Categoria {
         edadfin:number,
         sexo:number,
         tipo:number,
-        trayecto:Trayecto
+        trayecto:Trayecto,
+        horario:string
 }

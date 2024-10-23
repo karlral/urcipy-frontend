@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MessageService } from 'primeng/api';
 import { Historial } from 'src/app/domain/historial';
@@ -25,7 +25,7 @@ export class HistorialComponent  {
   corredorSearch(buscado:string){
     console.log('Buscamos la cantidad de registros con '+buscado);
     this.displaySearch=false;
-    this.historialService.pubListarCorredor(buscado).subscribe(
+    this.historialService.pubListarHistorial(buscado).subscribe(
       {
         next: (datos: Historial[]) => {
           this.corredores = datos;

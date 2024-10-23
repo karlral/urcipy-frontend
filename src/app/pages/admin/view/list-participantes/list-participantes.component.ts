@@ -79,7 +79,7 @@ export class ListParticipantesComponent implements OnInit{
             bookType: 'xlsx',
             type: 'array',
         });
-        this.saveAsExcelFile(excelBuffer, 'paises');
+        this.saveAsExcelFile(excelBuffer, 'participantes');
     });
   }
   

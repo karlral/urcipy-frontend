@@ -52,6 +52,16 @@ const routes: Routes = [
         path:'listpart', loadChildren:()=> import('./view/list-participantes/list-participantes.module').then(m => m.ListParticipantesModule)
       },
       {
+        path:'listhistorial', loadChildren:()=> import('./view/list-historial/list-historial.module').then(m => m.ListHistorialModule)
+      },
+      {
+        path:'listcihistorial', loadChildren:()=> import('./view/list-ci-historial/list-ci-historial.module').then(m => m.ListCiHistorialModule)
+      },
+      {
+        path:'listanualhistorial', loadChildren:()=> import('./view/list-anual-historial/list-anual-historial.module').then(m => m.ListAnualHistorialModule)
+      }
+      ,
+      {
         path:'corredor', loadChildren:()=> import('./view/corredor/corredor.module').then(m => m.CorredorModule)
       },
       {

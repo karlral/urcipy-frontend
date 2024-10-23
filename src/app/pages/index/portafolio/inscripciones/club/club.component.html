@@ -7,6 +7,11 @@
                 <th pSortableColumn="club"><h1 class="titulo">Por Club</h1></th>  
             </tr>
         </ng-template>
+        <ng-template pTemplate="footer" >
+            <tr>
+                <td colspan="1" class="text-right font-bold pr-5"><strong class="pr-5">Total</strong> {{inscripciones.length}}</td>
+            </tr>
+        </ng-template>
         <ng-template pTemplate="groupheader" let-partici let-rowIndex="rowIndex" let-expanded="expanded">
             <tr >
                 <td  class="flex">

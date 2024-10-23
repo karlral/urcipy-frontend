@@ -60,6 +60,16 @@ ngOnInit(): void {
     ]
 },
 {
+    label: 'Historial',
+    items: [
+      {label: 'Individual', icon: 'pi pi-search', routerLink: ['/admin/acceso/listcihistorial']},
+      {label: 'Anual', icon: 'pi pi-search', routerLink: ['/admin/acceso/listanualhistorial']},
+      {label: 'Todos', icon: 'pi pi-search', routerLink: ['/admin/acceso/listhistorial']},
+       
+    ]
+}
+,
+{
   label: 'Usuarios',
   items: [
     {label: 'Crear Usuario Normal', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/signup']},
