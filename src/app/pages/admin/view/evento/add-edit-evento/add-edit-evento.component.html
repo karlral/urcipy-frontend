@@ -203,6 +203,8 @@
 
     <ng-template pTemplate="footer">
         <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="duplicarEvento()" label="DUPLICAR" styleClass="p-button-text"
+            [disabled]="eventoForm.invalid"></p-button>
         <p-button icon="pi pi-add" (click)="addEditEvento()" label="{{modalType}}" styleClass="p-button-text"
             [disabled]="eventoForm.invalid"></p-button>
 

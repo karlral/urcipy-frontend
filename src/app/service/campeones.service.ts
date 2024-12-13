@@ -15,6 +15,9 @@ export class CampeonesService {
   public listarCampeoneses():Observable<Campeones[]>{
     return this.http.get<Campeones[]>(`${baserUrl}/campeones/`);
   }
+  public listarCampeones():Observable<Campeones[]>{
+    return this.http.get<Campeones[]>(`${baserUrl}/campeones/anho`);
+  }
   public obtenerCampeones(idcampeones:any){
     return this.http.get(`${baserUrl}/campeones/${idcampeones}`);
   }
@@ -27,6 +30,11 @@ export class CampeonesService {
   }
   public actualizarCampeones(campeones:any){
     return this.http.put(`${baserUrl}/campeones/`,campeones);
+  }
+
+  public procesarCampeones(){
+    return this.http.post(`${baserUrl}/procesar/`,0);
+    
   }
 
   /**PUBLICOS */

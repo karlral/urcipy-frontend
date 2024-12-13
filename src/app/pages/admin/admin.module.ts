@@ -35,6 +35,7 @@ import { CategoriaComponent } from './view/categoria/categoria.component';
 
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
 import { TrayectoComponent } from './view/trayecto/trayecto.component';
+import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campeon.component';
 
 
 
@@ -50,8 +51,9 @@ import { TrayectoComponent } from './view/trayecto/trayecto.component';
     CiudadComponent,
     ClubComponent,
     CategoriaComponent,
-    TrayectoComponent
-  ],
+    TrayectoComponent,
+    ProcesarCampeonComponent
+    ],
   imports: [   
     CommonModule,
     AdminRoutingModule,

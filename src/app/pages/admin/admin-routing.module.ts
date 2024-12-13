@@ -10,6 +10,7 @@ import { PaisComponent } from './view/pais/pais.component';
 import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TrayectoComponent } from './view/trayecto/trayecto.component';
+import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campeon.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,10 @@ const routes: Routes = [
         path:'categoria',
         component:CategoriaComponent,
         
+      },{
+        path:'procesarcampeon',
+        component:ProcesarCampeonComponent,
+        
       }
       ,
       {
@@ -59,6 +64,15 @@ const routes: Routes = [
       },
       {
         path:'listanualhistorial', loadChildren:()=> import('./view/list-anual-historial/list-anual-historial.module').then(m => m.ListAnualHistorialModule)
+      },
+      {
+        path:'cargahistorial', loadChildren:()=> import('./view/carga-historial/carga-historial.module').then(m => m.CargaHistorialModule)
+      },
+      {
+        path:'listcicorredores', loadChildren:()=> import('./view/list-ci-corredor/list-ci-corredor.module').then(m => m.ListCiCorredorModule)
+      },
+      {
+        path:'listcampeones', loadChildren:()=> import('./view/list-campeones/list-campeones.module').then(m => m.ListCampeonesModule)
       }
       ,
       {

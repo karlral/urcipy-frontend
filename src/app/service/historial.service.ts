@@ -19,6 +19,11 @@ export class HistorialService {
     return this.http.get<Historial[]>(`${baserUrl}/historial/anual/`);
   }
 
+  public cargarHistorial(idevento:any){
+    return this.http.post(`${baserUrl}/historial/send/${idevento}`,idevento);
+    
+  }
+
   public pubListarHistorial(ci:any):Observable<Historial[]>{
     return this.http.get<Historial[]>(`${baserUrl}/historialpub/${ci}`);
   }

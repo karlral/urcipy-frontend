@@ -53,7 +53,8 @@
         <main class="leaderboard__profiles">
           
           <article *ngFor="let campeone of campeoness" class="leaderboard__profile">
-            <img src="{{mediaLocation}}{{campeone.ano}}/{{campeone.ruta}}" alt="{{mediaLocation}}{{campeone.ano}}/{{campeone.ruta}}"  class="leaderboard__picture">
+            <img *ngIf="campeone.ruta" src="{{mediaLocation}}{{campeone.ano}}/{{campeone.ruta}}" alt="{{mediaLocation}}{{campeone.ano}}/{{campeone.ruta}}"  class="leaderboard__picture">
+            <span *ngIf="!campeone.ruta"   class="leaderboard__picture"></span>
             <span class="leaderboard__name"><span>{{campeone.puesto}} - </span>{{campeone.nombre}}</span>
             <span class="leaderboard__value">{{campeone.puntos}}</span>
           </article>

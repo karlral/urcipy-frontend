@@ -6,6 +6,7 @@ import { Corredor } from 'src/app/domain/corredor';
 import { Corredormen } from 'src/app/domain/custom/corredormen';
 import { CorredorService } from 'src/app/service/corredor.service';
 
+
 @Component({
   selector: 'app-corredor',
   templateUrl: './corredor.component.html',
@@ -13,6 +14,8 @@ import { CorredorService } from 'src/app/service/corredor.service';
   providers: [MessageService,ConfirmationService]
 })
 export class CorredorComponent implements OnInit {
+
+
   corredores: Corredor[] = [];
    selectedCorredor:any=null;
   displayAddEditModal=false;
@@ -235,6 +238,8 @@ export class CorredorComponent implements OnInit {
     });
     
   }
+
+
 
 }
 

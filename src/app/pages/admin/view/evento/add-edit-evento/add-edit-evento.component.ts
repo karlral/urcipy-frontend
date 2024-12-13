@@ -87,7 +87,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedEvento){
-      this.modalType="Editar";
+      this.modalType="Guardar";
       
       this.eventoForm.patchValue(this.selectedEvento);
 
@@ -278,6 +278,37 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       )
 
     }
+
+
+  }
+
+  duplicarEvento() {
+
+    this.eventoForm.controls['idevento'].setValue(null);
+    this.eventoForm.controls['modo'].setValue(2);
+    if (this.selectedEvento) {
+
+      this.eventoService.actualizarEvento(this.eventoForm.value).subscribe(
+        {
+          next: (dato) => {
+
+            this.clickAddEdit.emit(dato);
+            this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El evento ha sido duplicado con exito', life: 3000 });
+            this.closeModal();
+          }, error: (error) => {
+            console.log("ERROR AL GUARDAR EL EVENTO"+error);
+            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la duplicacion de evento', life: 3000 });
+
+          },
+          complete: () => {
+            console.log('Completo Duplicacion');
+
+          }
+        });
+
+
+    }
+    
 
 
   }

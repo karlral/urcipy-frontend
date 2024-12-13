@@ -52,12 +52,19 @@ ngOnInit(): void {
     ]
 },
 {
-    label: 'Procesos',
+    label: 'Listas',
     items: [
       {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/1']},
       {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/2']},
+      
        
     ]
+},{
+  label: 'Procesos',
+  items: [
+    {label: 'Cargar Historial', icon: 'pi pi-search', routerLink: ['/admin/acceso/cargahistorial']},
+    {label: 'Procesar Campeones', icon: 'pi pi-search', routerLink: ['/admin/acceso/procesarcampeon']},
+  ]
 },
 {
     label: 'Historial',
@@ -67,6 +74,15 @@ ngOnInit(): void {
       {label: 'Todos', icon: 'pi pi-search', routerLink: ['/admin/acceso/listhistorial']},
        
     ]
+}
+,
+{
+  label: 'Informes',
+  items: [
+    {label: 'Lista de Corredores', icon: 'pi pi-search', routerLink: ['/admin/acceso/listcicorredores']},
+    {label: 'Lista de Campeones', icon: 'pi pi-user', routerLink: ['/admin/acceso/listcampeones']},
+     
+  ]
 }
 ,
 {

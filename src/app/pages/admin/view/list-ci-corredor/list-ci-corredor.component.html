@@ -1,0 +1,72 @@
+<p-toast></p-toast>
+
+<app-buscorredor *ngIf="displaySearch"
+    [title]="'CI-NOMBRE-APELLIDO-CLUB-CAT'"
+    [cantletter]="2"
+    (clickSearch)="corredorSearch($event)"
+>
+</app-buscorredor>
+
+<p-table *ngIf="!displaySearch" #dt [value]="corredoresbus" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcorredor"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            
+            <button type="button"
+            pButton pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel2()"
+            class="p-button-outlined p-button-success"
+            class="p-button-success "
+            pTooltip="XLS"
+            label="Export"
+            tooltipPosition="bottom">
+    </button>
+            <h2 class="m-0">CORREDORES</h2>
+            <button pButton pRipple icon="pi pi-search" class="p-button-secondary ml-2" (click)="showSearch()"></button>
+
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>C.I.</th>
+            <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
+            <th>Fecha Nac.</th>
+            <th>Sexo</th>
+            <th>Telefono</th>
+            <th>Categoria</th>
+            <th>Club</th>
+            <th>Nacionalidad</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>Carnet</th>
+            <th>Puntua</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-corredor>
+        <tr>
+            <td>{{corredor.ci}}</td>
+            <td>{{corredor.corredor}}</td>
+            <td>{{corredor.fecnac | date: 'dd/MM/yyyy'}}</td>
+            <td>{{corredor.sexo==1 ? 'M':'F'}}</td>
+            <td>{{corredor.telefono}}</td>
+            <td>{{corredor.categoria}}</td>
+            <td>{{corredor.club}}</td>
+            <td>{{corredor.nacionalidad}}</td>
+            <td>{{corredor.ciudad}}</td>
+            <td>{{corredor.pais}}</td>
+            <td>{{corredor.carnetfpc==1 ? 'FPC':corredor.carnetfpc==2 ? 'URCI':corredor.carnetfpc==3 ? 'FMC':'NO'}}</td>
+            <td>{{corredor.puntua==1 ? 'S':'N'}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+

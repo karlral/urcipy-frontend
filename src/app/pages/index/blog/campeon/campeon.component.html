@@ -2,8 +2,8 @@
     <div class="block-content">
       <h3 class="block-title">HISTORIAL</h3>
       <div class="row">
-  
-        <p-table id="tabla" [value]="anhocats" sortField="ano" sortMode="single" dataKey="ano"
+  <!--sortField="ano" sortMode="single"-->
+        <p-table id="tabla" [value]="anhocats" sortField="ano"   [sortOrder]="-1"  dataKey="ano"
         rowGroupMode="subheader" groupRowsBy="ano">
         <ng-template pTemplate="header">
             <tr>

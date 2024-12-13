@@ -1,4 +1,5 @@
 import { Categoriah } from "./categoriah";
+import { Club } from "./club";
 
 export interface Campeones {
     idcampeones: number,
@@ -18,4 +19,5 @@ export interface Campeones {
     kmts:number,
     cantidad:number,
     categoriah:Categoriah
+    club:Club
 }

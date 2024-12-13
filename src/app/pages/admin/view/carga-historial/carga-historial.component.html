@@ -1,0 +1,20 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="eventoDialog" [style]="{width: '450px'}" header="Cargar Historial" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="pais">Evento a</label>
+            <p-dropdown [options]="eventos" [(ngModel)]="selectedIdevento" placeholder="Seleccionar un evento" 
+            optionLabel="nomevento" optionValue="idevento" [showClear]="true" appendTo="body"></p-dropdown>
+
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+       
+        <button pButton pRipple label="Procesar" icon="pi pi-check" class="p-button-text" (click)="cargahistorial()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

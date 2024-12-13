@@ -1,0 +1,18 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="eventoDialog" [style]="{width: '450px'}" header="Cargar Historial" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="pais">PROCESAR CAMPEONES</label>
+    
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+       
+        <button pButton pRipple label="Procesar" icon="pi pi-check" class="p-button-text" (click)="procesarCampeones()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

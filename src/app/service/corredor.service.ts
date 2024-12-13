@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Corredor } from '../domain/corredor';
 import baserUrl from './helper';
 import { Corredormen } from '../domain/custom/corredormen';
+import { Corredorbus } from '../domain/custom/corredorbus';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,10 @@ export class CorredorService {
   }
 
   public listarCorredoresmen(buscado:string):Observable<Corredormen[]>{
-    return this.http.get<Corredormen[]>(`${baserUrl}/corredor/bus/${buscado}`);
+    return this.http.get<Corredormen[]>(`${baserUrl}/corredor/men/${buscado}`);
+  }
+  public listarCorredoresbus(buscado:string):Observable<Corredorbus[]>{
+    return this.http.get<Corredorbus[]>(`${baserUrl}/corredor/bus/${buscado}`);
   }
   public puntuarCorredor(idcorredor:any){
     return this.http.put(`${baserUrl}/corredor/puntua/`,idcorredor);

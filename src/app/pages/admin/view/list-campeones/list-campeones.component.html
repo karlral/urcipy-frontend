@@ -1,0 +1,57 @@
+<p-table  #dt [value]="campeoness" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcampeones"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            
+            <button type="button"
+            pButton pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel2()"
+            class="p-button-outlined p-button-success"
+            class="p-button-success "
+            pTooltip="XLS"
+            label="Export"
+            tooltipPosition="bottom">
+    </button>
+            <h2 class="m-0">CAMPEONES DEL AÑO</h2>
+
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Puesto</th>
+            <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
+            <th>Categoria</th>
+            <th>Club</th>
+            <th>Vel Media</th>
+            <th>promedio</th>
+            <th>Kmts</th>
+            <th>Cantidad</th>
+            <th>Puntos</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-campeon>
+        <tr>
+            <td>{{campeon.puesto}}</td>
+            <td>{{campeon.nombre}}</td>
+            <td>{{campeon.categoriah.nomcorto}}</td>
+            <td>{{campeon.club.nomclub}}</td>
+            <td>{{campeon.velmedia}}</td>
+            <td>{{campeon.promedio}}</td>
+            <td>{{campeon.Kmts}}</td>
+            <td>{{campeon.cantidad}}</td>
+            <td>{{campeon.puntos}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+
