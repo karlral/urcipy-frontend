@@ -4,6 +4,7 @@ import { Categoria } from 'src/app/domain/categoria';
 import { Club } from 'src/app/domain/club';
 import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import { Evento } from 'src/app/domain/evento';
+import { Region } from 'src/app/domain/region';
 
 import { Regional } from 'src/app/domain/regional';
 import { CategoriaService } from 'src/app/service/categoria.service';
@@ -26,6 +27,17 @@ export class InscripcionesComponent  implements OnInit{
     idregional: 0,
     nomregional: '',
     nomcorto: '',
+    logo: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: ''
+  }
+  region:Region={
+    idregion: 0,
+    nomregion: '',
+    nomcorto: '',
     logo: ''
   }
   club:Club={
@@ -39,7 +51,8 @@ export class InscripcionesComponent  implements OnInit{
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regional
+    regional: this.regional,
+    region: this.region
   }
   evento:Evento={
     idevento: 0,
@@ -69,7 +82,8 @@ export class InscripcionesComponent  implements OnInit{
     montomens: 0,
     fondocolor: '',
     fondo: '',
-    club: this.club
+    club: this.club,
+    regional: this.regional
   };
 
   inscripciones!:Inscripcion[];

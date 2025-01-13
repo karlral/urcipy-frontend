@@ -1,4 +1,5 @@
 import { Club } from "./club";
+import { Regional } from "./regional";
 
 export interface Evento {
     idevento: number,
@@ -28,5 +29,6 @@ export interface Evento {
     montomens: number,
     fondocolor:string,
     fondo: string,
-    club: Club
+    club: Club,
+    regional:Regional
 }

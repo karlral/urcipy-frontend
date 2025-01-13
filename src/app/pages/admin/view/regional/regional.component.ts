@@ -25,12 +25,20 @@ export class RegionalComponent {
   fileName = '';
   preview = '';
 
-  regional: Regional = {
+  regionalaux: Regional = {
     idregional: 0,
     nomregional: '',
     nomcorto: '',
-    logo: ''
+    logo: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: ''
   };
+
+  regional: Regional = this.regionalaux;
+
 
 
   submitted = false;
@@ -59,12 +67,7 @@ export class RegionalComponent {
 
   //para agregar nuevo
   openNew() {
-    this.regional = {
-      idregional: 0,
-      nomregional: "",
-      nomcorto: "",
-      logo: ""
-    }
+    this.regional = this.regionalaux
     this.submitted = false;
     this.regionalDialog = true;
   }
@@ -150,12 +153,7 @@ export class RegionalComponent {
 
     this.regionales = [...this.regionales];
     this.regionalDialog = false;
-    this.regional = {
-      idregional: 0,
-      nomregional: "",
-      nomcorto: "",
-      logo: ""
-    }
+    this.regional = this.regionalaux
 
   }
 
@@ -188,12 +186,7 @@ export class RegionalComponent {
             next: (data) => {
 
               this.regionales = this.regionales.filter(val => val.idregional !== regional.idregional);
-              this.regional = {
-                idregional: 0,
-                nomregional: "",
-                nomcorto: "",
-                logo: ""
-              }
+              this.regional = this.regionalaux
               this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Regional Borrado', life: 3000 });
             },
             error: (error) => {

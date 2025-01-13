@@ -7,7 +7,7 @@
     <!-- <span class="status">Estoy disponible como Freelance</span> -->
     <ul class="inline-menu">
         <li id="maxi" class="menu-item"><a routerLink="/"><i class="ion-chevron-left"></i></a></li>
-        <li class="about menu-item"><a routerLink="/resumen" >Calendario 2025</a></li>
+        <li class="about menu-item"><a routerLink="/resumen" >Calendario {{regional.ano}}</a></li>
         <li class="about menu-item"><a routerLink="/portfolio">Inscripcion</a></li>
         <li class="about menu-item"><a routerLink="/blog">Historial</a></li>
         <li class="about menu-item"><a routerLink="/contact">Puntajes</a></li>
@@ -17,15 +17,15 @@
     </ul>
   </div>
   <section class="home">
-  <div class="bgScroll"></div>
-    <div class="overlay opacity7"></div>
+  <div id="fondo" class="bgScroll"></div>
+    <div id="trasparencia" class="overlay opacity7"></div>
     <div class="container">
   
         <div class="name-block">
             <div class="name-block-container">
-                <h1><span>Campeonato</span> URCI</h1>
-                <h2>Union Regional de Ciclistas</h2>
-                <p style="color: white; line-height: 20px;">La Union Regional de Ciclistas URCi es una entidad sin fines de lucro que fomenta el deporte competitivo en la region oriental centro. Ofreciendo los mejores circuitos a nivel regional y nacional.
+                <h1><span>Campeonato</span> {{regional.nomcorto}}</h1>
+                <h2>{{regional.nomregional}}</h2>
+                <p style="color: white; line-height: 20px;">{{regional.presentacion}}
                 </p>
                 <ul class="social">
                     <li><a href="https://www.facebook.com/URCipy" target_="_blank"><i class="ion-social-facebook"></i></a></li>
@@ -40,7 +40,7 @@
             <a routerLink="/resumen">
             <div class="about-block menu-block">                
                 <div class="about-block-container">
-                    <h2 class="about menu-item">Calendario 2025</h2>
+                    <h2 class="about menu-item">Calendario {{regional.ano}}</h2>
                 </div>              
             </div>
             </a>

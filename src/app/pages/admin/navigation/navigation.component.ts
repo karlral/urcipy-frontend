@@ -42,7 +42,7 @@ ngOnInit(): void {
     items: [
       {label: 'Pais', icon: 'pi pi-download', routerLink: ['/admin/acceso/pais']},
       {label: 'Ciudad', icon: 'pi pi-refresh', routerLink: ['/admin/acceso/ciudad']},
-      {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/regional']},
+      {label: 'Regional', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/region']},
       {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/club']},
       {label: 'Trayecto', icon: 'pi pi-download', routerLink: ['/admin/acceso/trayecto']},
       {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
@@ -89,7 +89,7 @@ ngOnInit(): void {
   label: 'Usuarios',
   items: [
     {label: 'Crear Usuario Normal', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/signup']},
-      
+    {label: 'Sistema Config', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/sistema']}, 
   ]
 }
 

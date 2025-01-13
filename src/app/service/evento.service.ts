@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evento } from '../domain/evento';
 import baserUrl from './helper';
+import system from './helpersys';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class EventoService {
   constructor(private http:HttpClient) {   }
   
   public listarEventoes():Observable<Evento[]>{
-    return this.http.get<Evento[]>(`${baserUrl}/evento/`);
+    return this.http.get<Evento[]>(`${baserUrl}/evento/system/${system}`);
   }
   public obtenerEvento(idevento:any):Observable<Evento>{
     return this.http.get<Evento>(`${baserUrl}/evento/${idevento}`);
@@ -30,16 +31,16 @@ export class EventoService {
 
   //publico
   public listarEventosPub():Observable<Evento[]>{
-    return this.http.get<Evento[]>(`${baserUrl}/eventopub/`);
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/system/${system}`);
   }
   public listarEventosModoPub(modo:any):Observable<Evento[]>{
-    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/${modo}`);
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/${modo}/${system}`);
   }
   public listarEventosCulminadosPub():Observable<Evento[]>{
-    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/culminados`);
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/modo/culminados/${system}`);
   }
   public listarEventosActivosPub():Observable<Evento[]>{
-    return this.http.get<Evento[]>(`${baserUrl}/eventopub/activos`);
+    return this.http.get<Evento[]>(`${baserUrl}/eventopub/activos/${system}`);
   }
   public obtenerEventoActivoPub(activo:any):Observable<Evento>{
     return this.http.get<Evento>(`${baserUrl}/eventopub/activo/${activo}`);

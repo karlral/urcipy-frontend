@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Club } from 'src/app/domain/club';
+import { Region } from 'src/app/domain/region';
 import { Regional } from 'src/app/domain/regional';
 
 import { ClubService } from 'src/app/service/club.service';
@@ -41,9 +42,19 @@ regio:Regional={
   idregional: 0,
   nomregional: '',
   nomcorto: '',
-  logo: ''
+  logo: '',
+  telefono: '',
+  direccion: '',
+  email: '',
+  ano: 0,
+  presentacion: ''
 };
- 
+ region:Region={
+   idregion: 0,
+   nomregion: '',
+   nomcorto: '',
+   logo: ''
+ }
   club: Club={
     idclub: 0,
     nomclub: '',
@@ -55,7 +66,8 @@ regio:Regional={
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regio
+    regional: this.regio,
+    region: this.region
   };
 
 
@@ -119,7 +131,8 @@ regio:Regional={
       email: '',
       ruta: '',
       rutagrande: '',
-      regional: this.regio
+      regional: this.regio,
+      region:this.region
     
       };
   }

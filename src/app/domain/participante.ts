@@ -1,5 +1,6 @@
 import { Corredor } from "./corredor";
 import { Evento } from "./evento";
+import { Region } from "./region";
 import { Regional } from "./regional";
 
 export interface Participante {
@@ -25,7 +26,8 @@ export interface Participante {
     acobrar:number,
     corredor:Corredor,
     evento:Evento,
-    regional:Regional
+    regional:Regional,
+    region:Region
 
 }
 

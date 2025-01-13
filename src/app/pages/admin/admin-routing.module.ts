@@ -7,10 +7,11 @@ import { CategoriaComponent } from './view/categoria/categoria.component';
 import { CiudadComponent } from './view/ciudad/ciudad.component';
 import { ClubComponent } from './view/club/club.component';
 import { PaisComponent } from './view/pais/pais.component';
-import { RegionalComponent } from './view/regional/regional.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TrayectoComponent } from './view/trayecto/trayecto.component';
 import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campeon.component';
+import { RegionComponent } from './view/region/region.component';
+import { RegionalComponent } from './view/regional/regional.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,11 @@ const routes: Routes = [
         component:CiudadComponent,
         
       },{
-        path:'regional',
+        path:'region',
+        component:RegionComponent,
+        
+      },{
+        path:'sistema',
         component:RegionalComponent,
         
       },{

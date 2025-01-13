@@ -36,6 +36,7 @@ import { CategoriaComponent } from './view/categoria/categoria.component';
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
 import { TrayectoComponent } from './view/trayecto/trayecto.component';
 import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campeon.component';
+import { RegionComponent } from './view/region/region.component';
 
 
 
@@ -52,7 +53,8 @@ import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campe
     ClubComponent,
     CategoriaComponent,
     TrayectoComponent,
-    ProcesarCampeonComponent
+    ProcesarCampeonComponent,
+    RegionComponent
     ],
   imports: [   
     CommonModule,

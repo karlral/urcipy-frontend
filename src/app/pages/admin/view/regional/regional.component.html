@@ -19,7 +19,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
 
 <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
-        <h2 class="m-0">Regionales</h2>
+        <h2 class="m-0">Sistemas</h2>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
@@ -78,8 +78,34 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <small class="p-error" *ngIf="submitted && !regional.nomcorto">Nombre Corto de la regional es
                 requerido.</small>
         </div>
+        <div class="field">
+            <label for="telefono">Telefono</label>
+            <input type="text" pInputText id="telefono" [(ngModel)]="regional.telefono" required  />
+            <small class="p-error" *ngIf="submitted && !regional.telefono">Telefono de la regional es
+                requerido.</small>
+        </div>
+        <div class="field">
+            <label for="direccion">Direccion</label>
+            <input type="text" pInputText id="direccion" [(ngModel)]="regional.direccion"   />
+            <small class="p-error" *ngIf="submitted && !regional.direccion">Direccion de la regional es
+                requerido.</small>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="text" pInputText id="email" [(ngModel)]="regional.email"   />
+            
+        </div>
+        <div class="field">
+            <label for="ano">Año</label>
+            <input type="text" pInputText id="ano" [(ngModel)]="regional.ano"   />
+            
+        </div>
+        <div class="field">
+            <label for="presentacion">Presentacion</label>
+            <textarea rows="5"  pInputTextarea id="presentacion"  [(ngModel)]="regional.presentacion"
+            class="prime" [style]="{'width':'100%'}"></textarea>
 
-
+        </div>
 
     </ng-template>
 

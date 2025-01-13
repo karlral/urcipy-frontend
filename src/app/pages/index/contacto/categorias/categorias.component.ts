@@ -32,7 +32,7 @@ export class CategoriasComponent implements OnInit {
             valor.orden=i;
           }
           this.puncorredores = dato;
-          console.log(this.puncorredores);
+          //console.log(this.puncorredores);
          
         },
         error: (error) => {

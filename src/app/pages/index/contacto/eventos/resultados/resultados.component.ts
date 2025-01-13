@@ -46,7 +46,7 @@ ngOnInit(): void {
       {
         next: (e: Evento) => {
           this.rutagrande = e.club.rutagrande;
-          console.log(e);
+          //console.log(e);
         },
         error: (error) => {
           console.log(error);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Regional } from 'src/app/domain/regional';
 import baserUrl from 'src/app/service/helper';
-import { RegionalService } from 'src/app/service/regional.service';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-contacto',
@@ -12,29 +11,12 @@ export class ContactoComponent implements OnInit{
   
 
   mediaLocation = `${baserUrl}/media/`;
-  regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    logo: ''
-  }
+  regional:any;
   constructor( 
-    private regionalService:RegionalService
+    private systemService:SystemService
     ) { }
 ngOnInit(): void {
-  this.regionalService.obtenerRegionalPub(1).subscribe(
-    {
-      next: (r: Regional) => {
-        this.regional = r;
-       
-        
-      },
-      error: (error) => {
-        console.log(error);
-        
-      },
-      complete: () => console.info('completo evento')
-    });
+  this.regional=this.systemService.getSystem();
 
     
   }

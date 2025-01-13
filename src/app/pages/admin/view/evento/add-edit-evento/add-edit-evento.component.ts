@@ -3,10 +3,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 import { Club } from 'src/app/domain/club';
+import { Regional } from 'src/app/domain/regional';
 import { ClubService } from 'src/app/service/club.service';
 import { Datasys } from 'src/app/service/datasys';
 import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
+import system from 'src/app/service/helpersys';
 import { MediaService } from 'src/app/service/media.service';
 
 @Component({
@@ -23,6 +25,18 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
 
   modalType="Agregar";
+
+  regional:Regional={
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    logo: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: ''
+  };
 
   clubes: Club[] = [];
 
@@ -65,14 +79,14 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     urlpromocional: [''],
     urlcategoria: [''],
     contacto: [''],
-    montopric: [80000],
-    montopris: [80000],
-    montomenc: [80000],
-    montomens: [80000],
+    montopric: [100000],
+    montopris: [100000],
+    montomenc: [100000],
+    montomens: [100000],
     fondocolor:[''],
     fondo: [''],
-    club: [null]
-    
+    club: [null],
+    regional:[this.regional]
   });
 
 
@@ -106,10 +120,10 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
         verencuesta:0,
         ranqueable:1,
         preinscrip:1,
-        montopric: 80000,
-        montopris: 80000,
-        montomenc: 80000,
-        montomens: 80000,
+        montopric: 100000,
+        montopris: 100000,
+        montomenc: 100000,
+        montomens: 100000,
         doble: 0
     
 

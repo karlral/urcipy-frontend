@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Campeones } from 'src/app/domain/campeones';
 import { Categoriah } from 'src/app/domain/categoriah';
 import { Club } from 'src/app/domain/club';
+import { Region } from 'src/app/domain/region';
 import { Regional } from 'src/app/domain/regional';
 import { CampeonesService } from 'src/app/service/campeones.service';
 import baserUrl from 'src/app/service/helper';
@@ -32,9 +33,20 @@ export class CampeonesComponent  implements OnInit {
     idregional: 0,
     nomregional: '',
     nomcorto: '',
-    logo: ''
+    logo: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: ''
   }
 
+  region:Region={
+    idregion: 0,
+    nomregion: '',
+    nomcorto: '',
+    logo: ''
+  }
   club:Club={
     idclub: 0,
     nomclub: '',
@@ -46,7 +58,8 @@ export class CampeonesComponent  implements OnInit {
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regional
+    regional: this.regional,
+    region:this.region
   }
 
   campeon:Campeones={

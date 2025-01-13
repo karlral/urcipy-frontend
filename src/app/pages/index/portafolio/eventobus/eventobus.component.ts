@@ -16,6 +16,7 @@ import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';
 import { Pais } from 'src/app/domain/pais';
 import { Trayecto } from 'src/app/domain/trayecto';
+import { Region } from 'src/app/domain/region';
 
 @Component({
   selector: 'app-eventobus',
@@ -64,6 +65,17 @@ export class EventobusComponent implements OnInit{
     idregional: 0,
     nomregional: '',
     nomcorto: '',
+    logo: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: ''
+  }
+  region:Region={
+    idregion: 0,
+    nomregion: '',
+    nomcorto: '',
     logo: ''
   }
   club:Club={
@@ -77,7 +89,8 @@ export class EventobusComponent implements OnInit{
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regional
+    regional: this.regional,
+    region: this.region
   }
   pais:Pais={
     idpais: 0,
@@ -152,7 +165,8 @@ ciudad:Ciudad={
     montomens: 0,
     fondocolor: '',
     fondo: '',
-    club: this.club
+    club: this.club,
+    regional: this.regional
   };
 
   participante:Participante={
@@ -178,7 +192,8 @@ ciudad:Ciudad={
     acobrar: 0,
     corredor: this.corredor,
     evento: this.evento,
-    regional: this.regional
+    regional: this.regional,
+    region: this.region
   }
 
   

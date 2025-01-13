@@ -1,0 +1,92 @@
+<p-toast></p-toast>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+</p-toolbar>
+
+
+
+
+<p-table #dt [value]="regiones" [rows]="10" [paginator]="true" [globalFilterFields]="['nomregion','nomcorto']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idregion"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        <h2 class="m-0">Regiones</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nomregion" style="min-width:15rem">Nombre <p-sortIcon field="nomregion"></p-sortIcon></th>
+            <th>Siglas</th>
+            <th>Logo</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-region>
+        <tr>
+            <td>{{region.idregion}}</td>
+            <td>{{region.nomregion}}</td>
+            <td>{{region.nomcorto}}</td>
+            <td><img [src]="mediaLocation+region.logo" [alt]="region.logo" width="100" class="shadow-4" /></td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editRegion(region)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteRegion(region)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="regionDialog" [style]="{width: '450px'}" header="Region" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <img [src]="region.logo =='' ? '/assets/noimagen.png' : mediaLocation+region.logo" [alt]="region.logo"
+            class="region-image" *ngIf="region.logo">
+            <img [src]="preview"  class="region-image" *ngIf="preview">
+
+        <div class="field">
+            <label for="logo" class="form-label">Seleccionar logo</label>
+            <input id="logo" name="logo" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
+                (change)="selectFile($event)">
+            {{fileName}}
+        </div>
+        <div class="field">
+            <label for="nomregion">Nombre</label>
+            <input type="text" pInputText id="nomregion" [(ngModel)]="region.nomregion" required autofocus />
+            <small class="p-error" *ngIf="submitted && !region.nomregion">Nombre de region es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="nomcorto">Nombre Corto</label>
+            <input type="text" pInputText id="nomcorto" [(ngModel)]="region.nomcorto" required autofocus />
+            <small class="p-error" *ngIf="submitted && !region.nomcorto">Nombre Corto de la region es
+                requerido.</small>
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveRegion()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
