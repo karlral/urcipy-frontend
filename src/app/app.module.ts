@@ -9,10 +9,11 @@ import { authInterceptorProviders } from './service/auth.interceptor';
 
 
 
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+   
+    
  
   ],
   imports: [

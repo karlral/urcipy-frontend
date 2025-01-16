@@ -1,35 +1,25 @@
-<section class="content" id="about">
 
-    <div class="block-content">
-        <h3 class="block-title">Calendario {{regional.nomcorto}} {{regional.ano}}</h3>
-        <div class="row">
-            
 
-            <div *ngFor="let evento of eventoes" >
-                <div class="card">
-                    <div class="face front">
-                        <h3 class="onetop">{{ordenes[evento.orden-1].label}} Fecha</h3>
-                       
-                        <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
-                        <h3 class="twobottom">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
-                    </div>
-                    <div class="face back">
-                        <h3>{{evento.nomevento | uppercase}}</h3>
-                        <p>{{evento.informacion}}</p>
-                        <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
-                        <button *ngIf="evento.activo == 1 && evento.preinscrip==1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
+    <!-- Pricing Section Code -->
 
-                        <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3"  target="_blank" rel="noopener noreferrer" class="btn inscrip">
-                            INSCRIBETE
-                        </a>
-                    </div>
-                </div>
+    <section class="plans" id="plans">
+        <h2 class="heading aos-init" data-aos="zoom-in-down">Calendario <span>{{regional.nomcorto}} {{regional.ano}}</span></h2>
+
+
+        <div  class="plans-content aos-init" data-aos="zoom-in-up">
+
+            <div *ngFor="let evento of eventoes" class="box">
+                <h3>{{ordenes[evento.orden-1].label}} Fecha</h3>
+                <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+                <h2><span>{{evento.nomevento | uppercase}}</span></h2>
+               
+                    
+                    <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
+                
+                <button *ngIf="evento.activo == 1 && evento.preinscrip==1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">
+                    <h3>{{evento.fecha | date: 'dd/MM/yyyy'}}</h3> 
+                    INSCRIBETE</button>
             </div>
-           
-
-
-
+            
         </div>
-    </div>
- 
-</section>
+    </section>

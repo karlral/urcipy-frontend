@@ -7,7 +7,9 @@ import { Regional } from 'src/app/domain/regional';
 
 import { ClubService } from 'src/app/service/club.service';
 import baserUrl from 'src/app/service/helper';
+import system from 'src/app/service/helpersys';
 import { MediaService } from 'src/app/service/media.service';
+import { RegionService } from 'src/app/service/region.service';
 import { RegionalService } from 'src/app/service/regional.service';
 
 @Component({
@@ -34,12 +36,12 @@ fileName2 = '';
 preview2 = '';
 
 
-  regionales: Regional[] = [];
+  regiones: Region[] = [];
   clubes: Club[] = [];
 
   // para agregar
 regio:Regional={
-  idregional: 0,
+  idregional: system,
   nomregional: '',
   nomcorto: '',
   logo: '',
@@ -74,7 +76,7 @@ regio:Regional={
   submitted = false;
   clubDialog = false;
 
-  constructor(private messageService: MessageService, private regionalService: RegionalService, private clubService: ClubService,
+  constructor(private messageService: MessageService, private regionService: RegionService, private clubService: ClubService,
     private confirmationService: ConfirmationService,private mediaService: MediaService) { }
 
   ngOnInit(): void {
@@ -97,16 +99,16 @@ regio:Regional={
         complete: () => console.info('completo club')
       });
 
-      this.regionalService.listarRegionales().subscribe(
+      this.regionService.listarRegiones().subscribe(
         (dato:any) => {
-          this.regionales=dato;
+          this.regiones=dato;
       
         },(error) => {
           console.log(error);
           this.messageService.add({
             severity: "error",
-            summary: "Regional",
-            detail: "Error al cargar el Regional"
+            summary: "Region",
+            detail: "Error al cargar el Region"
           });       
         }
       )

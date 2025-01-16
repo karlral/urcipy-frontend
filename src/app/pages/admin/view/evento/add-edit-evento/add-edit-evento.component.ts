@@ -124,7 +124,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
         montopris: 100000,
         montomenc: 100000,
         montomens: 100000,
-        doble: 0
+        doble: 0,
+        regional:this.regional
     
 
       });

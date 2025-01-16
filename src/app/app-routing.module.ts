@@ -5,7 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-
+  {
+    path:'',loadChildren:()=> import('./pages/index/home/home.module').then(m => m.HomeModule)
+  } ,
   {
     path:'user',loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
   } ,{
@@ -20,6 +22,10 @@ const routes: Routes = [
     path:'contact', loadChildren:()=> import('./pages/index/contacto/contacto.module').then(m => m.ContactoModule)
   },{
     path:'blog', loadChildren:()=> import('./pages/index/blog/blog.module').then(m => m.BlogModule)
+  },{
+    path:'about', loadChildren:()=> import('./pages/index/about/about.module').then(m => m.AboutModule)
+  },{
+    path:'services', loadChildren:()=> import('./pages/index/services/services.module').then(m => m.ServicesModule)
   }
   
   

@@ -1,0 +1,68 @@
+.home .btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color-page);
+    border-radius: 1rem;
+    box-shadow: none;
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+}
+.home .btn:hover {
+    color: var(--color-text);
+    box-shadow: 0 0 1.6rem var(--main-color-page);
+}
+
+/* Home Section Code */
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--second-bg-color);
+}
+.home-content h3 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+.home-content span {
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+
+.home-img img {
+    width: 30vw;
+}
+
+  .home-content p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+
+@media (max-width:786px) {
+    .home{
+        flex-direction: column;
+    }
+  
+   
+    .home-content{
+        order: 2;
+    }
+    .home-img img{
+        width: 50vw;
+        
+    }
+    
+}
+@media (max-width:617px) {
+    .home-img img{
+        width: 80vw;
+        
+    }
+    
+}

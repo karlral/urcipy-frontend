@@ -1,0 +1,17 @@
+
+<section id="home" class="home">
+    <div class="home-content aos-init aos-animate" data-aos="zoom-in">
+        
+        <h3>{{regional.nomregional}}</h3>
+        <p>Este es un espacio creado para todas las personas que les guste o hagan ciclismo, tanto para informarse de eventos y actividades!!</p>
+
+        <a href="portfolio" class="btn">Inscripcion</a>
+    </div>
+
+    <div class="home-img aos-init aos-animate" data-aos="zoom-in">
+        <img *ngIf="regional.logo" [src]="mediaLocation+regional.logo"  [alt]="regional.logo">
+    </div>
+</section>
+<!-- carga de typed -->
+<app-carga></app-carga>
+

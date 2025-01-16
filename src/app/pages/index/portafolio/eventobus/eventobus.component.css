@@ -1,3 +1,4 @@
+
 .content {
   position: relative;
   padding: 50px 16px 30px;
@@ -168,18 +169,26 @@ h3{
 
 /* Result*/
 
-@media (max-width: 450px){
+
+
+
+
+
+
+@media (max-width:450px) {
+ 
   .content {
-      padding: 50px 0px 30px;
-  }
-  .block-title{
-      margin-bottom: 0;
-      padding-bottom: 0;
-      font-size: 20px;
-      padding: 0;
-      text-align: center;
-  }
-  .row{
+    padding: 50px 0px 30px;
+}
+.block-title{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 20px;
     padding: 0;
-  }
+    text-align: center;
+}
+.row{
+  padding: 0;
+}
+  
 }

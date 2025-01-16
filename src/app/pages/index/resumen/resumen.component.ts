@@ -35,6 +35,7 @@ export class ResumenComponent implements OnInit{
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
+          console.log(this.eventoes);
         
         },
         error: (error) => {
