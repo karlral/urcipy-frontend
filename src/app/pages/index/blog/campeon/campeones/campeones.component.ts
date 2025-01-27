@@ -58,7 +58,6 @@ export class CampeonesComponent  implements OnInit {
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regional,
     region:this.region
   }
 

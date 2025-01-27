@@ -5,6 +5,7 @@ import { Corredor } from '../domain/corredor';
 import baserUrl from './helper';
 import { Corredormen } from '../domain/custom/corredormen';
 import { Corredorbus } from '../domain/custom/corredorbus';
+import system from './helpersys';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +21,11 @@ export class CorredorService {
     return this.http.get(`${baserUrl}/corredor/${idcorredor}`);
   }
   public obtenerCorredorCi(ci:any):Observable<Corredor>{
-    return this.http.get<Corredor>(`${baserUrl}/corredor/ci/${ci}`);
+    return this.http.get<Corredor>(`${baserUrl}/corredor/ci/${ci}/${system}`);
   }
 
-  public agregarCorredor(corredor:any){
-    return this.http.post(`${baserUrl}/corredor/`,corredor);
+  public agregarCorredor(corredor:any):Observable<Corredor>{
+    return this.http.post<Corredor>(`${baserUrl}/corredor/`,corredor);
   }
   public eliminarCorredor(idcorredor:any){
     return this.http.delete(`${baserUrl}/corredor/${idcorredor}`);
@@ -34,10 +35,10 @@ export class CorredorService {
   }
 
   public listarCorredoresmen(buscado:string):Observable<Corredormen[]>{
-    return this.http.get<Corredormen[]>(`${baserUrl}/corredor/men/${buscado}`);
+    return this.http.get<Corredormen[]>(`${baserUrl}/corredor/men/${buscado}/${system}`);
   }
   public listarCorredoresbus(buscado:string):Observable<Corredorbus[]>{
-    return this.http.get<Corredorbus[]>(`${baserUrl}/corredor/bus/${buscado}`);
+    return this.http.get<Corredorbus[]>(`${baserUrl}/corredor/bus/${buscado}/${system}`);
   }
   public puntuarCorredor(idcorredor:any){
     return this.http.put(`${baserUrl}/corredor/puntua/`,idcorredor);
@@ -47,6 +48,6 @@ export class CorredorService {
   }
   /**PUBLICOS */
   public pubObtenerCorredorCi(ci:any){
-    return this.http.get(`${baserUrl}/correpub/${ci}`);
+    return this.http.get(`${baserUrl}/correpub/${ci}/${system}`);
   }
 }

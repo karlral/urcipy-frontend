@@ -1,5 +1,4 @@
 import { Region } from "./region";
-import { Regional } from "./regional";
 
 export interface Club {
     idclub: number,
@@ -12,7 +11,6 @@ export interface Club {
     email:string,
     ruta:string,
     rutagrande:string,
-    regional: Regional,
     region:Region,
     cantidad?:number
 }

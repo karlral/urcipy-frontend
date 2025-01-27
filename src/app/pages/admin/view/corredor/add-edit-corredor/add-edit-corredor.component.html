@@ -5,15 +5,24 @@
     </ng-template>
 
     <form [formGroup]="corredorForm" class="field flex flex-wrap">
-        <fieldset class="mr-2">
+        <fieldset formGroupName="persona" class="mr-2">
+            <div class="field">
+                <label for="ci">CIP</label>
+                <input type="text" pInputText id="ci" formControlName="ci" required autofocus
+                    placeholder="CI" class="prime"
+                    [style]="{'width':'100%'}" (focusout)="focusOutFunction()" />
+                <small class="p-error" *ngIf="
+                corredorForm.controls['persona'].controls['ci'].invalid && 
+                corredorForm.controls['persona'].controls['ci'].dirty">CI de corredor es requerido.</small>
+            </div>
 
             <div class="field">
                 <label for="nombre">Nombre</label>
-                <input type="text" pInputText id="nombre" formControlName="nombre" required autofocus
+                <input type="text" pInputText id="nombre" formControlName="nombre" required 
                     placeholder="Nombre" class="prime UPPERCASE" [style]="{'width':'100%'}" />
                 <small class="p-error block" *ngIf="
-                corredorForm.controls['nombre'].invalid && 
-                corredorForm.controls['nombre'].dirty">Nombre de corredor es requerido.</small>
+                corredorForm.controls['persona'].controls['nombre'].invalid && 
+                corredorForm.controls['persona'].controls['nombre'].dirty">Nombre de corredor es requerido.</small>
             </div>
             <div class="field">
                 <label for="apellido">Apellidos</label>
@@ -21,37 +30,33 @@
                 <input type="text" pInputText id="apellido" formControlName="apellido" required placeholder="Apellido"
                     class="prime UPPERCASE" [style]="{'width':'100%'}" />
                 <small class="p-error" *ngIf="
-                corredorForm.controls['apellido'].invalid && 
-                corredorForm.controls['apellido'].dirty">Apellido de corredor es
+                corredorForm.controls['persona'].controls['apellido'].invalid && 
+                corredorForm.controls['persona'].controls['apellido'].dirty">Apellido de corredor es
                     requerido.</small>
             </div>
 
-            <div class="field">
-                <label for="ci">CIP</label>
-                <input type="text" pInputText id="ci" formControlName="ci" required placeholder="CI" class="prime"
-                    [style]="{'width':'100%'}" />
-                <small class="p-error" *ngIf="
-                corredorForm.controls['ci'].invalid && 
-                corredorForm.controls['ci'].dirty">CI de corredor es requerido.</small>
-            </div>
             <div class="field">
                 <label for="telefono">Telefono</label>
                 <input type="text" pInputText id="telefono" formControlName="telefono" required placeholder="Telefono"
                     class="prime" [style]="{'width':'100%'}" />
                 <small class="p-error" *ngIf="
-                corredorForm.controls['telefono'].invalid && 
-                corredorForm.controls['telefono'].dirty">Teleono del corredor es requerido.</small>
+                corredorForm.controls['persona'].controls['telefono'].invalid && 
+                corredorForm.controls['persona'].controls['telefono'].dirty">Teleono del corredor es requerido.</small>
             </div>
 
-        </fieldset>
-        <fieldset class="mr-2">
-
+            
             <div class="field">
                 <label for="email">Email</label>
                 <input type="text" pInputText id="email" formControlName="email" placeholder="Email" class="prime"
                     [style]="{'width':'100%'}" />
             </div>
+            <div class="field">
+                <label for="direccion">Direccion</label>
 
+                <input type="text" pInputText id="direccion" formControlName="direccion" placeholder="Direccion"
+                    class="prime" [style]="{'width':'100%'}"/>
+
+            </div>
             <div class="field">
                 <label for="nombre">Ciudad</label>
 
@@ -75,19 +80,35 @@
                     [showClear]="true" appendTo="body"></p-dropdown>
             </div>
 
+            <div class="field">
+                <label for="nombre">Tutor</label>
+
+                <input type="text" pInputText id="tutorp" formControlName="tutorp" placeholder="Tutor" 
+                class="prime" [style]="{'width':'100%'}"/>
+
+            </div>
+
+            <div class="field">
+                <label for="citp">CI tutor</label>
+                <input type="text" pInputText id="citp" formControlName="citp" placeholder="CI tutor" 
+                class="prime" [style]="{'width':'100%'}"/>
+
+            </div>
+            
+        
         </fieldset>
 
-        <fieldset class="mr-2">
+        <fieldset formGroupName="persona" class="mr-2">
             <legend>Configuracion Categoria</legend>
 
             <div class="field">
 
                 <label for="fecnac">Fecha Nacimiento</label>
-                <p-calendar formControlName="fecnac" id="fecnac" appendTo="body" autoWidth="false"
+                <p-calendar id="fecnac" formControlName="fecnac"  appendTo="body" autoWidth="false"
                     [style]="{'width':'100%'}" dateFormat="dd/mm/yy"></p-calendar>
                 <small class="p-error" *ngIf="
-                corredorForm.controls['fecnac'].invalid && 
-                corredorForm.controls['fecnac'].dirty">Fecha de Nacimiento de corredor es requerido.</small>
+                corredorForm.controls['persona'].controls['fecnac'].invalid && 
+                corredorForm.controls['persona'].controls['fecnac'].dirty">Fecha de Nacimiento de corredor es requerido.</small>
                 <!--small>{{corredorForm.value.fecnac}}</small-->
             </div>
 
@@ -104,8 +125,12 @@
                     </div>
                 </div>
             </div>
+           
+        </fieldset>
+
+        <fieldset class="mr-2">
             <div class="field">
-                <label for="tipos">Tipo de Categoria</label>
+                <label for="tipo">Tipo de Categoria</label>
                 <p-dropdown [options]="tipos" formControlName="tipocat" id="tipo"
                     placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
                     optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
@@ -115,16 +140,13 @@
             <div class="field">
                 <label for="nombre">Categoria Calculada</label>
                 <app-cat-corredor 
-                    [fecnac]="corredorForm.value.fecnac" 
-                    [sexo]="corredorForm.value.sexo"
+                    [fecnac]="corredorForm.value.persona?.fecnac" 
+                    [sexo]="corredorForm.value.persona?.sexo"
                     [tipocat]="corredorForm.value.tipocat"
                     (emitCategoria)="cargarCategoria($event)">
                 </app-cat-corredor>
 
             </div>
-        </fieldset>
-
-        <fieldset class="mr-2">
 
         <div class="field">
             <label for="nombre">Club</label>
@@ -172,6 +194,10 @@
                 <label for="modificar" class="mr-2">Modificar</label>
                 <p-inputSwitch id="modificar" formControlName="modificar"></p-inputSwitch>
             </div>
+            <div class="field flex align-items-center justify-content-evenly flex-wrap">
+                <label for="catalianza" class="mr-2">Alianza</label>
+                <p-inputSwitch id="catalianza" formControlName="catalianza"></p-inputSwitch>
+            </div>
             <!--div class="field flex align-items-center justify-content-evenly flex-wrap">
             <label for="puntua" class="mr-2">Puntua</label>
             <p-inputSwitch id="puntua" formControlName="puntua"></p-inputSwitch>
@@ -195,29 +221,7 @@
 
         </fieldset>
 
-        <fieldset class="mr-2">
-            <div class="field">
-                <label for="nombre">Tutor</label>
-
-                <input type="text" pInputText id="tutorp" formControlName="tutorp" placeholder="Tutor" 
-                class="prime" [style]="{'width':'100%'}"/>
-
-            </div>
-
-            <div class="field">
-                <label for="citp">CI tutor</label>
-                <input type="text" pInputText id="citp" formControlName="citp" placeholder="CI tutor" 
-                class="prime" [style]="{'width':'100%'}"/>
-
-            </div>
-            <div class="field">
-                <label for="direccion">Direccion</label>
-
-                <input type="text" pInputText id="direccion" formControlName="direccion" placeholder="Direccion"
-                    class="prime" [style]="{'width':'100%'}"/>
-
-            </div>
-        </fieldset>
+        
 
         <fieldset class="mr-2">
         <!-- <div class="field">

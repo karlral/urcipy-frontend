@@ -3,14 +3,11 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Club } from 'src/app/domain/club';
 import { Region } from 'src/app/domain/region';
-import { Regional } from 'src/app/domain/regional';
 
 import { ClubService } from 'src/app/service/club.service';
 import baserUrl from 'src/app/service/helper';
-import system from 'src/app/service/helpersys';
 import { MediaService } from 'src/app/service/media.service';
 import { RegionService } from 'src/app/service/region.service';
-import { RegionalService } from 'src/app/service/regional.service';
 
 @Component({
   selector: 'app-club',
@@ -40,17 +37,7 @@ preview2 = '';
   clubes: Club[] = [];
 
   // para agregar
-regio:Regional={
-  idregional: system,
-  nomregional: '',
-  nomcorto: '',
-  logo: '',
-  telefono: '',
-  direccion: '',
-  email: '',
-  ano: 0,
-  presentacion: ''
-};
+
  region:Region={
    idregion: 0,
    nomregion: '',
@@ -68,7 +55,6 @@ regio:Regional={
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regio,
     region: this.region
   };
 
@@ -133,7 +119,6 @@ regio:Regional={
       email: '',
       ruta: '',
       rutagrande: '',
-      regional: this.regio,
       region:this.region
     
       };
