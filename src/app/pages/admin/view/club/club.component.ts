@@ -3,12 +3,11 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Club } from 'src/app/domain/club';
 import { Region } from 'src/app/domain/region';
-import { Regional } from 'src/app/domain/regional';
 
 import { ClubService } from 'src/app/service/club.service';
 import baserUrl from 'src/app/service/helper';
 import { MediaService } from 'src/app/service/media.service';
-import { RegionalService } from 'src/app/service/regional.service';
+import { RegionService } from 'src/app/service/region.service';
 
 @Component({
   selector: 'app-club',
@@ -34,21 +33,11 @@ fileName2 = '';
 preview2 = '';
 
 
-  regionales: Regional[] = [];
+  regiones: Region[] = [];
   clubes: Club[] = [];
 
   // para agregar
-regio:Regional={
-  idregional: 0,
-  nomregional: '',
-  nomcorto: '',
-  logo: '',
-  telefono: '',
-  direccion: '',
-  email: '',
-  ano: 0,
-  presentacion: ''
-};
+
  region:Region={
    idregion: 0,
    nomregion: '',
@@ -66,7 +55,6 @@ regio:Regional={
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regio,
     region: this.region
   };
 
@@ -74,7 +62,7 @@ regio:Regional={
   submitted = false;
   clubDialog = false;
 
-  constructor(private messageService: MessageService, private regionalService: RegionalService, private clubService: ClubService,
+  constructor(private messageService: MessageService, private regionService: RegionService, private clubService: ClubService,
     private confirmationService: ConfirmationService,private mediaService: MediaService) { }
 
   ngOnInit(): void {
@@ -97,16 +85,16 @@ regio:Regional={
         complete: () => console.info('completo club')
       });
 
-      this.regionalService.listarRegionales().subscribe(
+      this.regionService.listarRegiones().subscribe(
         (dato:any) => {
-          this.regionales=dato;
+          this.regiones=dato;
       
         },(error) => {
           console.log(error);
           this.messageService.add({
             severity: "error",
-            summary: "Regional",
-            detail: "Error al cargar el Regional"
+            summary: "Region",
+            detail: "Error al cargar el Region"
           });       
         }
       )
@@ -131,7 +119,6 @@ regio:Regional={
       email: '',
       ruta: '',
       rutagrande: '',
-      regional: this.regio,
       region:this.region
     
       };

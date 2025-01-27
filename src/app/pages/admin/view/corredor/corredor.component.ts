@@ -14,7 +14,7 @@ import { CorredorService } from 'src/app/service/corredor.service';
   providers: [MessageService,ConfirmationService]
 })
 export class CorredorComponent implements OnInit {
-
+ 
 
   corredores: Corredor[] = [];
    selectedCorredor:any=null;
@@ -36,6 +36,9 @@ export class CorredorComponent implements OnInit {
   };
   displaySearch=true;
   buscado:string="";
+
+  corredorClubRegional:any;
+  
 
   constructor( private messageService: MessageService,
     private corredorService: CorredorService,
@@ -79,11 +82,11 @@ export class CorredorComponent implements OnInit {
 
   saveCorredorToList(newData:Corredor){
     this.selectedCorredormen.idcorredor=newData.idcorredor;
-    this.selectedCorredormen.corredor=newData.nombre+" "+newData.apellido;
+    this.selectedCorredormen.corredor=newData.persona.nombre+" "+newData.persona.apellido;
     this.selectedCorredormen.categoria=newData.categoria.nomcategoria;
     this.selectedCorredormen.club=newData.club.nomclub;
     this.selectedCorredormen.puntua=newData.puntua;
-
+    
     if (this.selectedCorredor){
       const corredorIndex = this.corredoresmen.findIndex(data => data.idcorredor=== newData.idcorredor);
   
@@ -99,9 +102,7 @@ export class CorredorComponent implements OnInit {
     this.corredorService.obtenerCorredor(v_idcorredor).subscribe(
       {
         next: (dato) => {
-          this.selectedCorredor = dato;
-         // console.log(this.selectedCorredor);
-          
+          this.selectedCorredor = dato;        
           this.displayAddEditModal=true;         
         },
         error: (error) => {
@@ -112,7 +113,7 @@ export class CorredorComponent implements OnInit {
             detail: "Error al cargar la corredor"
           });
         },
-        complete: () => console.info('completo corredor')
+        complete: () => console.info('completo corredor para modificar')
       });
 
   }

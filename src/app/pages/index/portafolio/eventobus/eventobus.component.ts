@@ -17,6 +17,7 @@ import { Ciudad } from 'src/app/domain/ciudad';
 import { Pais } from 'src/app/domain/pais';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Region } from 'src/app/domain/region';
+import { Persona } from 'src/app/domain/persona';
 
 @Component({
   selector: 'app-eventobus',
@@ -89,7 +90,6 @@ export class EventobusComponent implements OnInit{
     email: '',
     ruta: '',
     rutagrande: '',
-    regional: this.regional,
     region: this.region
   }
   pais:Pais={
@@ -103,26 +103,36 @@ ciudad:Ciudad={
   nomciudad: '',
   pais: this.pais
 }
+persona:Persona={
+  idpersona: 0,
+  nombre: '',
+  apellido: '',
+  ci: '',
+  sexo: 0,
+  fecnac: new Date,
+  telefono: '',
+  direccion: '',
+  email: '',
+  foto: '',
+  cidelante: '',
+  gruposanguineo: '',
+  tutorp: '',
+  citp: '',
+  nacionalidad: '',
+  ciudad: this.ciudad
+}
 
   corredor:Corredor={
     idcorredor: 0,
-    nombre: '',
-    apellido: '',
-    ci: '',
-    sexo: 0,
-    fecnac: new Date,
-    telefono: '',
-    direccion: '',
-    email: '',
+    persona: this.persona,
+    club: this.club,
+    categoria: this.categoria,
+    usuario: this.usuario,
+    regional: this.regional,
     verificar: 0,
-    nacionalidad: '',
     carnet: '',
     carnetatras: '',
-    foto: '',
-    cidelante: '',
     tipocat: 0,
-    tutorp: '',
-    citp: '',
     licencia: 0,
     modificar: false,
     gruposanguineo: '',
@@ -131,10 +141,7 @@ ciudad:Ciudad={
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    categoria: this.categoria,
-    ciudad: this.ciudad,
-    club: this.club,
-    usuario: this.usuario
+    catalianza: 0
   }
 
   evento: Evento= {

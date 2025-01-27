@@ -30,7 +30,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <td>{{club.idclub}}</td>
             <td>{{club.nomclub}}</td>
-            <td>{{club.regional.nomregional}}</td>
+            <td>{{club.region.nomregion}}</td>
 
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -115,8 +115,8 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
 
         <div class="field">
             <label for="regional">Regional</label>
-            <p-dropdown [options]="regionales" [(ngModel)]="club.regional" placeholder="Seleccionar un regional" 
-            optionLabel="nomregional" [showClear]="true" appendTo="body"></p-dropdown>
+            <p-dropdown [options]="regiones" [(ngModel)]="club.region" placeholder="Seleccionar un regional" 
+            optionLabel="nomregion" [showClear]="true" appendTo="body"></p-dropdown>
 
         </div>
         

@@ -1,22 +1,26 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ca } from 'date-fns/locale';
 import { MessageService } from 'primeng/api';
-
-
-
 import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';
 import { Club } from 'src/app/domain/club';
+import { Corredor } from 'src/app/domain/corredor';
 import { Pais } from 'src/app/domain/pais';
+import { Persona } from 'src/app/domain/persona';
+import { Region } from 'src/app/domain/region';
+import { Regional } from 'src/app/domain/regional';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
 import baserUrl from 'src/app/service/helper';
+import system from 'src/app/service/helpersys';
 import { LoginService } from 'src/app/service/login.service';
 import { MediaService } from 'src/app/service/media.service';
 import { PaisService } from 'src/app/service/pais.service';
+import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
   selector: 'app-add-edit-corredor',
@@ -75,8 +79,6 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
   fileName = '';
   preview = '';
 
-
-
   usuario: Usuario = {
     idusuario: 0,
     nombre: '',
@@ -88,43 +90,131 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     password: '',
     enabled: false
   }
- 
+  region: Region = {
+    idregion: 1,
+    nomregion: '',
+    nomcorto: '',
+    logo: ''
+  }
+  regional: Regional = {
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: '',
+    logo: ''
+  }
+  club: Club = {
+    idclub: 1,
+    nomclub: 'Libre',
+    presidente: '',
+    telepresi: '',
+    vicepresidente: '',
+    telvice: '',
+    telefono: '',
+    email: '',
+    ruta: '',
+    rutagrande: '',
+    region: this.region
+  }
+  pais: Pais = {
+    idpais: 1,
+    nompais: '',
+    nacionalidad: ''
+  }
+  ciudad: Ciudad = {
+    idciudad: 1,
+    nomciudad: '',
+    pais: this.pais
+  }
 
   corredorForm = this.fb.group({
     idcorredor:[null],
-    nombre: ['', Validators.required],
-    apellido: ['', Validators.required],
-    ci: ['', Validators.required],
-    sexo: [-1, Validators.required],
-    fecnac: [this.fechaant, Validators.required],
-    telefono: ['', Validators.required],
-    direccion: [''],
-    email: [''],
+    persona: this.fb.group({
+      idpersona: [null],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      ci: ['', Validators.required],
+      sexo: [1, Validators.required],
+      fecnac: [this.fechaant, Validators.required],
+      telefono: ['', Validators.required],
+      direccion: [''],
+      email: [''],
+      foto: [''],
+      cidelante: [''],
+      gruposanguineo: [''],
+      tutorp: [''],
+      citp: [''],
+      nacionalidad: ['Paraguaya', Validators.required],
+      ciudad: this.ciudad,
+    }),
+    
     verificar: [0],
-    nacionalidad: ['Paraguaya', Validators.required],
     carnet: [''],
     carnetatras: [''],
-    foto: [''],
-    cidelante: [''],
-    tipocat: [1, Validators.required],
-    tutorp: [''],
-    citp: [''],
+    tipocat: [2, Validators.required],
     licencia: [0],
     modificar: [false],
-    gruposanguineo: [''],
     puntua: [0],
     fecmodi: [this.fecha],
     montopuntua: [0],
-    carnetfpc: [0],
+    carnetfpc: [3],
     observacion: [''],
+    club: [this.club],
     categoria: [this.eCategoria],
-    ciudad: [null],
-    club: [null],
-    usuario: [this.usuario]
+    usuario: [this.usuario],
+    regional: [this.regional],
+    catalianza: [1]
     
   });
 
+  personabus: any =null;
+  persona: Persona = {
+    idpersona: 0,
+    nombre: '',
+    apellido: '',
+    ci: '',
+    sexo: 0,
+    fecnac: new Date,
+    telefono: '',
+    direccion: '',
+    email: '',
+    foto: '',
+    cidelante: '',
+    gruposanguineo: '',
+    tutorp: '',
+    citp: '',
+    nacionalidad: '',
+    ciudad: this.ciudad,
+  }
+  
 
+  corredor: Corredor = {
+    idcorredor: 0,
+    persona: this.persona,
+    club: this.club,
+    categoria: this.eCategoria,
+    usuario: this.usuario,
+    regional: this.regional,
+    verificar: 0,
+    carnet: '',
+    carnetatras: '',
+    tipocat: 0,
+    licencia: 0,
+    modificar: false,
+    gruposanguineo: '',
+    puntua: 0,
+    fecmodi: new Date(),
+    montopuntua: 0,
+    carnetfpc: 0,
+    observacion: '',
+    catalianza: 0
+  };
+
+ 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
     private clubService: ClubService,
@@ -132,8 +222,9 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     private messageService: MessageService,
     public login: LoginService,
     private mediaService: MediaService,
-    private corredorService: CorredorService
-
+    private corredorService: CorredorService,
+    private personaService:PersonaService
+    
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -141,24 +232,37 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       this.modalType="Guardar";
       
       this.corredorForm.patchValue(this.selectedCorredor);
-
-      const fecha2= new Date(this.selectedCorredor.fecnac);
-
-      this.corredorForm.controls['fecnac'].setValue(fecha2);
-      
+     // console.log(this.selectedCorredor);
+  
+      const fecnac= new Date(this.selectedCorredor.persona.fecnac);
+     
+      this.corredorForm.controls['persona'].controls['fecnac'].setValue(fecnac);
 
     }else{
+      
       this.corredorForm.reset({
-        fecnac:this.fechaant,
-        nacionalidad:"Paraguaya",
-        tipocat:1,
-        sexo:1,
+        persona:{
+          fecnac:this.fechaant,
+          nacionalidad:"Paraguaya",
+          sexo:1,
+          ciudad:this.ciudad,
+          
+        },
+        tipocat:3,
         puntua:0,
         fecmodi:this.fecha,
-        verificar:0
+        verificar:0,
+        club:this.club,
+        usuario:this.usuario,
+        regional:this.regional,
+        carnetfpc: 2,
+        categoria:this.eCategoria,
+        catalianza:1
 
       });
       this.modalType="Agregar";
+      //this.corredorForm.controls['categoria'].setValue(this.eCategoria);
+      this.cargarCategoria(this.eCategoria);
     }
   }
 
@@ -205,10 +309,13 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
       });
 
     this.clubService.listarClubes().subscribe(
-      (dato: any) => {
+     { 
+      next:  (dato: any) => {
         this.clubes = dato;
+        this.club = this.clubes[0];
         
-      }, (error) => {
+      }, 
+      error: (error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
@@ -216,7 +323,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
           detail: "Error al cargar el Club"
         });
       }
-    );
+    });
 
     this.user = this.login.getUser();
     this.usuario.idusuario = this.user.idusuario;
@@ -269,14 +376,15 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
 
       );
 
-
-      this.corredorForm.get('foto')?.setValue(this.fileName);
+      this.corredorForm.get('persona')?.get('foto')?.setValue(this.fileName);
+      //this.corredorForm.get('foto')?.setValue(this.fileName);
 
     }
     this.corredorForm.get('usuario')?.setValue(this.usuario);
+    this.corredorForm.get('regional')?.setValue(this.regional);
+   // console.log(this.corredorForm.value);
 
     if (this.selectedCorredor) {
-
 
 
       this.corredorService.actualizarCorredor(this.corredorForm.value).subscribe(
@@ -305,7 +413,13 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
         {
           next: (dato) => {
 
+           const clubControl = this.corredorForm.get('club');
+           if (clubControl && clubControl.value) {
+             this.club = clubControl.value;
+           }
            
+          // this.savePersona();
+
             this.clickAddEdit.emit(dato);
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
@@ -361,5 +475,38 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     
   }
 
+  focusOutFunction(){
+    if (this.modalType==="Agregar"){
+      
+      
+      const ci= this.corredorForm.get('persona')?.get('ci')?.value;
+      
+      this.personaService.obtenerPersonaCi(ci).subscribe({
+        next: (dato) => {
+          
+          if (dato){
+            this.corredorForm.controls['persona'].patchValue(dato);   
+            this.personabus=dato;
+            const fecnac= new Date(this.personabus.fecnac);
+            this.corredorForm.controls['persona'].get('fecnac')?.setValue(fecnac);
+            //this.corredorForm.controls['persona'].controls['fecnac'].setValue(fecnac);
+          }
+          
+
+        
+        }, error: (error) => {
+          console.log(error);
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al Persona del corredor', life: 3000 });
+
+        },
+        complete: () => {
+          console.log('Completo el busqueda de Persona');
+
+        }
+      });
+      
+    }
+  }
   
+
 }
