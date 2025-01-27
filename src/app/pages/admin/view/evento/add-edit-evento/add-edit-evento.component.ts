@@ -124,7 +124,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
         montopris: 100000,
         montomenc: 100000,
         montomens: 100000,
-        doble: 0
+        doble: 0,
+        regional:this.regional
     
 
       });
@@ -271,7 +272,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
         {
           next: (dato) => {
 
-           
+            console.log(dato);
             this.clickAddEdit.emit(dato);
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El evento ha sido agregada con exito', life: 3000 });
