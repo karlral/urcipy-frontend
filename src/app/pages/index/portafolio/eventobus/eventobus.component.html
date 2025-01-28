@@ -11,7 +11,7 @@
       <div  class="wrapper">
         <img class="logo-image" *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
 
-        <h1>{{evento.fecha | date: 'dd/MM/yyyy'}}</h1>
+        <h1>{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h1>
         <h3>Presentacion</h3>
         <div class="box-text">
           <pre>{{evento.informacion}}</pre>

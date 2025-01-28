@@ -1,10 +1,10 @@
 <div class="wrapperBx">
   <div class="cardBx">
     <div class="imgBx">
-      <img class="logo-image" *ngIf="participante.corredor.nombre!=''" [src]="mediaLocation+participante.corredor.club.ruta"  alt="foto club" />
+      <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.corredor.club.ruta"  alt="foto club" />
     </div>
     <div class="contentBx">
-      <h2>{{participante.corredor.nombre+" "+participante.corredor.apellido}}</h2>
+      <h2>{{participante.corredor.persona.nombre+" "+participante.corredor.persona.apellido}}</h2>
       <h3>{{participante.corredor.categoria.nomcorto}}</h3>
     
     </div>

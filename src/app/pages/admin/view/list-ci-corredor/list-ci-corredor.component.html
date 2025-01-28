@@ -55,7 +55,7 @@
         <tr>
             <td>{{corredor.ci}}</td>
             <td>{{corredor.corredor}}</td>
-            <td>{{corredor.fecnac | date: 'dd/MM/yyyy'}}</td>
+            <td>{{corredor.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
             <td>{{corredor.sexo==1 ? 'M':'F'}}</td>
             <td>{{corredor.telefono}}</td>
             <td>{{corredor.categoria}}</td>
