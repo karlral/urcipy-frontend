@@ -167,7 +167,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [1]
+    catalianza: [false]
     
   });
 
@@ -211,7 +211,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: 0
+    catalianza: true
   };
 
  
@@ -257,7 +257,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
         regional:this.regional,
         carnetfpc: 2,
         categoria:this.eCategoria,
-        catalianza:1
+        catalianza:true
 
       });
       this.modalType="Agregar";

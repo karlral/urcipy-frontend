@@ -63,9 +63,10 @@ section {
 
 header {
     position: fixed;
-    width: 100%;
+    width: 92%;
     top: 0;
-    right: 0;
+    /*right: 0;*/
+    left: 3.5rem;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -209,6 +210,10 @@ header {
     }
     .header {
         padding: 1rem 3%;
+    }
+    header {
+        width: 100%;
+        left: 0;
     }
     section{
         padding: 3.5rem 3%;

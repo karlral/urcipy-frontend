@@ -45,10 +45,10 @@
     <ng-template pTemplate="body" let-corredor>
         <tr>
             <td>{{corredor.ci}}</td>
-            <td>{{corredor.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{corredor.fecha | date: 'dd/MM/yyyy HH:mm:ss':'UTC'}}</td>
             <td>{{corredor.corredor}}</td>
             <td>{{corredor.sexo==1 ? 'M':'F'}}</td>
-            <td>{{corredor.fecnac | date: 'dd/MM/yyyy'}}</td>
+            <td>{{corredor.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
             <td>{{corredor.pais}}</td>
             <td>{{corredor.ciudad}}</td>
             <td>{{corredor.club}}</td>

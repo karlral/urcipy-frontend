@@ -14,10 +14,10 @@
                 <h2><span>{{evento.nomevento | uppercase}}</span></h2>
                
                     
-                    <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
+                    <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h3>
                 
                 <button *ngIf="evento.activo == 1 && evento.preinscrip==1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">
-                    <h3>{{evento.fecha | date: 'dd/MM/yyyy'}}</h3> 
+                    <h3>{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h3> 
                     INSCRIBETE</button>
             </div>
             

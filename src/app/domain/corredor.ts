@@ -23,7 +23,7 @@ export interface Corredor {
     montopuntua: number,
     carnetfpc: number,
     observacion: string,
-    catalianza:number,
+    catalianza:boolean,
  
 }
 

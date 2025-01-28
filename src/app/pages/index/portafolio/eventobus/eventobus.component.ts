@@ -141,7 +141,7 @@ persona:Persona={
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: 0
+    catalianza: true
   }
 
   evento: Evento= {

@@ -4,6 +4,7 @@
     background-size: cover;
     background-position: center;
     padding: 60px 0px;
+    background: var(--second-bg-color);
     
 }
 
@@ -18,7 +19,8 @@
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    /*box-shadow: 0 0 30px rgba(0, 0, 0, .5);*/
+    box-shadow: 0 0 5px var(--main-color-page);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +35,9 @@
     color: #fff;
     text-align: center;
     padding:  40px 0;
+}
+.form-box h2 span {
+    color: var(--main-color-page);
 }
 .input-box{
     position: relative;
