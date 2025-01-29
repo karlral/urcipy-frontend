@@ -15,8 +15,8 @@
    }
    .contenedor .principal-body{
     width: 100%;
-    /*height: 100%;*/
-    height: 93vh;
+    height: 100%;
+    /* height: 93vh; */
    }
    /*.contenedor:after{
     content: 'URCi';
