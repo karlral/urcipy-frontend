@@ -1,0 +1,44 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} Puntaje</span>
+    </ng-template>
+    <form [formGroup]="puntajeForm" class="puntaje-form">
+
+                
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="posicion">Posicion</label>
+            <p-inputNumber inputId="posicion" formControlName="posicion" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        puntajeForm.controls['posicion'].invalid && 
+                        puntajeForm.controls['posicion'].dirty">La posicion es
+                        requerido.</small>
+        </div>
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="puntos">Puntos</label>
+            <p-inputNumber inputId="puntos" formControlName="puntos" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        puntajeForm.controls['puntos'].invalid && 
+                        puntajeForm.controls['puntos'].dirty">Puntos  es
+                        requerido.</small>
+        </div>
+
+       
+
+
+    </form>
+
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        
+        <p-button icon="pi pi-add" (click)="addEditPuntaje()" label="{{modalType}}" styleClass="p-button-text"
+            [disabled]="puntajeForm.invalid"></p-button>
+
+
+    </ng-template>
+
+</p-dialog>

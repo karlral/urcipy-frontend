@@ -1,0 +1,47 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="puntajees" [rows]="10" [paginator]="true" 
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idpuntaje"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
+            <h2 class="m-0">Puntajes</h2>
+            
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Posicion</th>
+            <th>Puntos</th>
+            
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-puntaje>
+        <tr>
+
+            <td class="centro">{{puntaje.posicion}}</td>
+            <td class="centro">{{puntaje.puntos}}</td>
+            
+            
+            <td>
+                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editPuntaje(puntaje)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deletePuntaje(puntaje)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+ <app-add-edit-puntaje 
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedPuntaje]="selectedPuntaje"
+    (clickClose)="hideModal($event)"
+    (clickAddEdit)="savePuntajeToList($event)"
+></app-add-edit-puntaje> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

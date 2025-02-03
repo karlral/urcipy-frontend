@@ -62,6 +62,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     fecha: [this.fecha, Validators.required],
     nomevento: ['', Validators.required],
     activo: [4, Validators.required],
+    alianza: [0],
     direccion: [''],
     orden:[1],
     tipoevento: [0],

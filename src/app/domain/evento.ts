@@ -6,6 +6,7 @@ export interface Evento {
     fecha:Date,
     nomevento: string,
     activo: number,
+    alianza:number,
     direccion: string,
     orden: number,
     tipoevento: number,

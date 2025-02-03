@@ -41,6 +41,19 @@
                         eventoForm.controls['activo'].dirty">Activacion de evento es
                         requerido.</small>
         </div> 
+        <div class="field">
+            <label class="mb-3">Alianza</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="alianza1" name="alianza" value="1" formControlName="alianza"></p-radioButton>
+                    <label for="alianza1">SI</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="alianza2" name="alianza" value="0" formControlName="alianza"></p-radioButton>
+                    <label for="alianza2">NO</label>
+                </div>
+            </div>
+        </div>
 
         <div class="field">
             <label for="direccion">Direccion</label>
