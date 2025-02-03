@@ -87,6 +87,9 @@ const routes: Routes = [
         path:'evento', loadChildren:()=> import('./view/evento/evento.module').then(m => m.EventoModule)
       },
       {
+        path:'puntaje', loadChildren:()=> import('./view/puntaje/puntaje.module').then(m => m.PuntajeModule)
+      },
+      {
         path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
 
