@@ -173,7 +173,8 @@ persona:Persona={
     fondocolor: '',
     fondo: '',
     club: this.club,
-    regional: this.regional
+    regional: this.regional,
+    alianza: 0
   };
 
   participante:Participante={

@@ -82,7 +82,8 @@ export class InscripcionesComponent  implements OnInit{
     fondocolor: '',
     fondo: '',
     club: this.club,
-    regional: this.regional
+    regional: this.regional,
+    alianza: 0
   };
 
   inscripciones!:Inscripcion[];
