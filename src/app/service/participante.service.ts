@@ -10,6 +10,7 @@ import { Resultado } from '../domain/custom/resultado';
 
 import { Participante } from '../domain/participante';
 import baserUrl from './helper';
+import system from './helpersys';
 import { Inscriptos } from '../domain/custom/inscriptos';
 
 @Injectable({
@@ -66,9 +67,9 @@ public pubListarPuntosByIdCorredor(idcorredor:any):Observable<Puntocorredor[]>{
   return this.http.get<Puntocorredor[]>(`${baserUrl}/participub/puntaje/${idcorredor}`);
 }
 public pubListarPuntosInClub(tipo:any):Observable<Punclub[]>{
-  return this.http.get<Punclub[]>(`${baserUrl}/participub/punclub/${tipo}`);
+  return this.http.get<Punclub[]>(`${baserUrl}/participub/punclub/${tipo}/${system}`);
 }
 public pubListarPuntosByClubPartici(tipo:any,idclub:any):Observable<Punclubpartici[]>{
-  return this.http.get<Punclubpartici[]>(`${baserUrl}/participub/punclub/${tipo}/${idclub}`);
+  return this.http.get<Punclubpartici[]>(`${baserUrl}/participub/punclubreg/${tipo}/${idclub}/${system}`);
 }
 }

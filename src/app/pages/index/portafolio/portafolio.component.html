@@ -13,12 +13,14 @@
                         <div class="botones">
                            <button type="submit" *ngIf="evento.preinscrip==1" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>
                            
-                            <button type="submit" *ngIf="evento.preinscrip==1 || evento.preinscrip==2" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
-
-
-                            <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3"  target="_blank" rel="noopener noreferrer" class="btn inscrip nav-btn">
-                                INSCRIBETE
+                           
+                           
+                           <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3" style="text-align: center;"  target="_blank" rel="noopener noreferrer" class="btn inscrip nav-btn">
+                               INSCRIBETE
                             </a>
+
+                            <button type="submit" *ngIf="evento.preinscrip==1 || evento.preinscrip==2 || evento.preinscrip==3" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
+
                         </div>
                         <!--div class="botones">
                             <button type="submit" [routerLink]="['/portfolio/membrecia']" class="btn inscrip">BUSCAR CARNET</button>
