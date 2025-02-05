@@ -6,7 +6,7 @@
             <div *ngFor="let evento of eventoes" >
                 <div class="card">
                     <div class="face front">
-                        <h1 class="onetop">Fecha {{evento.fecha | date: 'dd/MM/yyyy' :'UTC'}}</h1>
+                        <h3 class="onetop">Fecha {{evento.fecha | date: 'dd/MM/yyyy' :'UTC'}}</h3>
                         <!--img [src]="mediaLocation+evento.fondo" [alt]="evento.fondo" /-->
                         <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
                         
