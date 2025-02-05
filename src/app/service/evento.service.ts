@@ -43,7 +43,7 @@ export class EventoService {
     return this.http.get<Evento[]>(`${baserUrl}/eventopub/activos/${system}`);
   }
   public obtenerEventoActivoPub(activo:any):Observable<Evento>{
-    return this.http.get<Evento>(`${baserUrl}/eventopub/activo/${activo}`);
+    return this.http.get<Evento>(`${baserUrl}/eventopub/activo/${activo}/${system}`);
   }
   public obtenerEventoPub(idevento:any):Observable<Evento>{
     return this.http.get<Evento>(`${baserUrl}/eventopub/${idevento}`);
