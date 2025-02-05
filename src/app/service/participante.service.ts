@@ -48,7 +48,7 @@ public inscribirPartiCi(idevento:any,ci:any){
 }
 
 public listarParticipantesActivos(activo:any):Observable<Inscripcion[]>{
-  return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}`);
+  return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}/${system}`);
 }
 
 public listarParticipantesByEvento(idevento:any):Observable<Resultado[]>{
