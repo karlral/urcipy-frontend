@@ -38,7 +38,7 @@ export class ParticipanteService {
   }
 
   public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
-    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}`);
+    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
   }
 
 /**PUBLICOS */
@@ -60,11 +60,11 @@ public listarParticipantesProceso():Observable<Participante[]>{
 }
 
 public pubListarPuntajeCorredor():Observable<Puncorredor[]>{
-  return this.http.get<Puncorredor[]>(`${baserUrl}/participub/puntaje/`);
+  return this.http.get<Puncorredor[]>(`${baserUrl}/participub/puntajes/${system}`);
 }
 
 public pubListarPuntosByIdCorredor(idcorredor:any):Observable<Puntocorredor[]>{
-  return this.http.get<Puntocorredor[]>(`${baserUrl}/participub/puntaje/${idcorredor}`);
+  return this.http.get<Puntocorredor[]>(`${baserUrl}/participub/puntaje/${idcorredor}/${system}`);
 }
 public pubListarPuntosInClub(tipo:any):Observable<Punclub[]>{
   return this.http.get<Punclub[]>(`${baserUrl}/participub/punclub/${tipo}/${system}`);
