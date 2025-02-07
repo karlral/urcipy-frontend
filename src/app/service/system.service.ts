@@ -19,6 +19,11 @@ export class SystemService {
       return null;
 
     }
+   
+  }
+  public getAno(){
+    
+      return this.getSystem().ano;
   }
 
 }

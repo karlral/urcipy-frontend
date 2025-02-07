@@ -6,6 +6,7 @@ import { Corredormen } from 'src/app/domain/custom/corredormen';
 
 import { CorredorService } from 'src/app/service/corredor.service';
 import baserUrl from 'src/app/service/helper';
+import { SystemService } from 'src/app/service/system.service';
 
 
 @Component({
@@ -21,10 +22,12 @@ export class MembreciaComponent {
 
   corredor!:Corredormen;
   inscripto:boolean=false;
-
+  anho:any;
   
 
-constructor(private messageService: MessageService, private corredorService: CorredorService
+constructor(private messageService: MessageService, 
+  private corredorService: CorredorService,
+  private systemService:SystemService
    ) { }
 
 ngOnInit(): void {
@@ -38,6 +41,9 @@ formSubmit(buscado:string) {
     (data: any) => {
       
       this.corredor=data;
+      this.anho=this.systemService.getAno();
+      console.log(this.anho);
+
       if(data==null){
         
         this.messageService.add({
