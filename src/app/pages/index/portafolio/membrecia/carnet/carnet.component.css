@@ -58,6 +58,19 @@
   
 }
 
+.wrapperone .textotitulo{
+  position: absolute;
+  top: 90px;
+  left: 10px;
+
+}
+.wrapperone .textotitulo h4{
+  color: white;
+  letter-spacing: 1px;
+  text-transform: none;
+  font-weight: 300;
+}
+
 .wrapperone .credencial{
   position: absolute;
   top: 145px;
@@ -67,7 +80,9 @@
 
 .wrapperone .credencial h3{
   color: #fff;
-  
+  padding: 0;
+  margin: 0;
+  letter-spacing: 2px;
 }
 .wrapperone h2{   
     font-weight: 600;
@@ -78,10 +93,19 @@
   position: absolute;
   top: 190px;
   left: 10px;
-  width: 250px;
+  width: 280px;
 }
 
-.wrapperone h3{
+.wrapperone .categoria h3{
+  color: greenyellow;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 2px;
+}
+
+.wrapperone .club h3{
   color: greenyellow;
   font-weight: 300;
   font-size: 14px;
@@ -128,26 +152,40 @@
   position: absolute;
   top: 20px;
   left: 220px; 
+  width: 150px;
 }
-.wrappertwo .clubtexto{
-  position: absolute;
-  top: 160px;
-  left: 220px;
-}
+
 
 .wrappertwo .credencial{
   position: absolute;
-  top: 210px;
+  top: 150px;
   left: 180px; 
 }
 .wrappertwo .categoria{
   position: absolute;
-  top: 280px;
+  top: 220px;
   left: 160px;
   width: 280px;
-  
+}
+.wrappertwo .categoria h2{   
+  font-weight: 800;
+  text-align:center;
+  color: greenyellow;
 }
 
+.wrappertwo .textotitulo{
+  position: absolute;
+  top: 280px;
+  left: 180px;
+  text-align: center;
+}
+
+.wrappertwo .textotitulo h4{
+  color: white;
+  letter-spacing: 1px;
+  text-transform: none;
+  font-weight: 300;
+}
 
   @media (max-width: 450px){
     .fondo{
@@ -192,31 +230,31 @@
         font-weight: 600;
         font-size: 16px;
         padding: 0;
-        line-height: 14px;
+        line-height: 13px;
     }
     .wrapperone .corredor{
       position: absolute;
       top: 123px;
       left: 10px;
-      width: 180px;
+      width: 190px;
     }
-    
-    .wrapperone h3{
+    .wrapperone .credencial h3,
+    .wrapperone .categoria h3,
+    .wrapperone .club h3{
       font-weight: 300;
-      font-size: 12px;
+      font-size: 10px;
       text-transform: uppercase;
      
     }
-    
     .wrapperone .categoria{
       position: absolute;
-      top: 150px;
+      top: 170px;
       left: 10px;
     }
     
     .wrapperone .club{
       position: absolute;
-      top: 165px;
+      top: 185px;
       left: 10px;
     }
 
@@ -237,26 +275,39 @@
   position: absolute;
   top: 5px;
   left: 145px; 
-  width: 110px;
+  width: 100px;
 }
 
-.wrappertwo .clubtexto{
-  position: absolute;
-  top: 85px;
-  left: 120px;
-}
 
 .wrappertwo .credencial{
   position: absolute;
-  top: 135px;
+  top: 105px;
   left: 115px; 
 }
 .wrappertwo .categoria{
   position: absolute;
-  top: 175px;
-  left: 115px;
+  top: 145px;
+  left: 118px;
   width: 165px;
   
+}
+
+.wrappertwo .textotitulo{
+  position: absolute;
+  top: 190px;
+  left: 125px;
+  text-align: center;
+  
+}
+
+.wrappertwo .textotitulo h4{
+  color: white;
+  letter-spacing: 1px;
+  text-transform: none;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 14px;
+      
 }
 
   }
