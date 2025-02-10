@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>CGC</title>
+  <title>CRONOSTAR</title>
   <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -14,44 +14,32 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
 
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!-- <link rel="stylesheet" href="assets/css/plugins.min.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="assets/css/style2.css" type="text/css" media="screen" /> -->
   <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" />
 </head>
 
 <body>
-  <!-- Header Section -->
-
   <header>
-    <a href="" class="logo"><span class="multiple-text">CGC</span><span class="typed-cursor" aria-hidden="true"></span></a>
-    
+  
+    <img src="assets/images/logo.png" alt="" class='logo' />
+ 
+  <i class="fa-solid fa-bars" id="menu-icon"></i>
 
-    <i class="fa-solid fa-bars" id="menu-icon"></i>
+  <ul class="navbar">
+    <li><a href="">Inicio</a></li>
+    <li><a href="resumen">Calendario</a></li>
+    <li><a href="portfolio">Inscripcion</a></li>
+    <li><a href="contact">Puntajes</a></li>
+    <li><a href="services">Fotos</a></li>
+    <li><a href="about">Acerca</a></li>
+    <li><a routerLink="/sistema" href="sistema">Login</a></li>
+  </ul>
+</header>
 
-    <ul class="navbar">
-      <li><a href="">Inicio</a></li>
-      <li><a href="resumen">Calendario</a></li>
-      <li><a href="portfolio">Inscripcion</a></li>
-      <li><a href="contact">Puntajes</a></li>
-      <li><a href="services">Fotos</a></li>
-      <li><a href="about">Acerca</a></li>
-      <li><a routerLink="/sistema" href="sistema">Login</a></li>
-    </ul>
-  </header>
+  <app-root class="app"></app-root>
 
-  <app-root></app-root>
-
-  <footer class="footer">
-    <div class="social">
-      <a href="https://www.facebook.com/circuloguairenodeciclismo" target_="_blank"><i
-          class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.instagram.com/circuloguaireno.ciclismo" target_="_blank"><i
-          class="fa-brands fa-instagram"></i></a>
-      <a href="https://wa.me/595981671013" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-
-    <p class="copyright">© CGC 2025 - Todos los derechos reservados</p>
-  </footer>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+  
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();

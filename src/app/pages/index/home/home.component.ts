@@ -6,13 +6,16 @@ import { RegionalService } from 'src/app/service/regional.service';
 import { SystemService } from 'src/app/service/system.service';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+  transition={type:'spring',duration: 3}
+  mobile=window.innerWidth<=768 ? true:false;
+  
+
   mediaLocation = `${baserUrl}/media/`;
   title = '';
 
@@ -57,5 +60,8 @@ export class HomeComponent implements OnInit{
       
   }
 
+  openInNewTab(url:string){
+    window.open(url, "_blank", "noreferrer");
+  }
 
 }
