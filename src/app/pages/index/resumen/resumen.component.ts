@@ -31,7 +31,7 @@ export class ResumenComponent implements OnInit{
       this.ordenes=data;
     });
 
-    this.eventoService.listarEventosModoPub(2).subscribe(
+    this.eventoService.listarEventosModoPub(0).subscribe(
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
