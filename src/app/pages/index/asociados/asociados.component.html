@@ -2,6 +2,16 @@
     <div class="block-content">
         <h3 class="block-title"></h3>
         <div class="row">
+                    <div class="botones">
+
+                        <button type="submit" [routerLink]="['/portfolio/membresia']"
+                            class="btn inscrip">Carnet Virtual</button>
+
+                        <button type="submit" [routerLink]="['/asociados/masinfo']" class="btn list">Más Información</button>
+
+                    </div>
+        </div>
+        <div class="row">
             <div id="club" class="mx-auto">
 
                 <p-table [value]="corredorankes" sortField="club" sortMode="single" [sortOrder]="-1" dataKey="club"

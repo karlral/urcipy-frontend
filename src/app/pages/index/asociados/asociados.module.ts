@@ -5,11 +5,13 @@ import { AsociadosRoutingModule } from './asociados-routing.module';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { AsociadosComponent } from './asociados.component';
+import { MasinfoComponent } from './masinfo/masinfo.component';
 
 
 @NgModule({
   declarations: [
-    AsociadosComponent
+    AsociadosComponent,
+    MasinfoComponent
   ],
   imports: [
     CommonModule,
