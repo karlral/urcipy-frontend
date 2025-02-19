@@ -43,7 +43,16 @@ ngOnInit(): void {
       {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/user/access/listpart/2']},
       {label: 'Corredores', icon: 'pi pi-search', routerLink: ['/user/access/correci']}
     ]
-},
+}
+,
+{
+    label: 'Finanzas',
+    items: [
+      {label: 'Concepto', icon: 'pi pi-search', routerLink: ['/user/access/concepto']},
+      {label: 'Registro de Movimientos', icon: 'pi pi-search', routerLink: ['/user/access/movimiento']},
+      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/user/access/ranking']},
+    ]
+}
 
 ];
 }

@@ -1,0 +1,63 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="corredorankes" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idmovimiento"  styleClass="p-datatable-sm"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple class="p-button-success mr-2" (click)="showModal()">Rankear Corredor</button>
+            <h2 class="m-0">Ranking</h2>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Fecha</th>
+            <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
+            <th class="text-right ">Monto</th>
+            <th>Puntua</th>
+            <th>Borrar</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-corredorank>
+        <tr>
+            <td>{{corredorank.fecha | date:"dd/MM/yyyy" : "UTC" }}</td>
+            <td>{{corredorank.corredor | uppercase}}</td>
+            <td class="text-right ">{{corredorank.entrada | currency: '' : '' : '1.0-0'  }}</td>
+            <td>
+                <button  pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded p-button-success"
+                    ></button> 
+                
+            </td>
+            
+            <td>
+                 
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteMovimiento(corredorank)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="2" class="text-right font-bold ">Totales</td>
+            <td class="text-right font-bold ">{{ entradas | currency: 'Gs. ' : 'symbol' : '1.0-0'  }}</td>
+            <td  colspan="2"></td>
+            
+        </tr>
+    </ng-template>
+</p-table>
+
+ <app-add-ranking
+    [displayAddModal]="displayAddModal"
+    (clickClose)="hideModal($event)"
+    (addNomcorredor)="addNomcorredor($event)"
+    (clickAdd)="saveMovimientoToList($event)"
+></app-add-ranking> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
