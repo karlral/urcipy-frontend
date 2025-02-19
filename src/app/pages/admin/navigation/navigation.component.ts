@@ -51,7 +51,17 @@ ngOnInit(): void {
       {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},
       
     ]
-},
+}
+,
+{
+    label: 'Finanzas',
+    items: [
+      {label: 'Concepto', icon: 'pi pi-search', routerLink: ['/admin/acceso/concepto']},
+      {label: 'Registro de Movimientos', icon: 'pi pi-search', routerLink: ['/admin/acceso/movimiento']},
+      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/admin/acceso/ranking']},
+    ]
+}
+,
 {
     label: 'Listas',
     items: [

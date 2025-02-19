@@ -431,7 +431,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
             this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la corredor', life: 3000 });
 
           },
-          complete: () => {
+            complete: () => {
             console.log('Completo el agregar');
 
           }

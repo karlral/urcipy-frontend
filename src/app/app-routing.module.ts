@@ -20,6 +20,8 @@ const routes: Routes = [
     path:'contact', loadChildren:()=> import('./pages/index/contacto/contacto.module').then(m => m.ContactoModule)
   },{
     path:'blog', loadChildren:()=> import('./pages/index/blog/blog.module').then(m => m.BlogModule)
+  },{
+    path:'asociados', loadChildren:()=> import('./pages/index/asociados/asociados.module').then(m => m.AsociadosModule)
   }
   
   

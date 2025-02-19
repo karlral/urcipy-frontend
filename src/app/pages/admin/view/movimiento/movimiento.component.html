@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="movimientoes" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idmovimiento"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
+            <h2 class="m-0">Movimientos</h2>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Fecha</th>
+            <th pSortableColumn="concepto.nomconcepto" style="min-width:15rem">Concepto <p-sortIcon field="concepto.nomconcepto"></p-sortIcon></th>
+            <th>Ingresos</th>
+            <th>Egresos</th>
+
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-movimiento>
+        <tr>
+            <td>{{movimiento.fecha | date:"dd/MM/yyyy" : "UTC" }}</td>
+            <td>{{movimiento.concepto.nomconcepto}} <span *ngIf="movimiento.concepto.nomconcepto != 'RANKING'">{{movimiento.corredor.nombre}}</span></td>
+            <td>{{movimiento.entrada}}</td>
+            <td>{{movimiento.salida}}</td>
+            
+            <td>
+                <button *ngIf="movimiento.concepto.nomconcepto != 'RANKING'" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                (click)="editMovimiento(movimiento)"></button>
+                <button *ngIf="movimiento.concepto.nomconcepto != 'RANKING'" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteMovimiento(movimiento)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="2" class="text-right font-bold p-3 pb-0">Totales</td>
+            <td class="font-bold p-3 pb-0">{{ entradas | currency: 'Gs. ' : 'symbol' : '1.0-0'  }}</td>
+            <td class="font-bold p-3 pb-0">{{ salidas | currency: 'Gs. ' : 'symbol' : '1.0-0'  }}</td>
+            <td></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+ <app-add-edit-movimiento 
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedMovimiento]="selectedMovimiento"
+    (clickClose)="hideModal($event)"
+    (clickAddEdit)="saveMovimientoToList($event)"
+></app-add-edit-movimiento> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
