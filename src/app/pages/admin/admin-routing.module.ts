@@ -92,6 +92,15 @@ const routes: Routes = [
       {
         path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
+      ,{
+        path:'concepto',loadChildren:()=> import('./view/concepto/concepto.module').then(m => m.ConceptoModule)       
+      },
+      {
+        path:'movimiento', loadChildren:()=> import('./view/movimiento/movimiento.module').then(m => m.MovimientoModule)
+      },
+      {
+        path:'ranking', loadChildren:()=> import('./view/ranking/ranking.module').then(m => m.RankingModule)
+      }
 
     ]
     

@@ -1,0 +1,90 @@
+<p-toast></p-toast>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+    </ng-template>
+
+</p-toolbar>
+
+
+
+
+<p-table  #dt styleClass="p-datatable-sm" [value]="conceptoes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomconcepto','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idconcepto"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+
+    <div class="flex align-items-center justify-content-between">
+        
+        <h2 class="m-0">Conceptos</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nomconcepto" style="min-width:15rem">Nombre <p-sortIcon field="nomconcepto"></p-sortIcon></th>
+            <th>Tipo</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-concepto>
+        <tr>
+            <td>{{concepto.idconcepto}}</td>
+            <td>{{concepto.nomconcepto}}</td>
+            <td>{{concepto.tipo ==1 ? 'Entrada' : 'Salida'  }}</td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editConcepto(concepto)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteConcepto(concepto)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="conceptoDialog" [style]="{width: '450px'}" header="Concepto" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        
+
+        
+        <div class="field">
+            <label for="nomconcepto">Nombre</label>
+            <input type="text" pInputText id="nomconcepto" [(ngModel)]="concepto.nomconcepto" required autofocus />
+            <small class="p-error" *ngIf="submitted && !concepto.nomconcepto">Nombre de concepto es requerido.</small>
+        </div>
+        <div class="field">
+            <label class="mb-3" for="tipo">Tipo</label>
+
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="tipo1" name="tipo" value="1" [(ngModel)]="concepto.tipo"></p-radioButton>
+                    <label for="tipo1">Entrada</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="tipo2" name="tipo" value="0" [(ngModel)]="concepto.tipo" ></p-radioButton>
+                    <label for="tipo2">Salida</label>
+                </div>
+            </div>
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveConcepto()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

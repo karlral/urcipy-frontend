@@ -23,6 +23,9 @@ export class CorredorService {
   public obtenerCorredorCi(ci:any):Observable<Corredor>{
     return this.http.get<Corredor>(`${baserUrl}/corredor/ci/${ci}/${system}`);
   }
+  public obtenerCorredorCiVacio(ci:any):Observable<any>{
+    return this.http.get<any>(`${baserUrl}/corredor/ci/${ci}/${system}`);
+  }
 
   public agregarCorredor(corredor:any):Observable<Corredor>{
     return this.http.post<Corredor>(`${baserUrl}/corredor/`,corredor);

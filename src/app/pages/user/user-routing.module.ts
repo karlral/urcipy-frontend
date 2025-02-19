@@ -20,6 +20,15 @@ const routes: Routes = [
       {
         path:'correci', loadChildren:()=> import('./view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
       }
+      ,{
+        path:'concepto',loadChildren:()=> import('../admin/view/concepto/concepto.module').then(m => m.ConceptoModule)       
+      },
+      {
+        path:'movimiento', loadChildren:()=> import('../admin/view/movimiento/movimiento.module').then(m => m.MovimientoModule)
+      },
+      {
+        path:'ranking', loadChildren:()=> import('../admin/view/ranking/ranking.module').then(m => m.RankingModule)
+      }
 
     ]
     

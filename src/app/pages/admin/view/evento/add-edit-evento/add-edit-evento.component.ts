@@ -103,7 +103,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedEvento){
       this.modalType="Guardar";
-      
+      console.log(this.selectedEvento);
       this.eventoForm.patchValue(this.selectedEvento);
 
       const fecha2= new Date(this.selectedEvento.fecha);
