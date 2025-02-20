@@ -14,39 +14,22 @@ import { SystemService } from 'src/app/service/system.service';
 })
 export class HomeComponent implements OnInit{
   mediaLocation = `${baserUrl}/media/`;
-  title = '';
 
-  regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    logo: ''
-  };
-  
+  regional:any={};
  
- 
-
-
   constructor(private regionalService:RegionalService,
     private systemService:SystemService
   ){
     
   }
   ngOnInit(): void {
-    console.log(this.title+': '+system);
+    
     this.regionalService.obtenerRegionalPub(system).subscribe(
       {
         next: (dato: any) => {
           this.regional=dato;
           
-          this.systemService.setSystem(this.regional);
-          this.title=this.regional.nomcorto;
-         
+          this.systemService.setSystem(this.regional);   
           
         },
         error: (error) => {
