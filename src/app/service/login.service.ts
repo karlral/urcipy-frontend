@@ -70,10 +70,7 @@ export class LoginService {
     let user = this.getUser();
     return user.authorities[0].authority;
   }
-<<<<<<< HEAD
-=======
-  
->>>>>>> cgc
+
   public getUserIdregional(){
     let user = this.getUser();
     return user.regional.idregional;
