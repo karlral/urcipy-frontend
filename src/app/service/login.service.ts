@@ -70,6 +70,11 @@ export class LoginService {
     let user = this.getUser();
     return user.authorities[0].authority;
   }
+  
+  public getUserIdregional(){
+    let user = this.getUser();
+    return user.regional.idregional;
+  }
 
   public getCurrentUser(){
     return this.http.get(`${baserUrl}/actual-usuario`);
