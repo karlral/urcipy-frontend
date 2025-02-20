@@ -36,6 +36,15 @@ ngOnInit(): void {
   this.isLoggedIn=this.login.isLoggedIn();
 
   this.items = [
+    {
+      label: 'Principal',
+      items: [
+        {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/user/access/evento/evento']},
+        {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/user/access/puntaje']},
+        
+      ]
+  }
+  ,
 {
     label: 'Procesos',
     items: [

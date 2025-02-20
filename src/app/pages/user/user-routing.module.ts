@@ -28,7 +28,14 @@ const routes: Routes = [
       },
       {
         path:'ranking', loadChildren:()=> import('../admin/view/ranking/ranking.module').then(m => m.RankingModule)
+      },
+      {
+        path:'evento', loadChildren:()=> import('../admin/view/evento/evento.module').then(m => m.EventoModule)
       }
+      ,
+      {
+        path:'puntaje', loadChildren:()=> import('../admin/view/puntaje/puntaje.module').then(m => m.PuntajeModule)
+      },
 
     ]
     
