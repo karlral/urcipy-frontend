@@ -3,7 +3,6 @@ import { Evento } from 'src/app/domain/evento';
 import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
 import system from 'src/app/service/helpersys';
-import programsDataService from 'src/app/service/programs-data.service';
 import { RegionalService } from 'src/app/service/regional.service';
 import { SystemService } from 'src/app/service/system.service';
 
@@ -64,7 +63,6 @@ export class HomeComponent implements OnInit{
         complete: () => console.info('completo carga de regionales')
       });
       
-    this.programsData=programsDataService;
         
     
   }

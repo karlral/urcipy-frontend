@@ -1,0 +1,18 @@
+<!--Programs-->
+<div class="Programs" id="programs">
+    
+    <div class="programs-header">
+        <span>Experimente</span>
+        <span class='stroke-text'>Nuevas</span>
+        <span>Emociones</span>
+    </div>
+
+    <div class="programs-categories">
+        <div *ngFor="let program of programsData" class="category" >
+            <img [src]="'../../../../assets/images/'+program.image" alt="imagen">
+            <span>{{program.heading}} </span>
+            <span>{{program.details}} </span>
+            
+        </div>
+    </div>
+</div>
