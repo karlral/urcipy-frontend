@@ -51,12 +51,12 @@
 
         </div>
         <!-- {/* Hero Buttons */} -->
-        <div class="hero-buttons">
+        <div  class="hero-buttons">
 
-            <button class="btn" role="link"
-                (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/rally_mandarina.clax')">Ver
-                Resulados</button>
-            <button class="btn">Eventos</button>
+            <button *ngFor="let evento of eventoes" class="btn" role="link"
+                (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
+                Resulados {{evento.nomevento | uppercase}}</button>
+            <button class="btn" [routerLink]="['/resumen']">Eventos</button>
         </div>
     </div>
 
@@ -70,7 +70,8 @@
             <span>170 bpm</span>
         </div>
         <!-- {/* Imagen de hero */} -->
-        <img src="../../../../assets/images/hero_image.png" class="hero-image" alt="hero" />
+        <!-- <img src="../../../../assets/images/hero_image.png" class="hero-image" alt="hero" /> -->
+        <img [src]="mediaLocation+event.club.ruta" class="hero-image" [alt]="event.club.ruta" />
         <img 
             src="../../../../assets/images/hero_image_back.png" class="hero-image-back" alt="hero back" />
     </div>
@@ -83,3 +84,22 @@
         </div>
     </div>
 </div>
+<!--Programs-->
+<div class="Programs" id="programs">
+    
+    <div class="programs-header">
+        <span>Experimente</span>
+        <span class='stroke-text'>Nuevas</span>
+        <span>Emociones</span>
+    </div>
+
+    <div class="programs-categories">
+        <div *ngFor="let program of programsData" class="category" >
+            <img [src]="'../../../../assets/images/'+program.image" alt="imagen">
+            <span>{{program.heading}} </span>
+            <span>{{program.details}} </span>
+            
+        </div>
+    </div>
+</div>
+<app-reason></app-reason>
