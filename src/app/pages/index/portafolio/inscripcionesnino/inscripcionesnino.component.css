@@ -1,0 +1,79 @@
+
+.content {
+    position: relative;
+    padding: 50px 16px 30px;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .row {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+   /*  text-align: center; */
+    
+  }
+  
+  .card{
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.25);
+    
+    position: relative;
+   
+    width: 375px;
+    height: 600px;
+    margin-top: 16px;
+  }
+  .card .face{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+  }
+  .card .front{
+   
+    box-shadow: 0 5px 10px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+  }
+  .card .front img{
+    padding-top: 20px;
+    width: 90%;
+  }
+  
+  .card .front .botones{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;  
+  }
+  .card .front .btn{
+    width: 80%;
+    padding: 10px;
+    font-size: 20px;   
+    margin-top: 0;
+    
+  }
+  .card .front .inscrip{
+    width: 80%;    
+  }
+  @media (max-width: 450px){
+      .content {
+          padding: 50px 0px 30px;
+      }
+      .block-title{
+          margin-bottom: 0;
+          padding-bottom: 0;
+      }
+  }
+  

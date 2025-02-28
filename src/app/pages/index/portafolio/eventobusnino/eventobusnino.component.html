@@ -1,0 +1,50 @@
+<section class="content">
+
+    <div class="block-content">
+  
+      <h3 class="block-title">Inscripcion - {{ordenevento}} Fecha</h3>
+      <div class="row">
+  
+      
+       <div *ngIf="!inscripto" class="centro">
+  
+        <div  class="wrapper">
+    
+          <h3>Inscribirse</h3>
+          <div class="box-text">
+            <div class="wrapper-login">
+              <div class="form-box login">
+  
+                <img src="../../../../../assets/images/ninos/mbopinino.jpg" style="width: 100%; max-width: 600px;" alt="">
+
+                <form (ngSubmit)="formSubmit()">
+                  
+                  <p-toast position="bottom-center" key="bc"></p-toast>
+                 
+                  <span class="p-float-label form-field  input-box">
+                    <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" required>
+                    <label for="ci" class="cblanco"> Cedula de identidad Niño</label>
+  
+                  </span>
+  
+                  <button pButton pRipple label="Inscribirse" type="submit"
+                    class=" btn-box p-button-raised p-button-secondary" ></button>
+  
+                </form>
+  
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+        <app-registrocorredor *ngIf="inscripto"
+        [participante]="participante"
+        ></app-registrocorredor>
+  
+      </div>
+    </div>
+  
+  </section>

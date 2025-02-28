@@ -4,6 +4,8 @@ import { EventobusComponent } from './eventobus/eventobus.component';
 import { InscripcionesComponent } from './inscripciones/inscripciones.component';
 import { PortafolioComponent } from './portafolio.component';
 import { MembreciaComponent } from './membrecia/membrecia.component';
+import { InscripcionesninoComponent } from './inscripcionesnino/inscripcionesnino.component';
+import { EventobusninoComponent } from './eventobusnino/eventobusnino.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,15 @@ const routes: Routes = [
   },{
     path:'inscripciones/:activo',
     component:InscripcionesComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'eventobusnino/:idevento',
+    component:EventobusninoComponent,
+    pathMatch:'full'
+  },{
+    path:'inscripcionesnino/:activo',
+    component:InscripcionesninoComponent,
     pathMatch:'full'
   }
   ,{
