@@ -3,6 +3,7 @@ import { Evento } from 'src/app/domain/evento';
 import { Datasys } from 'src/app/service/datasys';
 import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
+import system from 'src/app/service/helpersys';
 
 @Component({
   selector: 'app-portafolio',
@@ -11,9 +12,11 @@ import baserUrl from 'src/app/service/helper';
   providers:[Datasys]
 })
 export class PortafolioComponent implements OnInit{
+  acceso = system;
   mediaLocation = `${baserUrl}/media/`;
   eventoes: Evento[] = [];
   ordenes:{label:string,value:number}[]=[];
+  fechaanterior:Date=new Date();
 
   constructor( 
     private eventoService: EventoService,
@@ -31,6 +34,8 @@ export class PortafolioComponent implements OnInit{
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
+          let fecha = new Date(datos[0].fecha);
+          this.fechaanterior.setDate(fecha.getDate() - 1);
          
         },
         error: (error) => {

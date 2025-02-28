@@ -19,6 +19,7 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Logo</th>
+            <th>ID</th>
             <th pSortableColumn="nombre" style="min-width:15rem">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
             <th>Club</th>
             
@@ -28,7 +29,7 @@
     <ng-template pTemplate="body" let-evento>
         <tr>
             <td><img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" width="100" class="shadow-4" /></td>
-
+            <td>{{evento.idevento}}</td>
             <td>{{evento.nomevento | uppercase}}</td>
             <td>{{evento.club.nomclub}}</td>
             

@@ -33,4 +33,7 @@ export class CategoriaService {
   public listarCategoriaActivo():Observable<Categoria[]>{
     return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/`);
   }
+  public listarCategoriaActivoNino():Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/nino`);
+  }
 }

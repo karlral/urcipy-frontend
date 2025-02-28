@@ -1,0 +1,45 @@
+<section class="content">
+    <div class="block-content">
+        <h3 class="block-title">Lista de Inscripcion</h3>
+        <div class="row">
+
+
+            <div *ngIf="!visible" class="wrapper">
+                <div class="card">
+                    <div class="face front">
+                        
+                        <img src="assets/images/ninos/campeonatoninos.png" alt="ninos">
+                        
+                        <div class="botones">
+                           
+                           <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">CATEGORIA</button>
+   
+                           <button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button>
+                           
+                           <button (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
+
+                           
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>  
+
+            
+            <app-club *ngIf="visible=='club'"
+            [inscripciones]="inscripciones"
+            ></app-club>
+
+            <app-categoria *ngIf="visible=='categoria'"
+            [inscripciones]="inscripciones"
+            ></app-categoria>
+
+            <app-tandas *ngIf="visible=='tanda'"
+            [categorias]="categorias"
+            ></app-tandas>
+
+
+        </div>
+    </div>
+</section>
