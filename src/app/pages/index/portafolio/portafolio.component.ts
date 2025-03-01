@@ -16,7 +16,7 @@ export class PortafolioComponent implements OnInit{
   mediaLocation = `${baserUrl}/media/`;
   eventoes: Evento[] = [];
   ordenes:{label:string,value:number}[]=[];
-  fechaanterior:Date=new Date();
+  fechaanterior:any;
 
   constructor( 
     private eventoService: EventoService,
@@ -34,8 +34,9 @@ export class PortafolioComponent implements OnInit{
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
-          let fecha = new Date(datos[0].fecha);
-          this.fechaanterior.setDate(fecha.getDate() - 1);
+          this.fechaanterior = new Date(datos[0].fecha)
+          const fecha = new Date(datos[0].fecha);
+          this.fechaanterior.setDate(fecha.getDate() -1);
          
         },
         error: (error) => {
