@@ -45,7 +45,7 @@ import { InscripcionesninoComponent } from './inscripcionesnino/inscripcionesnin
   CarnetComponent,
   TandasComponent,
   EventobusninoComponent,
-  InscripcionesninoComponent
+  InscripcionesninoComponent,
   TandasComponent,
   EventobusrunComponent,
   AddCorredorComponent,

@@ -10,7 +10,6 @@
 
 .plans {
     background: var(--second-bg-color);
-    min-height: 100vh;
 }
 
 .plans .plans-content {
@@ -19,8 +18,6 @@
     align-items: center;
     gap: 3rem;
     margin-top: 1rem;
-    max-width: 450px;
-   
 }
 
 .plans .box {
