@@ -18,6 +18,7 @@ import { Pais } from 'src/app/domain/pais';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Region } from 'src/app/domain/region';
 import { Persona } from 'src/app/domain/persona';
+import { Modalidad } from 'src/app/domain/modalidad';
 
 @Component({
   selector: 'app-eventobus',
@@ -34,6 +35,10 @@ export class EventobusComponent implements OnInit{
     nomtrayecto: '',
     km: 0
   }
+  modalidad:Modalidad={
+    idmodalidad: 1,
+    nommodalidad: ''
+  }
   categoria:Categoria={
     idcategoria: 0,
     nomcategoria: '',
@@ -47,8 +52,9 @@ export class EventobusComponent implements OnInit{
     edadfin: 0,
     sexo: 0,
     tipo: 0,
-    trayecto:this.trayecto,
-    horario:''
+    trayecto: this.trayecto,
+    horario: '',
+    modalidad: this.modalidad
   }
 
   usuario:Usuario={
@@ -90,7 +96,8 @@ export class EventobusComponent implements OnInit{
     email: '',
     ruta: '',
     rutagrande: '',
-    region: this.region
+    region: this.region,
+    modalidad: this.modalidad
   }
   pais:Pais={
     idpais: 0,
@@ -119,7 +126,8 @@ persona:Persona={
   tutorp: '',
   citp: '',
   nacionalidad: '',
-  ciudad: this.ciudad
+  ciudad: this.ciudad,
+  tamano: 0
 }
 
   corredor:Corredor={
@@ -174,7 +182,8 @@ persona:Persona={
     fondo: '',
     club: this.club,
     regional: this.regional,
-    alianza: 0
+    alianza: 0,
+    modalidad: this.modalidad
   };
 
   participante:Participante={
@@ -220,7 +229,7 @@ persona:Persona={
     private datasys:Datasys,
     private messageService: MessageService,
     private participanteService:ParticipanteService,
-    private router: Router
+    
     ) { }
   
   ngOnInit(): void {

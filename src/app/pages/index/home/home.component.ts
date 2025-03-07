@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
   regional:any={};
   programsData:any[]=[];
   eventoes: Evento[] = [];
-  event:any={};
+  event:any=null;
  
   constructor(private regionalService:RegionalService,
     private systemService:SystemService,

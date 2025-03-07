@@ -67,6 +67,12 @@
                     optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
         </div>
         <div class="field">
+            <label for="modalidad">Modalidad</label>
+            <p-dropdown [options]="modalidades" formControlName="modalidad" id="modalidad"  placeholder="Seleccionar la modalidad" autoWidth="false"
+            [filter]="true" [filterBy]="'nommodalidad'" 
+                [style]="{'width':'100%'}" optionLabel="nommodalidad" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
             <label for="tipoevento">Tipo Carrera</label>
             <p-dropdown [options]="tipoeventos" formControlName="tipoevento" id="tipoevento" 
                     placeholder="Seleccionar tipo de carrera" autoWidth="false" [style]="{'width':'100%'}"

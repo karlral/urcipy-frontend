@@ -4,6 +4,7 @@ import { EventobusComponent } from './eventobus/eventobus.component';
 import { InscripcionesComponent } from './inscripciones/inscripciones.component';
 import { PortafolioComponent } from './portafolio.component';
 import { MembreciaComponent } from './membrecia/membrecia.component';
+import { EventobusrunComponent } from './eventobusrun/eventobusrun.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path:'eventobus/:idevento',
     component:EventobusComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'eventobusrun/:idevento',
+    component:EventobusrunComponent,
     pathMatch:'full'
   },{
     path:'inscripciones/:activo',

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Categoria } from 'src/app/domain/categoria';
@@ -15,26 +15,26 @@ import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
-import baserUrl from 'src/app/service/helper';
 import system from 'src/app/service/helpersys';
-import { LoginService } from 'src/app/service/login.service';
-import { MediaService } from 'src/app/service/media.service';
 import { PaisService } from 'src/app/service/pais.service';
+import { ParticipanteService } from 'src/app/service/participante.service';
 import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
-  selector: 'app-add-edit-corredor',
-  templateUrl: './add-edit-corredor.component.html',
-  styleUrls: ['./add-edit-corredor.component.css']
+  selector: 'app-add-corredor',
+  templateUrl: './add-corredor.component.html',
+  styleUrls: ['./add-corredor.component.css']
 })
-export class AddEditCorredorComponent implements OnInit, OnChanges {
-  @Input() displayAddEditModal: boolean = true;
+export class AddCorredorComponent  implements OnInit {
+
   @Input() selectedCorredor:any=null;
+  @Input() idevento:any=null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clickSave: EventEmitter<any> = new EventEmitter<any>();
+ 
 
-  modalType="Agregar";
+  modalType="Registrar";
 
   clubes: Club[] = [];
   
@@ -43,6 +43,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
 
   tipos: any[] = [];
   grupos: any[] = [];
+  tamanos: any[] = [];
 
   user: any;
   fecha = new Date();
@@ -54,12 +55,12 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     nomtrayecto: '',
     km: 0
   }
-modalidad:Modalidad={
-  idmodalidad: 0,
-  nommodalidad: ''
-}
+  modalidad: Modalidad = {
+    idmodalidad: 1,
+    nommodalidad: ''
+  }
   eCategoria:Categoria={
-    idcategoria: 0,
+    idcategoria: 1,
     nomcategoria: '',
     activo: false,
     nomcorto: '',
@@ -72,19 +73,14 @@ modalidad:Modalidad={
     sexo: 0,
     tipo: 0,
     trayecto: this.trayecto,
-    horario: '',
-    modalidad: this.modalidad
+    horario:'',
+    modalidad:this.modalidad
   };
 
-  // para agregar
-  mediaLocation = `${baserUrl}/media/`;
-  url?: String;
-  currentFile?: File;
-  fileName = '';
-  preview = '';
+  
 
   usuario: Usuario = {
-    idusuario: 0,
+    idusuario: 91,
     nombre: '',
     apellido: '',
     telefono: '',
@@ -111,6 +107,7 @@ modalidad:Modalidad={
     presentacion: '',
     logo: ''
   }
+  
   club: Club = {
     idclub: 1,
     nomclub: 'Libre',
@@ -136,46 +133,6 @@ modalidad:Modalidad={
     pais: this.pais
   }
 
-  corredorForm = this.fb.group({
-    idcorredor:[null],
-    persona: this.fb.group({
-      idpersona: [null],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      ci: ['', Validators.required],
-      sexo: [1, Validators.required],
-      fecnac: [this.fechaant, Validators.required],
-      telefono: ['', Validators.required],
-      direccion: [''],
-      email: [''],
-      foto: [''],
-      cidelante: [''],
-      gruposanguineo: [''],
-      tutorp: [''],
-      citp: [''],
-      nacionalidad: ['Paraguaya', Validators.required],
-      ciudad: this.ciudad,
-    }),
-    
-    verificar: [0],
-    carnet: [''],
-    carnetatras: [''],
-    tipocat: [2, Validators.required],
-    licencia: [0],
-    modificar: [false],
-    puntua: [0],
-    fecmodi: [this.fecha],
-    montopuntua: [0],
-    carnetfpc: [3],
-    observacion: [''],
-    club: [this.club],
-    categoria: [this.eCategoria],
-    usuario: [this.usuario],
-    regional: [this.regional],
-    catalianza: [false],
-    idmodalidad: [1],
-    
-  });
 
   personabus: any =null;
   persona: Persona = {
@@ -183,7 +140,7 @@ modalidad:Modalidad={
     nombre: '',
     apellido: '',
     ci: '',
-    sexo: 0,
+    sexo: 1,
     fecnac: new Date,
     telefono: '',
     direccion: '',
@@ -221,69 +178,77 @@ modalidad:Modalidad={
     catalianza: true
   };
 
- idmodalidad=1;
+  idmodalidad = 2;
+
+
+  corredorForm = this.fb.group({
+    idcorredor:[null],
+    persona: this.fb.group({
+      idpersona: [null],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      ci: ['', Validators.required],
+      sexo: [1],
+      fecnac: [this.fechaant, Validators.required],
+      telefono: [''],
+      direccion: [''],
+      email: [''],
+      foto: [''],
+      cidelante: [''],
+      gruposanguineo: [''],
+      tutorp: [''],
+      citp: [''],
+      nacionalidad: ['Paraguaya', Validators.required],
+      ciudad: this.ciudad,
+      tamano: [0]
+    }),
+    
+    verificar: [0],
+    carnet: [''],
+    carnetatras: [''],
+    tipocat: [2, Validators.required],
+    licencia: [0],
+    modificar: [false],
+    puntua: [0],
+    fecmodi: [this.fecha],
+    montopuntua: [0],
+    carnetfpc: [3],
+    observacion: [''],
+    club: [this.club],
+    categoria: [this.eCategoria],
+    usuario: [this.usuario],
+    regional: [this.regional],
+    catalianza: [false]
+    
+  });
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
     private clubService: ClubService,
     private paisService: PaisService,
     private messageService: MessageService,
-    public login: LoginService,
-    private mediaService: MediaService,
     private corredorService: CorredorService,
-    private personaService:PersonaService
-    
+        private personaService:PersonaService,
+        private participanteService:ParticipanteService
+
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.selectedCorredor){
-      this.modalType="Guardar";
-      
-      this.corredorForm.patchValue(this.selectedCorredor);
-     // console.log(this.selectedCorredor);
-  
-      const fecnac= new Date(this.selectedCorredor.persona.fecnac);
-     
-      this.corredorForm.controls['persona'].controls['fecnac'].setValue(fecnac);
 
-    }else{
-      
-      this.corredorForm.reset({
-        persona:{
-          fecnac:this.fechaant,
-          nacionalidad:"Paraguaya",
-          sexo:1,
-          ciudad:this.ciudad,
-          
-        },
-        tipocat:3,
-        puntua:0,
-        fecmodi:this.fecha,
-        verificar:0,
-        club:this.club,
-        usuario:this.usuario,
-        regional:this.regional,
-        carnetfpc: 2,
-        categoria:this.eCategoria,
-        catalianza:true
-
-      });
-      this.modalType="Agregar";
-      //this.corredorForm.controls['categoria'].setValue(this.eCategoria);
-      this.cargarCategoria(this.eCategoria);
-    }
-  }
 
   ngOnInit(): void {
-
-
-    this.tipos = [
-      { label: 'PRINCIPAL', value: 1 },
-      { label: 'PRINCIPAL-ELITE', value: 2 },
-      { label: 'PROMOCIONAL', value: 3 },
-      { label: 'PROMOCIONAL+100K', value: 4 }
+    this.tamanos = [
+      { label: 'Sin Remera', value: 0 },
+      { label: 'Tamaño P', value: 1 },
+      { label: 'Tamaño M', value: 2 },
+      { label: 'Tamaño G', value: 3 }
     ];
 
+    this.tipos = [
+      {label: '20k', value: 1},
+      {label: '10k', value: 2},
+      {label: ' 5k', value: 3},
+      
+    ];
     this.grupos = [
       { label: 'RH (O-)', value: 'RH (O-)' },
       { label: 'RH (O+)', value: 'RH (O+)' },
@@ -295,15 +260,12 @@ modalidad:Modalidad={
       { label: 'RH (AB+)', value: 'RH (AB+)' }
     ];
 
-    
 
-
-
-    this.ciudadService.listarCiudades().subscribe(
+    this.ciudadService.publistarCiudades().subscribe(
       {
         next: (dato: Ciudad[]) => {
-          this.ciudades = dato;
-       
+          this.ciudades = dato;  
+          this.ciudad = this.ciudades[0];
         },
         error: (error) => {
           console.log(error);
@@ -316,14 +278,12 @@ modalidad:Modalidad={
         complete: () => console.info('completo ciudad')
       });
 
-    this.clubService.listarClubes().subscribe(
-     { 
-      next:  (dato: any) => {
+    this.clubService.publistarClubesRun().subscribe(
+      (dato: any) => {
         this.clubes = dato;
         this.club = this.clubes[0];
         
-      }, 
-      error: (error) => {
+      }, (error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
@@ -331,13 +291,13 @@ modalidad:Modalidad={
           detail: "Error al cargar el Club"
         });
       }
-    });
+    );
 
-    this.user = this.login.getUser();
-    this.usuario.idusuario = this.user.idusuario;
+    //this.user = this.login.getUser();
+    this.usuario.idusuario = 91;
 
 
-    this.paisService.listarPaises().subscribe(
+    this.paisService.publistarPaises().subscribe(
       (dato: any) => {
         this.paises = dato;
        
@@ -351,6 +311,29 @@ modalidad:Modalidad={
       }
     );
 
+    this.corredorForm.reset({
+      persona:{
+        fecnac:this.fechaant,
+        nacionalidad:"Paraguaya",
+        sexo:1,
+        ciudad:this.ciudad,
+        tamano:0
+        
+      },
+      tipocat:3,
+      puntua:0,
+      fecmodi:this.fecha,
+      verificar:0,
+      club:this.club,
+      usuario:this.usuario,
+      regional:this.regional,
+      carnetfpc: 2,
+      categoria:this.eCategoria
+
+    });
+    this.modalType="Registrar";
+    
+    this.cargarCategoria(this.eCategoria);
   }
   
 
@@ -359,65 +342,17 @@ modalidad:Modalidad={
     this.clickClose.emit(true);
   }
 
-  mostrarVarCorredor() {
-    
+  extractNumberString(s: string) {
+    return s.replace(/[^0-9]/g, "");
   }
 
   addEditCorredor() {
+    
 
-
-    if (this.currentFile) {
-      const formData = new FormData();
-      formData.append('file', this.currentFile);
-
-      this.mediaService.uploadFile(formData).subscribe(
-        {
-          next: response => {
-          
-            this.url = response.url;
-          },
-          error: errores => {
-            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al cargar el archivo', life: 3000 });
-            return;
-          }
-        }
-
-      );
-
-      this.corredorForm.get('persona')?.get('foto')?.setValue(this.fileName);
-      //this.corredorForm.get('foto')?.setValue(this.fileName);
-
-    }
     this.corredorForm.get('usuario')?.setValue(this.usuario);
     this.corredorForm.get('regional')?.setValue(this.regional);
-   // console.log(this.corredorForm.value);
 
-    if (this.selectedCorredor) {
-
-
-      this.corredorService.actualizarCorredor(this.corredorForm.value).subscribe(
-        {
-          next: (dato) => {
-
-            this.clickAddEdit.emit(dato);
-            this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'La corredor ha sido actualizada con exito', life: 3000 });
-            this.closeModal();
-          }, error: (error) => {
-            console.log(error);
-            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la actualizacion de corredor', life: 3000 });
-
-          },
-          complete: () => {
-            console.log('Completo al actualizar');
-
-          }
-        });
-
-
-    }
-    else {
-
-      this.corredorService.agregarCorredor(this.corredorForm.value).subscribe(
+      this.corredorService.agregarCorredorRun(this.corredorForm.value).subscribe(
         {
           next: (dato) => {
 
@@ -425,56 +360,51 @@ modalidad:Modalidad={
            if (clubControl && clubControl.value) {
              this.club = clubControl.value;
            }
-           
-          // this.savePersona();
-
-            this.clickAddEdit.emit(dato);
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
 
-            this.closeModal()
+            //this.closeModal()
             
           }, error: (error) => {
             console.log(error);
             this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la corredor', life: 3000 });
 
           },
-            complete: () => {
+          complete: () => {
             console.log('Completo el agregar');
+            this.formSubmit();
+
 
           }
-
-        }
-      )
-
-    }
-
+        });
 
   }
 
-  selectFile(event: any): void {
-    if (event.target.files && event.target.files[0]) {
-      const file: File = event.target.files[0];
-      this.currentFile = file;
+  saveModal(participante:any) {
+    this.corredorForm.reset();
+    this.clickSave.emit(participante);
+    
+  }
 
-      this.fileName = this.currentFile.name;
-      /*** para mostrar antes de enviar y guardar */
-
-      this.preview = '';
-
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-  
-        this.preview = e.target.result;
-      };
-
-      reader.readAsDataURL(this.currentFile);
-
-      //**** */
-    } else {
-      this.fileName = '';
-    }
+  formSubmit(){
+    let ci = this.corredorForm.get('persona')?.get('ci')?.value;
+    this.participanteService.inscribirPartiCi(this.idevento,ci).subscribe(
+      (data: any) => {
+      
+        this.saveModal(data);
+        
+     
+      }, (error) => {
+        console.log(error);
+        
+        this.messageService.add({
+          key: 'bc',
+          severity: "info",
+          summary: "Atencion",
+          detail: "No se encontro el numero de CI del corredor, complete sus datos."
+        });
+        
+      });
   }
 
   cargarCategoria(cat:Categoria){
@@ -484,12 +414,21 @@ modalidad:Modalidad={
   }
 
   focusOutFunction(){
-    if (this.modalType==="Agregar"){
-      
-      
+ 
       const ci= this.corredorForm.get('persona')?.get('ci')?.value;
+
+      if (ci== '' || ci == null) {
+
+        this.messageService.add({
+          severity: "error",
+          summary: "Atencion",
+          detail: "Complete su Cedula de identidad sin puntos"
+        });
+  
+        return;
+      }
       
-      this.personaService.obtenerPersonaCi(ci).subscribe({
+      this.personaService.pubobtenerPersonaCi(ci).subscribe({
         next: (dato) => {
           
           if (dato){
@@ -497,11 +436,8 @@ modalidad:Modalidad={
             this.personabus=dato;
             const fecnac= new Date(this.personabus.fecnac);
             this.corredorForm.controls['persona'].get('fecnac')?.setValue(fecnac);
-            //this.corredorForm.controls['persona'].controls['fecnac'].setValue(fecnac);
           }
-          
-
-        
+   
         }, error: (error) => {
           console.log(error);
           this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al Persona del corredor', life: 3000 });
@@ -513,8 +449,7 @@ modalidad:Modalidad={
         }
       });
       
-    }
+    
   }
   
-
 }

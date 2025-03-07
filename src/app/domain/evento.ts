@@ -1,4 +1,5 @@
 import { Club } from "./club";
+import { Modalidad } from "./modalidad";
 import { Regional } from "./regional";
 
 export interface Evento {
@@ -31,5 +32,6 @@ export interface Evento {
     fondocolor:string,
     fondo: string,
     club: Club,
-    regional:Regional
+    regional:Regional,
+    modalidad:Modalidad
 }
