@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 
 <p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
@@ -40,23 +40,31 @@
             <th>Categoria</th>
             <th>Km</th>
             <th>Dorsal</th>
+            <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-corredor>
+    <ng-template pTemplate="body" let-partici>
         <tr>
-            <td>{{corredor.ci}}</td>
-            <td>{{corredor.fecha | date: 'dd/MM/yyyy HH:mm:ss':'UTC'}}</td>
-            <td>{{corredor.corredor}}</td>
-            <td>{{corredor.sexo==1 ? 'M':'F'}}</td>
-            <td>{{corredor.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
-            <td>{{corredor.pais}}</td>
-            <td>{{corredor.ciudad}}</td>
-            <td>{{corredor.club}}</td>
-            <td>{{corredor.categoria}}</td>
-            <td>{{corredor.km}}</td>
-            <td>{{corredor.dorsal}}</td>
+            <td>{{partici.ci}}</td>
+            <td>{{partici.fecha | date: 'dd/MM/yyyy HH:mm:ss':'UTC'}}</td>
+            <td>{{partici.corredor}}</td>
+            <td>{{partici.sexo==1 ? 'M':'F'}}</td>
+            <td>{{partici.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
+            <td>{{partici.pais}}</td>
+            <td>{{partici.ciudad}}</td>
+            <td>{{partici.club}}</td>
+            <td>{{partici.categoria}}</td>
+            <td>{{partici.km}}</td>
+            <td>{{partici.dorsal}}</td>
             
-           
+            <td>
+                
+               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
+                   (click)="deletePartici(partici)"></button> 
+              
+           </td>
         </tr>
     </ng-template>
 </p-table>
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

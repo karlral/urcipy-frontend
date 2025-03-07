@@ -11,17 +11,16 @@
                         <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
 
                         <div class="botones">
-                            <button type="submit" *ngIf="evento.preinscrip==1"
-                                [routerLink]="['/portfolio/eventobus',evento.idevento]"
-                                class="btn inscrip nav-btn">INSCRIBETE</button>
+                           <button type="submit" *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>
+                           
+                           <button type="submit" *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/eventobusrun',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>
+                           
+                           <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3" style="text-align: center;"  target="_blank" rel="noopener noreferrer" class="btn inscrip nav-btn">
+                               INSCRIBETE
+                            </a>
 
-                            <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3" style="text-align: center;"
-                                target="_blank" rel="noopener noreferrer" class="btn inscrip nav-btn">INSCRIBETE</a>
+                            <button type="submit" *ngIf="evento.preinscrip==1 || evento.preinscrip==2 || evento.preinscrip==3" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
 
-                            <button type="submit"
-                                *ngIf="evento.preinscrip==1 || evento.preinscrip==2 || evento.preinscrip==3"
-                                [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA
-                                DE INSCRIPTOS</button>
                         </div>
                     </div>
                 </div>

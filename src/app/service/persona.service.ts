@@ -30,5 +30,7 @@ export class PersonaService {
     return this.http.put(`${baserUrl}/persona/`,persona);
   }
   
-
+  public pubobtenerPersonaCi(ci:any){
+    return this.http.get(`${baserUrl}/personapub/ci/${ci}`);
+  }
 }

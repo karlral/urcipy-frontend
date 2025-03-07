@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Categoria } from 'src/app/domain/categoria';
+import { Modalidad } from 'src/app/domain/modalidad';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { CategoriaService } from 'src/app/service/categoria.service';
-import { RegionalService } from 'src/app/service/regional.service';
+import { ModalidadService } from 'src/app/service/modalidad.service';
 import { TrayectoService } from 'src/app/service/trayecto.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class CategoriaComponent {
 
 
   categoriaes: Categoria[] = [];
+  modalidades: Modalidad[] = [];
 
   // para agregar
 trayecto :Trayecto={
@@ -24,6 +26,10 @@ trayecto :Trayecto={
   nomtrayecto: '',
   km: 0
 }
+modalidad :Modalidad={
+  idmodalidad: 1,
+  nommodalidad: ''
+};
 
   categoria: Categoria = {
     idcategoria: 0,
@@ -39,7 +45,8 @@ trayecto :Trayecto={
     sexo: 0,
     tipo: 0,
     trayecto: this.trayecto,
-    horario:''
+    horario: '',
+    modalidad: this.modalidad
   };
 
   trayectos:Trayecto[]=[];
@@ -49,10 +56,12 @@ trayecto :Trayecto={
   categoriaDialog = false;
   
   tipos: any[] = [];
- 
+  tiposrun: any[] = [];
+  
 
   constructor(private messageService: MessageService,private categoriaService: CategoriaService,
     private trayectoService: TrayectoService,
+    private modalidadService: ModalidadService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -63,12 +72,31 @@ trayecto :Trayecto={
         {label: 'PROMOCIONAL', value: 3},
         {label: 'PROMOCIONAL+100K', value: 4}
     ];
+    this.tiposrun = [
+      {label: '20k', value: 1},
+      {label: '10k', value: 2},
+      {label: '5k', value: 3},
+      {label: 'GENERAL', value: 4}
+  ];
     //console.log(this.tipos);
 
     this.trayectoService.listarTrayectoes().subscribe(
       (dato:any) => {
         this.trayectos=dato;
        
+      },(error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Trayecto",
+          detail: "Error al cargar el Trayecto"
+        });       
+      }
+    );
+    this.modalidadService.listarModalidades().subscribe(
+      (dato:any) => {
+        this.modalidades=dato;
+        console.log(this.modalidades);
       },(error) => {
         console.log(error);
         this.messageService.add({
@@ -114,7 +142,8 @@ trayecto :Trayecto={
       sexo: 0,
       tipo: 0,
       trayecto: this.trayecto,
-      horario:''
+      horario: '',
+      modalidad: this.modalidad
     };
     return cat;
   }
@@ -196,6 +225,21 @@ trayecto :Trayecto={
     //this.categoria = { ...regio };
     this.categoria=regio;
     this.categoriaDialog = true;
+    if(regio.modalidad.idmodalidad==2){
+      this.tipos = [
+        {label: '20k', value: 1},
+        {label: '10k', value: 2},
+        {label: ' 5k', value: 3},
+        {label: 'GENERAL', value: 4}
+      ];
+    }else{
+      this.tipos = [
+        {label: 'PRINCIPAL', value: 1},
+        {label: 'PRINCIPAL-ELITE', value: 2},
+        {label: 'PROMOCIONAL', value: 3},
+        {label: 'PROMOCIONAL+100K', value: 4}
+       ];
+    }
   }
 
   deleteCategoria(categoria: Categoria) {

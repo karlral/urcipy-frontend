@@ -1,3 +1,4 @@
+import { Modalidad } from "./modalidad";
 import { Region } from "./region";
 
 export interface Club {
@@ -12,5 +13,6 @@ export interface Club {
     ruta:string,
     rutagrande:string,
     region:Region,
+    modalidad:Modalidad,
     cantidad?:number
 }

@@ -5,6 +5,7 @@ import { Categoria } from 'src/app/domain/categoria';
 import { Ciudad } from 'src/app/domain/ciudad';
 import { Club } from 'src/app/domain/club';
 import { Corredor } from 'src/app/domain/corredor';
+import { Modalidad } from 'src/app/domain/modalidad';
 import { Pais } from 'src/app/domain/pais';
 import { Persona } from 'src/app/domain/persona';
 import { Region } from 'src/app/domain/region';
@@ -53,7 +54,10 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     nomtrayecto: '',
     km: 0
   }
-
+  modalidad: Modalidad = {
+    idmodalidad: 1,
+    nommodalidad: ''
+  }
   eCategoria:Categoria={
     idcategoria: 0,
     nomcategoria: '',
@@ -68,7 +72,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     sexo: 0,
     tipo: 0,
     trayecto: this.trayecto,
-    horario:''
+    horario:'',
+    modalidad:this.modalidad
   };
 
   // para agregar
@@ -106,6 +111,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     presentacion: '',
     logo: ''
   }
+  
   club: Club = {
     idclub: 1,
     nomclub: 'Libre',
@@ -117,7 +123,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     email: '',
     ruta: '',
     rutagrande: '',
-    region: this.region
+    region: this.region,
+    modalidad: this.modalidad
   }
   pais: Pais = {
     idpais: 1,
@@ -188,6 +195,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     citp: '',
     nacionalidad: '',
     ciudad: this.ciudad,
+    tamano: 0
   }
   
 
@@ -213,6 +221,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     catalianza: true
   };
 
+  idmodalidad = 1;
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,

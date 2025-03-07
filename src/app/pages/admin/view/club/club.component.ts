@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Club } from 'src/app/domain/club';
+import { Modalidad } from 'src/app/domain/modalidad';
 import { Region } from 'src/app/domain/region';
 
 import { ClubService } from 'src/app/service/club.service';
 import baserUrl from 'src/app/service/helper';
 import { MediaService } from 'src/app/service/media.service';
+import { ModalidadService } from 'src/app/service/modalidad.service';
 import { RegionService } from 'src/app/service/region.service';
 
 @Component({
@@ -32,7 +34,7 @@ currentFile2?: File;
 fileName2 = '';
 preview2 = '';
 
-
+  modalidades : Modalidad[] = [];
   regiones: Region[] = [];
   clubes: Club[] = [];
 
@@ -43,6 +45,10 @@ preview2 = '';
    nomregion: '',
    nomcorto: '',
    logo: ''
+ }
+ modalidad:Modalidad={
+   idmodalidad: 1,
+   nommodalidad: ''
  }
   club: Club={
     idclub: 0,
@@ -55,15 +61,20 @@ preview2 = '';
     email: '',
     ruta: '',
     rutagrande: '',
-    region: this.region
+    region: this.region,
+    modalidad: this.modalidad
   };
 
 
   submitted = false;
   clubDialog = false;
 
-  constructor(private messageService: MessageService, private regionService: RegionService, private clubService: ClubService,
-    private confirmationService: ConfirmationService,private mediaService: MediaService) { }
+  constructor(private messageService: MessageService, 
+    private regionService: RegionService, 
+    private clubService: ClubService,
+    private modalidadService: ModalidadService,
+    private confirmationService: ConfirmationService,
+    private mediaService: MediaService) { }
 
   ngOnInit(): void {
 
@@ -97,7 +108,20 @@ preview2 = '';
             detail: "Error al cargar el Region"
           });       
         }
-      )
+      );
+      this.modalidadService.listarModalidades().subscribe(
+        (dato:any) => {
+          this.modalidades=dato;
+         
+        },(error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Trayecto",
+            detail: "Error al cargar el Trayecto"
+          });       
+        }
+      );
   }
 
   //para agregar nuevo
@@ -119,7 +143,8 @@ preview2 = '';
       email: '',
       ruta: '',
       rutagrande: '',
-      region:this.region
+      region:this.region,
+      modalidad:this.modalidad
     
       };
   }

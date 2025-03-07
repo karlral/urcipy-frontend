@@ -16,7 +16,8 @@ export interface Persona {
     tutorp: string,
     citp: string,
     nacionalidad: string,
-    ciudad: Ciudad
+    ciudad: Ciudad,
+    tamano: number
     
 }
 

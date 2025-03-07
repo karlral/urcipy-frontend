@@ -7,11 +7,13 @@ import baserUrl from 'src/app/service/helper';
 import { ParticipanteService } from 'src/app/service/participante.service';
 import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-list-participantes',
   templateUrl: './list-participantes.component.html',
-  styleUrls: ['./list-participantes.component.css']
+  styleUrls: ['./list-participantes.component.css'],
+    providers: [MessageService,ConfirmationService]
 })
 export class ListParticipantesComponent implements OnInit{
 
@@ -26,7 +28,9 @@ export class ListParticipantesComponent implements OnInit{
 
   constructor( private activatedRoute:ActivatedRoute,
     private eventoService: EventoService,
-    private participanteService:ParticipanteService
+    private participanteService:ParticipanteService,
+    private messageService: MessageService,
+        private confirmationService:ConfirmationService
     ) { }
   
   ngOnInit(): void {
@@ -96,4 +100,35 @@ export class ListParticipantesComponent implements OnInit{
     );
   }
 
+  deletePartici(deleteData:any){
+    console.log(deleteData);
+    this.confirmationService.confirm({
+      message: 'Estas seguro de que quieres borrar ' + deleteData.corredor + '?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+
+        this.participanteService.eliminarParticipante(deleteData.id).subscribe(
+          {
+            next: (data) => {
+
+              this.inscriptos = this.inscriptos.filter(val => val.id !== deleteData.id);
+              
+              this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Participante Borrado', life: 3000 });
+            },
+            error: (error) => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al eliminar el participante', life: 3000 });
+
+            },
+            complete: () => {
+              console.log('Completado');
+            }
+          }
+        );
+
+
+      }
+    });
+    
+  }
 }

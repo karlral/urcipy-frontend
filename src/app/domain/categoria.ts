@@ -1,3 +1,4 @@
+import { Modalidad } from "./modalidad";
 import { Trayecto } from "./trayecto";
 
 export interface Categoria {
@@ -14,5 +15,6 @@ export interface Categoria {
         sexo:number,
         tipo:number,
         trayecto:Trayecto,
-        horario:string
+        horario:string,
+        modalidad:Modalidad
 }

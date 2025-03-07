@@ -61,6 +61,7 @@
                 <label for="nombre">Ciudad</label>
 
                 <p-dropdown [options]="ciudades" formControlName="ciudad" placeholder="Seleccionar una ciudad"
+                [filter]="true" [filterBy]="'nomciudad'" 
                     autoWidth="false" [style]="{'width':'100%'}" optionLabel="nomciudad" [showClear]="true"
                     appendTo="body"></p-dropdown>
 
@@ -143,6 +144,7 @@
                     [fecnac]="corredorForm.value.persona?.fecnac" 
                     [sexo]="corredorForm.value.persona?.sexo"
                     [tipocat]="corredorForm.value.tipocat"
+                    [idmodalidad]="idmodalidad"
                     (emitCategoria)="cargarCategoria($event)">
                 </app-cat-corredor>
 

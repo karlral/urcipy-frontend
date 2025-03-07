@@ -8,6 +8,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessagesModule } from 'primeng/messages';
+import { Toast, ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
     FormsModule,
     InputTextModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    ToastModule
 
   ],providers: [authInterceptorProviders]
 })

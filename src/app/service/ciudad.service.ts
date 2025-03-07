@@ -27,4 +27,8 @@ export class CiudadService {
   public actualizarCiudad(ciudad:any){
     return this.http.put(`${baserUrl}/ciudad/`,ciudad);
   }
+
+  public publistarCiudades():Observable<Ciudad[]>{
+    return this.http.get<Ciudad[]>(`${baserUrl}/ciudadpub/`);
+  }
 }

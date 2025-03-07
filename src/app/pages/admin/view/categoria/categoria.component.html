@@ -8,8 +8,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
     <div class="flex align-items-center justify-content-between">
         <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
             (click)="openNew()"></button>
-            <button pButton pRipple icon="pi pi-update" class="p-button-success mr-2"
-            (click)="rellenarDataTable()"></button>
+            
         <h2 class="m-0">Categorias</h2>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
@@ -22,6 +21,11 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <th>Cod.</th>
             <th pSortableColumn="nomcategoria" style="min-width:15rem">Nombre <p-sortIcon field="nomcategoria"></p-sortIcon></th>
+            <th>Nombre Corto</th>
+            <th>Ini</th>
+            <th>Fin</th>
+            <th>Sexo</th>
+            <th>Modalidad</th>
             <th>Trayecto</th>
             <th>Km</th>
             <th></th>
@@ -31,7 +35,12 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <td>{{categoria.idcategoria}}</td>
             <td>{{categoria.nomcategoria}}</td>
-            <td>{{categoria.trayecto.nomtrayecto}}</td>
+            <td>{{categoria.nomcorto}}</td>
+            <td>{{categoria.edadinicio}}</td>
+            <td>{{categoria.edadfin}}</td>
+            <td>{{categoria.sexo==1 ? 'M' :'F'}}</td>
+            <td>{{categoria.modalidad.nommodalidad}}</td>
+            <td >{{categoria.modalidad.idmodalidad==1 ? tipos[categoria.tipo-1].label : tiposrun[categoria.tipo-1].label}}</td>
             <td>{{categoria.trayecto.km}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -86,6 +95,13 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
                 <p-dropdown [options]="tipos" [(ngModel)]="categoria.tipo" id="tipo"  
                 placeholder="Elegir Tipo de Categoria" optionLabel="label" optionValue="value" 
                 [showClear]="true" appendTo="body"></p-dropdown>
+            </div>
+            <div class="field">
+                <label for="modalidad">Modalidad</label>
+                <p-dropdown [options]="modalidades" [(ngModel)]="categoria.modalidad" id="modalidad"  
+                placeholder="Elegir Modalidad de la Categoria" 
+                optionLabel="nommodalidad"  [showClear]="true" appendTo="body"></p-dropdown>
+                
             </div>
            
             <div class="field">
