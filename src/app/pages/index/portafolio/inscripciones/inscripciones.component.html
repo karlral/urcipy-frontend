@@ -18,7 +18,7 @@
                           
                            <button (click)="buttonSubmit('club')" class="btn list">CLUB</button>
                            
-                           <button (click)="buttonSubmit('tanda')" class="btn list">TANDA</button>
+                           <button *ngIf="evento.modalidad.idmodalidad==1" (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
 
                            
                         </div>

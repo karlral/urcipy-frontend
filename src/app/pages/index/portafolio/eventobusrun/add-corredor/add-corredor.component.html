@@ -1,4 +1,4 @@
-<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+<p-panel  [style]="{width: '400px' }"
     (onHide)="closeModal()">
     <ng-template pTemplate="header">
         <span class="text-xl font-bold">{{modalType}} Corredor</span>
@@ -61,7 +61,6 @@
                 <label for="nombre">Ciudad</label>
 
                 <p-dropdown [options]="ciudades" formControlName="ciudad" placeholder="Seleccionar una ciudad"
-                [filter]="true" [filterBy]="'nomciudad'" 
                     autoWidth="false" [style]="{'width':'100%'}" optionLabel="nomciudad" [showClear]="true"
                     appendTo="body"></p-dropdown>
 
@@ -80,27 +79,8 @@
                     [style]="{'width':'100%'}" placeholder="Seleccionar grupo" optionLabel="label" optionValue="value"
                     [showClear]="true" appendTo="body"></p-dropdown>
             </div>
-
-            <div class="field">
-                <label for="nombre">Tutor</label>
-
-                <input type="text" pInputText id="tutorp" formControlName="tutorp" placeholder="Tutor" 
-                class="prime" [style]="{'width':'100%'}"/>
-
-            </div>
-
-            <div class="field">
-                <label for="citp">CI tutor</label>
-                <input type="text" pInputText id="citp" formControlName="citp" placeholder="CI tutor" 
-                class="prime" [style]="{'width':'100%'}"/>
-
-            </div>
             
-        
-        </fieldset>
-
-        <fieldset formGroupName="persona" class="mr-2">
-            <legend>Configuracion Categoria</legend>
+      
 
             <div class="field">
 
@@ -110,9 +90,9 @@
                 <small class="p-error" *ngIf="
                 corredorForm.controls['persona'].controls['fecnac'].invalid && 
                 corredorForm.controls['persona'].controls['fecnac'].dirty">Fecha de Nacimiento de corredor es requerido.</small>
-                <!--small>{{corredorForm.value.fecnac}}</small-->
             </div>
 
+         
             <div class="field">
                 <label class="mb-3">Sexo</label>
                 <div class="flex justify-content-around flex-wrap">
@@ -159,111 +139,28 @@
 
         </div>
 
-            <div class="field">
-                <label for="licencia">Licencia</label>
-                <p-inputNumber inputId="licencia" [style]="{'width':'100%'}" formControlName="licencia"
-                    inputStyleClass="text-right" class="prime">
-                </p-inputNumber>
-            </div>
-
-            <div class="field">
-                <label class="mb-3">Tipo de Carnet</label>
-                <div class="flex justify-content-around flex-wrap">
-                    <div class="field-radiobutton">
-                        <p-radioButton id="carnetfpc0" name="carnetfpc" value="0"
-                            formControlName="carnetfpc"></p-radioButton>
-                        <label for="carnetfpc0">No</label>
-                    </div>
-                    <div class="field-radiobutton">
-                        <p-radioButton id="carnetfpc1" name="carnetfpc" value="1"
-                            formControlName="carnetfpc"></p-radioButton>
-                        <label for="carnetfpc1">FPC</label>
-                    </div>
-                    <div class="field-radiobutton">
-                        <p-radioButton id="carnetfpc2" name="carnetfpc" value="2"
-                            formControlName="carnetfpc"></p-radioButton>
-                        <label for="carnetfpc2">URCI</label>
-                    </div>
-                    <div class="field-radiobutton">
-                        <p-radioButton id="carnetfpc3" name="carnetfpc" value="3"
-                            formControlName="carnetfpc"></p-radioButton>
-                        <label for="carnetfpc3">FMC</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="field flex align-items-center justify-content-evenly flex-wrap">
-                <label for="modificar" class="mr-2">Modificar</label>
-                <p-inputSwitch id="modificar" formControlName="modificar"></p-inputSwitch>
-            </div>
-            <div class="field flex align-items-center justify-content-evenly flex-wrap">
-                <label for="catalianza" class="mr-2">Alianza</label>
-                <p-inputSwitch id="catalianza" formControlName="catalianza"></p-inputSwitch>
-            </div>
-            <!--div class="field flex align-items-center justify-content-evenly flex-wrap">
-            <label for="puntua" class="mr-2">Puntua</label>
-            <p-inputSwitch id="puntua" formControlName="puntua"></p-inputSwitch>
-        </div-->
-
-            <div class="field">
-                <label class="mb-3">Dato Verificado</label>
-                <div class="flex justify-content-around flex-wrap">
-                    <div class="field-radiobutton">
-                        <p-radioButton id="verificar1" name="verificar" value="1"
-                            formControlName="verificar"></p-radioButton>
-                        <label for="verificar1">Si</label>
-                    </div>
-                    <div class="field-radiobutton">
-                        <p-radioButton id="verificar2" name="verificar" value="0"
-                            formControlName="verificar"></p-radioButton>
-                        <label for="verificar2">No</label>
-                    </div>
-                </div>
-            </div>
-
+    </fieldset>
+    <fieldset formGroupName="persona" class="mr-2">
+        <div class="field">
+            <label for="tamano">Tamaño de la Remera</label>
+            <p-dropdown [options]="tamanos" formControlName="tamano" id="tamano"
+              placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"
+              optionLabel="label" optionValue="value" [showClear]="true"
+              appendTo="body"></p-dropdown>
+          </div>
+          
         </fieldset>
-
-        
-
-        <fieldset class="mr-2">
-        <!-- <div class="field">
-            <img *ngIf="selectedCorredor.foto" [src]="selectedCorredor.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.foto"
-                [alt]="selectedCorredor.foto" class="regional-image" >
-             <img [src]="preview" class="regional-image" *ngIf="preview"> 
-
-        </div>
- -->
-            <div class="field">
-                <label for="observacion">Observacion</label>
-                <textarea rows="5"  pInputTextarea formControlName="observacion" 
-                class="prime" [style]="{'width':'100%'}"></textarea>
-
-            </div>
- 
-            <div class="field">
-                <label for="foto" class="form-label">Seleccionar foto</label>
-                <input id="foto" name="foto" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
-                    (change)="selectFile($event)">
-                <!--p>{{selectedCorredor.foto}}</p-->
-            </div>
-            <div class="field">
-                <!--label  class="form-label">Modificado: {{fecmodi}}</label-->
-                <label class="form-label">Usuario: {{selectedCorredor ? selectedCorredor.usuario.username:''}}</label>
-     
-            </div>
-        </fieldset>
-
 
     </form>
 
 
 
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
-        <p-button icon="pi pi-add" (click)="addEditCorredor()" label="{{modalType}}" styleClass="p-button-text"
+    <ng-template pTemplate="footer" class="flex justify-content-end flex-wrap" >
+        <!-- <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text ml-5 mr-5  bg-primary"></p-button> -->
+        <p-button icon="pi pi-add" (click)="addEditCorredor()" label="{{modalType}}" styleClass="p-button-text ml-5 bg-primary" 
             [disabled]="corredorForm.invalid"></p-button>
 
 
     </ng-template>
 
-</p-dialog>
+</p-panel>

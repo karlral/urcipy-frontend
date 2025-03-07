@@ -28,4 +28,7 @@ export class PaisService {
   public actualizarPais(pais:any){
     return this.http.put(`${baserUrl}/pais/`,pais);
   }
+  public publistarPaises():Observable<Pais[]>{
+    return this.http.get<Pais[]>(`${baserUrl}/paispub/`);
+  }
 }

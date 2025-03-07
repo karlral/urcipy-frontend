@@ -27,4 +27,7 @@ export class ClubService {
   public actualizarClub(club:any){
     return this.http.put(`${baserUrl}/club/`,club);
   }
+  public publistarClubesRun():Observable<Club[]>{
+    return this.http.get<Club[]>(`${baserUrl}/clubpub/`);
+  }
 }
