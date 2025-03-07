@@ -1,17 +1,88 @@
 
-<section id="home" class="home">
-    <div class="home-content aos-init aos-animate" data-aos="zoom-in">
+<div class="hero">
+    <div class="blur hero-blur"></div>
+    <div class="left-h">
+        <app-header></app-header>
+        <!-- {/* El mejor best ad */} -->
+
+        <div class="the-best-ad">
+
+            <div class="the-best-ad-1"></div>
+            <span>Cronometra con precision el tiempo de llegada...</span>
+        </div>
+        <!-- {/* Hero Heading */} -->
+        <div class="hero-text">
+            <div>
+                <span class="stroke-text">CRONOSTAR</span>
+            </div>
+            <div>
+                <span>TUS TIEMPOS</span>
+            </div>
+            <div>
+                <span>
+                    Aqui nosotros te ayudamos a llevar un control de tus tiempos de
+                    llegada y salida
+                </span>
+            </div>
+        </div>
+        <!-- {/* Hero Button */} -->
+        <div class="figures">
+            <div>
+                <span>
+                    <!-- <NumberCounter end={4} start={0} delay={4} preFix="+"></NumberCounter> -->
+                     +4
+                </span>
+                <span>Campeonatos</span>
+            </div>
+            <div>
+                <span>
+                    <!-- <NumberCounter end={20} start={0} delay={4} preFix="+"></NumberCounter> -->
+                     +20
+                </span>
+                <span>Eventos</span>
+            </div>
+            <div>
+                <span>
+                    <!-- <NumberCounter end={1000} start={500} delay={5} preFix="+"></NumberCounter> -->
+                     +1000
+                </span>
+                <span>Corredores</span>
+            </div>
+
+        </div>
+        <!-- {/* Hero Buttons */} -->
+        <div  class="hero-buttons">
+
+            <button *ngFor="let evento of eventoes" class="btn" role="link"
+                (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
+                Resulados {{evento.nomevento | uppercase}}</button>
+            <button class="btn" [routerLink]="['/portfolio']">Inscripciones</button>
+        </div>
+    </div>
+
+    <div *ngIf="event" class="right-h">
         
-        <h3>{{regional.nomregional}}</h3>
-        <p>Este es un espacio creado para todas las personas que les guste o hagan ciclismo, tanto para informarse de eventos y actividades!!</p>
 
-        <a href="portfolio" class="btn">Inscripcion</a>
+        <div 
+            class="heart-rate">
+            <img src="../../../../assets/images/heart.png" alt="heart" />
+            <span>Heart Rate</span>
+            <span>170 bpm</span>
+        </div>
+        <!-- {/* Imagen de hero */} -->
+        <!-- <img src="../../../../assets/images/hero_image.png" class="hero-image" alt="hero" /> -->
+        <img  [src]="mediaLocation+event.club.ruta" class="hero-image" [alt]="event.club.ruta" />
+        <img 
+            src="../../../../assets/images/hero_image_back.png" class="hero-image-back" alt="hero back" />
     </div>
-
-    <div class="home-img aos-init aos-animate" data-aos="zoom-in">
-        <img *ngIf="regional.logo" [src]="mediaLocation+regional.logo"  [alt]="regional.logo">
+    <!-- /* Calories */ -->
+    <div class="calories">
+        <img src="../../../../assets/images/calories.png" alt="calories" />
+        <div>
+            <span>Calorias Quemadas</span>
+            <span>1500 kcal</span>
+        </div>
     </div>
-</section>
-<!-- carga de typed -->
-<app-carga></app-carga>
-
+</div>
+<app-programs></app-programs>
+<app-reason></app-reason>

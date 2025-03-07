@@ -110,7 +110,13 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
                 {{fileName2}}
             </div>
         
-           
+            <div class="field">
+                <label for="modalidad">Modalidad</label>
+                <p-dropdown [options]="modalidades" [(ngModel)]="club.modalidad" id="modalidad"  
+                placeholder="Elegir Modalidad de la Categoria" 
+                optionLabel="nommodalidad"  [showClear]="true" appendTo="body"></p-dropdown>
+                
+            </div>  
 
 
         <div class="field">

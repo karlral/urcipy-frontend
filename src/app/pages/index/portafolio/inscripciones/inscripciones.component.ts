@@ -4,6 +4,7 @@ import { Categoria } from 'src/app/domain/categoria';
 import { Club } from 'src/app/domain/club';
 import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import { Evento } from 'src/app/domain/evento';
+import { Modalidad } from 'src/app/domain/modalidad';
 import { Region } from 'src/app/domain/region';
 
 import { Regional } from 'src/app/domain/regional';
@@ -40,6 +41,10 @@ export class InscripcionesComponent  implements OnInit{
     nomcorto: '',
     logo: ''
   }
+  modalidad:Modalidad={
+    idmodalidad: 0,
+    nommodalidad: ''
+  };
   club:Club={
     idclub: 0,
     nomclub: '',
@@ -51,8 +56,10 @@ export class InscripcionesComponent  implements OnInit{
     email: '',
     ruta: '',
     rutagrande: '',
-    region: this.region
+    region: this.region,
+    modalidad: this.modalidad
   }
+  
   evento:Evento={
     idevento: 0,
     fecha: new Date,
@@ -83,7 +90,8 @@ export class InscripcionesComponent  implements OnInit{
     fondo: '',
     club: this.club,
     regional: this.regional,
-    alianza: 0
+    alianza: 0,
+    modalidad: this.modalidad
   };
 
   inscripciones!:Inscripcion[];
@@ -102,9 +110,7 @@ export class InscripcionesComponent  implements OnInit{
     this.participanteService.listarParticipantesActivos(this.activo).subscribe(
       {
         next: (p: Inscripcion[]) => {
-          this.inscripciones = p;
-        
-          
+          this.inscripciones = p;   
         },
         error: (error) => {
           console.log(error);

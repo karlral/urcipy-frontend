@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 import { Club } from 'src/app/domain/club';
+import { Modalidad } from 'src/app/domain/modalidad';
 import { Regional } from 'src/app/domain/regional';
 import { ClubService } from 'src/app/service/club.service';
 import { Datasys } from 'src/app/service/datasys';
@@ -10,6 +11,7 @@ import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
 import system from 'src/app/service/helpersys';
 import { MediaService } from 'src/app/service/media.service';
+import { ModalidadService } from 'src/app/service/modalidad.service';
 
 @Component({
   selector: 'app-add-edit-evento',
@@ -25,6 +27,10 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
 
   modalType="Agregar";
+  modalidad:Modalidad={
+    idmodalidad: 1,
+    nommodalidad: '',
+  }
 
   regional:Regional={
     idregional: system,
@@ -47,6 +53,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   verencuestas: any[] = [];
   ranqueables:any[]=[];
   preinscripciones:any[]=[];
+  modalidades:Modalidad[]=[];
 
   fecha = new Date();
  
@@ -87,7 +94,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     fondocolor:[''],
     fondo: [''],
     club: [null],
-    regional:[this.regional]
+    regional:[this.regional],
+    modalidad:[this.modalidad]
   });
 
 
@@ -96,6 +104,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     private messageService: MessageService,
     private mediaService: MediaService,
     private eventoService: EventoService,
+    private modalidadService: ModalidadService,
     private datasys:Datasys,
 
   ) { }
@@ -103,7 +112,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedEvento){
       this.modalType="Guardar";
-      console.log(this.selectedEvento);
+      
       this.eventoForm.patchValue(this.selectedEvento);
 
       const fecha2= new Date(this.selectedEvento.fecha);
@@ -201,7 +210,19 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
         });
       }
     );
-
+    this.modalidadService.listarModalidades().subscribe(
+      (dato: any) => {
+        this.modalidades = dato;
+     
+      }, (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Modalidad",
+          detail: "Error al cargar el Modalidad"
+        });
+      }
+    );
   }
   
 

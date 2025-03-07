@@ -1,5 +1,8 @@
 
 export interface Corredorbus {
+    idcorredor: number,
+    idpersona: number,
+    idcategoria: number,
     ci:string,
     corredor:string,
     fecnac:Date,
@@ -11,5 +14,6 @@ export interface Corredorbus {
     ciudad:string,
     pais:string,
     carnetfpc: number,
-    puntua: number
+    puntua: number,
+    tamano: number,
 }
