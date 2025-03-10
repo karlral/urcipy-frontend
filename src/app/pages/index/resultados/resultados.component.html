@@ -1,0 +1,28 @@
+
+
+    <!-- Pricing Section Code 
+    aos-init data-aos="zoom-in-down"
+    aos-init data-aos="zoom-in-up"
+    -->
+
+    <section class="plans" id="plans">
+        <h2 class="heading " ><span>Resultados </span>de Eventos</h2>
+
+
+        <div  class="plans-content " >
+
+            <div *ngFor="let evento of eventoes" class="box">
+                
+                <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+                
+                <h3>{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h3>
+                
+                <h2><span>{{evento.nomevento | uppercase}}</span></h2>
+                
+                <button  class="btn" role="link"
+                (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
+                Resulado </button>
+            </div>
+            
+        </div>
+    </section>

@@ -17,6 +17,9 @@ const routes: Routes = [
   },{
     path:'resumen', loadChildren:()=> import('./pages/index/resumen/resumen.module').then(m => m.ResumenModule)
   },{
+    path:'resultados', loadChildren:()=> import('./pages/index/resultados/resultados.module').then(m => m.ResultadosModule)
+  }
+  ,{
     path:'portfolio', loadChildren:()=> import('./pages/index/portafolio/portafolio.module').then(m => m.PortafolioModule)
   },{
     path:'contact', loadChildren:()=> import('./pages/index/contacto/contacto.module').then(m => m.ContactoModule)
