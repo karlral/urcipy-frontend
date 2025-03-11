@@ -7,11 +7,15 @@
 >
 </app-buscorredor>
 
-<app-carnet *ngIf="inscripto && corredor.carnetfpc==2"
+<!-- <app-carnet *ngIf="inscripto && corredor.carnetfpc==2"
+      [corredor]="corredor"
+      [anho]="anho"
+      ></app-carnet> -->
+      <app-carnet *ngIf="inscripto && corredor.puntua==1"
       [corredor]="corredor"
       [anho]="anho"
       ></app-carnet>
-      
+
 <img *ngIf="inscripto && corredor.carnetfpc==1" [src]="mediaLocation+corredor.foto" width="100%" style="max-width: 500px; margin-top: 60px;" alt="carnet FPC imagen">
   
 
