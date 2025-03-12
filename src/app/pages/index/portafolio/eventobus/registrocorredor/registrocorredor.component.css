@@ -36,11 +36,11 @@
 }*/
 
 .wrapperBx .cardBx:after{
-  content: 'cronostar';
+  content: 'CGC';
   position: absolute;
   top: 26%;
   left: 0%;
-  font-size: 5em;
+  font-size: 11em;
   font-weight: 800;
  
  
