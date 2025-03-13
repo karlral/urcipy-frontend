@@ -8,6 +8,7 @@ import { CorredorService } from 'src/app/service/corredor.service';
 import system from 'src/app/service/helpersys';
 import { Puncorredor } from 'src/app/domain/custom/puncorredor';
 import { ParticipanteService } from 'src/app/service/participante.service';
+import { el } from 'date-fns/locale';
 
 @Component({
   selector: 'app-add-ranking',
@@ -46,7 +47,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
     idcorredor: system,
     persona:this.persona
   };
-
+ monto :number=20000;
   movimientoForm = this.fb.group({
     idmovimiento:[null],
     fecha: [this.fecha, Validators.required],
@@ -74,11 +75,16 @@ export class AddRankingComponent  implements OnInit, OnChanges {
     this.user=this.login.getUser();
     
     this.usuario.idusuario = this.user.idusuario;
+    if(system==1){  
+      this.monto=50000;
+    }else{
+      this.monto=20000;
+    }
     
       this.movimientoForm.reset({
     
         fecha:this.fecha,
-        entrada:20000,
+        entrada:this.monto,
         salida:0,
         concepto:this.concepto,
         corredor:this.corredor,
@@ -104,7 +110,21 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   }
 
   addMovimiento() {
+      this.movimientoService.busMovimientosRankingPub(this.movimientoForm.get('ci')?.value).subscribe({
+        next: (dato) => {
+          if (dato){
+            this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ya esta en el ranking', life: 3000 });
+          }else{
+            this.guardarMovimiento();
+          }
+        }, error: (error) => {
+          console.log(error);
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la movimiento', life: 3000 }); 
+        }
+      });
+  }
 
+  guardarMovimiento(){
       this.movimientoService.agregarMovimiento(this.movimientoForm.value).subscribe(
         {
           next: (dato) => {
