@@ -43,7 +43,8 @@ export class CatCorredorComponent implements OnInit, OnChanges {
     tipo: 0,
     trayecto: this.trayecto,
     horario: '',
-    modalidad: this.modalidad
+    modalidad: this.modalidad,
+    codigo: ''
   };
 
   edad = 0;
@@ -82,7 +83,8 @@ export class CatCorredorComponent implements OnInit, OnChanges {
       tipo: 0,
       trayecto:this.trayecto,
       horario:'',
-      modalidad: this.modalidad
+      modalidad: this.modalidad,
+      codigo: ''
     };
     if (this.fecnac) {
       var fechaActual: Date = new Date();

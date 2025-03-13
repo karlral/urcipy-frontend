@@ -168,7 +168,11 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             </div>
 
         </div>
-        
+        <div class="field">
+            <label for="codigo" >Codigo</label>
+            <input type="text" pInputText id="codigo" [(ngModel)]="categoria.codigo" required autofocus />
+            <small class="p-error" *ngIf="submitted && !categoria.codigo">Nombre codigo para control.</small>
+        </div> 
 
         
     </ng-template>

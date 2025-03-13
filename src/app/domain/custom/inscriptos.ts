@@ -10,6 +10,7 @@ export interface Inscriptos {
     pais: string,
     club:string,
     categoria:string,
+    codigo:string,
     km: number,
     acobrar:number,
     pagado: number,
