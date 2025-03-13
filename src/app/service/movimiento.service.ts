@@ -35,6 +35,10 @@ export class MovimientoService {
   }
 
   /*****PUBLICOS */
+  public busMovimientosRankingPub(ci:any):Observable<Corredorank>{
+    return this.http.get<Corredorank>(`${baserUrl}/movipub/${ci}/${system}`);
+  }
+
   public listarMovimientosRankingPub():Observable<Corredorank[]>{
     return this.http.get<Corredorank[]>(`${baserUrl}/movipub/ranking/${system}`);
   }
