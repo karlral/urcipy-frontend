@@ -73,8 +73,9 @@ export class AddCorredorComponent  implements OnInit {
     sexo: 0,
     tipo: 0,
     trayecto: this.trayecto,
-    horario:'',
-    modalidad:this.modalidad
+    horario: '',
+    modalidad: this.modalidad,
+    codigo: ''
   };
 
   

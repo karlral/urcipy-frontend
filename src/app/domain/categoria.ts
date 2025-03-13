@@ -16,5 +16,6 @@ export interface Categoria {
         tipo:number,
         trayecto:Trayecto,
         horario:string,
+        codigo:string,
         modalidad:Modalidad
 }
