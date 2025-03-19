@@ -3,15 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/app/service/admin.guard';
 
 import { NavigationComponent } from './navigation/navigation.component';
-import { CategoriaComponent } from './view/categoria/categoria.component';
-import { CiudadComponent } from './view/ciudad/ciudad.component';
-import { ClubComponent } from './view/club/club.component';
-import { PaisComponent } from './view/pais/pais.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { TrayectoComponent } from './view/trayecto/trayecto.component';
-import { ProcesarCampeonComponent } from './view/procesar-campeon/procesar-campeon.component';
-import { RegionComponent } from './view/region/region.component';
-import { RegionalComponent } from './view/regional/regional.component';
 
 
 const routes: Routes = [
@@ -24,38 +16,33 @@ const routes: Routes = [
       {
         path:'',
         component:WelcomeComponent
-      },{
-        path:'pais',
-        component:PaisComponent,
-
-      },{
-        path:'ciudad',
-        component:CiudadComponent,
-
-      },{
-        path:'region',
-        component:RegionComponent,
-
-      },{
-        path:'sistema',
-        component:RegionalComponent,
-
-      },{
-        path:'club',
-        component:ClubComponent,
-
-      },{
-        path:'trayecto',
-        component:TrayectoComponent,
-
-      },{
-        path:'categoria',
-        component:CategoriaComponent,
-
-      },{
-        path:'procesarcampeon',
-        component:ProcesarCampeonComponent,
-
+      },
+      {
+        path:'pais', loadChildren:()=> import('./view/pais/pais.module').then(m => m.PaisModule)
+      }
+      ,
+      {
+        path:'ciudad', loadChildren:()=> import('./view/ciudad/ciudad.module').then(m => m.CiudadModule)
+      },
+      {
+        path:'region', loadChildren:()=> import('./view/region/region.module').then(m => m.RegionModule)
+      }
+      ,
+      {
+        path:'sistema', loadChildren:()=> import('./view/regional/regional.module').then(m => m.RegionalModule)
+      }
+      ,{
+        path:'categoria', loadChildren:()=> import('./view/categoria/categoria.module').then(m => m.CategoriaModule)
+      }
+      ,
+      {
+        path:'club', loadChildren:()=> import('./view/club/club.module').then(m => m.ClubModule)
+      },
+      {
+        path:'trayecto', loadChildren:()=> import('./view/trayecto/trayecto.module').then(m => m.TrayectoModule)
+      },
+      {
+        path:'procesarcampeon', loadChildren:()=> import('./view/procesar-campeon/procesar-campeon.module').then(m => m.ProcesarCampeonModule)
       },
       {
         path:'dorsal', loadChildren:()=> import('./view/dorsal/dorsal.module').then(m => m.DorsalModule)
