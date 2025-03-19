@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
+import { PanelModule } from 'primeng/panel';
 
 
 
@@ -28,6 +29,7 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
   imports: [   
     CommonModule,
     AdminRoutingModule,
+    PanelModule,
     PanelMenuModule,
     ButtonModule,
     SidebarModule,
