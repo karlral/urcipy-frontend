@@ -4,7 +4,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
-import * as FileSaver from 'file-saver';
+
 
 @Component({
   selector: 'app-pais',

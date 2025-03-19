@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+
+
+<p-table  #dt styleClass="p-datatable-sm" [value]="dorsales" [rows]="10" [paginator]="true" [globalFilterFields]="['nomdorsal','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="iddorsal"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+<ng-template pTemplate="caption">
+
+    <div class="flex align-items-center justify-content-between">
+       
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+        (click)="openNew()"></button>
+
+        <!-- <button pButton pRipple icon="pi pi-plus" label="ADD" class="p-button-success mr-2"
+        (click)="openNewReg()"></button> -->
+       
+        <h2 class="m-0">Dorsales</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="iddorsal" style="text-align: center;">Dorsal <p-sortIcon field="iddorsal"></p-sortIcon></th>
+            <th>Chip</th>
+            <th>Color</th>
+            <th>Activo</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-dorsal>
+        <tr>
+            <td style="text-align: center;">{{dorsal.iddorsal}}</td>
+            <td>{{dorsal.chip}}</td>
+            <td>{{dorsal.color}}</td>
+            <td>{{dorsal.activo ==1 ? 'Si' : 'No'}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editDorsal(dorsal)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteDorsal(dorsal)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="dorsalDialog" [style]="{width: '450px'}" header="Dorsal" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field col-12 md:col-3">
+            <label for="iddorsal" style="display: block">Dorsal</label>
+            <p-inputNumber [(ngModel)]="dorsal.iddorsal"  inputId="iddorsal" [inputStyle]="{'width': '100%', 'text-align': 'right'}" [min]="0" [max]="2000" autofocus
+            [min]="0" [max]="2000">
+            </p-inputNumber>
+        </div>
+    <div class="field">
+            <label for="chip">Chip</label>
+            <input type="text" pInputText id="chip" [(ngModel)]="dorsal.chip" required  />
+            <small class="p-error" *ngIf="submitted && !dorsal.chip">Nombre de dorsal es requerido.</small>
+        </div>
+        
+        <div class="field">
+            <label for="color">Color</label>
+            <p-dropdown [options]="colores" [(ngModel)]="dorsal.color" id="color"
+                placeholder="Seleccionar color del dorsal" autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="activo" class="mr-2">Activo</label>
+            <p-inputSwitch id="activo" [(ngModel)]="dorsal.activo"></p-inputSwitch>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveDorsal()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

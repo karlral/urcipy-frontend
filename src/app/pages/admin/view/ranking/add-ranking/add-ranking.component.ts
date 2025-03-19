@@ -8,7 +8,7 @@ import { CorredorService } from 'src/app/service/corredor.service';
 import system from 'src/app/service/helpersys';
 import { Puncorredor } from 'src/app/domain/custom/puncorredor';
 import { ParticipanteService } from 'src/app/service/participante.service';
-import { el } from 'date-fns/locale';
+
 
 @Component({
   selector: 'app-add-ranking',

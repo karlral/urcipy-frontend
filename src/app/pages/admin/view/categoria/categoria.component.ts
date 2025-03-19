@@ -97,7 +97,7 @@ modalidad :Modalidad={
     this.modalidadService.listarModalidades().subscribe(
       (dato:any) => {
         this.modalidades=dato;
-        console.log(this.modalidades);
+        //console.log(this.modalidades);
       },(error) => {
         console.log(error);
         this.messageService.add({
@@ -114,7 +114,7 @@ modalidad :Modalidad={
       {
         next: (dato: Categoria[]) => {
           this.categoriaes = dato;
-          console.log(this.categoriaes);
+          //console.log(this.categoriaes);
         },
         error: (error) => {
           console.log(error);
