@@ -44,6 +44,10 @@ export class ParticipanteService {
   public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
     return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
   }
+  
+  public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
+    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
+  }
 
   public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
     return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
