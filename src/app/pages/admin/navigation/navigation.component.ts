@@ -46,6 +46,7 @@ ngOnInit(): void {
       {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/club']},
       {label: 'Trayecto', icon: 'pi pi-download', routerLink: ['/admin/acceso/trayecto']},
       {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
+      {label: 'Dorsal', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/dorsal']},
       {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor/corre']},
       {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/evento/evento']},
       {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},

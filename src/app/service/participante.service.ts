@@ -37,8 +37,16 @@ export class ParticipanteService {
     return this.http.put(`${baserUrl}/participante/`,participante);
   }
 
+  public actuaParticiDorsal(partici:any){
+    return this.http.put(`${baserUrl}/participante/dorsal/`,partici);
+  }
+
   public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
     return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
+  }
+
+  public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
+    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
   }
 
 /**PUBLICOS */

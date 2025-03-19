@@ -59,6 +59,10 @@ const routes: Routes = [
       }
       ,
       {
+        path:'dorsal', loadChildren:()=> import('./view/dorsal/dorsal.module').then(m => m.DorsalModule)
+      }
+      ,
+      {
         path:'listpart', loadChildren:()=> import('./view/list-participantes/list-participantes.module').then(m => m.ListParticipantesModule)
       },
       {

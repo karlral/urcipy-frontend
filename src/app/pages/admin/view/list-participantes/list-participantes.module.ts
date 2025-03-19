@@ -11,6 +11,7 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { Toast, ToastModule } from 'primeng/toast';
+import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { Toast, ToastModule } from 'primeng/toast';
     ButtonModule,
     ConfirmDialogModule,
     MessagesModule,
-    ToastModule
+    ToastModule,
+    AddEditParticiModule
 
   ],providers: [authInterceptorProviders]
 })

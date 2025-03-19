@@ -16,7 +16,7 @@
             label="Export"
             tooltipPosition="bottom">
     </button>
-
+    <button pButton pRipple class="p-button-success mr-2" (click)="addAll()">Asignar a Todos N° Dorsales</button>
             <h2 class="m-0">Corredores Inscriptos</h2>
             
             <span class="p-input-icon-left">
@@ -58,6 +58,8 @@
             <td>{{partici.dorsal}}</td>
             
             <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                (click)="editPartici(partici)"></button>
                 
                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
@@ -66,5 +68,17 @@
         </tr>
     </ng-template>
 </p-table>
+
+<app-add-edit-partici
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedInscripto]="selectedInscripto"
+    (clickClose)="hideModal($event)"
+    
+></app-add-edit-partici>
+    <!-- [displayAddModal]="displayAddModal"
+    (clickClose)="hideModal($event)"
+    (addNomcorredor)="addNomcorredor($event)"
+    (clickAdd)="saveMovimientoToList($event)"
+></app-add-ranking>  -->
 
 <p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
