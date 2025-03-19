@@ -1,11 +1,5 @@
 <p-toast></p-toast>
-<p-toolbar styleClass="mb-4 gap-2">
-    <ng-template pTemplate="left">
-        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
-            (click)="openNew()"></button>
-    </ng-template>
 
-</p-toolbar>
 
 
 
@@ -28,17 +22,10 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             pTooltip="CSV"
             tooltipPosition="bottom"> 
             </button> 
-            <!--button type="button"
-                            pButton pRipple
-                            icon="pi pi-file-excel"
-                            (click)="exportExcel2()"
-                            class="p-button-outlined p-button-success"
-                            class="p-button-success "
-                            pTooltip="XLS"
-                            label="Export"
-                            tooltipPosition="bottom">
-                    </button-->
+            
         </div> 
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
         <h2 class="m-0">Paises</h2>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
