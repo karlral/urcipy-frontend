@@ -49,9 +49,6 @@ export class ParticipanteService {
     return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
   }
 
-  public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
-    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
-  }
 
 /**PUBLICOS */
 

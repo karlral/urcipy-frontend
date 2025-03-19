@@ -6,7 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SidebarModule } from "primeng/sidebar";
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
-
+import { PanelModule } from 'primeng/panel';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -28,6 +28,7 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
   imports: [   
     CommonModule,
     AdminRoutingModule,
+    PanelModule,
     PanelMenuModule,
     ButtonModule,
     SidebarModule,
