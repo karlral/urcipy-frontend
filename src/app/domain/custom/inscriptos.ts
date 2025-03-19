@@ -15,5 +15,7 @@ export interface Inscriptos {
     acobrar:number,
     pagado: number,
     dorsal: number,
-    nrogiro:string
+    nrogiro:string,
+    chip:string,
+    sex:string
 }

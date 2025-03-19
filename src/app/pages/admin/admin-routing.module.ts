@@ -15,47 +15,50 @@ import { RegionalComponent } from './view/regional/regional.component';
 
 
 const routes: Routes = [
-  
+
   {
     path:'acceso',
     component:NavigationComponent, canActivate:[AdminGuard],
     children:[
-      
+
       {
         path:'',
         component:WelcomeComponent
       },{
         path:'pais',
         component:PaisComponent,
-        
+
       },{
         path:'ciudad',
         component:CiudadComponent,
-        
+
       },{
         path:'region',
         component:RegionComponent,
-        
+
       },{
         path:'sistema',
         component:RegionalComponent,
-        
+
       },{
         path:'club',
         component:ClubComponent,
-        
+
       },{
         path:'trayecto',
         component:TrayectoComponent,
-        
+
       },{
         path:'categoria',
         component:CategoriaComponent,
-        
+
       },{
         path:'procesarcampeon',
         component:ProcesarCampeonComponent,
-        
+
+      },
+      {
+        path:'dorsal', loadChildren:()=> import('./view/dorsal/dorsal.module').then(m => m.DorsalModule)
       }
       ,
       {
@@ -93,7 +96,7 @@ const routes: Routes = [
         path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
       ,{
-        path:'concepto',loadChildren:()=> import('./view/concepto/concepto.module').then(m => m.ConceptoModule)       
+        path:'concepto',loadChildren:()=> import('./view/concepto/concepto.module').then(m => m.ConceptoModule)
       },
       {
         path:'movimiento', loadChildren:()=> import('./view/movimiento/movimiento.module').then(m => m.MovimientoModule)
@@ -103,9 +106,9 @@ const routes: Routes = [
       }
 
     ]
-    
+
   }
-  
+
 ];
 
 @NgModule({

@@ -32,8 +32,8 @@ constructor(private breakpointObserver: BreakpointObserver,
 
 
 ngOnInit(): void {
-  
-  
+
+
   this.user=this.login.getUser();
   this.isLoggedIn=this.login.isLoggedIn();
 
@@ -46,10 +46,11 @@ ngOnInit(): void {
       {label: 'Club', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/club']},
       {label: 'Trayecto', icon: 'pi pi-download', routerLink: ['/admin/acceso/trayecto']},
       {label: 'Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/categoria']},
+      {label: 'Dorsal', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/dorsal']},
       {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor/corre']},
       {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/evento/evento']},
       {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},
-      
+
     ]
 }
 ,
@@ -67,8 +68,8 @@ ngOnInit(): void {
     items: [
       {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/1']},
       {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-search', routerLink: ['/admin/acceso/listpart/2']},
-      
-       
+
+
     ]
 },{
   label: 'Procesos',
@@ -83,7 +84,7 @@ ngOnInit(): void {
       {label: 'Individual', icon: 'pi pi-search', routerLink: ['/admin/acceso/listcihistorial']},
       {label: 'Anual', icon: 'pi pi-search', routerLink: ['/admin/acceso/listanualhistorial']},
       {label: 'Todos', icon: 'pi pi-search', routerLink: ['/admin/acceso/listhistorial']},
-       
+
     ]
 }
 ,
@@ -92,7 +93,7 @@ ngOnInit(): void {
   items: [
     {label: 'Lista de Corredores', icon: 'pi pi-search', routerLink: ['/admin/acceso/listcicorredores']},
     {label: 'Lista de Campeones', icon: 'pi pi-user', routerLink: ['/admin/acceso/listcampeones']},
-     
+
   ]
 }
 ,
@@ -100,7 +101,7 @@ ngOnInit(): void {
   label: 'Usuarios',
   items: [
     {label: 'Crear Usuario Normal', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/signup']},
-    {label: 'Sistema Config', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/sistema']}, 
+    {label: 'Sistema Config', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/sistema']},
   ]
 }
 
@@ -110,12 +111,12 @@ ngOnInit(): void {
 public cerrar(){
   this.gfg=false;
       this.ancho=0;
-  
+
 }
 
 public abrir(){
-  
-  
+
+
     this.gfg=true;
   this.ancho=29;
   //.style.width = "400px";
