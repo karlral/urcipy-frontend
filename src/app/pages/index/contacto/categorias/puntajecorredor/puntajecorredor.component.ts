@@ -38,7 +38,7 @@ export class PuntajecorredorComponent implements OnInit {
        next: (dato: Puntocorredor[]) => {
          this.puntoscorredor = dato;
           this.puntocorredor=this.puntoscorredor[0];  
-         console.log(this.puntoscorredor);
+         //console.log(this.puntoscorredor);
        },
        error: (error) => {
          console.log(error);

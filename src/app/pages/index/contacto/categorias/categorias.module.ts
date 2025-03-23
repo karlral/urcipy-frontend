@@ -6,11 +6,13 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
 import { CategoriasComponent } from './categorias.component';
+import { PuntajecorredorComponent } from './puntajecorredor/puntajecorredor.component';
 
 
 @NgModule({
   declarations: [
-    CategoriasComponent
+    CategoriasComponent,
+    PuntajecorredorComponent
   ],
   imports: [
     CommonModule,
