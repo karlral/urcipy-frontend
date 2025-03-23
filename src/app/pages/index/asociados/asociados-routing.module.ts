@@ -9,6 +9,11 @@ const routes: Routes = [
     component: AsociadosComponent
   },
   {
+    path:'membrecia',
+    loadChildren: () => import('./membrecia/membrecia.module').then(m => m.MembreciaModule)
+  },
+  
+  {
     path:'masinfo',
     component: MasinfoComponent
   }

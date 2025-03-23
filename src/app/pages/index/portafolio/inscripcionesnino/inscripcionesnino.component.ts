@@ -14,7 +14,7 @@ import { ParticipanteService } from 'src/app/service/participante.service';
 })
 export class InscripcionesninoComponent  implements OnInit{
   activo!:number ;
-  visible:any;
+  visible:string="inscripto";
   mediaLocation = `${baserUrl}/media/`;
 
   inscripciones!:Inscripcion[];
