@@ -13,35 +13,19 @@ const routes: Routes = [
     path:'',
     component:ContactoComponent,
     pathMatch:'full'
-  },{
-    path:'puntos/:idcorredor',
-    component:PuntajecorredorComponent,
-    pathMatch:'full'
   },
   {
     path:'categorias',
-    component:CategoriasComponent,
-    pathMatch:'full'
+    loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)
   },
+{
+  path:'clubpuntaje',
+  loadChildren: () => import('./clubpuntaje/clubpuntaje.module').then(m => m.ClubpuntajeModule)
+}
+  ,
   {
     path:'eventos',
-    component:EventosComponent,
-    pathMatch:'full'
-  },
-  {
-    path:'resultados/:idevento',
-    component:ResultadosComponent,
-    pathMatch:'full'
-  },
-  {
-    path:'clubpuntaje/:tipo',
-    component:ClubpuntajeComponent,
-    pathMatch:'full'
-  },
-  {
-    path:'clubpuntajedet/:tipo/:idclub',
-    component:ClubpuntajedetComponent,
-    pathMatch:'full'
+    loadChildren: () => import('./eventos/eventos.module').then(m => m.EventosModule)
   }
 ];
 

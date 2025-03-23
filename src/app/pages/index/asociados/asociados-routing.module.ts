@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path:'',
     component: AsociadosComponent
-  }
+  },
+  {
+    path:'membrecia',
+    loadChildren: () => import('./membrecia/membrecia.module').then(m => m.MembreciaModule)
+  },
+  
 ];
 
 @NgModule({
