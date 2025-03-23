@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventobusComponent } from './eventobus/eventobus.component';
-import { InscripcionesComponent } from './inscripciones/inscripciones.component';
 import { PortafolioComponent } from './portafolio.component';
-import { MembreciaComponent } from './membrecia/membrecia.component';
-import { EventobusrunComponent } from './eventobusrun/eventobusrun.component';
 
 const routes: Routes = [
   {
@@ -13,29 +9,22 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
-    path:'membresia',
-    component:MembreciaComponent,
-    pathMatch:'full'
-  },
+    path:'eventobus',loadChildren:()=> import('./eventobus/eventobus.module').then(m => m.EventobusModule)
+  } ,
   {
-    path:'eventobus/:idevento',
-    component:EventobusComponent,
-    pathMatch:'full'
-  },
+    path:'eventobusrun',loadChildren:()=> import('./eventobusrun/eventobusrun.module').then(m => m.EventobusrunModule)
+  } ,
   {
-    path:'eventobusrun/:idevento',
-    component:EventobusrunComponent,
-    pathMatch:'full'
-  },{
-    path:'inscripciones/:activo',
-    component:InscripcionesComponent,
-    pathMatch:'full'
+    path:'inscripciones',loadChildren:()=> import('./inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
   }
-  ,{
-    path:'membrecia',
-    component:MembreciaComponent,
-    pathMatch:'full'
-  }
+  ,
+  {
+    path:'eventobusnino',loadChildren:()=> import('./eventobusnino/eventobusnino.module').then(m => m.EventobusninoModule)
+  } ,
+  {
+    path:'inscripcionesnino',loadChildren:()=> import('./inscripcionesnino/inscripcionesnino.module').then(m => m.InscripcionesninoModule)
+  } 
+  
 ];
 
 @NgModule({
