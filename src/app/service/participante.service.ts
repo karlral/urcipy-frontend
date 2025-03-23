@@ -60,6 +60,10 @@ public listarParticipantesActivos(activo:any):Observable<Inscripcion[]>{
   return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}/${system}`);
 }
 
+public listarParticipantesActivosNino(activo:any):Observable<Inscripcion[]>{
+  return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activonino/${activo}/${system}`);
+}
+
 public listarParticipantesByEvento(idevento:any):Observable<Resultado[]>{
   return this.http.get<Resultado[]>(`${baserUrl}/participub/evento/${idevento}`);
 }
