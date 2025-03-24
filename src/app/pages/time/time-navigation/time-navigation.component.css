@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+   }
+   
+  .contenedornav{
+      display: flex;
+      flex-direction: row;  
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background-color: #232323 !important;
+  }
+   .contenedor{
+    display: flex;
+    background-color:  #232323 !important;
+   }
+   .contenedor .principal-body{
+    width: 100%;
+    height: 100%;
+    
+   }
+   
+  
+   .contenedor aside{
+     width: 0;
+     overflow-y: auto;
+     transition: all 0.5s;
+   
+   }
+  
+   .alineacionizquierda{
+    margin-left: 200px;
+    padding-left: 30px;
+    justify-content: end;
+    align-items: end; 
+    
+   }
+  
+   .p-component-overlay
+   {
+    position: absolute !important;
+   }
+   
+  
+  

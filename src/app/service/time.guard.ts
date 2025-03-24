@@ -15,7 +15,7 @@ export class TimeGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.loginService.isLoggedIn() && this.loginService.getUserRole() == 'TIMIO'  && this.loginService.getUserIdregional() == system){
+    if(this.loginService.isLoggedIn() && this.loginService.getUserRole() == 'TIME'  && this.loginService.getUserIdregional() == system){
       return true;
     }else{
       this.router.navigate(['sistema']);
