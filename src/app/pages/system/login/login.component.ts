@@ -74,15 +74,16 @@ export class LoginComponent {
           /** */
 
           if (this.loginService.getUserRole() == "ADMINISTRADOR") {
-            //dashboard admin
-            //window.location.href='/admin'; 
+             
             this.router.navigate(['admin/acceso']);
             this.loginService.loginStatusSubjec.next(true);
           } else if (this.loginService.getUserRole() == "NORMAL") {
-            // user dashboard
-            //window.location.href='/user-dashboard';
-            console.log('Entramos en el usuario');
+            
             this.router.navigate(['user/access']);
+            this.loginService.loginStatusSubjec.next(true);
+          } else if (this.loginService.getUserRole() == "TIME") {
+           
+            this.router.navigate(['time/access']);
             this.loginService.loginStatusSubjec.next(true);
           } else {
             this.loginService.logout();

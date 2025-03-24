@@ -7,13 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path:'',loadChildren:()=> import('./pages/index/home/home.module').then(m => m.HomeModule)
-  } ,
-  {
-    path:'user',loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
   } ,{
     path:'sistema', loadChildren:()=> import('./pages/system/system.module').then(m => m.SystemModule)
   },  {
     path:'admin', loadChildren:()=> import('./pages/admin/admin.module').then(m => m.AdminModule)
+  },{
+    path:'user',loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
+  },{
+    path:'time',loadChildren:()=> import('./pages/time/time.module').then(m => m.TimeModule)
   },{
     path:'resumen', loadChildren:()=> import('./pages/index/resumen/resumen.module').then(m => m.ResumenModule)
   },{
