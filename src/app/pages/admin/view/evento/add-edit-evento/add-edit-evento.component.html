@@ -17,11 +17,12 @@
 
             <label for="fecha">Fecha Evento</label>
             <p-calendar formControlName="fecha" id="fecha" appendTo="body" autoWidth="false"
-                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"></p-calendar>
+                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"  utc="true"></p-calendar>
             <small class="p-error" *ngIf="
             eventoForm.controls['fecha'].invalid && 
             eventoForm.controls['fecha'].dirty">Fecha del evento es requerido.</small>
-        
+            
+           
         </div>
 
         <div class="field">

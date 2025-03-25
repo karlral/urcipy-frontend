@@ -243,7 +243,11 @@ modalidad:Modalidad={
       this.corredorForm.patchValue(this.selectedCorredor);
      // console.log(this.selectedCorredor);
   
-      const fecnac= new Date(this.selectedCorredor.persona.fecnac);
+     const localtime = new Date(this.selectedCorredor.persona.fecnac);
+      const fecnac = new Date(localtime.getTime() + localtime.getTimezoneOffset() * 60000);
+
+     // const fecha2= new Date(this.selectedEvento.fecha);
+      //const fecnac= new Date(this.selectedCorredor.persona.fecnac);
      
       this.corredorForm.controls['persona'].controls['fecnac'].setValue(fecnac);
 

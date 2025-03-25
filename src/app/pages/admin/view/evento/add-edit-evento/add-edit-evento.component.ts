@@ -115,7 +115,10 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       
       this.eventoForm.patchValue(this.selectedEvento);
 
-      const fecha2= new Date(this.selectedEvento.fecha);
+      const localtime = new Date(this.selectedEvento.fecha);
+      const fecha2 = new Date(localtime.getTime() + localtime.getTimezoneOffset() * 60000);
+
+     // const fecha2= new Date(this.selectedEvento.fecha);
 
       this.eventoForm.controls['fecha'].setValue(fecha2);
       

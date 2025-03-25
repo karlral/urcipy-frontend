@@ -11,12 +11,12 @@
                         <h3 class="onetop">{{ordenes[evento.orden-1].label}} Fecha</h3>
                        
                         <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
-                        <h3 class="twobottom">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
+                        <h3 class="twobottom">{{evento.fecha | date: 'dd/MM/yyyy' :'UTC'}}</h3>
                     </div>
                     <div class="face back">
                         <h3>{{evento.nomevento | uppercase}}</h3>
                         <p>{{evento.informacion}}</p>
-                        <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy'}}</h3>
+                        <h3 *ngIf="evento.activo != 1">{{evento.fecha | date: 'dd/MM/yyyy' :'UTC'}}</h3>
                         <button *ngIf="evento.activo == 1 && evento.preinscrip==1" type="submit" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip">INSCRIBETE</button>
 
                         <a href="{{evento.urlcategoria}}" *ngIf="evento.preinscrip==3"  target="_blank" rel="noopener noreferrer" class="btn inscrip">

@@ -226,13 +226,13 @@
         
 
         <fieldset class="mr-2">
-        <!-- <div class="field">
-            <img *ngIf="selectedCorredor.foto" [src]="selectedCorredor.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.foto"
-                [alt]="selectedCorredor.foto" class="regional-image" >
+         <div class="field">
+            <img *ngIf="selectedCorredor" [src]="selectedCorredor.persona.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.persona.foto"
+                [alt]="selectedCorredor.persona.foto" class="regional-image" >
              <img [src]="preview" class="regional-image" *ngIf="preview"> 
 
         </div>
- -->
+ 
             <div class="field">
                 <label for="observacion">Observacion</label>
                 <textarea rows="5"  pInputTextarea formControlName="observacion" 
