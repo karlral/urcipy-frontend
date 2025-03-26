@@ -226,13 +226,7 @@
         
 
         <fieldset class="mr-2">
-        <!-- <div class="field">
-            <img *ngIf="selectedCorredor.foto" [src]="selectedCorredor.foto =='' ? '/assets/noimagen.png' : mediaLocation+selectedCorredor.foto"
-                [alt]="selectedCorredor.foto" class="regional-image" >
-             <img [src]="preview" class="regional-image" *ngIf="preview"> 
-
-        </div>
- -->
+       
             <div class="field">
                 <label for="observacion">Observacion</label>
                 <textarea rows="5"  pInputTextarea formControlName="observacion" 
@@ -247,9 +241,15 @@
                 <!--p>{{selectedCorredor.foto}}</p-->
             </div>
             <div class="field">
-                <!--label  class="form-label">Modificado: {{fecmodi}}</label-->
+                <img *ngIf="selectedCorredor" [src]="selectedCorredor.persona.foto == null ? 'assets/noimagen.png' : mediaLocation+selectedCorredor.persona.foto"
+                    [alt]="selectedCorredor.persona.foto" class="regional-image" >
+                 <img [src]="preview" class="regional-image" *ngIf="preview">
+
+            </div>
+            <div class="field">
                 <label class="form-label">Usuario: {{selectedCorredor ? selectedCorredor.usuario.username:''}}</label>
-     
+                <label *ngIf="selectedCorredor" class="form-label">Modificado: {{ selectedCorredor.fecmodi | date: 'dd/MM/yyyy HH:mm aaa' :'UTC' }}</label>
+
             </div>
         </fieldset>
 
