@@ -80,7 +80,7 @@ const routes: Routes = [
         path:'puntaje', loadChildren:()=> import('./view/puntaje/puntaje.module').then(m => m.PuntajeModule)
       },
       {
-        path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
+        path:'system', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
       ,{
         path:'concepto',loadChildren:()=> import('./view/concepto/concepto.module').then(m => m.ConceptoModule)
