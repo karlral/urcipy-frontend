@@ -391,6 +391,7 @@ modalidad:Modalidad={
     }
     this.corredorForm.get('usuario')?.setValue(this.usuario);
     this.corredorForm.get('regional')?.setValue(this.regional);
+    this.corredorForm.get('fecmodi')?.setValue(this.fecha);
    // console.log(this.corredorForm.value);
 
     if (this.selectedCorredor) {
