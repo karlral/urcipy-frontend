@@ -6,7 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'',loadChildren:()=> import('./pages/index/home/home.module').then(m => m.HomeModule)
+    path:'', loadChildren:()=> import('./pages/index/contacto/contacto.module').then(m => m.ContactoModule)
+  },{
+    path:'home',loadChildren:()=> import('./pages/index/home/home.module').then(m => m.HomeModule)
   } ,{
     path:'sistema', loadChildren:()=> import('./pages/system/system.module').then(m => m.SystemModule)
   },  {
