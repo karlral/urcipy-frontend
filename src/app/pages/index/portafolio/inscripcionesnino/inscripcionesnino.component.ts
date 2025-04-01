@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Categoria } from 'src/app/domain/categoria';
 import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 
-import { CategoriaService } from 'src/app/service/categoria.service';
 import baserUrl from 'src/app/service/helper';
 import { ParticipanteService } from 'src/app/service/participante.service';
 
@@ -19,11 +17,9 @@ export class InscripcionesninoComponent  implements OnInit{
 
   inscripciones!:Inscripcion[];
 
-  categorias!:Categoria[];
 
   constructor( private activatedRoute:ActivatedRoute, 
     private participanteService:ParticipanteService,
-    private categoriaService:CategoriaService
     ) { }
   
   ngOnInit(): void {
@@ -43,18 +39,7 @@ export class InscripcionesninoComponent  implements OnInit{
         complete: () => console.info('completo inscripcion')
       });
 
-      this.categoriaService.listarCategoriaActivoNino().subscribe(
-        {
-          next: (p) => {
-            this.categorias = p;
-            
-          },
-          error: (error) => {
-            console.log(error);
-            
-          },
-          complete: () => console.info('completo categorias activas')
-        });
+      
   }
 
   buttonSubmit(visible:string){

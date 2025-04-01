@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Categoria } from 'src/app/domain/categoria';
+import { Inscripcion } from 'src/app/domain/custom/inscripcion';
+import baserUrl from 'src/app/service/helper';
 
 @Component({
   selector: 'app-tandas',
@@ -10,7 +12,22 @@ export class TandasComponent {
 
   
 
-@Input()  categorias!:Categoria[];
+  mediaLocation = `${baserUrl}/media/`;
 
+@Input()  inscripciones!:Inscripcion[];
+
+calculateTandaTotal(vtanda:number) {
+  let total = 0;
+  
+  if (this.inscripciones) {
+      for (let partici of this.inscripciones) {
+          if (partici.tanda == vtanda) {
+              total++;
+          }
+      }
+  }
+
+  return total;
+}
 
 }

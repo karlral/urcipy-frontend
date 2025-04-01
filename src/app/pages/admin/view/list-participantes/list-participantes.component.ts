@@ -44,7 +44,8 @@ export class ListParticipantesComponent implements OnInit {
     sex: '',
     tandac: '',
     tanda: 0,
-    orden: 0
+    orden: 0,
+    horario: ''
   };
   displayAddEditModal = false;
 
@@ -180,6 +181,7 @@ export class ListParticipantesComponent implements OnInit {
                 } else {
                   this.inscriptos[i].sex = 'F';
                 }
+                this.inscriptos[i].tandac = 'Tanda '+this.inscriptos[i].tanda.toString();
               }
             },
             error: (error) => {
