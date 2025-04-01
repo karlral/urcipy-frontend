@@ -11,5 +11,6 @@ export interface Inscripcion {
     totalpuntos:number,
     cantidad:number,
     dorsal:number,
+    color:string
 
 }

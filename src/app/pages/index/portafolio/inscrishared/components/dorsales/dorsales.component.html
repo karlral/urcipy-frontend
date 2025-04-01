@@ -1,10 +1,12 @@
-<div id="club" class="mx-auto" >
 
-    <p-table [value]="inscripciones" sortField="club" sortMode="single" [sortOrder]="-1"
+<div id="categoria" class="mx-auto" >
+
+
+    <p-table [value]="inscripciones" sortField="club" sortMode="single"
         dataKey="club" rowGroupMode="subheader" groupRowsBy="club">
         <ng-template pTemplate="header">
             <tr>  
-                <th pSortableColumn="club"><h1 class="titulo">Por Club</h1></th>  
+                <th ><h1 class="titulo">Dorsales por Club</h1></th>  
             </tr>
         </ng-template>
         <ng-template pTemplate="footer" >
@@ -12,9 +14,11 @@
                 <td colspan="1" class="text-right font-bold pr-5"><strong class="pr-5">Total</strong> {{inscripciones.length}}</td>
             </tr>
         </ng-template>
+        
         <ng-template pTemplate="groupheader" let-partici let-rowIndex="rowIndex" let-expanded="expanded">
-            <tr >
+            <tr>
                 <td  class="flex">
+
                     <div class="flex align-items-center">
                         <img [alt]="partici.club"
                         [src]="mediaLocation+partici.ruta"
@@ -29,8 +33,6 @@
                         <button type="button" pButton pRipple [pRowToggler]="partici"
                         class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
                         [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
-                        
-
                     </button>
                     </div>
                     
@@ -38,11 +40,21 @@
             </tr>
         </ng-template>
        
+        
         <ng-template pTemplate="rowexpansion" let-partici>
             <tr>
-                <td class="flex flex-column align-items-center justify-content-center corredor" >
-                   <h4> {{partici.corredor}} </h4>
-                   <h5> {{partici.categoria}}</h5>
+                <td class="flex flex-column align-items-center justify-content-center corredor"  >
+                    
+
+                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} ({{partici.dorsal}})</h5>
+                    <h5  > {{partici.categoria}}</h5>
+                    <div *ngIf="partici.color" class="flex flex-wrap md:justify-content-center justify-content-center">
+
+                        <h2 *ngIf="partici.color=='Naranjado'" class="flex align-items-center justify-content-center w-8rem h-4rem bg-orange-500 font-bold border-round m-2" style="min-width: 200px; min-height: 100px;">{{partici.dorsal}}</h2>
+                        <h2 *ngIf="partici.color=='Amarillo'" class="flex align-items-center justify-content-center w-8rem h-4rem bg-yellow-500 font-bold border-round m-2" style="min-width: 200px; min-height: 100px;">{{partici.dorsal}}</h2>
+                        <h2 *ngIf="partici.color=='Celeste'" class="flex align-items-center justify-content-center w-8rem h-4rem bg-blue-300 font-bold border-round m-2" style="min-width: 200px; min-height: 100px;">{{partici.dorsal}}</h2>
+                        <h2 *ngIf="partici.color==''" class="flex align-items-center justify-content-center w-8rem h-4rem bg-gray-300 font-bold border-round m-2" style="min-width: 200px; min-height: 100px;">0</h2>
+                    </div>
                    
                 </td> 
             </tr>
