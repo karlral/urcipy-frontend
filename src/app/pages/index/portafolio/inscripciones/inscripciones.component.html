@@ -20,7 +20,7 @@
                            
                            <button *ngIf="evento.modalidad.idmodalidad==1" (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
 
-                           
+                           <button (click)="buttonSubmit('dorsales')" class="btn list nav-btn">DORSALES</button>
                         </div>
                         
                     </div>
@@ -28,18 +28,21 @@
                 </div>
             </div>  
 
-            
+            <app-categoria *ngIf="visible=='categoria'"
+            [inscripciones]="inscripciones"
+            ></app-categoria> 
+
             <app-club *ngIf="visible=='club'"
             [inscripciones]="inscripciones"
             ></app-club>
 
-            <app-categoria *ngIf="visible=='categoria'"
-            [inscripciones]="inscripciones"
-            ></app-categoria>
-
             <app-tandas *ngIf="visible=='tanda'"
             [inscripciones]="inscripciones"
             ></app-tandas>
+            
+            <app-dorsales *ngIf="visible=='dorsales'"
+            [inscripciones]="inscripciones"
+            ></app-dorsales>
 
 
         </div>

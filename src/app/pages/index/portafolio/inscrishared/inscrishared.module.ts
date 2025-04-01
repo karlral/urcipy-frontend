@@ -4,6 +4,7 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import { ClubComponent } from './components/club/club.component';
 import { TandasComponent } from './components/tandas/tandas.component';
 import { RegistrocorredorComponent } from './components/registrocorredor/registrocorredor.component';
+import { DorsalesComponent } from './components/dorsales/dorsales.component';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -15,7 +16,8 @@ import { ButtonModule } from 'primeng/button';
     CategoriaComponent,
     ClubComponent,
     TandasComponent,
-    RegistrocorredorComponent
+    RegistrocorredorComponent,
+    DorsalesComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { ButtonModule } from 'primeng/button';
     CategoriaComponent,
     ClubComponent,
     TandasComponent,
+    DorsalesComponent,
     RegistrocorredorComponent
   ]
 })

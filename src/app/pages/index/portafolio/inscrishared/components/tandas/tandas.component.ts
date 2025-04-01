@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Categoria } from 'src/app/domain/categoria';
 import { Inscripcion } from 'src/app/domain/custom/inscripcion';
 import baserUrl from 'src/app/service/helper';
 
