@@ -9,6 +9,7 @@ export interface Inscripcion {
     categoria: string,
     corredor: string,
     totalpuntos:number,
-    cantidad:number
+    cantidad:number,
+    dorsal:number,
 
 }

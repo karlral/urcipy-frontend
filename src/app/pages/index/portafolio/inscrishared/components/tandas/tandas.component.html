@@ -2,23 +2,28 @@
 <div id="categoria" class="mx-auto" >
 
 
-    <p-table [value]="categorias" sortField="tanda" sortMode="single"
+    <p-table [value]="inscripciones" sortField="tanda" sortMode="single"
         dataKey="tanda" rowGroupMode="subheader" groupRowsBy="tanda">
         <ng-template pTemplate="header">
             <tr>  
-                <th ><h1 class="titulo">Tandas</h1></th>  
+                <th ><h1 class="titulo">Por Tandas</h1></th>  
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer" >
+            <tr>
+                <td colspan="1" class="text-right font-bold pr-5"><strong class="pr-5">Total</strong> {{inscripciones.length}}</td>
             </tr>
         </ng-template>
         
-        <ng-template pTemplate="groupheader" let-categoria let-rowIndex="rowIndex" let-expanded="expanded">
+        <ng-template pTemplate="groupheader" let-partici let-rowIndex="rowIndex" let-expanded="expanded">
             <tr>
                 <td  class="flex">
 
                     
-                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >Tanda {{categoria.tanda}} - {{categoria.horario}}hs - {{categoria.trayecto.km}}km</span>
+                    <span class="flex-1 flex align-items-center  font-bold   ml-2" >Tanda {{partici.tanda}} - {{partici.horario}}hs - {{partici.km}}km</span>
                     
                     <div class="flex align-items-center">
-                        <button type="button" pButton pRipple [pRowToggler]="categoria"
+                        <button type="button" pButton pRipple [pRowToggler]="partici"
                         class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
                         [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
                     </button>
@@ -29,11 +34,17 @@
         </ng-template>
        
         
-        <ng-template pTemplate="rowexpansion" let-categoria>
+        <ng-template pTemplate="rowexpansion" let-partici>
             <tr>
                 <td class="flex flex-column align-items-center justify-content-center corredor"  >
+                    <div class="flex">
+                        <img [alt]="partici.ruta"
+                        [src]="mediaLocation+partici.ruta"
+                        width="70"  />
+                    </div>
 
-                    <h5  > {{categoria.nomcorto}}</h5>
+                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} ({{partici.dorsal}})</h5>
+                    <h5  > {{partici.categoria}}</h5>
                    
                 </td> 
             </tr>
