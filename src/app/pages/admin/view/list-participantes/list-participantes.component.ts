@@ -42,6 +42,9 @@ export class ListParticipantesComponent implements OnInit {
     nrogiro: '',
     chip: '',
     sex: '',
+    tandac: '',
+    tanda: 0,
+    orden: 0
   };
   displayAddEditModal = false;
 
