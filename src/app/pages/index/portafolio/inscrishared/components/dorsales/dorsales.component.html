@@ -2,7 +2,7 @@
 <div id="categoria" class="mx-auto" >
 
 
-    <p-table [value]="inscripciones" sortField="club" sortMode="single"
+    <p-table [value]="inscripciones" sortField="club" sortMode="single"  [sortOrder]="-1"
         dataKey="club" rowGroupMode="subheader" groupRowsBy="club">
         <ng-template pTemplate="header">
             <tr>  
@@ -46,8 +46,8 @@
                 <td class="flex flex-column align-items-center justify-content-center corredor"  >
                     
 
-                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} ({{partici.dorsal}})</h5>
-                    <h5  > {{partici.categoria}}</h5>
+                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} </h5>
+                    <h6  > {{partici.categoria}}</h6>
                     <div *ngIf="partici.color" class="flex flex-wrap md:justify-content-center justify-content-center">
 
                         <h2 *ngIf="partici.color=='Naranjado'" class="flex align-items-center justify-content-center w-8rem h-4rem bg-orange-500 font-bold border-round m-2" style="min-width: 200px; min-height: 100px;">{{partici.dorsal}}</h2>
