@@ -28,6 +28,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <th>Modalidad</th>
             <th>Trayecto</th>
             <th>Km</th>
+            <th>Hora</th>
+            <th>Tanda</th>
+            <th>Orden</th>
             <th></th>
         </tr>
     </ng-template>
@@ -42,6 +45,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <td>{{categoria.modalidad.nommodalidad}}</td>
             <td >{{categoria.modalidad.idmodalidad==1 ? tipos[categoria.tipo-1].label : tiposrun[categoria.tipo-1].label}}</td>
             <td>{{categoria.trayecto.km}}</td>
+            <td>{{categoria.horario}}</td>
+            <td>{{categoria.tanda}}</td>
+            <td>{{categoria.orden}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                     (click)="editCategoria(categoria)"></button>

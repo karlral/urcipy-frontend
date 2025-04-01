@@ -21,7 +21,7 @@
 
                     
                     <span class="flex-1 flex align-items-center  font-bold   ml-2" >Tanda {{partici.tanda}} - {{partici.horario}}hs - {{partici.km}}km</span>
-                    
+                    <span class="font-bold   ml-2 flex align-items-center" >{{calculateTandaTotal(partici.tanda)}}</span>
                     <div class="flex align-items-center">
                         <button type="button" pButton pRipple [pRowToggler]="partici"
                         class="p-button-text p-button-rounded p-button-plain font-bold ml-3 " 
@@ -36,15 +36,16 @@
         
         <ng-template pTemplate="rowexpansion" let-partici>
             <tr>
-                <td class="flex flex-column align-items-center justify-content-center corredor"  >
-                    <div class="flex">
+                <td class="flex corredor"  >
+                    <div class="flex-auto ml-2">
                         <img [alt]="partici.ruta"
                         [src]="mediaLocation+partici.ruta"
                         width="70"  />
                     </div>
-
-                    <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} ({{partici.dorsal}})</h5>
-                    <h5  > {{partici.categoria}}</h5>
+                    <div class="flex flex-auto flex-column align-items-center justify-content-center">
+                        <h5 class="flex align-items-center justify-content-center" > {{partici.corredor}} ({{partici.dorsal}})</h5>
+                        <h5 class="flex align-items-center justify-content-center" > {{partici.categoria}}</h5>
+                    </div>
                    
                 </td> 
             </tr>
