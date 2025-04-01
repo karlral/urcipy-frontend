@@ -75,6 +75,7 @@ export class ListParticipantesComponent implements OnInit {
             } else {
               this.inscriptos[i].sex = 'F';
             }
+            this.inscriptos[i].tandac = 'Tanda '+this.inscriptos[i].tanda.toString;
           }
         },
         error: (error) => {
