@@ -15,28 +15,30 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
     EventobusrunComponent,
     AddCorredorComponent,
-    RegistrocorredorrunComponent
+    RegistrocorredorrunComponent,
   ],
   imports: [
     CommonModule,
     EventobusrunRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-                ToastModule,
-                ButtonModule,
-                InputTextModule,
-                CheckboxModule,
-                ScrollPanelModule,
-                SharedModule,
-                    DropdownModule,
-                    PanelModule,
-                        
-                        
-  ]
+    ToastModule,
+    ButtonModule,
+    InputTextModule,
+    CheckboxModule,
+    ScrollPanelModule,
+    SharedModule,
+    DropdownModule,
+    PanelModule,
+    RadioButtonModule,
+    CalendarModule,
+  ],
 })
-export class EventobusrunModule { }
+export class EventobusrunModule {}
