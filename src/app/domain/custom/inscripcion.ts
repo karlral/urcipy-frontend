@@ -7,6 +7,7 @@ export interface Inscripcion {
     ruta: string,
     club:string,
     categoria: string,
+    catalternativo: string,
     corredor: string,
     totalpuntos:number,
     cantidad:number,

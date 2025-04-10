@@ -71,9 +71,14 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
        
         <div class="field">
             <label for="nomcorto" >Nombre Corto</label>
-            <input type="text" pInputText id="nomcorto" [(ngModel)]="categoria.nomcorto" required autofocus />
+            <input type="text" pInputText id="nomcorto" [(ngModel)]="categoria.nomcorto" required  />
             <small class="p-error" *ngIf="submitted && !categoria.nomcorto">Nombre Corto  es
                 requerido.</small>
+        </div>
+        <div class="field">
+            <label for="nomalternativo" >Nombre Alternativo</label>
+            <input type="text" pInputText id="nomalternativo" [(ngModel)]="categoria.nomalternativo"  />
+            
         </div>
 
         <label>Edad</label>

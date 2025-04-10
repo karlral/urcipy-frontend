@@ -107,7 +107,10 @@ export class InscripcionesComponent  implements OnInit{
     this.participanteService.listarParticipantesActivos(this.activo).subscribe(
       {
         next: (p: Inscripcion[]) => {
-          this.inscripciones = p;   
+          this.inscripciones = p; 
+          this.inscripciones.forEach((i:Inscripcion) => {
+            i.categoria= i.catalternativo ;
+          });  
         },
         error: (error) => {
           console.log(error);

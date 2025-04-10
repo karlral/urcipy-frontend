@@ -74,7 +74,8 @@ modalidad:Modalidad={
     trayecto: this.trayecto,
     horario: '',
     modalidad: this.modalidad,
-    codigo: ''
+    codigo: '',
+    nomalternativo: ''
   };
 
   // para agregar

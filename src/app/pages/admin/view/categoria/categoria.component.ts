@@ -47,7 +47,8 @@ modalidad :Modalidad={
     trayecto: this.trayecto,
     horario: '',
     modalidad: this.modalidad,
-    codigo: ''
+    codigo: '',
+    nomalternativo: ''
   };
 
   trayectos:Trayecto[]=[];
@@ -145,7 +146,8 @@ modalidad :Modalidad={
       trayecto: this.trayecto,
       horario: '',
       modalidad: this.modalidad,
-      codigo: ''
+      codigo: '',
+      nomalternativo: ''
     };
     return cat;
   }
