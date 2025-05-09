@@ -42,11 +42,23 @@ export class ListParticipantesComponent implements OnInit {
     nrogiro: '',
     chip: '',
     sex: '',
+    tamano: 0,
+    tamanoc: ''
   };
   displayAddEditModal = false;
 
   inscriptos!: Inscriptos[];
   evento!: Evento;
+
+  tamanos = [
+    { label: 'Sin Remera', value: 0 },
+    { label: 'Tamaño P', value: 1 },
+    { label: 'Tamaño M', value: 2 },
+    { label: 'Tamaño G', value: 3 },
+    { label: 'Tamaño XG', value: 4 },
+    { label: 'Tamaño XXG', value: 5 }
+
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -59,6 +71,8 @@ export class ListParticipantesComponent implements OnInit {
   ngOnInit(): void {
     this.activo = this.activatedRoute.snapshot.params['activo'];
 
+    
+
     this.participanteService
       .listarParticipantesActivosComple(this.activo)
       .subscribe({
@@ -70,6 +84,12 @@ export class ListParticipantesComponent implements OnInit {
               this.inscriptos[i].sex = 'M';
             } else {
               this.inscriptos[i].sex = 'F';
+            }
+            if (this.inscriptos[i].tamano != null) {
+              
+              this.inscriptos[i].tamanoc = this.tamanos[this.inscriptos[i].tamano].label;
+            } else {
+              
             }
           }
         },

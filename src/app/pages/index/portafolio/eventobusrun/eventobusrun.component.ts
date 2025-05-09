@@ -40,7 +40,9 @@ export class EventobusrunComponent implements OnInit{
     { label: 'Sin Remera', value: 0 },
     { label: 'Tamaño P', value: 1 },
     { label: 'Tamaño M', value: 2 },
-    { label: 'Tamaño G', value: 3 }
+    { label: 'Tamaño G', value: 3 },
+    { label: 'Tamaño XG', value: 4 },
+    { label: 'Tamaño XXG', value: 5 }
   ];
   tipos = [
     {label: '20k', value: 1},

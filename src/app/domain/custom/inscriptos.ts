@@ -17,5 +17,7 @@ export interface Inscriptos {
     dorsal: number,
     nrogiro:string,
     chip:string,
-    sex:string
+    tamano: number,
+    sex:string,
+    tamanoc: string,
 }
