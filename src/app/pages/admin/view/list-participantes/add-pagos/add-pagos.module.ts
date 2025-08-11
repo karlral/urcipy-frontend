@@ -1,29 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddEditParticiComponent } from './add-edit-partici.component';
+import { AddPagosComponent } from './add-pagos.component';
 
 import { ButtonModule } from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    AddEditParticiComponent
+    AddPagosComponent
   ],
   imports: [
     CommonModule,
     DialogModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    InputNumberModule,
-    FormsModule,
-    InputTextModule,
-    
+        ButtonModule,
+        ReactiveFormsModule,
+        InputNumberModule,
+        FormsModule,
+        InputTextModule,
+        DropdownModule,
+        
   ],
-    exports: [
-      AddEditParticiComponent
-    ]
+  exports: [
+    AddPagosComponent
+  ]
 })
-export class AddEditParticiModule { }
+export class AddPagosModule { }

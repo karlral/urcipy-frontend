@@ -71,7 +71,11 @@
         </div>
         <!-- {/* Imagen de hero */} -->
         <!-- <img src="../../../../assets/images/hero_image.png" class="hero-image" alt="hero" /> -->
-        <img  [src]="mediaLocation+event.club.ruta" class="hero-image" [alt]="event.club.ruta" />
+        <a [routerLink]="['/portfolio']">
+            
+            <img  [src]="mediaLocation+event.club.rutagrande" class="hero-image" [alt]="event.club.rutagrande" />
+        </a>
+
         <img 
             src="../../../../assets/images/hero_image_back.png" class="hero-image-back" alt="hero back" />
     </div>

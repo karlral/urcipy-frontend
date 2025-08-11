@@ -47,6 +47,8 @@ export class ListParticipantesComponent implements OnInit {
   };
   displayAddEditModal = false;
 
+  displayPagosModal = false;
+
   inscriptos!: Inscriptos[];
   evento!: Evento;
 
@@ -173,13 +175,26 @@ export class ListParticipantesComponent implements OnInit {
     this.displayAddEditModal = true;
   }
 
+  addPagos(editData: Inscriptos) {
+    this.selectedInscripto = editData;
+    this.displayPagosModal = true;
+  }
+
   showModal() {
     this.displayAddEditModal = true;
+  }
+  showPagosModal() {
+    this.displayPagosModal = true;
   }
 
   hideModal(isClosed: boolean) {
     this.displayAddEditModal = !isClosed;
   }
+
+  hidePagosModal(isClosed:boolean) {
+    this.displayPagosModal=!isClosed;
+  }
+
   addAll() {
     this.confirmationService.confirm({
       message: 'Quieres asignar numero de dorsales a todos los participantes?',

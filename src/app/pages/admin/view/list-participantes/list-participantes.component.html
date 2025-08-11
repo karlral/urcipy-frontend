@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['ci','corredor']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
@@ -34,12 +34,11 @@
             <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
             <th>Sexo</th>
             <th>Fecha Nac.</th>
-            <th>Ciudad</th>
-            <th>Pais</th>
             <th>Club</th>
             <th>Categoria</th>
             <th>Km</th>
             <th>Dorsal</th>
+            <th>Pagado</th>
             <th></th>
         </tr>
     </ng-template>
@@ -50,12 +49,11 @@
             <td>{{partici.corredor}}</td>
             <td>{{partici.sexo==1 ? 'M':'F'}}</td>
             <td>{{partici.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
-            <td>{{partici.pais}}</td>
-            <td>{{partici.ciudad}}</td>
             <td>{{partici.club}}</td>
             <td>{{partici.categoria}}</td>
             <td>{{partici.km}}</td>
             <td>{{partici.dorsal}}</td>
+            <td>{{partici.pagado==1 ? "SI" :"NO"}}</td>
             
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -63,6 +61,9 @@
                 
                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
+                
+                <button pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"
+                    (click)="addPagos(partici)"></button>
               
            </td>
         </tr>
@@ -75,10 +76,15 @@
     (clickClose)="hideModal($event)"
     
 ></app-add-edit-partici>
+<app-add-pagos
+    [displayPagosModal]="displayPagosModal"
+    [selectedInscripto]="selectedInscripto"
+    (clickPagosClose)="hidePagosModal($event)"
+    ></app-add-pagos>
     <!-- [displayAddModal]="displayAddModal"
     (clickClose)="hideModal($event)"
     (addNomcorredor)="addNomcorredor($event)"
     (clickAdd)="saveMovimientoToList($event)"
 ></app-add-ranking>  -->
 
-<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog header="Atencion" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

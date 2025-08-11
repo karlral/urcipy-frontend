@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { Toast, ToastModule } from 'primeng/toast';
 import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module';
+import { AddPagosModule } from './add-pagos/add-pagos.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module
     ConfirmDialogModule,
     MessagesModule,
     ToastModule,
-    AddEditParticiModule
+    AddEditParticiModule,
+    AddPagosModule
 
   ],providers: [authInterceptorProviders]
 })

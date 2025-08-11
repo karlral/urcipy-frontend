@@ -15,8 +15,9 @@
                            
                            <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">CATEGORIA</button>
    
-                          
-                           <button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button>
+                          <button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button>
+
+                           <!--button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button-->
                            
                            <button *ngIf="evento.modalidad.idmodalidad==1" (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
 
@@ -28,10 +29,13 @@
                 </div>
             </div>  
 
-            
-            <app-club *ngIf="visible=='club'"
+            <app-confirmados *ngIf="visible=='confirmado'"
             [inscripciones]="inscripciones"
-            ></app-club>
+            ></app-confirmados>
+
+            <!--app-club *ngIf="visible=='club'"
+            [inscripciones]="inscripciones"
+            ></app-club-->
 
             <app-categoria *ngIf="visible=='categoria'"
             [inscripciones]="inscripciones"

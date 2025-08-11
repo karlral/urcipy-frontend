@@ -151,6 +151,21 @@ export class InscripcionesComponent  implements OnInit{
   }
 
   buttonSubmit(visible:string){
+
+    if(visible=='confirmado'){
+      this.participanteService.listarParticipantesActivosPagos(this.activo).subscribe(
+      {
+        next: (p: Inscripcion[]) => {
+          this.inscripciones = p;   
+        },
+        error: (error) => {
+          console.log(error);
+          
+        },
+        complete: () => console.info('completo inscripcion')
+      });
+    } 
+
     this.visible=visible;
    
   }

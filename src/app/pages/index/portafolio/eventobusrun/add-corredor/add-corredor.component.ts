@@ -51,17 +51,17 @@ export class AddCorredorComponent  implements OnInit {
   fechaant=new Date(2000, 0, 1);
 
   trayecto:Trayecto={
-    idtrayecto: 0,
-    nomtrayecto: '',
-    km: 0
+    idtrayecto: 7,
+    nomtrayecto: '5k',
+    km: 5
   }
   modalidad: Modalidad = {
-    idmodalidad: 1,
-    nommodalidad: ''
+    idmodalidad: 2,
+    nommodalidad: 'RUNNING'
   }
   eCategoria:Categoria={
-    idcategoria: 1,
-    nomcategoria: '',
+    idcategoria: 83,
+    nomcategoria: '5k Masculino',
     activo: false,
     nomcorto: '',
     orden: 0,
@@ -110,16 +110,16 @@ export class AddCorredorComponent  implements OnInit {
   }
   
   club: Club = {
-    idclub: 1,
-    nomclub: 'Libre',
+    idclub: 267,
+    nomclub: 'RUN TECH LG',
     presidente: '',
     telepresi: '',
     vicepresidente: '',
     telvice: '',
     telefono: '',
     email: '',
-    ruta: '',
-    rutagrande: '',
+    ruta: 'RUNTECHLG.png',
+    rutagrande: 'runtech2.png',
     region: this.region,
     modalidad: this.modalidad
   }
@@ -130,7 +130,7 @@ export class AddCorredorComponent  implements OnInit {
   }
   ciudad: Ciudad = {
     idciudad: 1,
-    nomciudad: '',
+    nomciudad: 'Oviedo',
     pais: this.pais
   }
 
@@ -153,7 +153,7 @@ export class AddCorredorComponent  implements OnInit {
     citp: '',
     nacionalidad: '',
     ciudad: this.ciudad,
-    tamano: 0
+    tamano: 1
   }
   
 
@@ -167,7 +167,7 @@ export class AddCorredorComponent  implements OnInit {
     verificar: 0,
     carnet: '',
     carnetatras: '',
-    tipocat: 0,
+    tipocat: 3,
     licencia: 0,
     modificar: false,
     gruposanguineo: '',
@@ -201,13 +201,13 @@ export class AddCorredorComponent  implements OnInit {
       citp: [''],
       nacionalidad: ['Paraguaya', Validators.required],
       ciudad: this.ciudad,
-      tamano: [0]
+      tamano: [1, Validators.required]
     }),
     
     verificar: [0],
     carnet: [''],
     carnetatras: [''],
-    tipocat: [2, Validators.required],
+    tipocat: [3, Validators.required],
     licencia: [0],
     modificar: [false],
     puntua: [0],
@@ -238,18 +238,28 @@ export class AddCorredorComponent  implements OnInit {
 
   ngOnInit(): void {
     this.tamanos = [
-      { label: 'Sin Remera', value: 0 },
+      //{ label: 'Sin Remera', value: 0 },
       { label: 'Tamaño P', value: 1 },
       { label: 'Tamaño M', value: 2 },
       { label: 'Tamaño G', value: 3 }
     ];
 
     this.tipos = [
-      {label: '20k', value: 1},
+     // {label: '20k', value: 1},
       {label: '10k', value: 2},
       {label: ' 5k', value: 3},
       
     ];
+
+    if(this.idevento==126){
+    this.tipos = [
+        
+        {label: ' 5k  ', value: 3},
+        {label: 'NIÑOS', value: 4},
+        
+      ];
+    }
+    
     this.grupos = [
       { label: 'RH (O-)', value: 'RH (O-)' },
       { label: 'RH (O+)', value: 'RH (O+)' },
@@ -282,7 +292,7 @@ export class AddCorredorComponent  implements OnInit {
     this.clubService.publistarClubesRun().subscribe(
       (dato: any) => {
         this.clubes = dato;
-        this.club = this.clubes[0];
+      //  this.club = this.clubes[0];
         
       }, (error) => {
         console.log(error);
@@ -294,6 +304,7 @@ export class AddCorredorComponent  implements OnInit {
       }
     );
 
+   
     //this.user = this.login.getUser();
     this.usuario.idusuario = 91;
 

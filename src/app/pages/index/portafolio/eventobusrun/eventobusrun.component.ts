@@ -37,21 +37,21 @@ export class EventobusrunComponent implements OnInit{
   ];
 
   tamanos = [
-    { label: 'Sin Remera', value: 0 },
+   // { label: 'Sin Remera', value: 0 },
     { label: 'Tamaño P', value: 1 },
     { label: 'Tamaño M', value: 2 },
     { label: 'Tamaño G', value: 3 },
-    { label: 'Tamaño XG', value: 4 },
-    { label: 'Tamaño XXG', value: 5 }
+    //{ label: 'Tamaño XG', value: 4 },
+  //  { label: 'Tamaño XXG', value: 5 }
   ];
   tipos = [
-    {label: '20k', value: 1},
+    //{label: '20k', value: 1},
     {label: '10k', value: 2},
     {label: ' 5k', value: 3},
     
   ];
 
-  tamano=0;
+  tamano=3;
   ordenevento='';
   ci:string='';
   fecha:Date=new Date();
@@ -60,7 +60,7 @@ export class EventobusrunComponent implements OnInit{
     idcorredor: 0,
     persona: {
       idpersona: 0,
-      tamano: 0,
+      tamano: 3,
     },
     categoria:{
       idcategoria:0
@@ -81,7 +81,7 @@ export class EventobusrunComponent implements OnInit{
     pais: '',
     carnetfpc: 0,
     puntua: 0,
-    tamano: 0,
+    tamano: 3,
     idpersona: 0,
     idcategoria: 0
   };
@@ -89,7 +89,7 @@ export class EventobusrunComponent implements OnInit{
   inscripto=0;
   edad=0;
   idmodalidad=2;
-  tipo=1;
+  tipo=3;
 
   constructor( private activatedRoute:ActivatedRoute,
     private eventoService: EventoService,
@@ -120,7 +120,14 @@ export class EventobusrunComponent implements OnInit{
         },
         complete: () => console.info('completo evento')
       });
-
+    if(this.idevento==126){
+    this.tipos = [
+        
+        {label: ' 5k  ', value: 3},
+        {label: 'NIÑOS', value: 4},
+        
+      ];
+    }
       
 }
 

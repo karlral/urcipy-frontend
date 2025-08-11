@@ -1,0 +1,26 @@
+<div id="confirmado" class="mx-auto" >
+
+    <p-table [value]="inscripciones" sortField="corredor" sortMode="single">
+        <ng-template pTemplate="header">
+            <tr>  
+                <th pSortableColumn="corredor"><h1 class="titulo">Corredores Confirmados</h1></th>  
+            </tr>
+        </ng-template>
+       
+        
+        <ng-template pTemplate="footer" >
+            <tr>
+                <td colspan="1" class="text-right font-bold pr-5"><strong class="pr-5">Total</strong> {{inscripciones.length}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-partici>
+            <tr>
+                <td class="flex flex-column align-items-center justify-content-center corredor" >
+                   <h4> {{partici.corredor}} </h4>
+                   <h5> {{partici.categoria}}</h5>
+                </td> 
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

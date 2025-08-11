@@ -1,0 +1,25 @@
+.corredor{
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+  }
+
+
+.corredor h4{
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+  }
+  .corredor h5{
+   
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 2px;
+  }
+  
+  .titulo{
+    font-family: 'Righteous','Courier New', Courier, monospace;
+    text-align: center;
+    letter-spacing: 1px;
+  }
