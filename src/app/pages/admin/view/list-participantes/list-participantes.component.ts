@@ -7,6 +7,7 @@ import { ParticipanteService } from 'src/app/service/participante.service';
 import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-list-participantes',
@@ -61,13 +62,16 @@ export class ListParticipantesComponent implements OnInit {
     { label: 'Tamaño XXG', value: 5 }
 
   ];
+ 
+   istimepagos: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
 
     private participanteService: ParticipanteService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -100,6 +104,10 @@ export class ListParticipantesComponent implements OnInit {
         },
         complete: () => console.info('completo inscriptos'),
       });
+
+      if (this.loginService.getUserRole() == "TIMEPAGOS") {
+          this.istimepagos = true;
+      }
   }
 
   exportExcel2() {

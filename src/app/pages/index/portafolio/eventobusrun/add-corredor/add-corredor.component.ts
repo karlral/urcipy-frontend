@@ -78,7 +78,17 @@ export class AddCorredorComponent  implements OnInit {
     codigo: ''
   };
 
-  
+  regional: Regional = {
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: '',
+    logo: ''
+  }
 
   usuario: Usuario = {
     idusuario: 91,
@@ -89,23 +99,14 @@ export class AddCorredorComponent  implements OnInit {
     email: '',
     username: '',
     password: '',
-    enabled: false
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
   }
   region: Region = {
     idregion: 1,
     nomregion: '',
     nomcorto: '',
-    logo: ''
-  }
-  regional: Regional = {
-    idregional: system,
-    nomregional: '',
-    nomcorto: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
     logo: ''
   }
   

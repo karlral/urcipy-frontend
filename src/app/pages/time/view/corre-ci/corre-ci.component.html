@@ -1,0 +1,29 @@
+<p-toast></p-toast>
+
+<section class="content">
+    <div class="block-content">
+        
+        <div class="row">
+            <app-buscorredor *ngIf="displaySearch" [title]="'CI'" [cantletter]="6"
+                (clickSearch)="corredorSearch($event)">
+            </app-buscorredor>
+
+            <button *ngIf="!displaySearch" pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="showModal()"></button>
+
+            <button *ngIf="!displaySearch" pButton pRipple icon="pi pi-search" class="p-button-secondary ml-2"
+                (click)="showSearch()"></button>
+        </div>
+
+        <div class="row">
+
+                    <app-add-edit-corre-ci *ngIf="!displaySearch" 
+                        [selectedCorredor]="selectedCorredor"
+                        (clickClose)="hideModal($event)">
+                    </app-add-edit-corre-ci>
+
+        </div>
+    </div>
+</section>
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

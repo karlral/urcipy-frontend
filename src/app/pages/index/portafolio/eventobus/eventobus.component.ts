@@ -57,19 +57,7 @@ export class EventobusComponent implements OnInit{
     modalidad: this.modalidad,
     codigo: ''
   }
-
-  usuario:Usuario={
-    idusuario: 0,
-    nombre: '',
-    apellido: '',
-    telefono: '',
-    perfil: '',
-    email: '',
-    username: '',
-    password: '',
-    enabled: false
-  }
-  regional:Regional={
+regional:Regional={
     idregional: 0,
     nomregional: '',
     nomcorto: '',
@@ -80,6 +68,20 @@ export class EventobusComponent implements OnInit{
     ano: 0,
     presentacion: ''
   }
+  usuario:Usuario={
+    idusuario: 0,
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    perfil: '',
+    email: '',
+    username: '',
+    password: '',
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
+  }
+  
   region:Region={
     idregion: 0,
     nomregion: '',

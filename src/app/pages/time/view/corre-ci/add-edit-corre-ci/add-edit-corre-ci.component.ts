@@ -23,16 +23,16 @@ import { PaisService } from 'src/app/service/pais.service';
 import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
-  selector: 'app-add-edit-corredor',
-  templateUrl: './add-edit-corredor.component.html',
-  styleUrls: ['./add-edit-corredor.component.css']
+  selector: 'app-add-edit-corre-ci',
+  templateUrl: './add-edit-corre-ci.component.html',
+  styleUrls: ['./add-edit-corre-ci.component.css']
 })
-export class AddEditCorredorComponent implements OnInit, OnChanges {
-  @Input() displayAddEditModal: boolean = true;
+export class AddEditCorreCiComponent  implements OnInit, OnChanges {
+
   @Input() selectedCorredor:any=null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
+ 
 
   modalType="Agregar";
 
@@ -48,16 +48,27 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
   fecha = new Date();
  
   fechaant=new Date(2000, 0, 1);
+  regional: Regional = {
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    telefono: '',
+    direccion: '', 
+    email: '',
+    ano: 0,
+    presentacion: '',
+    logo: ''
+  };
 
   trayecto:Trayecto={
     idtrayecto: 0,
     nomtrayecto: '',
     km: 0
   }
-modalidad:Modalidad={
-  idmodalidad: 0,
-  nommodalidad: ''
-}
+  modalidad: Modalidad = {
+    idmodalidad: 1,
+    nommodalidad: ''
+  }
   eCategoria:Categoria={
     idcategoria: 0,
     nomcategoria: '',
@@ -84,18 +95,6 @@ modalidad:Modalidad={
   fileName = '';
   preview = '';
 
-  regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    logo: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: ''
-  }
-  
   usuario: Usuario = {
     idusuario: 0,
     nombre: '',
@@ -115,6 +114,7 @@ modalidad:Modalidad={
     nomcorto: '',
     logo: ''
   }
+  
   
   club: Club = {
     idclub: 1,
@@ -177,8 +177,7 @@ modalidad:Modalidad={
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [false],
-    idmodalidad: [1],
+    catalianza: [false]
     
   });
 
@@ -226,7 +225,8 @@ modalidad:Modalidad={
     catalianza: true
   };
 
- idmodalidad=1;
+  idmodalidad = 2;
+  tamanos: any[] = [];
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
@@ -236,8 +236,8 @@ modalidad:Modalidad={
     public login: LoginService,
     private mediaService: MediaService,
     private corredorService: CorredorService,
-    private personaService:PersonaService
-    
+        private personaService:PersonaService
+
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -280,13 +280,18 @@ modalidad:Modalidad={
   }
 
   ngOnInit(): void {
+this.tamanos = [
+      { label: 'Sin Remera', value: 0 },
+      { label: 'Tamaño P', value: 1 },
+      { label: 'Tamaño M', value: 2 },
+      { label: 'Tamaño G', value: 3 }
+    ];
 
-
-    this.tipos = [
-      { label: 'PRINCIPAL', value: 1 },
-      { label: 'PRINCIPAL-ELITE', value: 2 },
-      { label: 'PROMOCIONAL', value: 3 },
-      { label: 'PROMOCIONAL+100K', value: 4 }
+     this.tipos = [
+      {label: '20k', value: 1},
+      {label: '10k', value: 2},
+      {label: ' 5k', value: 3},
+      {label: 'NIÑOS', value: 4},
     ];
 
     this.grupos = [
@@ -299,10 +304,6 @@ modalidad:Modalidad={
       { label: 'RH (AB-)', value: 'RH (AB-)' },
       { label: 'RH (AB+)', value: 'RH (AB+)' }
     ];
-
-    
-
-
 
     this.ciudadService.listarCiudades().subscribe(
       {
@@ -321,14 +322,12 @@ modalidad:Modalidad={
         complete: () => console.info('completo ciudad')
       });
 
-    this.clubService.listarClubes().subscribe(
-     { 
-      next:  (dato: any) => {
+    this.clubService.publistarClubesRun().subscribe(
+      (dato: any) => {
         this.clubes = dato;
-        this.club = this.clubes[0];
+      //  this.club = this.clubes[0];
         
-      }, 
-      error: (error) => {
+      }, (error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
@@ -336,7 +335,7 @@ modalidad:Modalidad={
           detail: "Error al cargar el Club"
         });
       }
-    });
+    );
 
     this.user = this.login.getUser();
     this.usuario.idusuario = this.user.idusuario;
@@ -364,8 +363,8 @@ modalidad:Modalidad={
     this.clickClose.emit(true);
   }
 
-  mostrarVarCorredor() {
-    
+ extractNumberString(s: string) {
+    return s.replace(/[^0-9]/g, "");
   }
 
   addEditCorredor() {
@@ -395,8 +394,6 @@ modalidad:Modalidad={
     }
     this.corredorForm.get('usuario')?.setValue(this.usuario);
     this.corredorForm.get('regional')?.setValue(this.regional);
-    this.corredorForm.get('fecmodi')?.setValue(this.fecha);
-
    // console.log(this.corredorForm.value);
 
     if (this.selectedCorredor) {
@@ -406,7 +403,7 @@ modalidad:Modalidad={
         {
           next: (dato) => {
 
-            this.clickAddEdit.emit(dato);
+            
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'La corredor ha sido actualizada con exito', life: 3000 });
             this.closeModal();
           }, error: (error) => {
@@ -435,7 +432,7 @@ modalidad:Modalidad={
            
           // this.savePersona();
 
-            this.clickAddEdit.emit(dato);
+            
 
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
 
@@ -446,7 +443,7 @@ modalidad:Modalidad={
             this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la corredor', life: 3000 });
 
           },
-            complete: () => {
+          complete: () => {
             console.log('Completo el agregar');
 
           }
@@ -523,5 +520,4 @@ modalidad:Modalidad={
     }
   }
   
-
 }

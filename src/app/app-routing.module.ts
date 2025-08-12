@@ -16,6 +16,8 @@ const routes: Routes = [
   },{
     path:'time',loadChildren:()=> import('./pages/time/time.module').then(m => m.TimeModule)
   },{
+    path:'timepagos',loadChildren:()=> import('./pages/timepagos/timepagos.module').then(m => m.TimepagosModule)
+  },{
     path:'resumen', loadChildren:()=> import('./pages/index/resumen/resumen.module').then(m => m.ResumenModule)
   },{
     path:'resultados', loadChildren:()=> import('./pages/index/resultados/resultados.module').then(m => m.ResultadosModule)

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TimeNavigationComponent } from './time-navigation/time-navigation.component';
-import { TimeGuard } from 'src/app/service/time.guard';
-import { TimeWelcomeComponent } from './time-welcome/time-welcome.component';
+import { TimepagosNavigationComponent } from './timepagos-navigation/timepagos-navigation.component';
+import { TimepagosWelcomeComponent } from './timepagos-welcome/timepagos-welcome.component';
+import { TimepagosGuard } from 'src/app/service/timepagos.guard';
 
 const routes: Routes = [
   {
       path:'access',
-      component:TimeNavigationComponent, canActivate:[TimeGuard],
+      component:TimepagosNavigationComponent, canActivate:[TimepagosGuard],
       children:[
         
         {
           path:'',
-          component:TimeWelcomeComponent
+          component:TimepagosWelcomeComponent
         },
         {
           path:'evento', loadChildren:()=> import('../admin/view/evento/evento.module').then(m => m.EventoModule)
@@ -22,9 +22,6 @@ const routes: Routes = [
         },
         {
           path:'correci', loadChildren:()=> import('../user/view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
-        },
-        {
-          path:'correrunci', loadChildren:()=> import('./view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
         },
              
       {
@@ -45,4 +42,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TimeRoutingModule { }
+export class TimepagosRoutingModule { }

@@ -16,7 +16,7 @@
             label="Export"
             tooltipPosition="bottom">
     </button>
-    <button pButton pRipple class="p-button-success mr-2" (click)="addAll()">Asignar a Todos N° Dorsales</button>
+    <button *ngIf="!istimepagos" pButton pRipple class="p-button-success mr-2" (click)="addAll()">Asignar a Todos N° Dorsales</button>
             <h2 class="m-0">Corredores Inscriptos</h2>
             
             <span class="p-input-icon-left">
@@ -56,13 +56,13 @@
             <td>{{partici.pagado==1 ? "SI" :"NO"}}</td>
             
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                 (click)="editPartici(partici)"></button>
                 
-               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
+               <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
                 
-                <button pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"
+                <button  pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"
                     (click)="addPagos(partici)"></button>
               
            </td>
@@ -81,10 +81,6 @@
     [selectedInscripto]="selectedInscripto"
     (clickPagosClose)="hidePagosModal($event)"
     ></app-add-pagos>
-    <!-- [displayAddModal]="displayAddModal"
-    (clickClose)="hideModal($event)"
-    (addNomcorredor)="addNomcorredor($event)"
-    (clickAdd)="saveMovimientoToList($event)"
-></app-add-ranking>  -->
+    
 
 <p-confirmDialog header="Atencion" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

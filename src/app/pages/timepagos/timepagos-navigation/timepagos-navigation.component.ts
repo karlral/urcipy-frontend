@@ -6,11 +6,11 @@ import { Observable, map, shareReplay } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
-  selector: 'app-time-navigation',
-  templateUrl: './time-navigation.component.html',
-  styleUrls: ['./time-navigation.component.css']
+  selector: 'app-timepagos-navigation',
+  templateUrl: './timepagos-navigation.component.html',
+  styleUrls: ['./timepagos-navigation.component.css']
 })
-export class TimeNavigationComponent {
+export class TimepagosNavigationComponent {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -36,25 +36,31 @@ ngOnInit(): void {
   this.isLoggedIn=this.login.isLoggedIn();
 
   this.items = [
-    {
+   /* {
       label: 'Principal',
       items: [
         {label: 'Inicio', icon: 'pi pi-home', routerLink: ['/time/access']},
         {label: 'Club', icon: 'pi pi-prime', routerLink: ['/time/access/club']},
         {label: 'Eventos', icon: 'pi pi-building-columns', routerLink: ['/time/access/evento/evento']},
-        {label: 'Corredor x ci MTB', icon: 'pi pi-search', routerLink: ['/time/access/correci']},
-        {label: 'Corredor x ci RUN', icon: 'pi pi-search', routerLink: ['/time/access/correrunci']},
+        {label: 'Corredor x ci', icon: 'pi pi-search', routerLink: ['/time/access/correci']},
         {label: 'Cerrar Sesión', icon: 'pi pi-sign-out', command: () => this.logout()},
         
       ]
   }
   ,
 {
-    label: 'Lista Dorsales y Pagos',
+    label: 'Procesos',
     items: [
       {label: 'Dorsales ', icon: 'pi pi-calendar', routerLink: ['/time/access/dorsal']},
       {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/1']},
       {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/2']},
+    ]
+},*/
+{
+    label: 'Dorsal y Pagos',
+    items: [
+      {label: 'Listado Inscriptos ', icon: 'pi pi-list-check', routerLink: ['/timepagos/access/listpart/'+this.user.idevento]},
+      //del evento 1
     ]
 }
 ];

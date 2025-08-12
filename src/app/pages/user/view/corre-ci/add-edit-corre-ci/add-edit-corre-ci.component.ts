@@ -48,6 +48,17 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
   fecha = new Date();
  
   fechaant=new Date(2000, 0, 1);
+  regional: Regional = {
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    telefono: '',
+    direccion: '', 
+    email: '',
+    ano: 0,
+    presentacion: '',
+    logo: ''
+  };
 
   trayecto:Trayecto={
     idtrayecto: 0,
@@ -93,7 +104,9 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     email: '',
     username: '',
     password: '',
-    enabled: false
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
   }
   region: Region = {
     idregion: 1,
@@ -101,17 +114,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     nomcorto: '',
     logo: ''
   }
-  regional: Regional = {
-    idregional: system,
-    nomregional: '',
-    nomcorto: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    logo: ''
-  }
+  
   
   club: Club = {
     idclub: 1,

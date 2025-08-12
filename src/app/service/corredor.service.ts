@@ -23,6 +23,9 @@ export class CorredorService {
   public obtenerCorredorCi(ci:any):Observable<Corredor>{
     return this.http.get<Corredor>(`${baserUrl}/corredor/ci/${ci}/${system}`);
   }
+  public obtenerCorredorCiRun(ci:any):Observable<Corredor>{
+    return this.http.get<Corredor>(`${baserUrl}/corredor/ci/${ci}/4`);
+  }
   public obtenerCorredorCiVacio(ci:any):Observable<any>{
     return this.http.get<any>(`${baserUrl}/corredor/ci/${ci}/${system}`);
   }
