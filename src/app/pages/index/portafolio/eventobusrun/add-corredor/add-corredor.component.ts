@@ -249,6 +249,7 @@ export class AddCorredorComponent  implements OnInit {
      // {label: '20k', value: 1},
       {label: '10k', value: 2},
       {label: ' 5k', value: 3},
+      {label: 'NIÑOS', value: 4}
       
     ];
 

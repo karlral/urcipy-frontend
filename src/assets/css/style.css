@@ -119,7 +119,7 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem 4%;
-    /*background: rgba(0, 0, 0, 0.6);*/
+   /* background: rgba(0, 0, 0, 0.6);*/
     /*backdrop-filter: blur(10px);*/
     /*transition: all 0.5s ease;*/
 }
@@ -128,7 +128,10 @@
     width: 19rem;
     height: 5rem;
 }
-
+.logo2{
+    width: 2.5rem;
+    height: 2.5rem;
+}
 
 
 .navbar {
@@ -158,6 +161,10 @@
 }
 
 @media (max-width:768px) {
+    .app{
+
+          gap: 1rem;
+    }
     #menu-icon {
         display: block;
     }

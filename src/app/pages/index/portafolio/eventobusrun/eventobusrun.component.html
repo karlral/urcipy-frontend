@@ -82,13 +82,13 @@
                     </app-cat-corredor>
                   </div>
 
-                  <!--div class="field">
+                  <div  *ngIf="this.idevento==126" class="field">
                     <label for="tamano">Tamaño de la Remera</label>
                     <p-dropdown [options]="tamanos" [(ngModel)]="corredorbus.tamano" id="tamano"
                       placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"
                       optionLabel="label" optionValue="value" [ngModelOptions]="{standalone: true}" [showClear]="true"
                       appendTo="body"></p-dropdown>
-                  </div-->
+                  </div>
 
                   <div class="field">
                     <label>Terminos de Participacion</label>
