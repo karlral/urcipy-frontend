@@ -40,7 +40,7 @@ export class CorreCiComponent  {
   corredorSearch(buscado:string){
     console.log('Buscamos la cantidad de registros con '+buscado);
     this.displaySearch=false;
-    this.corredorService.obtenerCorredorCi(buscado).subscribe(
+    this.corredorService.obtenerCorredorCiRun(buscado).subscribe(
       {
         next: (dato: Corredor) => {
           this.selectedCorredor = dato;
