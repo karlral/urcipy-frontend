@@ -23,6 +23,9 @@ const routes: Routes = [
         {
           path:'correci', loadChildren:()=> import('../user/view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
         },
+        {
+          path:'correrunci', loadChildren:()=> import('../time/view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
+        },
              
       {
         path:'dorsal', loadChildren:()=> import('../admin/view/dorsal/dorsal.module').then(m => m.DorsalModule)
