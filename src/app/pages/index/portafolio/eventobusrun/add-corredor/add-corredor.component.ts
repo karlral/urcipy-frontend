@@ -79,7 +79,7 @@ export class AddCorredorComponent  implements OnInit {
   };
 
   regional: Regional = {
-    idregional: system,
+    idregional: 4,
     nomregional: '',
     nomcorto: '',
     telefono: '',
@@ -202,7 +202,7 @@ export class AddCorredorComponent  implements OnInit {
       citp: [''],
       nacionalidad: ['Paraguaya', Validators.required],
       ciudad: this.ciudad,
-      tamano: [1, Validators.required]
+      tamano: [1]
     }),
     
     verificar: [0],
