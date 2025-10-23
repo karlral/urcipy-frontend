@@ -185,7 +185,15 @@ persona:Persona={
     club: this.club,
     regional: this.regional,
     alianza: 0,
-    modalidad: this.modalidad
+    modalidad: this.modalidad,
+    ubicacion: '',
+    ubidorsal: '',
+    gpxprincipal: '',
+    gpxpromocional: '',
+    dosier: '',
+    facebook: '',
+    instagram: '',
+    hoteles: ''
   };
 
   participante:Participante={

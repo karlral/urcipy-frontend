@@ -1,51 +1,47 @@
-<div *ngIf="visible" class="cuadro"> 
-                            <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" class="mb-5" />
-
-  
-    <div class="links"> 
-                <a href="https://web.timio.com.py/inscripcion/desafio_caaguazu_2025/l/web" class="youtube" target="_blank">Inscripción</a> 
-        <a href="https://maps.app.goo.gl/8TcucKeaZbXXdb1m6" class="twitter" target="_blank">Ubi. Concentración</a> 
-        <a href="https://maps.app.goo.gl/9dMihCJHXe2Npkbh6" class="linkedin" target="_blank">Dorsal Sabado</a> 
-<a href="https://www.google.com/maps/d/viewer?mid=1_TPIglWS5IvtdLH2ENo2s6TNU_3NI-6L&ll=-25.37427907691557%2C-56.3020681645794&z=12" class="facebook" target="_blank">Mapa Organización</a> 
-<a href="https://drive.google.com/file/d/1PiEffV9N7VAQtIha3GgE6-sE4N9f2qmm/view?usp=sharing" class="facebook" target="_blank">GPX PRINCIPAL</a> 
-<a href="https://drive.google.com/file/d/1AGdljkk8BS-vGaVECdnZzXNQeqelno0u/view?usp=sharing" class="facebook" target="_blank">GPX PROMOCIONAL</a> 
-        <a    href="https://drive.google.com/file/d/1VTMoREEfCznObjC3B7pFiCa0yOvc5Wy9/view?usp=sharing" class="youtube" target="_blank">Dosier - Ficha Técnica</a>
-        
-        <a href="https://www.gobernaciondelcaaguazu.gov.py/caaguazu-rape/" class="linkedin" target="_blank">Hoteles</a> 
+<div *ngIf="visible" class="cuadro">
+    <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" class="mb-5" />
 
 
-        <a href="https://www.facebook.com/URCipy" class="facebook" target="_blank">Facebook</a> 
-
-            <a href="https://www.instagram.com/team_renacer_oviedo/" class="instagram" target="_blank">Instagram</a> 
-             <a  class="tiktok" (click)="mostrarMenu()" >URCI</a> 
-    </div> 
+    <div class="links">
+        <a *ngIf="evento.urlcategoria && evento.urlcategoria !== ''" href="{{evento.urlcategoria}}" class="youtube" target="_blank">Inscripción</a>
+        <a *ngIf="evento.ubicacion && evento.ubicacion !== ''" href="{{evento.ubicacion}}" class="twitter" target="_blank">Ubi. Concentración</a>
+        <a *ngIf="evento.ubidorsal && evento.ubidorsal !== ''" href="{{evento.ubidorsal}}" class="linkedin" target="_blank">Dorsal Sabado</a>
+        <a *ngIf="evento.urlpromocional && evento.urlpromocional !== ''" href="{{evento.urlpromocional}}" class="facebook" target="_blank">Mapa</a>
+        <a *ngIf="evento.gpxprincipal && evento.gpxprincipal !== ''" href="{{evento.gpxprincipal}}" class="facebook" target="_blank">GPX PRINCIPAL</a>
+        <a *ngIf="evento.gpxpromocional && evento.gpxpromocional !== ''" href="{{evento.gpxpromocional}}" class="facebook" target="_blank">GPX PROMOCIONAL</a>
+        <a *ngIf="evento.dosier && evento.dosier !== ''" href="{{evento.dosier}}" class="youtube" target="_blank">Dosier - Ficha Técnica</a>
+        <a *ngIf="evento.hoteles && evento.hoteles !== ''" href="{{evento.hoteles}}" class="linkedin" target="_blank">Hoteles</a>
+        <a *ngIf="evento.facebook && evento.facebook !== ''" href="{{evento.facebook}}" class="facebook" target="_blank">Facebook</a>
+        <a *ngIf="evento.instagram && evento.instagram !== ''" href="{{evento.instagram}}" class="instagram" target="_blank">Instagram</a>
+        <a class="tiktok" (click)="mostrarMenu()">URCI</a>
+    </div>
     <!-- Footer -->
     <footer> © 2025 URCI <br>
-        Contactos:  +595 981 320371 <br>
-         +595 994 233 159
+        Contactos: {{evento.contacto}} <br>
+
     </footer>
 </div>
 
- <!--div *ngIf="!visible" class="preloader">
+<!--div *ngIf="!visible" class="preloader">
     <div class="anim pulse"><i class="ion-ios-bolt-outline"></i></div>
   </div-->
-  <!--div *ngIf="!visible" class="preloader-left"></div-->
-  <div  *ngIf="!visible" class="inline-menu-container">
+<!--div *ngIf="!visible" class="preloader-left"></div-->
+<div *ngIf="!visible" class="inline-menu-container">
     <ul class="inline-menu">
         <li id="maxi" class="menu-item"><a routerLink="/"><i class="ion-chevron-left"></i></a></li>
-        <li class="about menu-item"><a routerLink="/resumen" >Calendario {{regional.ano}}</a></li>
+        <li class="about menu-item"><a routerLink="/resumen">Calendario {{regional.ano}}</a></li>
         <li class="about menu-item"><a routerLink="/portfolio">Inscripcion</a></li>
         <li class="about menu-item"><a routerLink="/blog">Historial</a></li>
         <li class="about menu-item"><a routerLink="/contact">Puntajes</a></li>
-        
+
         <li id="close" class="menu-item"><a routerLink="/"><i class="ion-ios-close-empty"></i></a></li>
     </ul>
-  </div>
-  <section  *ngIf="!visible" class="home">
-  <div id="fondo" class="bgScroll"></div>
+</div>
+<section *ngIf="!visible" class="home">
+    <div id="fondo" class="bgScroll"></div>
     <div id="trasparencia" class="overlay opacity7"></div>
     <div class="container">
-  
+
         <div class="name-block">
             <div class="name-block-container">
                 <h1><span>Campeonato</span> {{regional.nomcorto}}</h1>
@@ -53,45 +49,48 @@
                 <p style="color: white; line-height: 20px;">{{regional.presentacion}}
                 </p>
                 <ul class="social">
-                    <li><a href="https://www.facebook.com/URCipy" target_="_blank"><i class="ion-social-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/urciparaguay/" target_="_blank"><i class="ion-social-instagram"></i></a></li>
-                    <li><a href="https://wa.me/595994233159"><i class="ion-social-whatsapp" target_="_blank"></i></a></li>
-                    
-               
+                    <li><a href="https://www.facebook.com/URCipy" target_="_blank"><i
+                                class="ion-social-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/urciparaguay/" target_="_blank"><i
+                                class="ion-social-instagram"></i></a></li>
+                    <li><a href="https://wa.me/595994233159"><i class="ion-social-whatsapp" target_="_blank"></i></a>
+                    </li>
+
+
                 </ul>
             </div>
         </div>
         <div class="menu-blocks">
             <a routerLink="/resumen">
-            <div class="about-block menu-block">                
-                <div class="about-block-container">
-                    <h2 class="about menu-item">Calendario {{regional.ano}}</h2>
-                </div>              
-            </div>
+                <div class="about-block menu-block">
+                    <div class="about-block-container">
+                        <h2 class="about menu-item">Calendario {{regional.ano}}</h2>
+                    </div>
+                </div>
             </a>
             <a routerLink="/portfolio">
-            <div class="portfolio-block  menu-block">     
-                <div class="portfolio-block-container">
-                    <h2 class="portfolio menu-item">Inscripciones</h2>
-                </div>               
-            </div>
+                <div class="portfolio-block  menu-block">
+                    <div class="portfolio-block-container">
+                        <h2 class="portfolio menu-item">Inscripciones</h2>
+                    </div>
+                </div>
             </a>
             <a routerLink="/blog">
-            <div class="blog-block  menu-block">
-                <div class="blog-block-container">
-                    <h2 class="blog menu-item">Historial</h2>
+                <div class="blog-block  menu-block">
+                    <div class="blog-block-container">
+                        <h2 class="blog menu-item">Historial</h2>
+                    </div>
                 </div>
-            </div>
             </a>
             <a routerLink="/contact">
-            <div class="contact-block  menu-block">
-                <div class="contact-block-container">
-                    <h2 class="contact menu-item">Resultado y Puntajes</h2>
+                <div class="contact-block  menu-block">
+                    <div class="contact-block-container">
+                        <h2 class="contact menu-item">Resultado y Puntajes</h2>
+                    </div>
                 </div>
-            </div>
             </a>
-        
-                <a routerLink="/asociados">
+
+            <a routerLink="/asociados">
                 <div class="membresia-block  menu-block">
                     <div class="membresia-block-container">
                         <h2 class="membresia menu-item">RANKEAR {{regional.ano}}</h2>
@@ -99,25 +98,25 @@
                 </div>
             </a>
             <a routerLink="/sistema">
-            <div class="sistema-block  menu-block">
-                <div class="sistema-block-container">
-                    <h2 class="sistema menu-item">Sistema</h2>
+                <div class="sistema-block  menu-block">
+                    <div class="sistema-block-container">
+                        <h2 class="sistema menu-item">Sistema</h2>
+                    </div>
                 </div>
-            </div>
             </a>
-            
+
         </div>
-  
+
         <div class="content-blocks about">
-          <router-outlet></router-outlet>
-        </div> 
-  
-        
+            <router-outlet></router-outlet>
+        </div>
+
+
 
         <div class="content-blocks pop">
             <div id="close-pop" class="close-pop">Cerrar <i class="ion-ios-close-empty"></i></div>
             <section class="content">Nada</section>
         </div>
-  
+
     </div>
-  </section>
+</section>

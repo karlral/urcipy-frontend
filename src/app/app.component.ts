@@ -51,7 +51,15 @@ export class AppComponent implements OnInit{
     fondo: '',
     club: this.club,
     regional: this.regional,
-    modalidad: this.modalidad
+    modalidad: this.modalidad,
+    ubicacion: '',
+    ubidorsal: '',
+    gpxprincipal: '',
+    gpxpromocional: '',
+    dosier: '',
+    facebook: '',
+    instagram: '',
+    hoteles: ''
   };
   ordenes:{label:string,value:number}[]=[]
   fechaanterior:any;
@@ -92,6 +100,7 @@ export class AppComponent implements OnInit{
         next: (datos: Evento[]) => {
           this.eventoes = datos;
           this.evento = datos[0];
+          console.log(this.evento);
 
           this.fechaanterior = new Date(datos[0].fecha)
           const fecha = new Date(datos[0].fecha);
