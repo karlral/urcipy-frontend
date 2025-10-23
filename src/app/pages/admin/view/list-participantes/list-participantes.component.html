@@ -38,6 +38,7 @@
             <th>Categoria</th>
             <th>Km</th>
             <th>Dorsal</th>
+            <th>Kit</th>
             <th>Pagado</th>
             <th></th>
         </tr>
@@ -47,13 +48,14 @@
             <td>{{partici.ci}}</td>
             <td>{{partici.fecha | date: 'dd/MM/yyyy HH:mm:ss':'UTC'}}</td>
             <td>{{partici.corredor}}</td>
-            <td>{{partici.sexo==1 ? 'M':'F'}}</td>
+            <td>{{partici.sex}}</td>
             <td>{{partici.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
             <td>{{partici.club}}</td>
             <td>{{partici.categoria}}</td>
             <td>{{partici.km}}</td>
             <td>{{partici.dorsal}}</td>
-            <td>{{partici.pagado==1 ? "SI" :"NO"}}</td>
+            <td>{{partici.kittipo}}</td>
+            <td>{{partici.pag}}</td>
             
             <td>
                 <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"

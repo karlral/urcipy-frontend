@@ -77,12 +77,12 @@
 
                   <div class="field">
                     <label for="nombre">Categoria Calculada</label>
-                    <app-cat-corredor [fecnac]="corredorbus.fecnac" [sexo]="corredorbus.sexo" [tipocat]="tipo"
+                    <app-cat-corredor [fecnac]="corredorbus.fecnac" [sexo]="corredorbus.sexo" [tipocat]="tipo" [idevento]="evento.idevento"
                       [idmodalidad]="idmodalidad" (emitCategoria)="cargarCategoria($event)">
                     </app-cat-corredor>
                   </div>
 
-                  <div  *ngIf="this.idevento==126" class="field">
+                  <div  *ngIf="this.idevento==126 || this.idevento==132 || this.idevento==134 || this.idevento==135" class="field">
                     <label for="tamano">Tamaño de la Remera</label>
                     <p-dropdown [options]="tamanos" [(ngModel)]="corredorbus.tamano" id="tamano"
                       placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"

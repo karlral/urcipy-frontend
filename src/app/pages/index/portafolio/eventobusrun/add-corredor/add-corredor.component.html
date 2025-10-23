@@ -140,7 +140,7 @@
         </div-->
 
     </fieldset>
-    <fieldset *ngIf="this.idevento==126" formGroupName="persona" class="mr-2">
+    <fieldset *ngIf="this.idevento==126 || this.idevento==132 ||  this.idevento==134 || this.idevento==135" formGroupName="persona" class="mr-2">
         <div class="field">
             <label for="tamano">Tamaño de la Remera</label>
             <p-dropdown [options]="tamanos" formControlName="tamano" id="tamano"

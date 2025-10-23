@@ -20,4 +20,7 @@ export interface Inscriptos {
     tamano: number,
     sex:string,
     tamanoc: string,
+    pag: string,
+    kit: number,
+    kittipo: string
 }

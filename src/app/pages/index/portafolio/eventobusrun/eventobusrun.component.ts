@@ -16,59 +16,59 @@ import { id } from 'date-fns/locale';
   selector: 'app-eventobusrun',
   templateUrl: './eventobusrun.component.html',
   styleUrls: ['./eventobusrun.component.css'],
-  providers:[Datasys,MessageService]
+  providers: [Datasys, MessageService]
 })
-export class EventobusrunComponent implements OnInit{
-  idevento!:number ;
+export class EventobusrunComponent implements OnInit {
+  idevento!: number;
   mediaLocation = `${baserUrl}/media/`;
 
-  selectedCorredor:any=null;
-  displaySearch=false;
+  selectedCorredor: any = null;
+  displaySearch = false;
 
-  evento:any;
-  
+  evento: any;
 
-  participante:any;
 
-  
-  
-  ordenes:{label:string,value:number}[]=[
+  participante: any;
+
+
+
+  ordenes: { label: string, value: number }[] = [
     { label: 'Primera', value: 1 }
   ];
 
   tamanos = [
-   // { label: 'Sin Remera', value: 0 },
+    // { label: 'Sin Remera', value: 0 },
     { label: 'Tamaño P', value: 1 },
     { label: 'Tamaño M', value: 2 },
     { label: 'Tamaño G', value: 3 },
     //{ label: 'Tamaño XG', value: 4 },
-  //  { label: 'Tamaño XXG', value: 5 }
+    //  { label: 'Tamaño XXG', value: 5 }
   ];
   tipos = [
     //{label: '20k', value: 1},
-    {label: '10k', value: 2},
-    {label: ' 5k', value: 3},
-    {label: 'NIÑOS', value: 4}
-    
+    { label: '10k', value: 2 },
+    { label: ' 5k', value: 3 },
+    { label: 'NIÑOS', value: 4 }
+
   ];
 
-  tamano=3;
-  ordenevento='';
-  ci:string='';
-  fecha:Date=new Date();
- 
-  corredor:any={
+  tamano = 3;
+  ordenevento = '';
+  ci: string = '';
+  fecha: Date = new Date();
+
+  corredor: any = {
     idcorredor: 0,
     persona: {
       idpersona: 0,
       tamano: 3,
     },
-    categoria:{
-      idcategoria:0
+    categoria: {
+      idcategoria: 0
     }
   }
 
-  corredorbus:Corredorbus={
+  corredorbus: Corredorbus = {
     idcorredor: 0,
     ci: '',
     corredor: '',
@@ -86,65 +86,115 @@ export class EventobusrunComponent implements OnInit{
     idpersona: 0,
     idcategoria: 0
   };
-  selectedTerminos:boolean=false;
-  inscripto=0;
-  edad=0;
-  idmodalidad=2;
-  tipo=3;
+  selectedTerminos: boolean = false;
+  inscripto = 0;
+  edad = 0;
+  idmodalidad = 2;
+  tipo = 3;
 
-  constructor( private activatedRoute:ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
-    private datasys:Datasys,
+    private datasys: Datasys,
     private messageService: MessageService,
-    private participanteService:ParticipanteService,
-    private corredorService:CorredorService,
-    
-    
-    ) { }
-  
+    private participanteService: ParticipanteService,
+    private corredorService: CorredorService,
+
+
+  ) { }
+
   ngOnInit(): void {
-    this.idevento=this.activatedRoute.snapshot.params["idevento"];
+    this.idevento = this.activatedRoute.snapshot.params["idevento"];
 
     this.eventoService.obtenerEventoPub(this.idevento).subscribe(
       {
         next: (e: Evento) => {
           this.evento = e;
-         
-          this.datasys.getOrdenes().then(data=>{
-            this.ordenes=data;
-            this.ordenevento=this.ordenes[this.evento.orden-1].label
+
+          this.datasys.getOrdenes().then(data => {
+            this.ordenes = data;
+            this.ordenevento = this.ordenes[this.evento.orden - 1].label
           });
         },
         error: (error) => {
           console.log(error);
-          
+
         },
         complete: () => console.info('completo evento')
       });
-    if(this.idevento==126){
-    this.tipos = [
-        
-        {label: ' 5k  ', value: 3},
-        {label: 'NIÑOS', value: 4},
-        
+    if (this.idevento == 126) {
+      this.tipos = [
+
+        { label: ' 5k  ', value: 3 },
+        { label: 'NIÑOS', value: 4 },
+
       ];
     }
-      
-}
+    if (this.idevento == 132) {
+      this.tipos = [
 
-  hideModal(isClosed:boolean){
-    this.selectedCorredor=null;
-    this.displaySearch=isClosed;
-    this.inscripto=0;
+        { label: ' 5k  ', value: 3 },
+
+
+      ];
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+        { label: 'Tamaño GG', value: 4 },
+        //  { label: 'Tamaño XXG', value: 5 }
+      ];
+    }
+    if (this.idevento == 134) {
+      this.tipo =6;
+      this.tipos = [
+
+        { label: ' GENERAL 5K  ', value: 6 },
+
+
+      ];
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+       // { label: 'Tamaño GG', value: 4 },
+        //  { label: 'Tamaño XXG', value: 5 }
+      ];
+    }
+    if (this.idevento == 135) {
+      this.tipo =5;
+      this.tipos = [
+
+        { label: 'NIÑOS', value: 4 },
+        { label: ' 7k  ', value: 5 },
+
+
+      ];
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+        { label: 'Tamaño GG', value: 4 },
+        //  { label: 'Tamaño XXG', value: 5 }
+      ];
+    }
   }
 
-  saveParticipante(particpante:any){
-    this.participante=particpante;
-    this.inscripto=1;
+  hideModal(isClosed: boolean) {
+    this.selectedCorredor = null;
+    this.displaySearch = isClosed;
+    this.inscripto = 0;
   }
 
-  formSubmit(){
-    console.log("agregamos el click de "+this.ci+" ID EVENTO "+this.evento.idevento);
+  saveParticipante(particpante: any) {
+    this.participante = particpante;
+    this.inscripto = 1;
+  }
+
+  formSubmit() {
+    console.log("agregamos el click de " + this.ci + " ID EVENTO " + this.evento.idevento);
     if (this.ci.trim() == '' || this.ci.trim() == null) {
 
       this.messageService.add({
@@ -155,12 +205,12 @@ export class EventobusrunComponent implements OnInit{
 
       return;
     }
-    this.corredor.persona.tamano=this.corredorbus.tamano;
-console.log(this.corredor)
+    this.corredor.persona.tamano = this.corredorbus.tamano;
+    console.log(this.corredor)
     this.corredorService.actualizarCorredorRun(this.corredor).subscribe({
-      next: (dato:any) => {
-        
-        
+      next: (dato: any) => {
+
+
       }, error: (error) => {
         console.log(error);
         this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
@@ -169,52 +219,52 @@ console.log(this.corredor)
         console.info('completo actualizacion')
 
         let cip = this.ci.replace(/[^0-9]/g, "");
-        this.ci=cip;
-        
-        this.participanteService.inscribirPartiCi(this.idevento,this.ci).subscribe(
+        this.ci = cip;
+
+        this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
           (data: any) => {
-          
-            this.participante=data;
-            this.inscripto=1;
-         
+
+            this.participante = data;
+            this.inscripto = 1;
+
           }, (error) => {
             console.log(error);
-            
+
             this.messageService.add({
               key: 'bc',
               severity: "info",
               summary: "Atencion",
               detail: "No se encontro el numero de CI del corredor, complete sus datos."
             });
-            this.inscripto=2;
+            this.inscripto = 2;
           });
       }
     });
 
-   
+
   }
 
-  focusOutFunction(){ 
-       
-    let cip = this.ci.replace(/[^0-9]/g, "");
-    this.ci=cip;
-    
-    this.corredorService.pubObtenerCorredorbusCiRun(this.ci).subscribe({
-      next: (dato:Corredorbus) => {   
-        
-          this.corredorbus=dato;
-          if(dato != null){
-            const fecnac= new Date(dato.fecnac);
-            this.corredorbus.fecnac=fecnac;
+  focusOutFunction() {
 
-            this.corredor.idcorredor=dato.idcorredor;
-            this.corredor.categoria.idcategoria=dato.idcategoria; 
-            this.corredor.persona.idpersona=dato.idpersona;
-            this.corredor.persona.tamano=dato.tamano;
-            console.log(this.corredor);
-          }
-          
-          
+    let cip = this.ci.replace(/[^0-9]/g, "");
+    this.ci = cip;
+
+    this.corredorService.pubObtenerCorredorbusCiRun(this.ci).subscribe({
+      next: (dato: Corredorbus) => {
+
+        this.corredorbus = dato;
+        if (dato != null) {
+          const fecnac = new Date(dato.fecnac);
+          this.corredorbus.fecnac = fecnac;
+
+          this.corredor.idcorredor = dato.idcorredor;
+          this.corredor.categoria.idcategoria = dato.idcategoria;
+          this.corredor.persona.idpersona = dato.idpersona;
+          this.corredor.persona.tamano = dato.tamano;
+          console.log(this.corredor);
+        }
+
+
       }, error: (error) => {
         console.log(error);
         this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
@@ -222,17 +272,17 @@ console.log(this.corredor)
       },
       complete: () => {
         console.log('Completo la busqueda de Corredor');
-        if(this.corredorbus==null){
-          this.inscripto=2;
+        if (this.corredorbus == null) {
+          this.inscripto = 2;
           this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
         }
       }
     });
-}  
+  }
 
 
- cargarCategoria(cat:any){
-  this.corredor.categoria.idcategoria=cat.idcategoria;
-    
+  cargarCategoria(cat: any) {
+    this.corredor.categoria.idcategoria = cat.idcategoria;
+
   }
 }

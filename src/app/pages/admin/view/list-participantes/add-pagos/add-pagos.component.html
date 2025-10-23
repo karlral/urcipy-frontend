@@ -13,11 +13,16 @@
                 placeholder="Nro Deposito" class="prime" />
                 
          </div>
-
+        <div class="field">
+            <label for="kit">Con Kit</label>
+            <p-dropdown [options]="kits" [(ngModel)]="selectedInscripto.kit"  id="kit"
+                placeholder="Seleccionar tiene kit" autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
         <div class="field">
             <label for="pagado">Pagado</label>
             <p-dropdown [options]="pagos" [(ngModel)]="selectedInscripto.pagado"  id="pagado"
-                placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
+                placeholder="Seleccionar si pago" autoWidth="false" [style]="{'width':'100%'}"
                 optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
         </div>
         <div class="field flex align-items-center justify-content-evenly flex-wrap">

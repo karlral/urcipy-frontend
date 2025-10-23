@@ -25,19 +25,19 @@ import { PersonaService } from 'src/app/service/persona.service';
   templateUrl: './add-corredor.component.html',
   styleUrls: ['./add-corredor.component.css']
 })
-export class AddCorredorComponent  implements OnInit {
+export class AddCorredorComponent implements OnInit {
 
-  @Input() selectedCorredor:any=null;
-  @Input() idevento:any=null;
+  @Input() selectedCorredor: any = null;
+  @Input() idevento: any = null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickSave: EventEmitter<any> = new EventEmitter<any>();
- 
 
-  modalType="Registrar";
+
+  modalType = "Registrar";
 
   clubes: Club[] = [];
-  
+
   ciudades: Ciudad[] = [];
   paises: Pais[] = [];
 
@@ -47,10 +47,10 @@ export class AddCorredorComponent  implements OnInit {
 
   user: any;
   fecha = new Date();
- 
-  fechaant=new Date(2000, 0, 1);
 
-  trayecto:Trayecto={
+  fechaant = new Date(2000, 0, 1);
+
+  trayecto: Trayecto = {
     idtrayecto: 7,
     nomtrayecto: '5k',
     km: 5
@@ -59,7 +59,7 @@ export class AddCorredorComponent  implements OnInit {
     idmodalidad: 2,
     nommodalidad: 'RUNNING'
   }
-  eCategoria:Categoria={
+  eCategoria: Categoria = {
     idcategoria: 83,
     nomcategoria: '5k Masculino',
     activo: false,
@@ -109,7 +109,7 @@ export class AddCorredorComponent  implements OnInit {
     nomcorto: '',
     logo: ''
   }
-  
+
   club: Club = {
     idclub: 267,
     nomclub: 'RUN TECH LG',
@@ -136,7 +136,7 @@ export class AddCorredorComponent  implements OnInit {
   }
 
 
-  personabus: any =null;
+  personabus: any = null;
   persona: Persona = {
     idpersona: 0,
     nombre: '',
@@ -156,7 +156,7 @@ export class AddCorredorComponent  implements OnInit {
     ciudad: this.ciudad,
     tamano: 1
   }
-  
+
 
   corredor: Corredor = {
     idcorredor: 0,
@@ -184,7 +184,7 @@ export class AddCorredorComponent  implements OnInit {
 
 
   corredorForm = this.fb.group({
-    idcorredor:[null],
+    idcorredor: [null],
     persona: this.fb.group({
       idpersona: [null],
       nombre: ['', Validators.required],
@@ -204,7 +204,7 @@ export class AddCorredorComponent  implements OnInit {
       ciudad: this.ciudad,
       tamano: [1]
     }),
-    
+
     verificar: [0],
     carnet: [''],
     carnetatras: [''],
@@ -221,7 +221,7 @@ export class AddCorredorComponent  implements OnInit {
     usuario: [this.usuario],
     regional: [this.regional],
     catalianza: [false]
-    
+
   });
 
   constructor(private fb: FormBuilder,
@@ -230,8 +230,8 @@ export class AddCorredorComponent  implements OnInit {
     private paisService: PaisService,
     private messageService: MessageService,
     private corredorService: CorredorService,
-        private personaService:PersonaService,
-        private participanteService:ParticipanteService
+    private personaService: PersonaService,
+    private participanteService: ParticipanteService
 
   ) { }
 
@@ -246,22 +246,15 @@ export class AddCorredorComponent  implements OnInit {
     ];
 
     this.tipos = [
-     // {label: '20k', value: 1},
-      {label: '10k', value: 2},
-      {label: ' 5k', value: 3},
-      {label: 'NIÑOS', value: 4}
-      
+      // {label: '20k', value: 1},
+      { label: '10k', value: 2 },
+      { label: ' 5k', value: 3 },
+      { label: 'NIÑOS', value: 4 }
+
     ];
 
-    if(this.idevento==126){
-    this.tipos = [
-        
-        {label: ' 5k  ', value: 3},
-        {label: 'NIÑOS', value: 4},
-        
-      ];
-    }
     
+
     this.grupos = [
       { label: 'RH (O-)', value: 'RH (O-)' },
       { label: 'RH (O+)', value: 'RH (O+)' },
@@ -277,7 +270,7 @@ export class AddCorredorComponent  implements OnInit {
     this.ciudadService.publistarCiudades().subscribe(
       {
         next: (dato: Ciudad[]) => {
-          this.ciudades = dato;  
+          this.ciudades = dato;
           this.ciudad = this.ciudades[0];
         },
         error: (error) => {
@@ -294,8 +287,8 @@ export class AddCorredorComponent  implements OnInit {
     this.clubService.publistarClubesRun().subscribe(
       (dato: any) => {
         this.clubes = dato;
-      //  this.club = this.clubes[0];
-        
+        //  this.club = this.clubes[0];
+
       }, (error) => {
         console.log(error);
         this.messageService.add({
@@ -306,7 +299,7 @@ export class AddCorredorComponent  implements OnInit {
       }
     );
 
-   
+
     //this.user = this.login.getUser();
     this.usuario.idusuario = 91;
 
@@ -314,7 +307,7 @@ export class AddCorredorComponent  implements OnInit {
     this.paisService.publistarPaises().subscribe(
       (dato: any) => {
         this.paises = dato;
-       
+
       }, (error) => {
         console.log(error);
         this.messageService.add({
@@ -326,30 +319,89 @@ export class AddCorredorComponent  implements OnInit {
     );
 
     this.corredorForm.reset({
-      persona:{
-        fecnac:this.fechaant,
-        nacionalidad:"Paraguaya",
-        sexo:1,
-        ciudad:this.ciudad,
-        tamano:0
-        
+      persona: {
+        fecnac: this.fechaant,
+        nacionalidad: "Paraguaya",
+        sexo: 1,
+        ciudad: this.ciudad,
+        tamano: 0
+
       },
-      tipocat:3,
-      puntua:0,
-      fecmodi:this.fecha,
-      verificar:0,
-      club:this.club,
-      usuario:this.usuario,
-      regional:this.regional,
+      tipocat: 3,
+      puntua: 0,
+      fecmodi: this.fecha,
+      verificar: 0,
+      club: this.club,
+      usuario: this.usuario,
+      regional: this.regional,
       carnetfpc: 2,
-      categoria:this.eCategoria
+      categoria: this.eCategoria
 
     });
-    this.modalType="Registrar";
-    
+    this.modalType = "Registrar";
+
+    if (this.idevento == 126) {
+      this.tipos = [
+
+        { label: ' 5k  ', value: 3 },
+        { label: 'NIÑOS', value: 4 },
+
+      ];
+    }
+    if (this.idevento == 132) {
+      this.tipos = [
+
+        { label: ' 5k  ', value: 3 },
+
+
+      ];
+
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+        { label: 'Tamaño GG', value: 4 },
+      ];
+    }
+    if (this.idevento == 134) {
+      this.corredorForm.get('tipocat')?.setValue(6);
+      this.tipos = [
+
+        { label: ' GENERAL 5k  ', value: 6 },
+
+
+      ];
+
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+        //{ label: 'Tamaño GG', value: 4 },
+      ];
+    }
+    if (this.idevento == 135) {
+      this.corredorForm.get('tipocat')?.setValue(5);
+      this.tipos = [
+        { label: 'NIÑOS', value: 4 },
+        { label: ' 7k  ', value: 5 },
+
+
+      ];
+      this.tamanos = [
+        { label: 'Sin Remera', value: 0 },
+        { label: 'Tamaño P', value: 1 },
+        { label: 'Tamaño M', value: 2 },
+        { label: 'Tamaño G', value: 3 },
+        { label: 'Tamaño GG', value: 4 },
+        //  { label: 'Tamaño XXG', value: 5 }
+      ];
+    }
+
     this.cargarCategoria(this.eCategoria);
   }
-  
+
 
   closeModal() {
     this.corredorForm.reset();
@@ -361,109 +413,109 @@ export class AddCorredorComponent  implements OnInit {
   }
 
   addEditCorredor() {
-    
+
 
     this.corredorForm.get('usuario')?.setValue(this.usuario);
     this.corredorForm.get('regional')?.setValue(this.regional);
 
-      this.corredorService.agregarCorredorRun(this.corredorForm.value).subscribe(
-        {
-          next: (dato) => {
+    this.corredorService.agregarCorredorRun(this.corredorForm.value).subscribe(
+      {
+        next: (dato) => {
 
-           const clubControl = this.corredorForm.get('club');
-           if (clubControl && clubControl.value) {
-             this.club = clubControl.value;
-           }
-
-            this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
-
-            //this.closeModal()
-            
-          }, error: (error) => {
-            console.log(error);
-            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la corredor', life: 3000 });
-
-          },
-          complete: () => {
-            console.log('Completo el agregar');
-            this.formSubmit();
-
-
+          const clubControl = this.corredorForm.get('club');
+          if (clubControl && clubControl.value) {
+            this.club = clubControl.value;
           }
-        });
+
+          this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
+
+          //this.closeModal()
+
+        }, error: (error) => {
+          console.log(error);
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la corredor', life: 3000 });
+
+        },
+        complete: () => {
+          console.log('Completo el agregar');
+          this.formSubmit();
+
+
+        }
+      });
 
   }
 
-  saveModal(participante:any) {
+  saveModal(participante: any) {
     this.corredorForm.reset();
     this.clickSave.emit(participante);
-    
+
   }
 
-  formSubmit(){
+  formSubmit() {
     let ci = this.corredorForm.get('persona')?.get('ci')?.value;
-    this.participanteService.inscribirPartiCi(this.idevento,ci).subscribe(
+    this.participanteService.inscribirPartiCi(this.idevento, ci).subscribe(
       (data: any) => {
-      
+
         this.saveModal(data);
-        
-     
+
+
       }, (error) => {
         console.log(error);
-        
+
         this.messageService.add({
           key: 'bc',
           severity: "info",
           summary: "Atencion",
           detail: "No se encontro el numero de CI del corredor, complete sus datos."
         });
-        
+
       });
   }
 
-  cargarCategoria(cat:Categoria){
-    
+  cargarCategoria(cat: Categoria) {
+
     this.corredorForm.controls['categoria'].setValue(cat);
-    
+
   }
 
-  focusOutFunction(){
- 
-      const ci= this.corredorForm.get('persona')?.get('ci')?.value;
+  focusOutFunction() {
 
-      if (ci== '' || ci == null) {
+    const ci = this.corredorForm.get('persona')?.get('ci')?.value;
 
-        this.messageService.add({
-          severity: "error",
-          summary: "Atencion",
-          detail: "Complete su Cedula de identidad sin puntos"
-        });
-  
-        return;
-      }
-      
-      this.personaService.pubobtenerPersonaCi(ci).subscribe({
-        next: (dato) => {
-          
-          if (dato){
-            this.corredorForm.controls['persona'].patchValue(dato);   
-            this.personabus=dato;
-            const fecnac= new Date(this.personabus.fecnac);
-            this.corredorForm.controls['persona'].get('fecnac')?.setValue(fecnac);
-          }
-   
-        }, error: (error) => {
-          console.log(error);
-          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al Persona del corredor', life: 3000 });
+    if (ci == '' || ci == null) {
 
-        },
-        complete: () => {
-          console.log('Completo el busqueda de Persona');
-
-        }
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "Complete su Cedula de identidad sin puntos"
       });
-      
-    
+
+      return;
+    }
+
+    this.personaService.pubobtenerPersonaCi(ci).subscribe({
+      next: (dato) => {
+
+        if (dato) {
+          this.corredorForm.controls['persona'].patchValue(dato);
+          this.personabus = dato;
+          const fecnac = new Date(this.personabus.fecnac);
+          this.corredorForm.controls['persona'].get('fecnac')?.setValue(fecnac);
+        }
+
+      }, error: (error) => {
+        console.log(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al Persona del corredor', life: 3000 });
+
+      },
+      complete: () => {
+        console.log('Completo el busqueda de Persona');
+
+      }
+    });
+
+
   }
-  
+
 }

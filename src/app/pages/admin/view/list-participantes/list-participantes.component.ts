@@ -44,7 +44,10 @@ export class ListParticipantesComponent implements OnInit {
     chip: '',
     sex: '',
     tamano: 0,
-    tamanoc: ''
+    tamanoc: '',
+    pag: '',
+    kit: 0,
+    kittipo: ''
   };
   displayAddEditModal = false;
 
@@ -85,19 +88,7 @@ export class ListParticipantesComponent implements OnInit {
         next: (p: Inscriptos[]) => {
           this.inscriptos = p;
 
-          for (let i in this.inscriptos) {
-            if (this.inscriptos[i].sexo == 1) {
-              this.inscriptos[i].sex = 'M';
-            } else {
-              this.inscriptos[i].sex = 'F';
-            }
-            if (this.inscriptos[i].tamano != null) {
-              
-              this.inscriptos[i].tamanoc = this.tamanos[this.inscriptos[i].tamano].label;
-            } else {
-              
-            }
-          }
+          this.recorrer();
         },
         error: (error) => {
           console.log(error);
@@ -108,6 +99,41 @@ export class ListParticipantesComponent implements OnInit {
       if (this.loginService.getUserRole() == "TIMEPAGOS") {
           this.istimepagos = true;
       }
+  }
+
+  recorrer() {
+
+    for (let i in this.inscriptos) {
+            if (this.inscriptos[i].sexo == 1) {
+              this.inscriptos[i].sex = 'M';
+            } else {
+              this.inscriptos[i].sex = 'F';
+            }
+
+             if (this.inscriptos[i].kit == 1) {
+              this.inscriptos[i].kittipo = 'SI';
+            } else {
+              this.inscriptos[i].kittipo = 'NO';
+            }
+
+            if (this.inscriptos[i].pagado == 2) {
+              this.inscriptos[i].pag = 'SI RETIRADO';
+            } else {
+                if (this.inscriptos[i].pagado == 1) {
+                  this.inscriptos[i].pag = 'SI';
+                } else {
+                  this.inscriptos[i].pag = 'NO';
+                }
+              
+            }
+
+            if (this.inscriptos[i].tamano != null) {
+              
+              this.inscriptos[i].tamanoc = this.tamanos[this.inscriptos[i].tamano].label;
+            } else {
+              
+            }
+          }
   }
 
   exportExcel2() {
@@ -214,13 +240,7 @@ export class ListParticipantesComponent implements OnInit {
           .subscribe({
             next: (p: Inscriptos[]) => {
               this.inscriptos = p;
-              for (let i in this.inscriptos) {
-                if (this.inscriptos[i].sexo == 1) {
-                  this.inscriptos[i].sex = 'M';
-                } else {
-                  this.inscriptos[i].sex = 'F';
-                }
-              }
+              this.recorrer();
             },
             error: (error) => {
               console.log(error);

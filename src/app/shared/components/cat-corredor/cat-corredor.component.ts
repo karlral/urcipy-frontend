@@ -15,9 +15,12 @@ export class CatCorredorComponent implements OnInit, OnChanges {
   @Input() sexo: any;
   @Input() tipocat: any;
   @Input() idmodalidad: any;
+  @Input() idevento: any;
   @Output() emitCategoria = new EventEmitter<Categoria>();
 
   categorias: Categoria[] = [];
+
+  categoriasaux: Categoria[] = [];
 
   trayecto:Trayecto={
     idtrayecto: 0,
@@ -64,10 +67,27 @@ export class CatCorredorComponent implements OnInit, OnChanges {
         complete: () => console.info('completo carga de categorias')
       });
 
+      
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
+    /*if(this.idevento==134){
+        for (let index = 0; index < this.categorias.length; index++) {
+          const element = this.categorias[index];
+          if(element.idcategoria==83 || element.idcategoria==84 || element.idcategoria==52 || element.idcategoria==53){
+            if(element.idcategoria==52 || element.idcategoria==53){
+                element.edadfin=17;
+              }
+            element.activo=true;
+            this.categoriasaux.push(element); 
+          
+          } 
+        }
+        this.categorias=this.categoriasaux;
+      }*/
+      
     this.categoria = {
       idcategoria: 0,
       nomcategoria: 'No encontrado',
@@ -93,7 +113,11 @@ export class CatCorredorComponent implements OnInit, OnChanges {
 
       for (let index = 0; index < this.categorias.length; index++) {
         const element = this.categorias[index];
-
+console.log(element);
+console.log(this.edad);
+console.log(this.sexo);
+console.log(this.tipocat);
+console.log(this.idmodalidad);
 
         if (element.sexo == this.sexo && element.tipo == this.tipocat && this.edad >= element.edadinicio && this.edad <= element.edadfin && element.modalidad.idmodalidad == this.idmodalidad) {
           this.categoria = element;

@@ -77,7 +77,9 @@ modalidad :Modalidad={
       {label: '20k', value: 1},
       {label: '10k', value: 2},
       {label: '5k', value: 3},
-      {label: 'GENERAL', value: 4}
+      {label: 'GENERAL NIÑOS', value: 4},
+      {label: '7k', value: 5},
+      {label: 'GENERAL 5K', value: 6},
   ];
     //console.log(this.tipos);
 
@@ -232,7 +234,9 @@ modalidad :Modalidad={
         {label: '20k', value: 1},
         {label: '10k', value: 2},
         {label: ' 5k', value: 3},
-        {label: 'GENERAL', value: 4}
+        {label: 'GENERAL NIÑOS', value: 4},
+        {label: '7k', value: 5},
+        {label: 'GENERAL 5K', value: 6}
       ];
     }else{
       this.tipos = [

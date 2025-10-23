@@ -36,7 +36,10 @@ export class AddEditParticiComponent  implements OnInit, OnChanges {
     chip: '',
     sex: '',
     tamano: 0,
-    tamanoc: ''
+    tamanoc: '',
+    pag: '',
+    kit: 0,
+    kittipo: ''
   };
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();

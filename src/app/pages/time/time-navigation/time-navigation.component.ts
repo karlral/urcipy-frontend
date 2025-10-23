@@ -55,6 +55,7 @@ ngOnInit(): void {
       {label: 'Dorsales ', icon: 'pi pi-calendar', routerLink: ['/time/access/dorsal']},
       {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/1']},
       {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/2']},
+      {label: 'Lista Inscriptos Evento 3', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/3']},
     ]
 }
 ];

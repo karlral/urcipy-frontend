@@ -35,9 +35,13 @@ export class AddPagosComponent implements OnInit, OnChanges {
     chip: '',
     sex: '',
     tamano: 0,
-    tamanoc: ''
+    tamanoc: '',
+    pag: '',
+    kit: 0,
+    kittipo: ''
   };
   pagos: any[] = [];
+  kits: any[] = [];
 
   @Output() clickPagosClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   
@@ -57,6 +61,11 @@ export class AddPagosComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.pagos = [
+      { label: 'SI RETIRADO', value: 2 },
+      { label: 'SI', value: 1 },
+      { label: 'NO', value: 0 }
+    ];
+    this.kits = [
       { label: 'SI', value: 1 },
       { label: 'NO', value: 0 }
     ];
