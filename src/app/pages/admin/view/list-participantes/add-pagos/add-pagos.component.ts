@@ -48,7 +48,9 @@ export class AddPagosComponent implements OnInit, OnChanges {
 
   modalType="Confirmar";
   
-   
+  tamanos = [
+    { label: 'Sin Remera', value: 0 },]; 
+
   constructor(
     private messageService: MessageService,
     private participanteService:ParticipanteService
@@ -69,6 +71,16 @@ export class AddPagosComponent implements OnInit, OnChanges {
       { label: 'SI', value: 1 },
       { label: 'NO', value: 0 }
     ];
+
+      this.tamanos = [
+    { label: 'Sin Remera', value: 0 },
+    { label: 'Tamaño P', value: 1 },
+    { label: 'Tamaño M', value: 2 },
+    { label: 'Tamaño G', value: 3 },
+    { label: 'Tamaño XG', value: 4 },
+    { label: 'Tamaño XXG', value: 5 }
+
+  ];
   }
   
   closePagosModal() {
