@@ -31,7 +31,8 @@ export class InscripcionesComponent  implements OnInit{
     direccion: '',
     email: '',
     ano: 0,
-    presentacion: ''
+    presentacion: '',
+    frenteabajo1: ''
   }
   region:Region={
     idregion: 0,

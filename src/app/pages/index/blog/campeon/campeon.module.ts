@@ -6,17 +6,21 @@ import { ca } from 'date-fns/locale';
 import { CampeonComponent } from './campeon.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+import { CampeonesComponent } from './campeones/campeones.component';
 
 
 @NgModule({
   declarations: [
-    CampeonComponent
+    CampeonComponent,
+    CampeonesComponent
   ],
   imports: [
     CommonModule,
     CampeonRoutingModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    CarouselModule
   ]
 })
 export class CampeonModule { }

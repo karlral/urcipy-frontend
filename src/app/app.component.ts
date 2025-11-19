@@ -67,7 +67,8 @@ export class AppComponent implements OnInit{
   
   title = 'URCI';
 
-  visible: boolean = true;
+  visible: number = 0;
+
   constructor(
     private regionalService: RegionalService,
     private systemService: SystemService,
@@ -95,26 +96,35 @@ export class AppComponent implements OnInit{
       this.ordenes=data;
     });
 
+    
     this.eventoService.listarEventosActivosPub().subscribe(
       {
         next: (datos: Evento[]) => {
           this.eventoes = datos;
           this.evento = datos[0];
-          console.log(this.evento);
-
-          this.fechaanterior = new Date(datos[0].fecha)
-          const fecha = new Date(datos[0].fecha);
-          this.fechaanterior.setDate(fecha.getDate() -1);
+         // console.log(this.evento);
+//if(this.eventoes.length==0){
+//          this.fechaanterior = new Date(datos[0].fecha)
+//          const fecha = new Date(datos[0].fecha);
+//          this.fechaanterior.setDate(fecha.getDate() -1);
+//}
+ //         this.visible = 1;
          
         },
         error: (error) => {
           console.log(error);
           
         },
-        complete: () => console.info('completo evento')
+        
+        complete: () => {
+          //if(this.eventoes.length==0){
+         //   this.visible=2;
+         // }
+          console.info('completo evento');
+        }
       });
   }
   mostrarMenu() {
-    this.visible = !this.visible;
+    this.visible = 2;
   }
 }

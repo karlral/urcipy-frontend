@@ -29,7 +29,8 @@ export class AddEditPuntajeComponent implements  OnChanges {
     direccion: '',
     email: '',
     ano: 0,
-    presentacion: ''
+    presentacion: '',
+    frenteabajo1: ''
   };
 
   puntajeForm = this.fb.group({

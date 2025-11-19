@@ -5,7 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  
+  {
+    path:'', loadChildren:()=> import('./pages/index/blog/blog.module').then(m => m.BlogModule)
+  }
+  ,
   {
     path:'sistema', loadChildren:()=> import('./pages/system/system.module').then(m => m.SystemModule)
   },  {

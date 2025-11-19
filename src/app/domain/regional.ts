@@ -7,5 +7,6 @@ export interface Regional {
     email: string,
     ano: number,
     presentacion: string,
-    logo: string
+    logo: string,
+    frenteabajo1: string
 }

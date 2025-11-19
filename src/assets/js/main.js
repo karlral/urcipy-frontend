@@ -44,6 +44,14 @@
             autoplayTimeout: 4000,
             autoplayHoverPause: true,
         });
+
+        $('.content-blocks').removeClass('showx');
+        $('.content-blocks.about').addClass('showx');
+        $('.menu-item').removeClass('active');
+        $('.menu-item.blog').addClass('active');
+        $('.content-blocks').removeClass('maximizar');
+        $('.content-blocks').addClass('maximizar');
+        
     });
 
     $(document).on('click','.portfolio-block, .menu-item', function() {

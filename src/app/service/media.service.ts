@@ -13,4 +13,8 @@ export class MediaService {
   uploadFile(formData:FormData): Observable<any>{
     return this.http.post(`${baserUrl}/media/upload`,formData)
   }
+
+  uploadFileFolder(formData:FormData,folder:String): Observable<any>{
+    return this.http.post(`${baserUrl}/media/upload/carnet/${folder}`,formData)
+  }
 }

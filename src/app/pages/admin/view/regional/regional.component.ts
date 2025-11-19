@@ -34,7 +34,8 @@ export class RegionalComponent {
     direccion: '',
     email: '',
     ano: 0,
-    presentacion: ''
+    presentacion: '',
+    frenteabajo1: ''
   };
 
   regional: Regional = this.regionalaux;

@@ -1,4 +1,4 @@
-<div *ngIf="visible" class="cuadro">
+<div *ngIf="visible==1" class="cuadro">
     <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" class="mb-5" />
 
 
@@ -26,7 +26,7 @@
     <div class="anim pulse"><i class="ion-ios-bolt-outline"></i></div>
   </div-->
 <!--div *ngIf="!visible" class="preloader-left"></div-->
-<div *ngIf="!visible" class="inline-menu-container">
+<div *ngIf="visible==2" class="inline-menu-container">
     <ul class="inline-menu">
         <li id="maxi" class="menu-item"><a routerLink="/"><i class="ion-chevron-left"></i></a></li>
         <li class="about menu-item"><a routerLink="/resumen">Calendario {{regional.ano}}</a></li>
@@ -37,7 +37,7 @@
         <li id="close" class="menu-item"><a routerLink="/"><i class="ion-ios-close-empty"></i></a></li>
     </ul>
 </div>
-<section *ngIf="!visible" class="home">
+<section *ngIf="visible==2" class="home">
     <div id="fondo" class="bgScroll"></div>
     <div id="trasparencia" class="overlay opacity7"></div>
     <div class="container">
@@ -117,6 +117,26 @@
             <div id="close-pop" class="close-pop">Cerrar <i class="ion-ios-close-empty"></i></div>
             <section class="content">Nada</section>
         </div>
+
+    </div>
+</section>
+
+<section *ngIf="visible==0" class="home">
+    <div id="fondo" class="bgScroll"></div>
+    <div id="trasparencia" class="overlay opacity7"></div>
+    <div class="container">
+
+        
+        
+           
+
+        
+
+        <div class="content-blocks about">
+            <router-outlet></router-outlet>
+        </div>
+
+
 
     </div>
 </section>

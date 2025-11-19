@@ -41,7 +41,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     direccion: '',
     email: '',
     ano: 0,
-    presentacion: ''
+    presentacion: '',
+    frenteabajo1: ''
   };
 
   clubes: Club[] = [];

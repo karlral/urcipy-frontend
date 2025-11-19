@@ -39,7 +39,8 @@ export class CampeonesComponent  implements OnInit {
     direccion: '',
     email: '',
     ano: 0,
-    presentacion: ''
+    presentacion: '',
+    frenteabajo1: ''
   }
 
   region:Region={
@@ -87,6 +88,7 @@ export class CampeonesComponent  implements OnInit {
     categoriah: this.categoriah,
     club: this.club
   }
+  responsiveOptions: any[] | undefined;
   
 
   constructor(private activatedRoute:ActivatedRoute,
@@ -110,7 +112,25 @@ export class CampeonesComponent  implements OnInit {
        },
        complete: () => console.info('completo carga de categorias')
      });
+
+     this.responsiveOptions = [
+            {
+                breakpoint: '1199px',
+                numVisible: 1,
+                numScroll: 1
+            },
+            {
+                breakpoint: '991px',
+                numVisible: 2,
+                numScroll: 1
+            },
+            {
+                breakpoint: '767px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ];
+    }
    
  }
 
-}

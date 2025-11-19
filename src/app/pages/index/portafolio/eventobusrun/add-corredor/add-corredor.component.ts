@@ -107,7 +107,8 @@ export class AddCorredorComponent  implements OnInit {
     email: '',
     ano: 0,
     presentacion: '',
-    logo: ''
+    logo: '',
+    frenteabajo1: ''
   }
   
   club: Club = {

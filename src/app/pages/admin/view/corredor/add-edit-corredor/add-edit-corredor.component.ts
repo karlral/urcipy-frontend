@@ -111,7 +111,8 @@ modalidad:Modalidad={
     email: '',
     ano: 0,
     presentacion: '',
-    logo: ''
+    logo: '',
+    frenteabajo1: ''
   }
   club: Club = {
     idclub: 1,

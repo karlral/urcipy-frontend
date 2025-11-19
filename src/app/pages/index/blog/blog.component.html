@@ -12,10 +12,24 @@
                            
                             <button type="submit" [routerLink]="['/blog/campeon']" class="btn inscrip">CAMPEONES</button>
                             
-                           <button type="submit" [routerLink]="['/blog/historial']" class="btn list">HISTORIAL</button> 
+                           <!--button type="submit" [routerLink]="['/blog/historial']" class="btn list">HISTORIAL</button--> 
 
                            
                         </div>
+                        
+                    </div>
+                    
+                </div>
+             
+            
+        </div>
+        <div class="row">
+            
+                <div class="card">
+                    <div class="face front2">
+                        
+                        <img *ngIf="regional.logo" [src]="mediaLocation+regional.frenteabajo1" [alt]="regional.frenteabajo1" />
+                        
                         
                     </div>
                     

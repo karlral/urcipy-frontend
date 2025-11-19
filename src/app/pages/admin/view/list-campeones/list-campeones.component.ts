@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Campeones } from 'src/app/domain/campeones';
-import { Categoriah } from 'src/app/domain/categoriah';
+
 import { CampeonesService } from 'src/app/service/campeones.service';
 import baserUrl from 'src/app/service/helper';
 import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
-import { Club } from 'src/app/domain/club';
-import { Regional } from 'src/app/domain/regional';
+
 import { Campeonesfiltro } from 'src/app/domain/custom/campeonesfiltro';
 
 @Component({
@@ -22,6 +21,7 @@ export class ListCampeonesComponent implements OnInit {
 
   campeonesfiltros:Campeonesfiltro[]=[];
   campeonesfiltro:Campeonesfiltro={
+    idcampeones: 0,
       puesto: 0,
       nombre: '',
       categoria: '',
@@ -30,60 +30,16 @@ export class ListCampeonesComponent implements OnInit {
       promedio: undefined,
       kmts: 0,
       cantidad: 0,
-      puntos: 0
+      puntos: 0,
+      ruta: ''
   };
 
-  mediaLocation = `${baserUrl}/media/`;
+  mediaLocation = `${baserUrl}/media/carnet/2025/`;
 
   anho!:number;
-  /*regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    logo: ''
-  }
-
-  club:Club={
-    idclub: 0,
-    nomclub: '',
-    presidente: '',
-    telepresi: '',
-    vicepresidente: '',
-    telvice: '',
-    telefono: '',
-    email: '',
-    ruta: '',
-    rutagrande: '',
-    regional: this.regional
-  }
-
-  categoriah:Categoriah={
-    idcategoriah: 0,
-    nomcategoria: '',
-    nomcorto: '',
-    ano: 0
-  }
-
-  campeon:Campeones={
-    idcampeones: 0,
-    nombre: '',
-    apellido: '',
-    nacionalidad: '',
-    ano: 0,
-    peso: 0,
-    altura: 0,
-    bici: '',
-    velmedia: '',
-    puntos: 0,
-    puesto: 0,
-    rutabici: '',
-    ruta: '',
-    promedio: undefined,
-    kmts: 0,
-    cantidad: 0,
-    categoriah: this.categoriah,
-    club:this.club
-  }*/
+  campeonesDialog: boolean = false;
+  rutaSeleccionada: string = '';
+  campeonSeleccionado: Campeones = {} as Campeones;
 
   constructor(
     private campeonesService: CampeonesService
@@ -96,8 +52,10 @@ export class ListCampeonesComponent implements OnInit {
      {
        next: (dato: Campeones[]) => {
          this.campeoness = dato;
+        // console.log(this.campeoness);
             
-            for (var i = 0; i <= dato.length; i++) {
+            for (var i = 0; i <= dato.length-1; i++) {
+                this.campeonesfiltro.idcampeones=dato[i].idcampeones;
                 this.campeonesfiltro.puesto=dato[i].puesto;
                 this.campeonesfiltro.nombre=dato[i].nombre;
                 this.campeonesfiltro.categoria=dato[i].categoriah.nomcorto;
@@ -107,17 +65,21 @@ export class ListCampeonesComponent implements OnInit {
                 this.campeonesfiltro.kmts=dato[i].kmts;
                 this.campeonesfiltro.cantidad=dato[i].cantidad;
                 this.campeonesfiltro.puntos=dato[i].puntos;
+                this.campeonesfiltro.ruta=dato[i].ruta;
 
                 this.campeonesfiltros.push(this.campeonesfiltro);
-                this.campeonesfiltro={puesto: 0,
-                    nombre: '',
+                this.campeonesfiltro={
+                   idcampeones: 0, 
+                  puesto: 0,
+                  nombre: '',
                     categoria: '',
                     club: '',
                     velmedia: '',
                     promedio: undefined,
                     kmts: 0,
                     cantidad: 0,
-                    puntos: 0
+                    puntos: 0,
+                    ruta: ''
 
                 }
               }
@@ -133,6 +95,22 @@ export class ListCampeonesComponent implements OnInit {
  }
 
 
+showModal(campeon:Campeones){
+    this.rutaSeleccionada = campeon.ruta;
+    this.campeonSeleccionado = campeon;
+    this.campeonesDialog = true;
+}
+
+hideModal(isClosed:boolean){
+    this.campeonesDialog=!isClosed;
+  }
+
+saveImgToList(ruta:string){
+  this.rutaSeleccionada = ruta;
+  
+  
+
+}
 
  exportExcel2() {
   import('xlsx').then((xlsx) => {

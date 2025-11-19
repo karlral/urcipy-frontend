@@ -33,7 +33,7 @@ export class CampeonesService {
   }
 
   public procesarCampeones(){
-    return this.http.post(`${baserUrl}/procesar/`,0);
+    return this.http.post(`${baserUrl}/campeones/procesar/`,0);
     
   }
 

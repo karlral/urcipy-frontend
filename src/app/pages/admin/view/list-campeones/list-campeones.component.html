@@ -36,6 +36,7 @@
             <th>Kmts</th>
             <th>Cantidad</th>
             <th>Puntos</th>
+            <th>Foto</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-campeon>
@@ -49,9 +50,19 @@
             <td>{{campeon.Kmts}}</td>
             <td>{{campeon.cantidad}}</td>
             <td>{{campeon.puntos}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-image" class="p-button-rounded p-button-info mr-2"
+                    (click)="showModal(campeon)"></button>
+            </td>
         </tr>
     </ng-template>
 </p-table>
 
 
-
+<app-add-foto
+    [campeonesDialog]="campeonesDialog"
+    [ruta]="rutaSeleccionada"
+    [campeon]="campeonSeleccionado"
+    (clickClose)="hideModal($event)"
+    (clickSaveImg)="saveImgToList($event)"
+></app-add-foto>

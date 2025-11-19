@@ -49,7 +49,8 @@ export class AddEditMovimientoComponent  implements OnInit, OnChanges {
     email: '',
     ano: 0,
     presentacion: '',
-    logo: ''
+    logo: '',
+    frenteabajo1: ''
   }
 
   concepto:Concepto={

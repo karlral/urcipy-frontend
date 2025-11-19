@@ -1,5 +1,6 @@
 
 export interface Campeonesfiltro {
+    idcampeones: number,
     puesto: number,
     nombre: string,
     categoria: string,
@@ -9,4 +10,5 @@ export interface Campeonesfiltro {
     kmts:number,
     cantidad:number,
     puntos: number,
+    ruta:string
 }

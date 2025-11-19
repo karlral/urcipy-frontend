@@ -102,17 +102,18 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     nomcorto: '',
     logo: ''
   }
-  regional: Regional = {
-    idregional: system,
+  regional: Regional={
+    idregional: 1,
     nomregional: '',
     nomcorto: '',
+    logo: '',
     telefono: '',
     direccion: '',
     email: '',
     ano: 0,
     presentacion: '',
-    logo: ''
-  }
+    frenteabajo1: ''
+  };
   
   club: Club = {
     idclub: 1,

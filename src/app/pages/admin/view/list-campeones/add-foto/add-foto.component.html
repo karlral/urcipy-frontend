@@ -1,0 +1,23 @@
+<p-dialog [(visible)]="campeonesDialog" [style]="{width: '450px'}" header="campeones" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+    
+            <img [src]="ruta =='' ? '/assets/noimagen.png' : mediaLocation+ruta" [alt]="ruta"
+            class="imagen-carga" *ngIf="ruta">
+            <img [src]="preview"  class="imagen-carga" *ngIf="preview">
+
+            <div class="field">
+                <label for="ruta" class="form-label">Seleccionar logo</label>
+                <input id="ruta" name="ruta" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
+                    (change)="selectFile($event)">
+                {{fileName}}
+            </div>
+    
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savecampeones()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
