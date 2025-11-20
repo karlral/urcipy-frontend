@@ -1,4 +1,4 @@
-<p-table  #dt [value]="campeoness" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']"
+<p-table  #dt [value]="campeoness" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre','categoriah.nomcorto','club.nomclub']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcampeones"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
@@ -36,6 +36,7 @@
             <th>Kmts</th>
             <th>Cantidad</th>
             <th>Puntos</th>
+            <th>Act</th>
             <th>Foto</th>
         </tr>
     </ng-template>
@@ -52,8 +53,9 @@
             <td>{{campeon.puntos}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-image" class="p-button-rounded p-button-info mr-2"
-                    (click)="showModal(campeon)"></button>
+                (click)="showModal(campeon)"></button>
             </td>
+            <td><img [src]="mediaLocation+campeon.ruta" [alt]="campeon.ruta" width="100" class="shadow-4" /></td>
         </tr>
     </ng-template>
 </p-table>

@@ -34,7 +34,7 @@ export class ListCampeonesComponent implements OnInit {
       ruta: ''
   };
 
-  mediaLocation = `${baserUrl}/media/carnet/2025/`;
+  mediaLocation = `${baserUrl}/media/2025/`;
 
   anho!:number;
   campeonesDialog: boolean = false;

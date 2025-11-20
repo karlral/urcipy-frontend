@@ -1,14 +1,10 @@
-
-
-
-      <p-carousel [value]="campeoness" [numVisible]="1" [numScroll]="1" [circular]="true" >
+      <p-carousel [value]="campeoness" [numVisible]="1" [numScroll]="1"  [showNavigators]="false" [circular]="true" >
         <ng-template let-campeon pTemplate="item">
 
-          <h1 class="main-title">{{campeon.categoriah.nomcorto}}</h1>
 
-          <div class="container2 border1 slideshow-container ">
+          <div class="container2   ">
 
-            <section class="mySlides ">
+            
               <figure class="figure figure-troll-{{campeon.puesto}}">
                 <img class='monsimg  '
                   *ngIf="campeon.ruta" [src]="mediaLocation+campeon.ano+'/'+campeon.ruta" [alt]="campeon.ruta">
@@ -22,7 +18,7 @@
                 <figure class="figure2 ">
                    <img *ngIf="campeon.club.ruta" [src]="mediaLocation+campeon.club.ruta" [alt]="campeon.club.ruta" />
                    <div>
-                      {{campeon.puesto ==1 ? 'CAMPEON ' : campeon.puesto ==2 ? 'VICECAMPEON ' :'TERCER PUESTO '}} <br>
+                      {{campeon.puesto ==1 ? 'CAMPEON ' : campeon.puesto ==2 ? 'VICECAMPEON ' :campeon.puesto ==3 ? 'TERCER PUESTO ' :campeon.puesto ==4 ? 'CUARTO PUESTO ' :'QUINTO PUESTO '}} <br>
                       {{campeon.categoriah.nomcorto | uppercase}} <br>
                       CAMPEONATO URCI {{campeon.ano}}
 
@@ -46,7 +42,7 @@
                   <p>{{campeon.promedio}}</p>
                 </div>
               </footer>
-            </section>
+            
 
           </div>
 

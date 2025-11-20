@@ -15,7 +15,7 @@ import { MediaService } from 'src/app/service/media.service';
 })
 export class AddFotoComponent {
 
- mediaLocation = `${baserUrl}/media/carnet/2025/`;
+ mediaLocation = `${baserUrl}/media/2025/`;
   
   @Input() campeonesDialog: boolean = false;
  @Input() campeon:Campeones = {} as Campeones;
