@@ -121,7 +121,7 @@ export class EventobusrunComponent implements OnInit {
         },
         complete: () => console.info('completo evento')
       });
-    if (this.idevento == 126) {
+    if (this.idevento == 138) {
       this.tipos = [
 
         { label: ' 5k  ', value: 3 },

@@ -340,7 +340,7 @@ export class AddCorredorComponent implements OnInit {
     });
     this.modalType = "Registrar";
 
-    if (this.idevento == 126) {
+    if (this.idevento == 138) {
       this.tipos = [
 
         { label: ' 5k  ', value: 3 },
