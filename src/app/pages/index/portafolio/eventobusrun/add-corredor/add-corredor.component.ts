@@ -348,7 +348,7 @@ export class AddCorredorComponent implements OnInit {
 
       ];
     }
-    if (this.idevento == 132) {
+    if (this.idevento == 132 || this.idevento == 140) {
       this.tipos = [
 
         { label: ' 5k  ', value: 3 },
@@ -357,7 +357,7 @@ export class AddCorredorComponent implements OnInit {
       ];
 
       this.tamanos = [
-        { label: 'Sin Remera', value: 0 },
+        //{ label: 'Sin Remera', value: 0 },
         { label: 'Tamaño P', value: 1 },
         { label: 'Tamaño M', value: 2 },
         { label: 'Tamaño G', value: 3 },

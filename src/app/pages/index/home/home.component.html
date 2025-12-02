@@ -52,42 +52,51 @@
 
         </div>
         <!-- {/* Hero Buttons */} -->
-        <div  class="hero-buttons">
+        <!--div  class="hero-buttons">
             <button class="btn" [routerLink]="['/portfolio']">Inscripciones</button>
             <button *ngFor="let evento of eventoes" class="btn" role="link"
                 (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
                 Resulados {{evento.nomevento | uppercase}}</button>
             
-        </div>
+        </div-->
     </div>
 
-    <div *ngIf="event" class="right-h">
-        
+    <!--div *ngIf="event" class="right-h"-->
+    <div  class="right-h">
+    
 
-        <div 
+        <!--div 
             class="heart-rate">
             <img src="../../../../assets/images/heart.png" alt="heart" />
             <span>Heart Rate</span>
             <span>170 bpm</span>
-        </div>
+        </div-->
         <!-- {/* Imagen de hero */} -->
         <!-- <img src="../../../../assets/images/hero_image.png" class="hero-image" alt="hero" /> -->
-        <a [routerLink]="['/portfolio']">
+        <div  *ngFor="let evento of eventoes" class="hero-image-container">
+            <img  [src]="mediaLocation+evento.club.rutagrande" class="hero-image2" [alt]="evento.club.rutagrande" />
             
-            <img  [src]="mediaLocation+event.club.rutagrande" class="hero-image" [alt]="event.club.rutagrande" />
-        </a>
-
+            <div  class="hero-buttons">
+                <button class="btn" *ngIf="evento.preinscrip==1" [routerLink]="['/portfolio/eventobus',evento.idevento]">Inscripcion {{evento.nomevento | uppercase}}</button>    
+                <button  class="btn" role="link"
+                (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
+                Resulados {{evento.nomevento | uppercase}}</button>
+            </div>
+        
+        </div>
+        
+            
         <img 
             src="../../../../assets/images/hero_image_back.png" class="hero-image-back" alt="hero back" />
     </div>
     <!-- /* Calories */ -->
-    <div class="calories">
+    <!--div class="calories">
         <img src="../../../../assets/images/calories.png" alt="calories" />
         <div>
             <span>Calorias Quemadas</span>
             <span>1500 kcal</span>
         </div>
-    </div>
+    </div-->
 </div>
 <app-programs></app-programs>
 <app-reason></app-reason>
