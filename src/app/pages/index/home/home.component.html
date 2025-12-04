@@ -77,7 +77,8 @@
             <img  [src]="mediaLocation+evento.club.rutagrande" class="hero-image2" [alt]="evento.club.rutagrande" />
             
             <div  class="hero-buttons">
-                <button class="btn" *ngIf="evento.preinscrip==1" [routerLink]="['/portfolio/eventobus',evento.idevento]">Inscripcion {{evento.nomevento | uppercase}}</button>    
+                <button class="btn" *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/eventobus',evento.idevento]">Inscripcion {{evento.nomevento | uppercase}}</button>    
+                <button class="btn" *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/eventobusrun',evento.idevento]">Inscripcion {{evento.nomevento | uppercase}}</button>    
                 <button  class="btn" role="link"
                 (click)="openInNewTab('https://live.cronostar.com/g-live/g-live.html?f=./resultado/2025/'+evento.idevento+'/'+evento.fondocolor)">Ver
                 Resulados {{evento.nomevento | uppercase}}</button>
