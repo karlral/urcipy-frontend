@@ -83,6 +83,15 @@
 
     color: var(--main-color-page);
 }
+@media (max-width: 600px){
+.row {
+    
+    flex-direction: column;
+    justify-content: center;    
+  }
+    
+}
+
 @media (max-width: 450px){
     .content {
         padding: 50px 0px 30px;
