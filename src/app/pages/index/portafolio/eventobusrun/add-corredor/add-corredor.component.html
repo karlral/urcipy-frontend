@@ -114,7 +114,7 @@
                 <label for="tipo">Tipo de Categoria</label>
                 <p-dropdown [options]="tipos" formControlName="tipocat" id="tipo"
                     placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
-                    optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+                    optionLabel="nomtipo" optionValue="idtipo" [showClear]="true" appendTo="body"></p-dropdown>
             </div>
 
 
@@ -140,12 +140,12 @@
         </div-->
 
     </fieldset>
-    <fieldset *ngIf="this.idevento==126 || this.idevento==132 ||  this.idevento==134 || this.idevento==135 || this.idevento==140" formGroupName="persona" class="mr-2">
+    <fieldset *ngIf="this.displayRemera" formGroupName="persona" class="mr-2">
         <div class="field">
             <label for="tamano">Tamaño de la Remera</label>
             <p-dropdown [options]="tamanos" formControlName="tamano" id="tamano"
               placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"
-              optionLabel="label" optionValue="value" [showClear]="true"
+              optionLabel="nomremera" optionValue="idremera" [showClear]="true"
               appendTo="body"></p-dropdown>
           </div>
           

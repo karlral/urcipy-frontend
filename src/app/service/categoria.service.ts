@@ -16,10 +16,7 @@ export class CategoriaService {
     return this.http.get<Categoria[]>(`${baserUrl}/categoria/`);
   }
   
-  public listarCategoriaesMod(idmodalidad:any):Observable<Categoria[]>{
-    return this.http.get<Categoria[]>(`${baserUrl}/categoria/mod/${idmodalidad}`);
-  }
-  
+    
   public obtenerCategoria(idcategoria:any){
     return this.http.get(`${baserUrl}/categoria/${idcategoria}`);
   }
@@ -40,4 +37,9 @@ export class CategoriaService {
   public listarCategoriaActivoNino():Observable<Categoria[]>{
     return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/nino`);
   }
+
+  public listarCategoriaesActivoMod(idmodalidad:any):Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/mod/${idmodalidad}`);
+  }
+
 }

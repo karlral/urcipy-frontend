@@ -84,6 +84,9 @@ const routes: Routes = [
         path:'puntaje', loadChildren:()=> import('./view/puntaje/puntaje.module').then(m => m.PuntajeModule)
       },
       {
+        path:'remera', loadChildren:()=> import('./view/remera/remera.module').then(m => m.RemeraModule)
+      },
+      {
         path:'sistema', loadChildren:()=> import('../system/system.module').then(m => m.SystemModule)
       }
       ,{
@@ -94,6 +97,18 @@ const routes: Routes = [
       },
       {
         path:'ranking', loadChildren:()=> import('./view/ranking/ranking.module').then(m => m.RankingModule)
+      },
+      {
+        path:'eventoremera', loadChildren:()=> import('./view/evento-remera/evento-remera.module').then(m => m.EventoRemeraModule)
+      },
+      {
+        path:'eventocategoria', loadChildren:()=> import('./view/evento-categoria/evento-categoria.module').then(m => m.EventoCategoriaModule)
+      },
+      {
+        path:'tipo', loadChildren:()=> import('./view/tipo/tipo.module').then(m => m.TipoModule)
+      },
+      {
+        path:'eventotipo', loadChildren:()=> import('./view/evento-tipo/evento-tipo.module').then(m => m.EventoTipoModule)
       }
 
     ]

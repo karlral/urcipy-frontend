@@ -41,7 +41,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <td>{{categoria.edadfin}}</td>
             <td>{{categoria.sexo==1 ? 'M' :'F'}}</td>
             <td>{{categoria.modalidad.nommodalidad}}</td>
-            <td >{{categoria.modalidad.idmodalidad==1 ? tipos[categoria.tipo-1].label : tiposrun[categoria.tipo-1].label}}</td>
+            <td >{{tipos[categoria.tipo-1].nomtipo}}</td>
             <td>{{categoria.trayecto.km}}</td>
             <td>{{categoria.activo  ? 'S' :'N'}}</td>
             <td>
@@ -95,7 +95,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <div class="field">
                 <label for="tipo">Tipo</label>
                 <p-dropdown [options]="tipos" [(ngModel)]="categoria.tipo" id="tipo"  
-                placeholder="Elegir Tipo de Categoria" optionLabel="label" optionValue="value" 
+                placeholder="Elegir Tipo de Categoria" optionLabel="nomtipo" optionValue="idtipo" 
                 [showClear]="true" appendTo="body"></p-dropdown>
             </div>
             <div class="field">

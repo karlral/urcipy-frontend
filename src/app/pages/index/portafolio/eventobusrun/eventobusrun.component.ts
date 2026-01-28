@@ -121,13 +121,14 @@ export class EventobusrunComponent implements OnInit {
         },
         complete: () => console.info('completo evento')
       });
-    if (this.idevento == 138) {
-      this.tipos = [
+    if (this.idevento == 144) {
+       this.tipos = [
+    //{label: '20k', value: 1},
+    { label: '11k', value: 2 },
+    { label: ' 6k', value: 3 },
+ //   { label: 'NIÑOS', value: 4 }
 
-        { label: ' 5k  ', value: 3 },
-        { label: 'NIÑOS', value: 4 },
-
-      ];
+  ];
     }
     if (this.idevento == 132 || this.idevento == 140) {
       this.tipos = [

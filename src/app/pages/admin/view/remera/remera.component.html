@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="remeraes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomremera']" 
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idremera"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
+            <h2 class="m-0">Remeras</h2>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+            </span>
+            
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Tamaño</th>
+            
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-remera>
+        <tr>
+
+            <td class="centro">{{remera.idremera}}</td>
+            <td class="centro">{{remera.nomremera}}</td>
+            
+            
+            <td>
+                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editRemera(remera)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteRemera(remera)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+ <app-add-edit-remera 
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedRemera]="selectedRemera"
+    (clickClose)="hideModal($event)"
+    (clickAddEdit)="saveRemeraToList($event)"
+></app-add-edit-remera> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

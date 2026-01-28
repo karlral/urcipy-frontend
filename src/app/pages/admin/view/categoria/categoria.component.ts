@@ -3,9 +3,11 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Categoria } from 'src/app/domain/categoria';
 import { Modalidad } from 'src/app/domain/modalidad';
+import { Tipo } from 'src/app/domain/tipo';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ModalidadService } from 'src/app/service/modalidad.service';
+import { TipoService } from 'src/app/service/tipo.service';
 import { TrayectoService } from 'src/app/service/trayecto.service';
 
 @Component({
@@ -63,11 +65,29 @@ modalidad :Modalidad={
   constructor(private messageService: MessageService,private categoriaService: CategoriaService,
     private trayectoService: TrayectoService,
     private modalidadService: ModalidadService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private tipoService: TipoService
+  ) { }
 
   ngOnInit(): void {
     this.rellenarDataTable();
-      this.tipos = [
+
+    this.tipoService.listarTipoes().subscribe(
+      {next:(dato:Tipo[]) => {
+        this.tipos=dato;
+       // console.log(this.tipos);
+      },
+      error:(error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Tipo",
+          detail: "Error al cargar el Tipo"
+        });       
+      }
+  });
+
+  /*    this.tipos = [
         {label: 'PRINCIPAL', value: 1},
         {label: 'PRINCIPAL-ELITE', value: 2},
         {label: 'PROMOCIONAL', value: 3},
@@ -80,7 +100,7 @@ modalidad :Modalidad={
       {label: 'GENERAL NIÑOS', value: 4},
       {label: '7k', value: 5},
       {label: 'GENERAL 5K', value: 6},
-  ];
+  ];*/
     //console.log(this.tipos);
 
     this.trayectoService.listarTrayectoes().subscribe(
@@ -97,10 +117,11 @@ modalidad :Modalidad={
       }
     );
     this.modalidadService.listarModalidades().subscribe(
-      (dato:any) => {
+      {next:(dato:any) => {
         this.modalidades=dato;
        // console.log(this.modalidades);
-      },(error) => {
+      },
+      error:(error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
@@ -108,7 +129,7 @@ modalidad :Modalidad={
           detail: "Error al cargar el Trayecto"
         });       
       }
-    );
+  });
   }
 
   rellenarDataTable(){
@@ -170,6 +191,9 @@ modalidad :Modalidad={
       this.messageService.add({ severity: 'info', summary: 'Advertencia', detail: 'El nomcategoria es requerido!!', life: 3000 });
       return;
     }
+    if (this.categoria.modalidad.idmodalidad == 2){
+        this.categoria.nomcategoria== this.categoria.trayecto.nomtrayecto.trim();
+    }
 
 
 
@@ -229,7 +253,7 @@ modalidad :Modalidad={
     //this.categoria = { ...regio };
     this.categoria=regio;
     this.categoriaDialog = true;
-    if(regio.modalidad.idmodalidad==2){
+    /*if(regio.modalidad.idmodalidad==2){
       this.tipos = [
         {label: '20k', value: 1},
         {label: '10k', value: 2},
@@ -245,7 +269,7 @@ modalidad :Modalidad={
         {label: 'PROMOCIONAL', value: 3},
         {label: 'PROMOCIONAL+100K', value: 4}
        ];
-    }
+    }*/
   }
 
   deleteCategoria(categoria: Categoria) {

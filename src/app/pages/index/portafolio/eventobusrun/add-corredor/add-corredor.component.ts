@@ -15,7 +15,8 @@ import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
-import system from 'src/app/service/helpersys';
+import { EventoRemeraService } from 'src/app/service/evento-remera.service';
+import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 import { PaisService } from 'src/app/service/pais.service';
 import { ParticipanteService } from 'src/app/service/participante.service';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -224,6 +225,8 @@ export class AddCorredorComponent implements OnInit {
 
   });
 
+  displayRemera: boolean = false;
+
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
     private clubService: ClubService,
@@ -231,27 +234,59 @@ export class AddCorredorComponent implements OnInit {
     private messageService: MessageService,
     private corredorService: CorredorService,
     private personaService: PersonaService,
-    private participanteService: ParticipanteService
+    private participanteService: ParticipanteService,
+    private eventoTipoService: EventoTipoService,
+    private eventoRemeraService: EventoRemeraService
 
   ) { }
 
 
 
   ngOnInit(): void {
-    this.tamanos = [
+    /*this.tamanos = [
       //{ label: 'Sin Remera', value: 0 },
       { label: 'Tamaño P', value: 1 },
       { label: 'Tamaño M', value: 2 },
       { label: 'Tamaño G', value: 3 }
-    ];
+    ];*/
 
-    this.tipos = [
+    this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {next:(dato: any) => {
+        this.tipos = dato;
+      }, 
+      error: (error) => {
+        console.log(error);
+        this.messageService.add({
+            severity: "error",
+            summary: "Evento Tipo",
+            detail: "Error al cargar el evento tipo"
+          });
+      }
+  });
+
+  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+    {next:(dato: any) => {
+      this.tamanos = dato;
+      this.displayRemera = this.tamanos.length > 0;
+    }, 
+    error: (error) => {
+      console.log(error);
+      this.messageService.add({
+          severity: "error",
+          summary: "Evento Remera",
+          detail: "Error al cargar el evento remera"
+        });
+    }
+});
+
+
+  /*    this.tipos = [
       // {label: '20k', value: 1},
       { label: '10k', value: 2 },
       { label: ' 5k', value: 3 },
       { label: 'NIÑOS', value: 4 }
 
-    ];
+    ];*/
 
     
 
@@ -340,11 +375,12 @@ export class AddCorredorComponent implements OnInit {
     });
     this.modalType = "Registrar";
 
-    if (this.idevento == 138) {
+  /*  if (this.idevento == 144) {
       this.tipos = [
 
-        { label: ' 5k  ', value: 3 },
-        { label: 'NIÑOS', value: 4 },
+        // {label: '20k', value: 1},
+      { label: '11k', value: 2 },
+      { label: ' 6k', value: 3 },
 
       ];
     }
@@ -398,6 +434,7 @@ export class AddCorredorComponent implements OnInit {
         //  { label: 'Tamaño XXG', value: 5 }
       ];
     }
+      */
 
     this.cargarCategoria(this.eCategoria);
   }

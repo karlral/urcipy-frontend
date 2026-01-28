@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Puncorredor } from 'src/app/domain/custom/puncorredor';
 import { Movimiento } from 'src/app/domain/movimiento';
 import { MovimientoService } from 'src/app/service/movimiento.service';
-import { ParticipanteService } from 'src/app/service/participante.service';
 
 @Component({
   selector: 'app-movimiento',
