@@ -283,7 +283,7 @@ persona:Persona={
           key: 'bc',
           severity: "info",
           summary: "Atencion",
-          detail: "No se encontro el numero de CI del corredor, complete sin puntos."
+          detail: "No se encontro el numero de CI del corredor, complete sin puntos o comuniquese con la organizacion al "+this.evento.contacto
         });
 
       }
