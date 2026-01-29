@@ -6,7 +6,7 @@
     <div class="row">
 
     
-     <div *ngIf="!inscripto" class="centro">
+     <div *ngIf="inscripto==0" class="centro">
 
       <div  class="wrapper">
         <img class="logo-image" *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
@@ -77,9 +77,16 @@
 
     </div>
 
-      <app-registrocorredor *ngIf="inscripto"
+      <app-registrocorredor *ngIf="inscripto==1"
       [participante]="participante"
       ></app-registrocorredor>
+
+      <app-mod-corredor *ngIf="inscripto==2" 
+      [selectedCorredor]="selectedCorredor" 
+      [idevento]="idevento"
+      (clickClose)="hideModal($event)"
+      (clickSave)="saveParticipante($event)">
+      </app-mod-corredor>
 
     </div>
   </div>

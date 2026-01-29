@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 
 
 
 const routes: Routes = [
   {
-    path:'', loadChildren:()=> import('./pages/index/blog/blog.module').then(m => m.BlogModule)
-  }
-  ,
+    path:'', loadChildren:()=> import('./pages/index/principal/principal.module').then(m => m.PrincipalModule)
+  },
+  {
+    path: 'secundario',
+    loadChildren: () => import('./pages/index/secundario/secundario.module').then(m => m.SecundarioModule)
+  },
   {
     path:'sistema', loadChildren:()=> import('./pages/system/system.module').then(m => m.SystemModule)
   },  {

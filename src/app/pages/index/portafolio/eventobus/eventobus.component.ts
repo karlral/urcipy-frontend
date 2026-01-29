@@ -19,6 +19,7 @@ import { Trayecto } from 'src/app/domain/trayecto';
 import { Region } from 'src/app/domain/region';
 import { Persona } from 'src/app/domain/persona';
 import { Modalidad } from 'src/app/domain/modalidad';
+import { CorredorService } from 'src/app/service/corredor.service';
 
 @Component({
   selector: 'app-eventobus',
@@ -29,6 +30,8 @@ import { Modalidad } from 'src/app/domain/modalidad';
 export class EventobusComponent implements OnInit{
   idevento!:number ;
   mediaLocation = `${baserUrl}/media/`;
+  selectedCorredor: any = null;
+    displaySearch = false;
 
   trayecto:Trayecto={
     idtrayecto: 0,
@@ -232,7 +235,7 @@ persona:Persona={
   ordenevento='';
   ci:string='';
   selectedTerminos:boolean=false;
-  inscripto:boolean=false;
+  inscripto = 0; // 0 no inscripto, 1 inscripto, 2 editar datos
 
 
   constructor( private activatedRoute:ActivatedRoute,
@@ -240,6 +243,7 @@ persona:Persona={
     private datasys:Datasys,
     private messageService: MessageService,
     private participanteService:ParticipanteService,
+    private corredorService: CorredorService,
     
     ) { }
   
@@ -266,6 +270,17 @@ persona:Persona={
       
   }
 
+  hideModal(isClosed: boolean) {
+    this.selectedCorredor = null;
+    this.displaySearch = isClosed;
+    this.inscripto = 0;
+  }
+
+  saveParticipante(particpante: any) {
+    this.participante = particpante;
+    this.inscripto = 1;
+  }
+
   formSubmit(){
     console.log("agregamos el click de "+this.ci+" ID EVENTO "+this.evento.idevento);
     if (this.ci.trim() == '' || this.ci.trim() == null) {
@@ -278,26 +293,52 @@ persona:Persona={
 
       return;
     }
-    this.participanteService.inscribirPartiCi(this.idevento,this.ci).subscribe(
-      (data: any) => {
-        
-        //this.router.navigate(['eventobus']);
-        this.participante=data;
-        this.inscripto=true;
-        
 
-      }, (error) => {
+this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
+      next: (dato: any) => {
+        console.log(dato);
+        if (dato) {
+
+
+          this.selectedCorredor = dato;
+
+          if (this.selectedCorredor.verificar == 0) {
+            this.inscripto = 2;
+
+          } else {
+            this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
+              (data: any) => {
+
+                //this.router.navigate(['eventobus']);
+                this.participante = data;
+                this.inscripto = 1;
+
+
+              }, (error) => {
+                console.log(error);
+
+                this.messageService.add({
+                  key: 'bc',
+                  severity: "info",
+                  summary: "Atencion",
+                  detail: "No se encontro el numero de CI del corredor, complete sin puntos."
+                });
+
+              }
+            );
+          }
+        }
+
+
+      }, error: (error) => {
         console.log(error);
-        
-        this.messageService.add({
-          key: 'bc',
-          severity: "info",
-          summary: "Atencion",
-          detail: "No se encontro el numero de CI del corredor, complete sin puntos."
-        });
-
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+      },
+      complete: () => {
+        console.log('Completo la busqueda del corredor');
       }
-    )
+    });
+    
 
 
   }

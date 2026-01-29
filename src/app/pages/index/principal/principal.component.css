@@ -1,0 +1,73 @@
+.cuadro {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+
+
+
+.links {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.links a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, opacity 0.3s;
+}
+
+.links a:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Colores personalizados por red */
+.instagram {
+    background: #E4405F;
+}
+
+.facebook {
+    background: #1877F2;
+}
+
+.twitter {
+    background: #1DA1F2;
+}
+
+.linkedin {
+    background: #0A66C2;
+}
+
+.youtube {
+    background: #FF0000;
+}
+
+.tiktok {
+    background: #055e11;
+}
+
+footer {
+    margin-top: auto;
+    font-size: 0.9em;
+    opacity: 0.8;
+    text-align: center;
+    padding: 20px 0;
+}
