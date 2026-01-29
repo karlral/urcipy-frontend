@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['ci','corredor','club','categoria']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                    placeholder="Buscar..." />
+                    placeholder="Buscar Corredor..." />
             </span>
         </div>
     </ng-template>
