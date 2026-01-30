@@ -24,29 +24,30 @@ import { EventoRemera } from 'src/app/domain/eventoRemera';
 import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 import { Corredorbus } from 'src/app/domain/custom/corredorbus';
 import { Remera } from 'src/app/domain/remera';
+import system from 'src/app/service/helpersys';
 
 @Component({
   selector: 'app-eventobus',
   templateUrl: './eventobus.component.html',
   styleUrls: ['./eventobus.component.css'],
-  providers:[Datasys,MessageService]
+  providers: [Datasys, MessageService]
 })
-export class EventobusComponent implements OnInit{
-  idevento!:number ;
+export class EventobusComponent implements OnInit {
+  idevento!: number;
   mediaLocation = `${baserUrl}/media/`;
   selectedCorredor: any = null;
-    displaySearch = false;
+  displaySearch = false;
 
-  trayecto:Trayecto={
+  trayecto: Trayecto = {
     idtrayecto: 0,
     nomtrayecto: '',
     km: 0
   }
-  modalidad:Modalidad={
+  modalidad: Modalidad = {
     idmodalidad: 1,
     nommodalidad: ''
   }
-  categoria:Categoria={
+  categoria: Categoria = {
     idcategoria: 0,
     nomcategoria: '',
     activo: false,
@@ -66,7 +67,19 @@ export class EventobusComponent implements OnInit{
     nomalternativo: ''
   }
 
-  usuario:Usuario={
+  regional: Regional = {
+    idregional: system,
+    nomregional: '',
+    nomcorto: '',
+    telefono: '',
+    direccion: '',
+    email: '',
+    ano: 0,
+    presentacion: '',
+    logo: '',
+    frenteabajo1: ''
+  }
+  usuario: Usuario = {
     idusuario: 0,
     nombre: '',
     apellido: '',
@@ -75,27 +88,18 @@ export class EventobusComponent implements OnInit{
     email: '',
     username: '',
     password: '',
-    enabled: false
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
   }
-  regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    logo: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    frenteabajo1: ''
-  }
-  region:Region={
+
+  region: Region = {
     idregion: 0,
     nomregion: '',
     nomcorto: '',
     logo: ''
   }
-  club:Club={
+  club: Club = {
     idclub: 0,
     nomclub: '',
     presidente: '',
@@ -109,38 +113,38 @@ export class EventobusComponent implements OnInit{
     region: this.region,
     modalidad: this.modalidad
   }
-  pais:Pais={
+  pais: Pais = {
     idpais: 0,
     nompais: '',
     nacionalidad: ''
   }
 
-ciudad:Ciudad={
-  idciudad: 0,
-  nomciudad: '',
-  pais: this.pais
-}
-persona:Persona={
-  idpersona: 0,
-  nombre: '',
-  apellido: '',
-  ci: '',
-  sexo: 0,
-  fecnac: new Date,
-  telefono: '',
-  direccion: '',
-  email: '',
-  foto: '',
-  cidelante: '',
-  gruposanguineo: '',
-  tutorp: '',
-  citp: '',
-  nacionalidad: '',
-  ciudad: this.ciudad,
-  tamano: 0
-}
+  ciudad: Ciudad = {
+    idciudad: 0,
+    nomciudad: '',
+    pais: this.pais
+  }
+  persona: Persona = {
+    idpersona: 0,
+    nombre: '',
+    apellido: '',
+    ci: '',
+    sexo: 0,
+    fecnac: new Date,
+    telefono: '',
+    direccion: '',
+    email: '',
+    foto: '',
+    cidelante: '',
+    gruposanguineo: '',
+    tutorp: '',
+    citp: '',
+    nacionalidad: '',
+    ciudad: this.ciudad,
+    tamano: 0
+  }
 
-  corredor:Corredor={
+  corredor: Corredor = {
     idcorredor: 0,
     persona: this.persona,
     club: this.club,
@@ -162,7 +166,7 @@ persona:Persona={
     catalianza: true
   }
 
-  evento: Evento= {
+  evento: Evento = {
     idevento: 0,
     fecha: new Date,
     nomevento: '',
@@ -204,7 +208,7 @@ persona:Persona={
     hoteles: ''
   };
 
-  participante:Participante={
+  participante: Participante = {
     idparticipante: 0,
     fecha: new Date,
     pagado: 0,
@@ -231,23 +235,23 @@ persona:Persona={
     region: this.region
   }
 
-  
-  ordenes:{label:string,value:number}[]=[
+
+  ordenes: { label: string, value: number }[] = [
     { label: 'Primera', value: 1 }
   ];
 
-  ordenevento='';
-  ci:string='';
-  selectedTerminos:boolean=false;
+  ordenevento = '';
+  ci: string = '';
+  selectedTerminos: boolean = false;
   inscripto = 0; // 0 no inscripto, 1 inscripto, 2 editar datos
-  
+
   fecha: Date = new Date();
   tamanos: Remera[] = [];
   displayRemera: boolean = false;
   displayVerificar: boolean = false;
   displayBotonSubirCat: boolean = false;
   tipos: any[] = [];
-  idmodalidad=1;
+  idmodalidad = 1;
 
   corredorbus: Corredorbus = {
     idcorredor: 0,
@@ -270,7 +274,7 @@ persona:Persona={
     idclub: 0,
     tipocat: 0
   };
-  
+
   correActualiza: Corredorbus = {
     idcorredor: 0,
     ci: '',
@@ -295,54 +299,55 @@ persona:Persona={
 
 
 
-  constructor( private activatedRoute:ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
-    private datasys:Datasys,
+    private datasys: Datasys,
     private messageService: MessageService,
-    private participanteService:ParticipanteService,
+    private participanteService: ParticipanteService,
     private corredorService: CorredorService,
     private eventoRemeraService: EventoRemeraService
-    
-    ) { }
-  
+
+  ) { }
+
   ngOnInit(): void {
-    this.idevento=this.activatedRoute.snapshot.params["idevento"];
+    this.idevento = this.activatedRoute.snapshot.params["idevento"];
 
     this.eventoService.obtenerEventoPub(this.idevento).subscribe(
       {
         next: (e: Evento) => {
           this.evento = e;
-         
-          this.datasys.getOrdenes().then(data=>{
-            this.ordenes=data;
-            this.ordenevento=this.ordenes[this.evento.orden-1].label
+
+          this.datasys.getOrdenes().then(data => {
+            this.ordenes = data;
+            this.ordenevento = this.ordenes[this.evento.orden - 1].label
           });
         },
         error: (error) => {
           console.log(error);
-          
+
         },
         complete: () => console.info('completo evento')
       });
 
-     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-    {next:(dato: any) => {
-      this.tamanos = dato;
-      this.displayRemera = this.tamanos.length > 0;
-      this.corredorbus.tamano = 5;
-      
-      this.tamanos.sort((a,b)=>a.idremera - b.idremera);
-      
-    }, 
-    error: (error) => {
-      console.log(error);
-      this.messageService.add({
-          severity: "error",
-          summary: "Evento Remera",
-          detail: "Error al cargar el evento remera"
-        });
-    }
-}); 
+    this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tamanos = dato;
+          this.displayRemera = this.tamanos.length > 0;
+          this.corredorbus.tamano = 5;
+
+          this.tamanos.sort((a, b) => a.idremera - b.idremera);
+
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Remera",
+            detail: "Error al cargar el evento remera"
+          });
+        }
+      });
   }
 
   hideModal(isClosed: boolean) {
@@ -356,8 +361,8 @@ persona:Persona={
     this.inscripto = 1;
   }
 
-  formSubmit(){
-    console.log("agregamos el click de "+this.ci+" ID EVENTO "+this.evento.idevento);
+  formSubmit() {
+    console.log("agregamos el click de " + this.ci + " ID EVENTO " + this.evento.idevento);
     if (this.ci.trim() == '' || this.ci.trim() == null) {
 
       this.messageService.add({
@@ -369,7 +374,7 @@ persona:Persona={
       return;
     }
 
-this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
+    this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
       next: (dato: any) => {
         console.log(dato);
         if (dato) {
@@ -381,39 +386,40 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
             this.correActualiza.telefono = this.corredorbus.telefono;
           }
 
-         
+
           this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
-            {next:(data: any) => {
+            {
+              next: (data: any) => {
 
-              //this.router.navigate(['eventobus']);
-              this.participante = data;
-              this.inscripto = 1;
+                //this.router.navigate(['eventobus']);
+                this.participante = data;
+                this.inscripto = 1;
 
 
-            }, error: (error) => {
-              console.log(error);
+              }, error: (error) => {
+                console.log(error);
 
-              this.messageService.add({
-                key: 'bc',
-                severity: "info",
-                summary: "Atencion",
-                detail: "No se encontro el numero de CI del corredor, complete sin puntos o contactese con la organizacion del evento al numero: " + this.evento.contacto
-              });
+                this.messageService.add({
+                  key: 'bc',
+                  severity: "info",
+                  summary: "Atencion",
+                  detail: "No se encontro el numero de CI del corredor, complete sin puntos o contactese con la organizacion del evento al numero: " + this.evento.contacto
+                });
 
-            }, complete: () => {
-              console.log('completo inscripcion participante');
-              console.log(this.correActualiza);
-              this.corredorService.actuaTelRemera(this.correActualiza).subscribe({
-                next: (data: any) => {
-                  console.log('actualizado datos corredor');
-                },
-                error: (error) => {
-                  console.log(error);
-                }
-              });
-            }
-        });
-          
+              }, complete: () => {
+                console.log('completo inscripcion participante');
+                console.log(this.correActualiza);
+                this.corredorService.actuaTelRemera(this.correActualiza).subscribe({
+                  next: (data: any) => {
+                    console.log('actualizado datos corredor');
+                  },
+                  error: (error) => {
+                    console.log(error);
+                  }
+                });
+              }
+            });
+
         }
 
 
@@ -425,7 +431,7 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
         console.log('Completo la busqueda del corredor');
       }
     });
-    
+
 
 
   }
@@ -448,7 +454,7 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
           this.corredor.persona.idpersona = dato.idpersona;
           this.corredor.persona.tamano = dato.tamano;
           this.corredor.persona.telefono = dato.telefono;
-          
+
           console.log(this.corredor);
         }
 
@@ -461,7 +467,7 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
       complete: () => {
         console.log('Completo la busqueda de Corredor');
         if (this.corredorbus == null) {
-         // this.inscripto = 2;
+          // this.inscripto = 2;
           this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
         }
       }
@@ -476,6 +482,6 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
     if (this.corredorbus.tipocat == 3 || this.corredorbus.tipocat == 4) {
       this.corredorbus.tipocat = 1;
     }
-    
+
   }
 }

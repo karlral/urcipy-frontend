@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { MessageService } from "primeng/api";
 import { Usuario } from 'src/app/domain/usuario';
+import { Regional } from 'src/app/domain/regional';
+import { RegionalService } from 'src/app/service/regional.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,6 +12,18 @@ import { Usuario } from 'src/app/domain/usuario';
   providers: [MessageService]
 })
 export class SignupComponent {
+   regional: Regional = {
+     idregional: 0,
+     nomregional: '',
+     nomcorto: '',
+     telefono: '',
+     direccion: '',
+     email: '',
+     ano: 0,
+     presentacion: '',
+     logo: '',
+     frenteabajo1: ''
+   };
   public user:Usuario={
     username: '',
     password: '',
@@ -19,12 +33,32 @@ export class SignupComponent {
     telefono: '',
     idusuario: 0,
     perfil: '',
-    enabled: false
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
   }
+   regiones: Regional[] = [];
 
-  constructor(private userService:UserService,private messageService: MessageService) { }
+  constructor(private userService:UserService,
+    private messageService: MessageService,
+    private regionalService:RegionalService) { }
 
   ngOnInit(): void {
+    this.regionalService.listarRegionales().subscribe(
+       { next:(dato:any) => {
+          this.regiones=dato;
+      
+        }
+      ,
+        error:(error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Region",
+            detail: "Error al cargar el Regional"
+          });       
+        }
+  });
   }
   formSubmit(){
     

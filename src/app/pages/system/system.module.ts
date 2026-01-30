@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     ToastModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule
   ]
 })
 export class SystemModule { }

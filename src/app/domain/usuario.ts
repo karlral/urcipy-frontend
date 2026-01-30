@@ -1,3 +1,5 @@
+import { Regional } from "./regional";
+
 export interface Usuario {
     idusuario:number,
     nombre:string,
@@ -7,5 +9,7 @@ export interface Usuario {
     email:string,
     username:string,
     password:string,
-    enabled:boolean
+    enabled:boolean,
+    idevento:number,
+    regional:Regional
 }

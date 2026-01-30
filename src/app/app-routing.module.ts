@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 
 
 
@@ -21,6 +20,8 @@ const routes: Routes = [
     path:'user',loadChildren:()=> import('./pages/user/user.module').then(m => m.UserModule)
   },{
     path:'time',loadChildren:()=> import('./pages/time/time.module').then(m => m.TimeModule)
+  },{
+    path:'timepagos',loadChildren:()=> import('./pages/timepagos/timepagos.module').then(m => m.TimepagosModule)
   },{
     path:'resumen', loadChildren:()=> import('./pages/index/resumen/resumen.module').then(m => m.ResumenModule)
   },{

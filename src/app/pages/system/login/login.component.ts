@@ -85,6 +85,10 @@ export class LoginComponent {
            
             this.router.navigate(['time/access']);
             this.loginService.loginStatusSubjec.next(true);
+          }else if (this.loginService.getUserRole() == "TIMEPAGOS") {
+           
+            this.router.navigate(['timepagos/access']);
+            this.loginService.loginStatusSubjec.next(true);
           } else {
             this.loginService.logout();
           }

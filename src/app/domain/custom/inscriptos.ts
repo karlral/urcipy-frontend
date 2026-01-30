@@ -22,5 +22,10 @@ export interface Inscriptos {
     horario:string,
     tandac:string,
     sex:string,
+    pag:string,
+    kit:number,
+    kittipo:string,
+    tamano:number,
+    tamanoc:string
     
 }

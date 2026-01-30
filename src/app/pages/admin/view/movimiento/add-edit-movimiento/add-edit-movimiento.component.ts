@@ -28,6 +28,19 @@ export class AddEditMovimientoComponent  implements OnInit, OnChanges {
   
   fecha = new Date();
 
+  regional: Regional = {
+      idregional: system,
+      nomregional: '',
+      nomcorto: '',
+      telefono: '',
+      direccion: '',
+      email: '',
+      ano: 0,
+      presentacion: '',
+      logo: '',
+      frenteabajo1: ''
+    }
+
   usuario: Usuario = {
     idusuario: 0,
     nombre: '',
@@ -37,21 +50,12 @@ export class AddEditMovimientoComponent  implements OnInit, OnChanges {
     email: '',
     username: '',
     password: '',
-    enabled: false
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
   }
   
-  regional:Regional={
-    idregional: system,
-    nomregional: '',
-    nomcorto: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    logo: '',
-    frenteabajo1: ''
-  }
+  
 
   concepto:Concepto={
     idconcepto: 0,

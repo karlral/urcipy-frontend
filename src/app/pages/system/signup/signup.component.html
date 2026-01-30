@@ -49,7 +49,18 @@
                 <label for="telefono" >  Telefono</label>
                 <small  class="p-error" *ngIf="!user.telefono">El telefono es requerindo</small>
             </span>
+            <div class="p-float-label form-field">
+                <p-dropdown id="regional" [options]="regiones" [(ngModel)]="user.regional" placeholder="Seleccionar un regional" 
+                optionLabel="nomregional" [ngModelOptions]="{standalone:true}" [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
+                <label  for="regional">Regional</label>
 
+            </div>
+            <span class="p-float-label form-field">
+                <input id="idevento" type="text" pInputText [(ngModel)]="user.idevento" name="idevento"
+                    >
+                <label for="idevento" >  idevento</label>
+                
+            </span>
 
             <span class="p-float-label form-field">
                 <button pButton pRipple label="Registrar" type="submit" class="p-button-raised"></button>

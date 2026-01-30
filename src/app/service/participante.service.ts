@@ -41,6 +41,11 @@ export class ParticipanteService {
     return this.http.put(`${baserUrl}/participante/dorsal/`,partici);
   }
 
+  public actuaParticiPagos(partici:any){
+    return this.http.put(`${baserUrl}/participante/pagos/`,partici);
+  }
+
+
   public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
     return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
   }

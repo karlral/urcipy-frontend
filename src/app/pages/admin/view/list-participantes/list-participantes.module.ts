@@ -13,6 +13,8 @@ import { MessagesModule } from 'primeng/messages';
 import { Toast, ToastModule } from 'primeng/toast';
 import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module';
 
+import { AddPagosModule } from './add-pagos/add-pagos.module';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module
   imports: [
     CommonModule,
     ListParticipantesRoutingModule,
+    AddPagosModule,
     FormsModule,
     InputTextModule,
     TableModule,

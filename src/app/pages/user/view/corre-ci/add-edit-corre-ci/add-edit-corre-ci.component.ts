@@ -85,23 +85,6 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
   fileName = '';
   preview = '';
 
-  usuario: Usuario = {
-    idusuario: 0,
-    nombre: '',
-    apellido: '',
-    telefono: '',
-    perfil: '',
-    email: '',
-    username: '',
-    password: '',
-    enabled: false
-  }
-  region: Region = {
-    idregion: 1,
-    nomregion: '',
-    nomcorto: '',
-    logo: ''
-  }
   regional: Regional={
     idregional: 1,
     nomregional: '',
@@ -114,6 +97,27 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     presentacion: '',
     frenteabajo1: ''
   };
+
+  usuario: Usuario = {
+    idusuario: 0,
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    perfil: '',
+    email: '',
+    username: '',
+    password: '',
+    enabled: false,
+    idevento: 0,
+    regional: this.regional
+  }
+  region: Region = {
+    idregion: 1,
+    nomregion: '',
+    nomcorto: '',
+    logo: ''
+  }
+  
   
   club: Club = {
     idclub: 1,
