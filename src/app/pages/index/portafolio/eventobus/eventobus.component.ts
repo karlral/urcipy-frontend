@@ -20,6 +20,10 @@ import { Region } from 'src/app/domain/region';
 import { Persona } from 'src/app/domain/persona';
 import { Modalidad } from 'src/app/domain/modalidad';
 import { CorredorService } from 'src/app/service/corredor.service';
+import { EventoRemera } from 'src/app/domain/eventoRemera';
+import { EventoRemeraService } from 'src/app/service/evento-remera.service';
+import { Corredorbus } from 'src/app/domain/custom/corredorbus';
+import { Remera } from 'src/app/domain/remera';
 
 @Component({
   selector: 'app-eventobus',
@@ -236,6 +240,59 @@ persona:Persona={
   ci:string='';
   selectedTerminos:boolean=false;
   inscripto = 0; // 0 no inscripto, 1 inscripto, 2 editar datos
+  
+  fecha: Date = new Date();
+  tamanos: Remera[] = [];
+  displayRemera: boolean = false;
+  displayVerificar: boolean = false;
+  displayBotonSubirCat: boolean = false;
+  tipos: any[] = [];
+  idmodalidad=1;
+
+  corredorbus: Corredorbus = {
+    idcorredor: 0,
+    ci: '',
+    corredor: '',
+    fecnac: this.fecha,
+    sexo: 0,
+    telefono: '',
+    categoria: '',
+    club: '',
+    nacionalidad: '',
+    ciudad: '',
+    pais: '',
+    carnetfpc: 0,
+    puntua: 0,
+    tamano: 5,
+    idpersona: 0,
+    idcategoria: 0,
+    verificar: 0,
+    idclub: 0,
+    tipocat: 0
+  };
+  
+  correActualiza: Corredorbus = {
+    idcorredor: 0,
+    ci: '',
+    corredor: '',
+    fecnac: this.fecha,
+    sexo: 0,
+    telefono: '',
+    categoria: '',
+    club: '',
+    nacionalidad: '',
+    ciudad: '',
+    pais: '',
+    carnetfpc: 0,
+    puntua: 0,
+    tamano: 5,
+    idpersona: 0,
+    idcategoria: 0,
+    verificar: 0,
+    idclub: 0,
+    tipocat: 0
+  };
+
 
 
   constructor( private activatedRoute:ActivatedRoute,
@@ -244,6 +301,7 @@ persona:Persona={
     private messageService: MessageService,
     private participanteService:ParticipanteService,
     private corredorService: CorredorService,
+    private eventoRemeraService: EventoRemeraService
     
     ) { }
   
@@ -267,7 +325,24 @@ persona:Persona={
         complete: () => console.info('completo evento')
       });
 
+     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+    {next:(dato: any) => {
+      this.tamanos = dato;
+      this.displayRemera = this.tamanos.length > 0;
+      this.corredorbus.tamano = 5;
       
+      this.tamanos.sort((a,b)=>a.idremera - b.idremera);
+      
+    }, 
+    error: (error) => {
+      console.log(error);
+      this.messageService.add({
+          severity: "error",
+          summary: "Evento Remera",
+          detail: "Error al cargar el evento remera"
+        });
+    }
+}); 
   }
 
   hideModal(isClosed: boolean) {
@@ -300,39 +375,51 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
         if (dato) {
 
 
-          this.selectedCorredor = dato;
-
-          if (this.selectedCorredor.verificar == 0) {
-            this.inscripto = 2;
-
-          } else {
-            this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
-              (data: any) => {
-
-                //this.router.navigate(['eventobus']);
-                this.participante = data;
-                this.inscripto = 1;
-
-
-              }, (error) => {
-                console.log(error);
-
-                this.messageService.add({
-                  key: 'bc',
-                  severity: "info",
-                  summary: "Atencion",
-                  detail: "No se encontro el numero de CI del corredor, complete sin puntos."
-                });
-
-              }
-            );
+          this.corredorbus = dato;
+          this.correActualiza.idcorredor = this.corredorbus.idcorredor;
+          if (this.correActualiza.telefono == '' || this.correActualiza.telefono == null) {
+            this.correActualiza.telefono = this.corredorbus.telefono;
           }
+
+         
+          this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
+            {next:(data: any) => {
+
+              //this.router.navigate(['eventobus']);
+              this.participante = data;
+              this.inscripto = 1;
+
+
+            }, error: (error) => {
+              console.log(error);
+
+              this.messageService.add({
+                key: 'bc',
+                severity: "info",
+                summary: "Atencion",
+                detail: "No se encontro el numero de CI del corredor, complete sin puntos o contactese con la organizacion del evento al numero: " + this.evento.contacto
+              });
+
+            }, complete: () => {
+              console.log('completo inscripcion participante');
+              console.log(this.correActualiza);
+              this.corredorService.actuaTelRemera(this.correActualiza).subscribe({
+                next: (data: any) => {
+                  console.log('actualizado datos corredor');
+                },
+                error: (error) => {
+                  console.log(error);
+                }
+              });
+            }
+        });
+          
         }
 
 
       }, error: (error) => {
         console.log(error);
-        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 3000 });
       },
       complete: () => {
         console.log('Completo la busqueda del corredor');
@@ -341,5 +428,54 @@ this.corredorService.pubObtenerCorredorbusCi(this.ci.trim()).subscribe({
     
 
 
+  }
+
+  focusOutFunction() {
+
+    let cip = this.ci.replace(/[^0-9]/g, "");
+    this.ci = cip;
+
+    this.corredorService.pubObtenerCorredorbusCi(this.ci).subscribe({
+      next: (dato: Corredorbus) => {
+
+        this.corredorbus = dato;
+        if (dato != null) {
+          const fecnac = new Date(dato.fecnac);
+          this.corredorbus.fecnac = fecnac;
+
+          this.corredor.idcorredor = dato.idcorredor;
+          this.corredor.categoria.idcategoria = dato.idcategoria;
+          this.corredor.persona.idpersona = dato.idpersona;
+          this.corredor.persona.tamano = dato.tamano;
+          this.corredor.persona.telefono = dato.telefono;
+          
+          console.log(this.corredor);
+        }
+
+
+      }, error: (error) => {
+        console.log(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+
+      },
+      complete: () => {
+        console.log('Completo la busqueda de Corredor');
+        if (this.corredorbus == null) {
+         // this.inscripto = 2;
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+        }
+      }
+    });
+  }
+
+  cargarCategoria(cat: any) {
+    this.corredorbus.idcategoria = cat.idcategoria;
+
+  }
+  subirCategoria() {
+    if (this.corredorbus.tipocat == 3 || this.corredorbus.tipocat == 4) {
+      this.corredorbus.tipocat = 1;
+    }
+    
   }
 }

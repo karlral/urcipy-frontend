@@ -39,6 +39,52 @@
 
 
               <form (ngSubmit)="formSubmit()">
+    
+                <p-toast position="bottom-center" key="bc"></p-toast>
+
+                  <span class="p-float-label form-field  input-box">
+                    <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" 
+                      required>
+                    <label for="ci" class="cblanco"> Cedula de identidad</label>
+                  </span>
+
+
+                  <span  class="p-float-label form-field  input-box">
+                    <input id="telefono" type="text" pInputText [(ngModel)]="correActualiza.telefono"
+                      name="telefono" >
+                    <label for="telefono" class="cblanco"> Actualizar Telefono</label>
+                    
+                  </span>
+
+                  <!-- <button pButton pRipple label="SUBIR CATEGORIA" 
+                  class=" btn-box p-button-raised p-button-secondary" (onClick)="subirCategoria()"></button>
+                  
+                  <div class="field">
+                    <label for="tipo">Distancia: </label>
+                    <p-dropdown [options]="tipos" [(ngModel)]="corredorbus.tipocat" id="tipo" placeholder="Elegir Tipo de Categoria"
+                      optionLabel="nomtipo" optionValue="idtipo" [ngModelOptions]="{standalone: true}"
+                      [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
+                  </div>
+
+                  <div class="field">
+                    <label for="nombre">Categoria Calculada</label>
+                    <app-cat-corredor 
+                      [fecnac]="corredorbus.fecnac" 
+                      [sexo]="corredorbus.sexo" 
+                      [tipocat]="corredorbus.tipocat" 
+                      [idmodalidad]="idmodalidad" 
+                      (emitCategoria)="cargarCategoria($event)">
+                    </app-cat-corredor>
+                  </div> -->
+
+                  <div  *ngIf="displayRemera" class="field">
+                    <label for="tamano">Adquirir atuendo medida </label>
+                    <p-dropdown [options]="tamanos" [(ngModel)]="correActualiza.tamano" id="tamano"
+                      placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"
+                      optionLabel="nomremera" optionValue="idremera" [ngModelOptions]="{standalone: true}" [showClear]="true"
+                      appendTo="body"></p-dropdown>
+                  </div>
+                
                 <div class="field">
                   <label  >Terminos de Participacion</label>
                   
@@ -48,7 +94,7 @@
                           </p>
                       </p-scrollPanel>
                 </div>
-                <p-toast position="bottom-center" key="bc"></p-toast>
+                
                
 
                 <span class="field-checkbox ">
@@ -58,11 +104,11 @@
                   </label>
                 </span>
 
-                <span class="p-float-label form-field  input-box">
+                <!-- <span class="p-float-label form-field  input-box">
                   <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" required>
                   <label for="ci" class="cblanco"> Cedula de identidad</label>
 
-                </span>
+                </span> -->
 
                 <button pButton pRipple label="Inscribirse" type="submit"
                   class=" btn-box p-button-raised p-button-secondary" [disabled]="!selectedTerminos"></button>
@@ -81,12 +127,12 @@
       [participante]="participante"
       ></app-registrocorredor>
 
-      <app-mod-corredor *ngIf="inscripto==2" 
+      <!--app-mod-corredor *ngIf="inscripto==2" 
       [selectedCorredor]="selectedCorredor" 
       [idevento]="idevento"
       (clickClose)="hideModal($event)"
       (clickSave)="saveParticipante($event)">
-      </app-mod-corredor>
+      </app-mod-corredor-->
 
     </div>
   </div>

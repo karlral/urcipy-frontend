@@ -112,7 +112,20 @@ ngOnChanges(changes: SimpleChanges): void {
         });
       }
     });
-    this.clubService.obtenerClub
+    this.clubService.pubobtenerClub(this.selectedCorredor.idclub).subscribe(
+      {
+        next: (dato: any) => {
+          this.club = dato;
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Club",
+            detail: "Error al cargar el Club"
+          });
+        }
+      });
 
    
    

@@ -66,4 +66,7 @@ export class CorredorService {
   public actualizarCorredorRun(corredor:any){
     return this.http.put(`${baserUrl}/correpub/actuacatam/`,corredor);
   }
+  public actuaTelRemera(buscorre:any){
+    return this.http.put(`${baserUrl}/correpub/telremera/`,buscorre);
+  }
 }
