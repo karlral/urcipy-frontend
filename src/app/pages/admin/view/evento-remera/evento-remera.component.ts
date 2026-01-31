@@ -71,7 +71,7 @@ export class EventoRemeraComponent implements OnInit {
 
   deleteEventoRemera(deleteData:any){
     this.confirmationService.confirm({
-      message: 'Estas seguro de que quieres borrar ' + deleteData.concepto.nomconcepto + '?',
+      message: 'Estas seguro de que quieres borrar ' + deleteData.remera.nomremera + '?',
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

@@ -10,6 +10,10 @@ import { ParticipanteService } from 'src/app/service/participante.service';
 import { CorredorService } from 'src/app/service/corredor.service';
 import { Corredorbus } from 'src/app/domain/custom/corredorbus';
 import { id } from 'date-fns/locale';
+import { EventoRemeraService } from 'src/app/service/evento-remera.service';
+import { EventoTipoService } from 'src/app/service/evento-tipo.service';
+import { Tipo } from 'src/app/domain/tipo';
+import { Remera } from 'src/app/domain/remera';
 
 
 @Component({
@@ -36,22 +40,24 @@ export class EventobusrunComponent implements OnInit {
     { label: 'Primera', value: 1 }
   ];
 
-  tamanos = [
-    // { label: 'Sin Remera', value: 0 },
-    { label: 'Tamaño P', value: 1 },
-    { label: 'Tamaño M', value: 2 },
-    { label: 'Tamaño G', value: 3 },
-    //{ label: 'Tamaño XG', value: 4 },
-    //  { label: 'Tamaño XXG', value: 5 }
-  ];
-  tipos = [
-    //{label: '20k', value: 1},
-    { label: '10k', value: 2 },
-    { label: ' 5k', value: 3 },
-    { label: 'NIÑOS', value: 4 }
+  // tamanos = [
+  //   // { label: 'Sin Remera', value: 0 },
+  //   { label: 'Tamaño P', value: 1 },
+  //   { label: 'Tamaño M', value: 2 },
+  //   { label: 'Tamaño G', value: 3 },
+  //   //{ label: 'Tamaño XG', value: 4 },
+  //   //  { label: 'Tamaño XXG', value: 5 }
+  // ];
+  // tipos = [
+  //   //{label: '20k', value: 1},
+  //   { label: '10k', value: 2 },
+  //   { label: ' 5k', value: 3 },
+  //   { label: 'NIÑOS', value: 4 }
 
-  ];
+  // ];
 
+  tipos: Tipo[] = [];
+  tamanos: Remera[] = [];
   tamano = 3;
   ordenevento = '';
   ci: string = '';
@@ -91,6 +97,7 @@ export class EventobusrunComponent implements OnInit {
   edad = 0;
   idmodalidad = 2;
   tipo = 3;
+  displayRemera: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -98,6 +105,8 @@ export class EventobusrunComponent implements OnInit {
     private messageService: MessageService,
     private participanteService: ParticipanteService,
     private corredorService: CorredorService,
+    private eventoTipoService: EventoTipoService,
+    private eventoRemeraService: EventoRemeraService
 
 
   ) { }
@@ -121,66 +130,35 @@ export class EventobusrunComponent implements OnInit {
         },
         complete: () => console.info('completo evento')
       });
-    if (this.idevento == 144) {
-       this.tipos = [
-    //{label: '20k', value: 1},
-    { label: '11k', value: 2 },
-    { label: ' 6k', value: 3 },
- //   { label: 'NIÑOS', value: 4 }
+     this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {next:(dato: any) => {
+        this.tipos = dato;
+      }, 
+      error: (error) => {
+        console.log(error);
+        this.messageService.add({
+            severity: "error",
+            summary: "Evento Tipo",
+            detail: "Error al cargar el evento tipo"
+          });
+      }
+  });
 
-  ];
+  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+    {next:(dato: any) => {
+      this.tamanos = dato;
+      this.displayRemera = this.tamanos.length > 0;
+      this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+    }, 
+    error: (error) => {
+      console.log(error);
+      this.messageService.add({
+          severity: "error",
+          summary: "Evento Remera",
+          detail: "Error al cargar el evento remera"
+        });
     }
-    if (this.idevento == 132 || this.idevento == 140) {
-      this.tipos = [
-
-        { label: ' 5k  ', value: 3 },
-
-
-      ];
-      this.tamanos = [
-       // { label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-        { label: 'Tamaño GG', value: 4 },
-        //  { label: 'Tamaño XXG', value: 5 }
-      ];
-    }
-    if (this.idevento == 134) {
-      this.tipo =6;
-      this.tipos = [
-
-        { label: ' GENERAL 5K  ', value: 6 },
-
-
-      ];
-      this.tamanos = [
-        { label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-       // { label: 'Tamaño GG', value: 4 },
-        //  { label: 'Tamaño XXG', value: 5 }
-      ];
-    }
-    if (this.idevento == 135) {
-      this.tipo =5;
-      this.tipos = [
-
-        { label: 'NIÑOS', value: 4 },
-        { label: ' 7k  ', value: 5 },
-
-
-      ];
-      this.tamanos = [
-        { label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-        { label: 'Tamaño GG', value: 4 },
-        //  { label: 'Tamaño XXG', value: 5 }
-      ];
-    }
+});
   }
 
   hideModal(isClosed: boolean) {

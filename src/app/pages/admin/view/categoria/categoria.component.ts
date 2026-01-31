@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { el } from 'date-fns/locale';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Categoria } from 'src/app/domain/categoria';
@@ -192,7 +193,20 @@ modalidad :Modalidad={
       return;
     }
     if (this.categoria.modalidad.idmodalidad == 2){
-        this.categoria.nomcategoria== this.categoria.trayecto.nomtrayecto.trim();
+      if(this.categoria.edadfin>=99){
+        this.categoria.nomcategoria= this.categoria.trayecto.nomtrayecto.trim()+' '+this.categoria.edadinicio+' años en adelante';
+      }else{
+        this.categoria.nomcategoria= this.categoria.trayecto.nomtrayecto.trim()+' '+this.categoria.edadinicio+' a '+this.categoria.edadfin+ ' años';
+      }
+        
+      if(this.categoria.sexo==1){
+        this.categoria.nomcategoria+=' MASCULINO';
+      }else if(this.categoria.sexo==0){
+        this.categoria.nomcategoria+=' FEMENINO';
+      }
+      this.categoria.nomcorto=this.categoria.nomcategoria;
+      this.categoria.codigo=this.categoria.trayecto.nomtrayecto.trim().toUpperCase().replace(/\s+/g, '')+'-'+this.categoria.edadinicio+'-'+this.categoria.edadfin+'-'+this.categoria.sexo;
+
     }
 
 

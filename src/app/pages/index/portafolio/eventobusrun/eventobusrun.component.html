@@ -71,7 +71,7 @@
                   <div class="field">
                     <label for="tipo">Distancia: </label>
                     <p-dropdown [options]="tipos" [(ngModel)]="tipo" id="tipo" placeholder="Elegir Tipo de Categoria"
-                      optionLabel="label" optionValue="value" [ngModelOptions]="{standalone: true}"
+                      optionLabel="nomtipo" optionValue="idtipo" [ngModelOptions]="{standalone: true}"
                       [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
                   </div>
 
@@ -82,11 +82,11 @@
                     </app-cat-corredor>
                   </div>
 
-                  <div  *ngIf="this.idevento==126 || this.idevento==132 || this.idevento==134 || this.idevento==135 || this.idevento==140" class="field">
+                  <div  *ngIf="displayRemera" class="field">
                     <label for="tamano">Tamaño de la Remera</label>
                     <p-dropdown [options]="tamanos" [(ngModel)]="corredorbus.tamano" id="tamano"
                       placeholder="Seleccionar tamano de categoria" autoWidth="false" [style]="{'width':'100%'}"
-                      optionLabel="label" optionValue="value" [ngModelOptions]="{standalone: true}" [showClear]="true"
+                      optionLabel="nomremera" optionValue="idremera" [ngModelOptions]="{standalone: true}" [showClear]="true"
                       appendTo="body"></p-dropdown>
                   </div>
 
@@ -145,6 +145,9 @@
       <app-add-corredor *ngIf="inscripto==2" 
       [selectedCorredor]="selectedCorredor" 
       [idevento]="idevento"
+      [tipos]="tipos"
+      [tamanos]="tamanos"
+      [displayRemera]="displayRemera"
       (clickClose)="hideModal($event)"
       (clickSave)="saveParticipante($event)">
       </app-add-corredor>

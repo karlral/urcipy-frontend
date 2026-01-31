@@ -13,7 +13,7 @@
 
             <div *ngFor="let evento of eventoes" class="box">
                 
-                <img [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+                <img [src]="mediaLocation+evento.club.rutagrande" width="100"  [alt]="evento.club.rutagrande" />
                 
                 <h3>{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h3>
                 

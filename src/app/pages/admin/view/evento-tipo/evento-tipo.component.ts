@@ -73,7 +73,7 @@ export class EventoTipoComponent implements OnInit {
 
   deleteEventoTipo(deleteData:any){
     this.confirmationService.confirm({
-      message: 'Estas seguro de que quieres borrar ' + deleteData.concepto.nomconcepto + '?',
+      message: 'Estas seguro de que quieres borrar ' + deleteData.tipo.nomtipo + '?',
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

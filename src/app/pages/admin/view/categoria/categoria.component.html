@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-table #dt [value]="categoriaes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomcategoria','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+<p-table #dt [value]="categoriaes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomcategoria','modalidad.nommodalidad','trayecto']" [tableStyle]="{'min-width': '50rem'}"
 [rowHover]="true" dataKey="idcategoria"
 currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 

@@ -10,13 +10,13 @@ import { Pais } from 'src/app/domain/pais';
 import { Persona } from 'src/app/domain/persona';
 import { Region } from 'src/app/domain/region';
 import { Regional } from 'src/app/domain/regional';
+import { Remera } from 'src/app/domain/remera';
+import { Tipo } from 'src/app/domain/tipo';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
-import { EventoRemeraService } from 'src/app/service/evento-remera.service';
-import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 import { PaisService } from 'src/app/service/pais.service';
 import { ParticipanteService } from 'src/app/service/participante.service';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -31,6 +31,10 @@ export class AddCorredorComponent implements OnInit {
   @Input() selectedCorredor: any = null;
   @Input() idevento: any = null;
 
+  @Input() tipos: Tipo[] = [];
+  @Input() tamanos: Remera[] = [];
+  @Input() displayRemera: boolean = false;
+
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickSave: EventEmitter<any> = new EventEmitter<any>();
 
@@ -42,9 +46,9 @@ export class AddCorredorComponent implements OnInit {
   ciudades: Ciudad[] = [];
   paises: Pais[] = [];
 
-  tipos: any[] = [];
+  
   grupos: any[] = [];
-  tamanos: any[] = [];
+  
 
   user: any;
   fecha = new Date();
@@ -225,7 +229,7 @@ export class AddCorredorComponent implements OnInit {
 
   });
 
-  displayRemera: boolean = false;
+
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
@@ -234,9 +238,8 @@ export class AddCorredorComponent implements OnInit {
     private messageService: MessageService,
     private corredorService: CorredorService,
     private personaService: PersonaService,
-    private participanteService: ParticipanteService,
-    private eventoTipoService: EventoTipoService,
-    private eventoRemeraService: EventoRemeraService
+    private participanteService: ParticipanteService
+   
 
   ) { }
 
@@ -250,34 +253,35 @@ export class AddCorredorComponent implements OnInit {
       { label: 'Tamaño G', value: 3 }
     ];*/
 
-    this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
-      {next:(dato: any) => {
-        this.tipos = dato;
-      }, 
-      error: (error) => {
-        console.log(error);
-        this.messageService.add({
-            severity: "error",
-            summary: "Evento Tipo",
-            detail: "Error al cargar el evento tipo"
-          });
-      }
-  });
+//     this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+//       {next:(dato: any) => {
+//         this.tipos = dato;
+//       }, 
+//       error: (error) => {
+//         console.log(error);
+//         this.messageService.add({
+//             severity: "error",
+//             summary: "Evento Tipo",
+//             detail: "Error al cargar el evento tipo"
+//           });
+//       }
+//   });
 
-  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-    {next:(dato: any) => {
-      this.tamanos = dato;
-      this.displayRemera = this.tamanos.length > 0;
-    }, 
-    error: (error) => {
-      console.log(error);
-      this.messageService.add({
-          severity: "error",
-          summary: "Evento Remera",
-          detail: "Error al cargar el evento remera"
-        });
-    }
-});
+//   this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+//     {next:(dato: any) => {
+//       this.tamanos = dato;
+//       this.displayRemera = this.tamanos.length > 0;
+//       this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+//     }, 
+//     error: (error) => {
+//       console.log(error);
+//       this.messageService.add({
+//           severity: "error",
+//           summary: "Evento Remera",
+//           detail: "Error al cargar el evento remera"
+//         });
+//     }
+// });
 
 
   /*    this.tipos = [
