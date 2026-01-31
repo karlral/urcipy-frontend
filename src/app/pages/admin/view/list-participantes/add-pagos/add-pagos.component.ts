@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 
 import { ParticipanteService } from 'src/app/service/participante.service';
 import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 
 
 
@@ -14,6 +15,7 @@ import { Inscriptos } from 'src/app/domain/custom/inscriptos';
 export class AddPagosComponent implements OnInit, OnChanges {
   fecha =new Date();
   @Input() displayPagosModal: boolean = true;
+@Input() idevento!: number;
   @Input() selectedInscripto: Inscriptos = {
     id: 0,
     fecha: this.fecha,
@@ -48,12 +50,15 @@ export class AddPagosComponent implements OnInit, OnChanges {
 
   modalType="Confirmar";
   
-  tamanos = [
-    { label: 'Sin Remera', value: 0 },]; 
+  tamanos = []; 
+  displayRemera: boolean = false;
+
+  
 
   constructor(
     private messageService: MessageService,
-    private participanteService:ParticipanteService
+    private participanteService:ParticipanteService,
+    private eventoRemeraService:EventoRemeraService
 
   ) { }
 
@@ -72,15 +77,31 @@ export class AddPagosComponent implements OnInit, OnChanges {
       { label: 'NO', value: 0 }
     ];
 
-      this.tamanos = [
-    { label: 'Sin Remera', value: 0 },
-    { label: 'Tamaño P', value: 1 },
-    { label: 'Tamaño M', value: 2 },
-    { label: 'Tamaño G', value: 3 },
-    { label: 'Tamaño XG', value: 4 },
-    { label: 'Tamaño XXG', value: 5 }
+  //     this.tamanos = [
+  //   { label: 'Sin Remera', value: 0 },
+  //   { label: 'Tamaño P', value: 1 },
+  //   { label: 'Tamaño M', value: 2 },
+  //   { label: 'Tamaño G', value: 3 },
+  //   { label: 'Tamaño XG', value: 4 },
+  //   { label: 'Tamaño XXG', value: 5 }
 
-  ];
+  // ];
+
+  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+    {next:(dato: any) => {
+      this.tamanos = dato;
+      this.displayRemera = this.tamanos.length > 0;
+      this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+    }, 
+    error: (error) => {
+      console.log(error);
+      this.messageService.add({
+          severity: "error",
+          summary: "Evento Remera",
+          detail: "Error al cargar el evento remera"
+        });
+    }
+});
   }
   
   closePagosModal() {

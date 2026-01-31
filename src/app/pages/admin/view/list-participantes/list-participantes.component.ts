@@ -8,6 +8,7 @@ import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/service/login.service';
+import { EventoService } from 'src/app/service/evento.service';
 
 @Component({
   selector: 'app-list-participantes',
@@ -67,14 +68,15 @@ export class ListParticipantesComponent implements OnInit {
   ];
  
    istimepagos: boolean = false;
-
+idevento!: number;
   constructor(
     private activatedRoute: ActivatedRoute,
 
     private participanteService: ParticipanteService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private eventoService: EventoService
   ) {}
 
   ngOnInit(): void {
@@ -95,6 +97,19 @@ export class ListParticipantesComponent implements OnInit {
         },
         complete: () => console.info('completo inscriptos'),
       });
+
+      this.eventoService.obtenerEventoPub(this.activo).subscribe(
+        {
+          next: (e: Evento) => {
+            this.evento = e;
+            this.idevento=this.evento.idevento;
+          },
+          error: (error) => {
+            console.log(error);
+  
+          },
+          complete: () => console.info('completo evento')
+        });
 
       if (this.loginService.getUserRole() == "TIMEPAGOS") {
           this.istimepagos = true;
