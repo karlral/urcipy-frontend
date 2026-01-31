@@ -13,9 +13,9 @@ import { EventoRemeraService } from 'src/app/service/evento-remera.service';
   styleUrls: ['./add-pagos.component.css']
 })
 export class AddPagosComponent implements OnInit, OnChanges {
-  fecha =new Date();
+  fecha = new Date();
   @Input() displayPagosModal: boolean = true;
-@Input() idevento!: number;
+  @Input() idevento: number=0;
   @Input() selectedInscripto: Inscriptos = {
     id: 0,
     fecha: this.fecha,
@@ -46,24 +46,40 @@ export class AddPagosComponent implements OnInit, OnChanges {
   kits: any[] = [];
 
   @Output() clickPagosClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
 
-  modalType="Confirmar";
-  
-  tamanos = []; 
+
+  modalType = "Confirmar";
+
+  tamanos = [];
   displayRemera: boolean = false;
 
-  
+
 
   constructor(
     private messageService: MessageService,
-    private participanteService:ParticipanteService,
-    private eventoRemeraService:EventoRemeraService
+    private participanteService: ParticipanteService,
+    private eventoRemeraService: EventoRemeraService
 
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-      this.modalType="Confirmar";
+    this.modalType = "Confirmar";
+    this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tamanos = dato;
+          this.displayRemera = this.tamanos.length > 0;
+          this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Remera",
+            detail: "Error al cargar el evento remera"
+          });
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -77,67 +93,53 @@ export class AddPagosComponent implements OnInit, OnChanges {
       { label: 'NO', value: 0 }
     ];
 
-  //     this.tamanos = [
-  //   { label: 'Sin Remera', value: 0 },
-  //   { label: 'Tamaño P', value: 1 },
-  //   { label: 'Tamaño M', value: 2 },
-  //   { label: 'Tamaño G', value: 3 },
-  //   { label: 'Tamaño XG', value: 4 },
-  //   { label: 'Tamaño XXG', value: 5 }
+    //     this.tamanos = [
+    //   { label: 'Sin Remera', value: 0 },
+    //   { label: 'Tamaño P', value: 1 },
+    //   { label: 'Tamaño M', value: 2 },
+    //   { label: 'Tamaño G', value: 3 },
+    //   { label: 'Tamaño XG', value: 4 },
+    //   { label: 'Tamaño XXG', value: 5 }
 
-  // ];
+    // ];
 
-  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-    {next:(dato: any) => {
-      this.tamanos = dato;
-      this.displayRemera = this.tamanos.length > 0;
-      this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
-    }, 
-    error: (error) => {
-      console.log(error);
-      this.messageService.add({
-          severity: "error",
-          summary: "Evento Remera",
-          detail: "Error al cargar el evento remera"
-        });
-    }
-});
+
   }
-  
+
   closePagosModal() {
     //this.selectedInscripto.dorsal=0;
     this.clickPagosClose.emit(true);
   }
 
   addPagos() {
-    
 
-      this.participanteService.actuaParticiPagos(this.selectedInscripto).subscribe(
-      
-        {
-          next: (dato) => {
-            this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El registro de pago ha sido asignado con exito', life: 3000 });
-            this.clickPagosClose.emit(true);
-            
-          }, error: (error) => {
-            console.log(error);
-            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar el registro de pago', life: 3000 });
 
-          },
-          complete: () => {
-            console.log('Completo el asignar Pagos');
+    this.participanteService.actuaParticiPagos(this.selectedInscripto).subscribe(
 
-          }
+      {
+        next: (dato) => {
+          this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El registro de pago ha sido asignado con exito', life: 3000 });
+          this.clickPagosClose.emit(true);
+
+        }, error: (error) => {
+          console.log(error);
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar el registro de pago', life: 3000 });
+
+        },
+        complete: () => {
+          console.log('Completo el asignar Pagos');
 
         }
-      );
-    
+
+      }
+    );
+
   }
 
-  
-  
 
- 
 
-  
+
+
+
+
 }

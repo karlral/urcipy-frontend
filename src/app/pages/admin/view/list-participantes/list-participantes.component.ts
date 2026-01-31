@@ -57,15 +57,7 @@ export class ListParticipantesComponent implements OnInit {
   inscriptos!: Inscriptos[];
   evento!: Evento;
 
-  tamanos = [
-    { label: 'Sin Remera', value: 0 },
-    { label: 'Tamaño P', value: 1 },
-    { label: 'Tamaño M', value: 2 },
-    { label: 'Tamaño G', value: 3 },
-    { label: 'Tamaño XG', value: 4 },
-    { label: 'Tamaño XXG', value: 5 }
 
-  ];
  
    istimepagos: boolean = false;
 idevento!: number;
@@ -98,7 +90,7 @@ idevento!: number;
         complete: () => console.info('completo inscriptos'),
       });
 
-      this.eventoService.obtenerEventoPub(this.activo).subscribe(
+      this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
         {
           next: (e: Evento) => {
             this.evento = e;
@@ -142,12 +134,7 @@ idevento!: number;
               
             }
 
-            if (this.inscriptos[i].tamano != null) {
-              
-              this.inscriptos[i].tamanoc = this.tamanos[this.inscriptos[i].tamano].label;
-            } else {
-              
-            }
+           
           }
   }
 
