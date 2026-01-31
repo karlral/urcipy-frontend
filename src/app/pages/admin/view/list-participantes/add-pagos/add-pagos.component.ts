@@ -15,7 +15,7 @@ import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 export class AddPagosComponent implements OnInit, OnChanges {
   fecha = new Date();
   @Input() displayPagosModal: boolean = true;
-  @Input() idevento: number=0;
+  @Input() idevento!: number;
   @Input() selectedInscripto: Inscriptos = {
     id: 0,
     fecha: this.fecha,
@@ -64,6 +64,12 @@ export class AddPagosComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.modalType = "Confirmar";
+    if (this.idevento && this.idevento > 0) {
+      this.loadTamanos();
+    }
+  }
+
+  loadTamanos() {
     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
       {
         next: (dato: any) => {
