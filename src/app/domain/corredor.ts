@@ -10,7 +10,7 @@ export interface Corredor {
     club: Club,
     categoria: Categoria,
     usuario: Usuario,
-    regional:Regional
+    regional:Regional,
     verificar: number,
     carnet: string,
     carnetatras:string,

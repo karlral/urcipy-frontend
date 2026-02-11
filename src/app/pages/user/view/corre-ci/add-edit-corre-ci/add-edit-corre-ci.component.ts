@@ -10,6 +10,7 @@ import { Pais } from 'src/app/domain/pais';
 import { Persona } from 'src/app/domain/persona';
 import { Region } from 'src/app/domain/region';
 import { Regional } from 'src/app/domain/regional';
+import { Tipo } from 'src/app/domain/tipo';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
@@ -21,6 +22,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { MediaService } from 'src/app/service/media.service';
 import { PaisService } from 'src/app/service/pais.service';
 import { PersonaService } from 'src/app/service/persona.service';
+import { TipoService } from 'src/app/service/tipo.service';
 
 @Component({
   selector: 'app-add-edit-corre-ci',
@@ -235,7 +237,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     public login: LoginService,
     private mediaService: MediaService,
     private corredorService: CorredorService,
-        private personaService:PersonaService
+        private personaService:PersonaService,
+        private tipoService: TipoService
 
   ) { }
 
@@ -280,13 +283,26 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
-
-    this.tipos = [
-      { label: 'PRINCIPAL', value: 1 },
-      { label: 'PRINCIPAL-ELITE', value: 2 },
-      { label: 'PROMOCIONAL', value: 3 },
-      { label: 'PROMOCIONAL+100K', value: 4 }
-    ];
+this.tipoService.listarTipoes().subscribe(
+      {next:(dato:Tipo[]) => {
+        this.tipos=dato;
+       // console.log(this.tipos);
+      },
+      error:(error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Tipo",
+          detail: "Error al cargar el Tipo"
+        });       
+      }
+  });
+    // this.tipos = [
+    //   { label: 'PRINCIPAL', value: 1 },
+    //   { label: 'PRINCIPAL-ELITE', value: 2 },
+    //   { label: 'PROMOCIONAL', value: 3 },
+    //   { label: 'PROMOCIONAL+100K', value: 4 }
+    // ];
 
     this.grupos = [
       { label: 'RH (O-)', value: 'RH (O-)' },

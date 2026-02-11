@@ -19,8 +19,10 @@ const routes: Routes = [
       },
       {
         path:'correci', loadChildren:()=> import('./view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
-      }
-      ,{
+      },
+      {
+        path:'correrunci', loadChildren:()=> import('../time/view/corre-ci/corre-ci.module').then(m => m.CorreCiModule)
+      },{
         path:'concepto',loadChildren:()=> import('../admin/view/concepto/concepto.module').then(m => m.ConceptoModule)       
       },
       {

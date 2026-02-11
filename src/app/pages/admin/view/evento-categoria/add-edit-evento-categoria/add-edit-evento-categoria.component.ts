@@ -95,7 +95,7 @@ export class AddEditEventoCategoriaComponent  implements OnInit, OnChanges {
       }
     
   });
-  this.categoriaService.listarCategoriaesActivoMod(2).subscribe(
+  this.categoriaService.listarCategoriaActivo().subscribe(
     {next:  (datos: any) => {
       this.categorias=datos;
       this.categoria = datos[0];
