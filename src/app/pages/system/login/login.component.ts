@@ -71,6 +71,7 @@ export class LoginComponent {
             console.log("Se registro el Usuario");
 
           }
+          console.log("El rol del usuario es: " + this.loginService.getUserRole());
           /** */
 
           if (this.loginService.getUserRole() == "ADMINISTRADOR") {
@@ -88,6 +89,7 @@ export class LoginComponent {
            } else if (this.loginService.getUserRole() == "TIMEPAGOS") {
            
             this.router.navigate(['timepagos/access']);
+            console.log("Se registro el Usuario TimePagos");
             this.loginService.loginStatusSubjec.next(true);
           } else {
             this.loginService.logout();

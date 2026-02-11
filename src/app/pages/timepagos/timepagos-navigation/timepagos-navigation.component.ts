@@ -59,6 +59,7 @@ ngOnInit(): void {
 {
     label: 'Dorsal y Pagos',
     items: [
+      {label: 'Corredor x ci MTB', icon: 'pi pi-search', routerLink: ['/timepagos/access/correci']},
       
         {label: 'Corredor x ci RUN', icon: 'pi pi-search', routerLink: ['/timepagos/access/correrunci']},
       {label: 'Listado Inscriptos ', icon: 'pi pi-list-check', routerLink: ['/timepagos/access/listpart/'+this.user.idevento]},
