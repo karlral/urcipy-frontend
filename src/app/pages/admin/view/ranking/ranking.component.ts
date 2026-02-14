@@ -84,7 +84,8 @@ export class RankingComponent  implements OnInit {
      this.corredorank.entrada=newData.entrada;
      this.corredorank.puntua=newData.corredor.puntua;
      this.corredorank.idcorredor=newData.corredor.idcorredor;
-      this.corredorankes.unshift(this.corredorank);
+     // this.corredorankes.unshift(this.corredorank);
+     this.rellenarDataTable();
       this.activaPuntuaCorredor(this.corredorank.idcorredor)
   }
 
