@@ -16,4 +16,6 @@ export interface Corredorbus {
     carnetfpc: number,
     puntua: number,
     tamano: number,
+    idclub: number,
+    modificar: boolean
 }

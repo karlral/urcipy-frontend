@@ -113,11 +113,11 @@ export class CatCorredorComponent implements OnInit, OnChanges {
 
       for (let index = 0; index < this.categorias.length; index++) {
         const element = this.categorias[index];
-console.log(element);
-console.log(this.edad);
-console.log(this.sexo);
-console.log(this.tipocat);
-console.log(this.idmodalidad);
+// console.log(element);
+// console.log(this.edad);
+// console.log(this.sexo);
+// console.log(this.tipocat);
+// console.log(this.idmodalidad);
 
         if (element.sexo == this.sexo && element.tipo == this.tipocat && this.edad >= element.edadinicio && this.edad <= element.edadfin && element.modalidad.idmodalidad == this.idmodalidad) {
           this.categoria = element;

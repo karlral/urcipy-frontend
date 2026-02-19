@@ -92,4 +92,8 @@ public pubListarPuntosInClub(tipo:any):Observable<Punclub[]>{
 public pubListarPuntosByClubPartici(tipo:any,idclub:any):Observable<Punclubpartici[]>{
   return this.http.get<Punclubpartici[]>(`${baserUrl}/participub/punclubreg/${tipo}/${idclub}/${system}`);
 }
+
+public actuaParticiClubCat(partici:any){
+    return this.http.put(`${baserUrl}/participub/catclub/`,partici);
+  }
 }

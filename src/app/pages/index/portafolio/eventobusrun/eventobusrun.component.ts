@@ -90,7 +90,9 @@ export class EventobusrunComponent implements OnInit {
     puntua: 0,
     tamano: 3,
     idpersona: 0,
-    idcategoria: 0
+    idcategoria: 0,
+    idclub: 0,
+    modificar: false
   };
   selectedTerminos: boolean = false;
   inscripto = 0;
@@ -133,6 +135,8 @@ export class EventobusrunComponent implements OnInit {
      this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
       {next:(dato: any) => {
         this.tipos = dato;
+        console.log("tipos evento");
+        console.log(this.tipos);
       }, 
       error: (error) => {
         console.log(error);
@@ -141,7 +145,8 @@ export class EventobusrunComponent implements OnInit {
             summary: "Evento Tipo",
             detail: "Error al cargar el evento tipo"
           });
-      }
+      },
+      complete: () => console.info('completo tipos evento')
   });
 
   this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(

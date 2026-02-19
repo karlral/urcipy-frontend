@@ -13,6 +13,9 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { EventobusComponent } from './eventobus.component';
 import { InscrisharedModule } from '../inscrishared/inscrishared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { InscrisharedModule } from '../inscrishared/inscrishared.module';
         InputTextModule,
         CheckboxModule,
         ScrollPanelModule,
-        InscrisharedModule
+        InscrisharedModule,
+        SharedModule,
+        DropdownModule
+        
 
         
   ]

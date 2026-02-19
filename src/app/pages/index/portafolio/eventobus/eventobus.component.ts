@@ -19,27 +19,35 @@ import { Trayecto } from 'src/app/domain/trayecto';
 import { Region } from 'src/app/domain/region';
 import { Persona } from 'src/app/domain/persona';
 import { Modalidad } from 'src/app/domain/modalidad';
+import { Corredorbus } from 'src/app/domain/custom/corredorbus';
+import { CorredorService } from 'src/app/service/corredor.service';
+import { Remera } from 'src/app/domain/remera';
+import { Tipo } from 'src/app/domain/tipo';
+import { EventoRemeraService } from 'src/app/service/evento-remera.service';
+import { EventoTipoService } from 'src/app/service/evento-tipo.service';
+import { ClubService } from 'src/app/service/club.service';
 
 @Component({
   selector: 'app-eventobus',
   templateUrl: './eventobus.component.html',
   styleUrls: ['./eventobus.component.css'],
-  providers:[Datasys,MessageService]
+  providers: [Datasys, MessageService]
 })
-export class EventobusComponent implements OnInit{
-  idevento!:number ;
+export class EventobusComponent implements OnInit {
+  idevento!: number;
   mediaLocation = `${baserUrl}/media/`;
+  fecha: Date = new Date();
 
-  trayecto:Trayecto={
+  trayecto: Trayecto = {
     idtrayecto: 0,
     nomtrayecto: '',
     km: 0
   }
-  modalidad:Modalidad={
+  modalidad: Modalidad = {
     idmodalidad: 1,
     nommodalidad: ''
   }
-  categoria:Categoria={
+  categoria: Categoria = {
     idcategoria: 0,
     nomcategoria: '',
     activo: false,
@@ -57,7 +65,7 @@ export class EventobusComponent implements OnInit{
     modalidad: this.modalidad,
     codigo: ''
   }
-regional:Regional={
+  regional: Regional = {
     idregional: 0,
     nomregional: '',
     nomcorto: '',
@@ -68,7 +76,7 @@ regional:Regional={
     ano: 0,
     presentacion: ''
   }
-  usuario:Usuario={
+  usuario: Usuario = {
     idusuario: 0,
     nombre: '',
     apellido: '',
@@ -81,14 +89,14 @@ regional:Regional={
     idevento: 0,
     regional: this.regional
   }
-  
-  region:Region={
+
+  region: Region = {
     idregion: 0,
     nomregion: '',
     nomcorto: '',
     logo: ''
   }
-  club:Club={
+  club: Club = {
     idclub: 0,
     nomclub: '',
     presidente: '',
@@ -102,38 +110,38 @@ regional:Regional={
     region: this.region,
     modalidad: this.modalidad
   }
-  pais:Pais={
+  pais: Pais = {
     idpais: 0,
     nompais: '',
     nacionalidad: ''
   }
 
-ciudad:Ciudad={
-  idciudad: 0,
-  nomciudad: '',
-  pais: this.pais
-}
-persona:Persona={
-  idpersona: 0,
-  nombre: '',
-  apellido: '',
-  ci: '',
-  sexo: 0,
-  fecnac: new Date,
-  telefono: '',
-  direccion: '',
-  email: '',
-  foto: '',
-  cidelante: '',
-  gruposanguineo: '',
-  tutorp: '',
-  citp: '',
-  nacionalidad: '',
-  ciudad: this.ciudad,
-  tamano: 0
-}
+  ciudad: Ciudad = {
+    idciudad: 0,
+    nomciudad: '',
+    pais: this.pais
+  }
+  persona: Persona = {
+    idpersona: 0,
+    nombre: '',
+    apellido: '',
+    ci: '',
+    sexo: 0,
+    fecnac: new Date,
+    telefono: '',
+    direccion: '',
+    email: '',
+    foto: '',
+    cidelante: '',
+    gruposanguineo: '',
+    tutorp: '',
+    citp: '',
+    nacionalidad: '',
+    ciudad: this.ciudad,
+    tamano: 0
+  }
 
-  corredor:Corredor={
+  corredor: Corredor = {
     idcorredor: 0,
     persona: this.persona,
     club: this.club,
@@ -155,7 +163,7 @@ persona:Persona={
     catalianza: true
   }
 
-  evento: Evento= {
+  evento: Evento = {
     idevento: 0,
     fecha: new Date,
     nomevento: '',
@@ -189,7 +197,7 @@ persona:Persona={
     modalidad: this.modalidad
   };
 
-  participante:Participante={
+  participante: Participante = {
     idparticipante: 0,
     fecha: new Date,
     pagado: 0,
@@ -216,50 +224,141 @@ persona:Persona={
     region: this.region
   }
 
-  
-  ordenes:{label:string,value:number}[]=[
+
+
+  corredorbus: Corredorbus = {
+    idcorredor: 0,
+    ci: '',
+    corredor: '',
+    fecnac: this.fecha,
+    sexo: 0,
+    telefono: '',
+    categoria: '',
+    club: '',
+    nacionalidad: '',
+    ciudad: '',
+    pais: '',
+    carnetfpc: 0,
+    puntua: 0,
+    tamano: 3,
+    idpersona: 0,
+    idcategoria: 0,
+    idclub: 0,
+    modificar: false
+  };
+
+  ordenes: { label: string, value: number }[] = [
     { label: 'Primera', value: 1 }
   ];
 
-  ordenevento='';
-  ci:string='';
-  selectedTerminos:boolean=false;
-  inscripto:boolean=false;
+  ordenevento = '';
+  ci: string = '';
+  selectedTerminos: boolean = false;
+  inscripto: boolean = false;
+  tipos: Tipo[] = [];
+  tamanos: Remera[] = [];
+  tamano = 3;
+  edad = 0;
+  idmodalidad = 1;
+  tipo = 3;
+  displayRemera: boolean = false;
+
+  clubes: Club[] = [];
+  idclub = 0;
+  displayClub: boolean = false;
 
 
-  constructor( private activatedRoute:ActivatedRoute,
+
+  constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
-    private datasys:Datasys,
+    private datasys: Datasys,
     private messageService: MessageService,
-    private participanteService:ParticipanteService,
-    
-    ) { }
-  
+    private participanteService: ParticipanteService,
+    private corredorService: CorredorService,
+    private eventoTipoService: EventoTipoService,
+    private eventoRemeraService: EventoRemeraService,
+    private clubService: ClubService,
+
+  ) { }
+
   ngOnInit(): void {
-    this.idevento=this.activatedRoute.snapshot.params["idevento"];
+    this.idevento = this.activatedRoute.snapshot.params["idevento"];
 
     this.eventoService.obtenerEventoPub(this.idevento).subscribe(
       {
         next: (e: Evento) => {
           this.evento = e;
-         
-          this.datasys.getOrdenes().then(data=>{
-            this.ordenes=data;
-            this.ordenevento=this.ordenes[this.evento.orden-1].label
+
+          this.datasys.getOrdenes().then(data => {
+            this.ordenes = data;
+            this.ordenevento = this.ordenes[this.evento.orden - 1].label
           });
         },
         error: (error) => {
           console.log(error);
-          
+
         },
         complete: () => console.info('completo evento')
       });
 
-      
+    this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tipos = dato;
+          console.log("tipos evento");
+          console.log(this.tipos);
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Tipo",
+            detail: "Error al cargar el evento tipo"
+          });
+        },
+        complete: () => console.info('completo tipos evento')
+      });
+
+    this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tamanos = dato;
+          this.displayRemera = this.tamanos.length > 0;
+          this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Remera",
+            detail: "Error al cargar el evento remera"
+          });
+        }
+      });
+
+this.clubService.publistarClubes(this.idmodalidad).subscribe(
+     { 
+      next:  (dato: any) => {
+        this.clubes = dato;
+        this.idclub = this.clubes[0].idclub;
+        
+        
+      }, 
+      error: (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Club",
+          detail: "Error al cargar el Club"
+        });
+      },
+      complete: () => console.info('completo clubes')
+    });
+
   }
 
-  formSubmit(){
-    console.log("agregamos el click de "+this.ci+" ID EVENTO "+this.evento.idevento);
+  formSubmit() {
+    console.log("agregamos el click de " + this.ci + " ID EVENTO " + this.evento.idevento);
     if (this.ci.trim() == '' || this.ci.trim() == null) {
 
       this.messageService.add({
@@ -270,27 +369,89 @@ persona:Persona={
 
       return;
     }
-    this.participanteService.inscribirPartiCi(this.idevento,this.ci).subscribe(
-      (data: any) => {
-        
-        //this.router.navigate(['eventobus']);
-        this.participante=data;
-        this.inscripto=true;
-        
+    this.corredor.persona.tamano = this.corredorbus.tamano;
+    console.log(this.corredor)
+    this.corredorService.actualizarCorredor(this.corredor).subscribe({
+      next: (dato: any) => {
 
-      }, (error) => {
+
+      }, error: (error) => {
         console.log(error);
-        
-        this.messageService.add({
-          key: 'bc',
-          severity: "info",
-          summary: "Atencion",
-          detail: "No se encontro el numero de CI del corredor, complete sin puntos."
-        });
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+      },
+      complete: () => {
+        console.info('completo actualizacion')
 
+        let cip = this.ci.replace(/[^0-9]/g, "");
+        this.ci = cip;
+
+        this.participanteService.inscribirPartiCi(this.idevento, this.ci).subscribe(
+          (data: any) => {
+
+            this.participante = data;
+            this.inscripto = true;
+
+          }, (error) => {
+            console.log(error);
+
+            this.messageService.add({
+              key: 'bc',
+              severity: "info",
+              summary: "Atencion",
+              detail: "No se encontro el numero de CI del corredor, complete sus datos."
+            });
+            
+          });
       }
-    )
+    });
 
+
+  }
+
+  focusOutFunction() {
+
+    let cip = this.ci.replace(/[^0-9]/g, "");
+    this.ci = cip;
+
+    this.corredorService.pubObtenerCorredorbusCi(this.ci).subscribe({
+      next: (dato: Corredorbus) => {
+
+        this.corredorbus = dato;
+        if (dato != null) {
+          const fecnac = new Date(dato.fecnac);
+          this.corredorbus.fecnac = fecnac;
+
+          this.corredor.idcorredor = dato.idcorredor;
+          this.corredor.categoria.idcategoria = dato.idcategoria;
+          this.corredor.persona.idpersona = dato.idpersona;
+          this.corredor.persona.tamano = dato.tamano;
+          
+          this.idclub = dato.idclub;
+          
+          this.displayClub = dato.modificar;
+
+          console.log(this.corredor);
+        }
+
+
+      }, error: (error) => {
+        console.log(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+
+      },
+      complete: () => {
+        console.log('Completo la busqueda de Corredor');
+        if (this.corredorbus == null) {
+          // this.inscripto = 2;
+          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra', life: 3000 });
+        }
+      }
+    });
+  }
+
+
+  cargarCategoria(cat: any) {
+    this.corredor.categoria.idcategoria = cat.idcategoria;
 
   }
 }
