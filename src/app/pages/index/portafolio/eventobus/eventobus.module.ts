@@ -31,6 +31,7 @@ import { ModCorredorComponent } from './mod-corredor/mod-corredor.component';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
+    
     ButtonModule,
     InputTextModule,
     CheckboxModule,

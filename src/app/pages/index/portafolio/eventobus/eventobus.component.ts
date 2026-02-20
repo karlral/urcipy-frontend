@@ -20,7 +20,6 @@ import { Region } from 'src/app/domain/region';
 import { Persona } from 'src/app/domain/persona';
 import { Modalidad } from 'src/app/domain/modalidad';
 import { CorredorService } from 'src/app/service/corredor.service';
-import { EventoRemera } from 'src/app/domain/eventoRemera';
 import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 import { Corredorbus } from 'src/app/domain/custom/corredorbus';
 import { Remera } from 'src/app/domain/remera';
@@ -362,6 +361,7 @@ export class EventobusComponent implements OnInit {
   }
 
   formSubmit() {
+    
     console.log("agregamos el click de " + this.ci + " ID EVENTO " + this.evento.idevento);
     if (this.ci.trim() == '' || this.ci.trim() == null) {
 
@@ -400,7 +400,7 @@ export class EventobusComponent implements OnInit {
                 console.log(error);
 
                 this.messageService.add({
-                  key: 'bc',
+                  
                   severity: "info",
                   summary: "Atencion",
                   detail: "No se encontro el numero de CI del corredor, complete sin puntos o contactese con la organizacion del evento al numero: " + this.evento.contacto
@@ -425,7 +425,7 @@ export class EventobusComponent implements OnInit {
 
       }, error: (error) => {
         console.log(error);
-        this.messageService.add({ severity: 'success', summary: 'Error', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 3000 });
+        this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
       },
       complete: () => {
         console.log('Completo la busqueda del corredor');
