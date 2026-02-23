@@ -10,7 +10,7 @@ import baserUrl from 'src/app/service/helper';
 export class RegistrocorredorComponent implements OnInit{
   mediaLocation = `${baserUrl}/media/`;
   
-  @Input() participante:any=null;
+  @Input() inscriptoparticipante:any=null;
 
   constructor( 
     

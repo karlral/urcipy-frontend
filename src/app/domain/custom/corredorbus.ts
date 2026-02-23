@@ -18,5 +18,6 @@ export interface Corredorbus {
     tamano: number,
     verificar:number,
     idclub:number,
-    tipocat:number
+    tipocat:number,
+    modificar:boolean
 }

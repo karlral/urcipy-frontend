@@ -84,7 +84,8 @@ export class EventobusrunComponent implements OnInit{
     idcategoria: 0,
     verificar: 0,
     idclub: 0,
-    tipocat: 0
+    tipocat: 0,
+    modificar: false
   };
   selectedTerminos:boolean=false;
   inscripto=0;

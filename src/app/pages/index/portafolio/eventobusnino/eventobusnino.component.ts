@@ -22,7 +22,7 @@ export class EventobusninoComponent implements OnInit{
   evento: any= {
   };
 
-  participante:any={
+  inscriptoparticipante:any={
   }
 
   
@@ -86,7 +86,7 @@ export class EventobusninoComponent implements OnInit{
       (data: any) => {
         
         //this.router.navigate(['eventobus']);
-        this.participante=data;
+        this.inscriptoparticipante=data;
         this.inscripto=true;
         
 

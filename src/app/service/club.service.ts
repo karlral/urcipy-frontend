@@ -33,4 +33,10 @@ export class ClubService {
   public pubobtenerClub(idclub:any):Observable<Club>{
     return this.http.get<Club>(`${baserUrl}/clubpub/${idclub}`);
   }
+  public publistarClubes(idmodalidad:number):Observable<Club[]>{
+    return this.http.get<Club[]>(`${baserUrl}/clubpub/clubes/${idmodalidad}`);
+  }
+  public publistarClube(idmodalidad:number):Observable<Club[]>{
+    return this.http.get<Club[]>(`${baserUrl}/clubpub/clube/${idmodalidad}`);
+  }
 }

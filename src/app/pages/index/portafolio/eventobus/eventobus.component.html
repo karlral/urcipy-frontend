@@ -12,7 +12,7 @@
       
 
       <div  class="wrapper">
-        <img class="logo-image" *ngIf="evento.club.rutagrande" [src]="mediaLocation+evento.club.rutagrande" [alt]="evento.club.rutagrande" />
+        <img class="logo-image" *ngIf="rutagrande" [src]="mediaLocation+rutagrande" [alt]="rutagrande" />
 
         <h1>{{evento.fecha | date: 'dd/MM/yyyy':'UTC'}}</h1>
         <h3>Presentacion</h3>
@@ -22,11 +22,11 @@
         <h3>Informacion</h3>
         <div class="box-text">
           <pre>{{evento.locales}}</pre>
-          <button class="btn outline">
+          <!-- <button class="btn outline">
            <a href="{{evento.urlpromocional}}" target="_blank" rel="noopener noreferrer">
             <div class="icon"><i class="fa-solid fa-plane"></i></div>Mapa del trayecto
            </a> 
-          </button>
+          </button> -->
         </div>
 
         <h3>Formas de pagos</h3>
@@ -42,35 +42,21 @@
 
 
               <form (ngSubmit)="formSubmit()">
-    
-                
 
                   <span class="p-float-label form-field  input-box">
-                    <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" 
+                    <input id="ci" type="text" pInputText [(ngModel)]="partici.ci" name="ci" (ngModelChange)="onChange($event)" 
                       required>
                     <label for="ci" class="cblanco"> Cedula de identidad</label>
                   </span>
-
-
-                  <span  class="p-float-label form-field  input-box">
-                    <input id="telefono" type="text" pInputText [(ngModel)]="correActualiza.telefono"
-                      name="telefono" >
-                    <label for="telefono" class="cblanco"> Actualizar N° Cel. p/ envio de resultado</label>
+                
+                  <div class="flex align-items-center justify-content-center  m-2 flex-wrap">
                     
-                  </span>
-
-                  <!-- <button pButton pRipple label="SUBIR CATEGORIA" 
-                  class=" btn-box p-button-raised p-button-secondary" (onClick)="subirCategoria()"></button>
-                  
-                  <div class="field">
-                    <label for="tipo">Distancia: </label>
-                    <p-dropdown [options]="tipos" [(ngModel)]="corredorbus.tipocat" id="tipo" placeholder="Elegir Tipo de Categoria"
-                      optionLabel="nomtipo" optionValue="idtipo" [ngModelOptions]="{standalone: true}"
-                      [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
+                    <label id="corredor" class="text-lg m-2 font-bold text-cyan-600 " >               
+                      {{corredorbus.corredor}}</label> 
                   </div>
 
-                  <div class="field">
-                    <label for="nombre">Categoria Calculada</label>
+                  <div class="field bg-cyan-300 border-round cyan-border border-3">
+                    
                     <app-cat-corredor 
                       [fecnac]="corredorbus.fecnac" 
                       [sexo]="corredorbus.sexo" 
@@ -78,11 +64,28 @@
                       [idmodalidad]="idmodalidad" 
                       (emitCategoria)="cargarCategoria($event)">
                     </app-cat-corredor>
-                  </div> -->
+                  </div> 
 
+                   <button *ngIf="corredorbus.modificar" pButton pRipple label="SUBIR CATEGORIA" type="button"
+                  class=" btn-box p-button-raised p-button-primary mb-1" (click)="subirCategoria()"></button>
+                 
+                  <div  *ngIf="corredorbus.modificar" class="field">                  
+                    <p-dropdown [options]="clubes" [(ngModel)]="partici.idclub" id="club"
+                      placeholder="Seleccionar club" autoWidth="false" [style]="{'width':'100%'}"
+                      [filter]="true" [filterBy]="'nomclub'"
+                      optionLabel="nomclub" optionValue="idclub" [ngModelOptions]="{standalone: true}" [showClear]="true"
+                      appendTo="body"></p-dropdown>
+                  </div>
+
+                  <span *ngIf="corredorbus.modificar" class="p-float-label form-field  input-box">
+                    <input id="telefono" type="text" pInputText [(ngModel)]="partici.telefono"
+                      name="telefono" >
+                    <label for="telefono" class="cblanco"> Actualizar N° Cel. p/ envio de resultado</label>                
+                  </span>
+     
                   <div  *ngIf="displayRemera" class="field">
                     <label for="tamano">Adquirir atuendo medida </label>
-                    <p-dropdown [options]="tamanos" [(ngModel)]="correActualiza.tamano" id="tamano"
+                    <p-dropdown [options]="tamanos" [(ngModel)]="partici.tamano" id="tamano"
                       placeholder="Seleccionar medida" autoWidth="false" [style]="{'width':'100%'}"
                       optionLabel="nomremera" optionValue="idremera" [ngModelOptions]="{standalone: true}" [showClear]="true"
                       appendTo="body"></p-dropdown>
@@ -96,9 +99,7 @@
                             <strong>Termino 1:</strong>  Reconozco que participar de la Competencia de Ciclismo, es una actividad con alto riesgo. Por lo tanto, declaro que me encuentro realmente apto/a y adecuadamente entrenado/a para participar en esta prueba. Acepto toda decisión de un Oficial de la carrera respecto a mi capacidad de poder completar o no la competencia. Asimismo, acepto la decisión de cualquiera de las opiniones de los organizadores de la Competencia, en caso de que decidan ordenarme abandonar la competencia por cuestiones de salud u otro motivo que se consideren. Asumo todos los riesgos asociados con participar en esta competencia, de cualquier índole que fueran, caídas, accidentes, lesiones de todo tipo, etc., abarcadora de las consecuencias del clima, incluyendo temperatura y/o humedad, tránsito vehicular y condiciones del camino, todos los riesgos conocidos y apreciados por mí. <strong>Termino 2:</strong> Habiendo leído esta documentación, conociendo estos hechos y considerando su aceptación a participar en la carrera, yo, en mi nombre y en el de cualquier persona que actúe en mi representación, libero a los organizadores  y/o coordinadores de la carrera, voluntarios y a todos los auspiciantes, sus representantes y sucesores de todo reclamo y responsabilidad de cualquier tipo que surja de mi participación en este evento, aunque esta  responsabilidad pueda surgir de negligencia o culposidad de parte de las personas nombradas en esta declaración, así como cualquier extravío, robo y/o hurto que pudiera sufrir. <strong>Termino 3:</strong> Autorizo a los organizadores de la prueba y auspiciantes al uso de fotografía, películas, videos y grabaciones y cualquier tipo de medio que registre el evento haciendo uso legítimo, sin compensación alguna.
                           </p>
                       </p-scrollPanel>
-                </div>
-                
-               
+                </div>             
 
                 <span class="field-checkbox ">
                   <p-checkbox name="grupo" [binary]="true" [(ngModel)]="selectedTerminos"
@@ -106,12 +107,6 @@
                   <label for="selected" class="cblanco">Click para aceptar
                   </label>
                 </span>
-
-                <!-- <span class="p-float-label form-field  input-box">
-                  <input id="ci" type="text" pInputText [(ngModel)]="ci" name="ci" required>
-                  <label for="ci" class="cblanco"> Cedula de identidad</label>
-
-                </span> -->
 
                 <button pButton pRipple label="Inscribirse" type="submit"
                   class=" btn-box p-button-raised p-button-secondary" [disabled]="!selectedTerminos"></button>
@@ -127,7 +122,7 @@
     </div>
 
       <app-registrocorredor *ngIf="inscripto==1"
-      [participante]="participante"
+      [inscriptoparticipante]="inscriptoparticipante"
       ></app-registrocorredor>
 
       <!--app-mod-corredor *ngIf="inscripto==2" 

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MessageService } from 'primeng/api';
 
 import { ParticipanteService } from 'src/app/service/participante.service';
-import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 import { Remera } from 'src/app/domain/remera';
 
 
@@ -16,7 +16,7 @@ export class AddPagosComponent implements OnInit, OnChanges {
   fecha =new Date();
   @Input() displayPagosModal: boolean = true;
   @Input() tamanos: Remera[] = [];
-  @Input() selectedInscripto: Inscriptos = {
+  @Input() selectedInscripto: Inscripto = {
     id: 0,
     fecha: this.fecha,
     ci: '',
@@ -44,7 +44,9 @@ export class AddPagosComponent implements OnInit, OnChanges {
     tanda: 0,
     orden: 0,
     horario: '',
-    tandac: ''
+    tandac: '',
+    logoclub: '',
+    logoevento: ''
   };
   pagos: any[] = [];
   kits: any[] = [];
