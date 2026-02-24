@@ -144,7 +144,7 @@ export class EventobusComponent implements OnInit {
       {
         next: (dato: any) => {
           this.clubes = dato;
-          console.log(this.clubes);
+         
         },
         error: (error) => {
           console.log(error);
