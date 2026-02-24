@@ -63,7 +63,9 @@ ngOnInit(): void {
     items: [
       {label: 'Concepto', icon: 'pi pi-search', routerLink: ['/admin/acceso/concepto']},
       {label: 'Registro de Movimientos', icon: 'pi pi-search', routerLink: ['/admin/acceso/movimiento']},
-      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/admin/acceso/ranking']},
+      
+      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/admin/acceso/rankcorre']},
+      {label: 'Lista Corredor Ranking', icon: 'pi pi-search', routerLink: ['/admin/acceso/ranking']},
     ]
 }
 ,

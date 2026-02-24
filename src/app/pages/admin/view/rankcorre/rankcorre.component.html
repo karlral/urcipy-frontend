@@ -7,16 +7,15 @@
 >
 </app-buscorredor>
 
-<p-table *ngIf="!displaySearch" #dt [value]="corredoresmen" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
+<p-table *ngIf="!displaySearch" #dt [value]="corredoresmen" [rows]="10" [paginator]="true" [globalFilterFields]="['ci','corredor','categoria','club']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcorredor"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
     >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
-            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
-          
-            <h2 class="m-0">CORRE</h2>
+  
+            <h2 class="m-0">RANKEAR CORREDORES</h2>
             <button pButton pRipple icon="pi pi-search" class="p-button-secondary ml-2" (click)="showSearch()"></button>
 
             <span class="p-input-icon-left">
@@ -29,7 +28,7 @@
 
     <ng-template pTemplate="header">
         <tr>
-            <th>Cod.</th>
+            <th>CI</th>
             <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
             <th>Categoria</th>
             <th>Club</th>
@@ -38,31 +37,29 @@
     </ng-template>
     <ng-template pTemplate="body" let-corredor>
         <tr>
-            <td>{{corredor.idcorredor}}</td>
+            <td>{{corredor.ci}}</td>
             <td>{{corredor.corredor}}</td>
             <td>{{corredor.categoria}}</td>
             <td>{{corredor.club}}</td>
             
             
             <td>
-                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                    (click)="editCorredor(corredor.idcorredor)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
-                    (click)="deleteCorredor(corredor)"></button> 
-                <!-- <button *ngIf="corredor.puntua==1" pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded p-button-success"
-                    (click)="desactivaPuntuaCorredor(corredor)"></button> 
+                 
                 <button *ngIf="corredor.puntua==0" pButton pRipple icon="pi pi-thumbs-down" class="p-button-rounded p-button-danger"
-                    (click)="activaPuntuaCorredor(corredor)"></button>  -->
+                    (click)="showModal(corredor)"></button> 
+                <button *ngIf="corredor.puntua==1" pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded p-button-success"
+                    (click)="deleteMovimiento(corredor)"></button>  
+                
             </td>
         </tr>
     </ng-template>
 </p-table>
 
-<app-add-edit-corredor 
-    [displayAddEditModal]="displayAddEditModal"
+ <app-add-ranking
+    [displayAddModal]="displayAddModal"
     [selectedCorredor]="selectedCorredor"
     (clickClose)="hideModal($event)"
-    (clickAddEdit)="saveCorredorToList($event)"
-></app-add-edit-corredor>
+    (clickAdd)="updateCorredorToList($event)"
+></app-add-ranking>
 
 <p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

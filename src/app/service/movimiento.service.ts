@@ -30,6 +30,9 @@ export class MovimientoService {
   public eliminarMovimiento(idmovimiento:any){
     return this.http.delete(`${baserUrl}/movimiento/${idmovimiento}`);
   }
+  public eliminarMoviRank(ci:string){
+    return this.http.delete(`${baserUrl}/movimiento/eli/${ci}/${system}`);
+  }
   public actualizarMovimiento(movimiento:any){
     return this.http.put(`${baserUrl}/movimiento/`,movimiento);
   }

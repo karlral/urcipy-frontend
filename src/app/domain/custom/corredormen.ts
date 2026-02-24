@@ -1,6 +1,7 @@
 
 export interface Corredormen {
     idcorredor: number,
+    ci:string,
     nombre:string,
     apellido:string,
     club:string,

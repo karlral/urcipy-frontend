@@ -19,18 +19,13 @@
             movimientoForm.controls['fecha'].dirty">Fecha del movimiento es requerido.</small>
         </div>
 
-        <div class="field">
-            <label for="ci">CIP</label>
-            <input type="text" pInputText id="ci" formControlName="ci"  required 
-                placeholder="CI" class="prime"
-                [style]="{'width':'100%'}" (focusout)="focusOutFunction()" />
-            <small class="p-error" *ngIf="
-            movimientoForm.controls['ci'].invalid && 
-            movimientoForm.controls['ci'].dirty">CI de corredor es requerido.</small>
-        </div>
+        
         
         <div class="field">
-            <label ><h2>{{nombreCorredor}}</h2></label>
+            <label ><h2>{{selectedCorredor?.ci}}</h2></label>
+            <label ><h2>{{selectedCorredor?.corredor}}</h2></label>
+            <label><h2>{{selectedCorredor?.Club}}</h2></label>
+            <label><h2>{{selectedCorredor?.categoria}}</h2></label>
         </div>
         
         <div class="field flex align-items-center justify-content-evenly flex-wrap">
@@ -46,9 +41,7 @@
 
     <ng-template pTemplate="footer">
         <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
-        <p-button icon="pi pi-add" (click)="addMovimiento()" label="{{modalType}}" styleClass="p-button-text" [disabled]="disableCarga"
-            [disabled]="movimientoForm.invalid"></p-button>
-            <!-- De Carga auxilio <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="cargarMovimientoEvento()">Agregar Todos Mandarina II</button> -->
+        <p-button icon="pi pi-add" (click)="addMovimiento()" label="{{modalType}}" styleClass="p-button-text" [disabled]="disableCarga" ></p-button>
 
     </ng-template>
 

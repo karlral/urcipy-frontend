@@ -17,10 +17,11 @@ import { el } from 'date-fns/locale';
 })
 export class AddRankingComponent  implements OnInit, OnChanges {
   @Input() displayAddModal: boolean = true;
+  @Input() selectedCorredor:any=null;
   
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickAdd: EventEmitter<any> = new EventEmitter<any>();
-  @Output() addNomcorredor: EventEmitter<any> = new EventEmitter<any>();
+  
 
   modalType="Agregar";
 
@@ -51,7 +52,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   movimientoForm = this.fb.group({
     idmovimiento:[null],
     fecha: [this.fecha, Validators.required],
-    entrada: [{ value:20000, disabled: true}],
+    entrada: [20000],
     salida: [0],
     concepto: [this.concepto],
     corredor: [this.corredor],
@@ -60,15 +61,13 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   });
 
    corredores:Puncorredor[]=[];
-    disableCarga=false;
+    disableCarga=true;
    
   constructor(private fb: FormBuilder,
     private messageService: MessageService,
     private movimientoService: MovimientoService,
     private login:LoginService,
-    private corredorService:CorredorService,
-   
-    private participanteService:ParticipanteService
+    
 
   ) { }
 
@@ -111,7 +110,11 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   }
 
   addMovimiento() {
-    this.disableCarga=true;
+    this.disableCarga=false;
+    this.movimientoForm.controls['ci'].setValue(this.selectedCorredor.ci);
+    this.corredor.idcorredor=this.selectedCorredor.idcorredor;
+    this.movimientoForm.controls['corredor'].setValue(this.corredor);
+
       this.movimientoService.busMovimientosRankingPub(this.movimientoForm.get('ci')?.value).subscribe({
         next: (dato) => {
           if (dato){
@@ -134,8 +137,8 @@ export class AddRankingComponent  implements OnInit, OnChanges {
         {
           next: (dato) => {
             
-            this.addNomcorredor.emit(this.nombreCorredor);
-            this.clickAdd.emit(dato);
+           
+            this.clickAdd.emit(this.selectedCorredor);
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El movimiento ha sido agregada con exito', life: 3000 });
             this.closeModal()
             
@@ -155,110 +158,8 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   }
 
   
-  focusOutFunction(){ 
-       
-      const ci= this.movimientoForm.get('ci')?.value;
-      
-      this.corredorService.obtenerCorredorCi(ci).subscribe({
-        next: (dato) => {
-          
-          if (dato){
-            //console.log(dato);
-            this.corredor.idcorredor=dato.idcorredor
-
-           // this.movimientoForm.controls['corredor'].patchValue(this.corredor); 
-            this.movimientoForm.controls['corredor'].setValue(this.corredor);
-            
-            this.nombreCorredor=dato.persona.nombre+" "+dato.persona.apellido;
  
-            this.movimientoForm.get('entrada')?.enable();
 
-          }else{
-            this.nombreCorredor=" Nro. de Cedula no se encuentra";
-            this.movimientoForm.get('entrada')?.disable();
-            
-          }
   
-        
-        }, error: (error) => {
-          console.log(error);
-          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al Persona del corredor', life: 3000 });
-
-        },
-        complete: () => {
-          console.log('Completo el busqueda de Persona');
-
-        }
-      });
-      
-    
-  }  
-
-  cargarMovimientoEvento(){
-    let contar=0;
-    this.participanteService.pubListarPuntajeCorredor().subscribe(
-      {
-        next: (datos: Puncorredor[]) => {
-          this.corredores = datos;
-          this.corredores.forEach(corre=>{
-            this.corredor.idcorredor=corre.idcorredor;
-            contar=contar+1;
-            console.log('cant '+contar+' '+corre.corredor)
-            this.movimientoForm.controls['corredor'].setValue(this.corredor);
-            this.movimientoForm.get('entrada')?.enable();
-            this.movimientoForm.controls['entrada'].setValue(20000);
-
-            this.movimientoService.agregarMovimiento(this.movimientoForm.value).subscribe(
-              {
-                next: (dato) => {
-          
-                }, error: (error) => {
-                  console.log(error);
-                  this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la movimiento', life: 3000 });
-      
-                },
-                complete: () => {
-                  console.log('guardo ');
-      
-                }
-      
-              }
-            );
-
-            this.activaPuntuaCorredor(corre.idcorredor);
-
-          });
-         
-        },
-        error: (error) => {
-          console.log(error);
-          this.messageService.add({
-            severity: "error",
-            summary: "Movimiento",
-            detail: "Error al cargar la movimiento"
-          });
-        },
-        complete: () => console.info('completo movimiento')
-      });
-  
-  }
-
-  activaPuntuaCorredor(idcorredor:any){
-
-    this.corredorService.puntuarCorredor(idcorredor).subscribe(
-      {
-        next: (data) => {
-          this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Corredor Puntua', life: 3000 });
-        },
-        error: (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al activar para puntuar el corredor', life: 3000 });
-  
-        },
-        complete: () => {
-          console.log('Completado Corredor Punta activado');
-        }
-      }
-    );
-  };
 
 }

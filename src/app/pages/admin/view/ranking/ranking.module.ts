@@ -10,7 +10,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { RankingRoutingModule } from './ranking-routing.module';
 import { RankingComponent } from './ranking.component';
-import { AddRankingModule } from './add-ranking/add-ranking.module';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { AddRankingModule } from './add-ranking/add-ranking.module';
   imports: [
     CommonModule,
     RankingRoutingModule,
-    AddRankingModule,
     TableModule,
             InputTextModule,
             MessagesModule,
