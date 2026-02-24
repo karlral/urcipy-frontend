@@ -1,8 +1,9 @@
 <p-toast></p-toast>
 
-<p-table #dt [value]="categoriaes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomcategoria','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
+<p-table #dt [value]="categoriaes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomcategoria','modalidad.nommodalidad','trayecto']" [tableStyle]="{'min-width': '50rem'}"
 [rowHover]="true" dataKey="idcategoria"
-currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+>
 
 <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
@@ -28,9 +29,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <th>Modalidad</th>
             <th>Trayecto</th>
             <th>Km</th>
-            <th>Hora</th>
-            <th>Tanda</th>
-            <th>Orden</th>
+            <th>Activo</th>
             <th></th>
         </tr>
     </ng-template>
@@ -43,11 +42,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <td>{{categoria.edadfin}}</td>
             <td>{{categoria.sexo==1 ? 'M' :'F'}}</td>
             <td>{{categoria.modalidad.nommodalidad}}</td>
-            <td >{{categoria.modalidad.idmodalidad==1 ? tipos[categoria.tipo-1].label : tiposrun[categoria.tipo-1].label}}</td>
+            <td >{{tipos[categoria.tipo-1].nomtipo}}</td>
             <td>{{categoria.trayecto.km}}</td>
-            <td>{{categoria.horario}}</td>
-            <td>{{categoria.tanda}}</td>
-            <td>{{categoria.orden}}</td>
+            <td>{{categoria.activo  ? 'S' :'N'}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                     (click)="editCategoria(categoria)"></button>
@@ -71,14 +68,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
        
         <div class="field">
             <label for="nomcorto" >Nombre Corto</label>
-            <input type="text" pInputText id="nomcorto" [(ngModel)]="categoria.nomcorto" required  />
+            <input type="text" pInputText id="nomcorto" [(ngModel)]="categoria.nomcorto" required autofocus />
             <small class="p-error" *ngIf="submitted && !categoria.nomcorto">Nombre Corto  es
                 requerido.</small>
-        </div>
-        <div class="field">
-            <label for="nomalternativo" >Nombre Alternativo</label>
-            <input type="text" pInputText id="nomalternativo" [(ngModel)]="categoria.nomalternativo"  />
-            
         </div>
 
         <label>Edad</label>
@@ -104,7 +96,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <div class="field">
                 <label for="tipo">Tipo</label>
                 <p-dropdown [options]="tipos" [(ngModel)]="categoria.tipo" id="tipo"  
-                placeholder="Elegir Tipo de Categoria" optionLabel="label" optionValue="value" 
+                placeholder="Elegir Tipo de Categoria" optionLabel="nomtipo" optionValue="idtipo" 
                 [showClear]="true" appendTo="body"></p-dropdown>
             </div>
             <div class="field">

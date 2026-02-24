@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/domain/evento';
 import { EventoService } from 'src/app/service/evento.service';
 import baserUrl from 'src/app/service/helper';
+import { SystemService } from 'src/app/service/system.service';
 
 
 @Component({
@@ -65,7 +66,8 @@ export class PrincipalComponent  implements OnInit{
 
 
   constructor(
-    private eventoService: EventoService  ) {}
+    private eventoService: EventoService ,
+  private systemService: SystemService ) {}
   ngOnInit(): void {
     
 
@@ -88,6 +90,8 @@ export class PrincipalComponent  implements OnInit{
           console.info('completo evento');
         }
       });
+
+      this.regional = this.systemService.getSystem();
   }
   
 }

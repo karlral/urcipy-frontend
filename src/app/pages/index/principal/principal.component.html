@@ -7,7 +7,7 @@
         <a *ngIf="!(evento.urlcategoria && evento.urlcategoria !== '')" class="youtube" routerLink="/portfolio">Inscripcion</a>
         <a *ngIf="evento.ubicacion && evento.ubicacion !== ''" href="{{evento.ubicacion}}" class="twitter" target="_blank">Ubi. Concentración</a>
         <a *ngIf="evento.ubidorsal && evento.ubidorsal !== ''" href="{{evento.ubidorsal}}" class="linkedin" target="_blank">Dorsal Sabado</a>
-        <a *ngIf="evento.urlpromocional && evento.urlpromocional !== ''" href="{{evento.urlpromocional}}" class="facebook" target="_blank">Mapa</a>
+        <a *ngIf="evento.urlpromocional && evento.urlpromocional !== ''" href="{{evento.urlpromocional}}" class="facebook" target="_blank">Tandas</a><!-- Mapa -->
         <a *ngIf="evento.gpxprincipal && evento.gpxprincipal !== ''" href="{{evento.gpxprincipal}}" class="facebook" target="_blank">GPX PRINCIPAL</a>
         <a *ngIf="evento.gpxpromocional && evento.gpxpromocional !== ''" href="{{evento.gpxpromocional}}" class="facebook" target="_blank">GPX PROMOCIONAL</a>
         <a *ngIf="evento.dosier && evento.dosier !== ''" href="{{evento.dosier}}" class="youtube" target="_blank">Dosier - Ficha Técnica</a>
@@ -16,9 +16,10 @@
         <a *ngIf="evento.instagram && evento.instagram !== ''" href="{{evento.instagram}}" class="instagram" target="_blank">Instagram</a>
         
         <a class="tiktok"  routerLink="/secundario">URCI</a>
+        <a class="tiktok"  routerLink="/asociados">RANKEAR URCI {{regional.ano}}</a>
     </div>
     <!-- Footer -->
-    <footer> © 2025 URCI <br>
+    <footer> © {{regional.ano}} URCI <br>
         Contactos: {{evento.contacto}} <br>
 
     </footer>
