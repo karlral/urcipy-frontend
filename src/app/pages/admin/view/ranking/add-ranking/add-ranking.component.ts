@@ -8,7 +8,7 @@ import { CorredorService } from 'src/app/service/corredor.service';
 import system from 'src/app/service/helpersys';
 import { Puncorredor } from 'src/app/domain/custom/puncorredor';
 import { ParticipanteService } from 'src/app/service/participante.service';
-
+import { el } from 'date-fns/locale';
 
 @Component({
   selector: 'app-add-ranking',
@@ -60,6 +60,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   });
 
    corredores:Puncorredor[]=[];
+    disableCarga=false;
    
   constructor(private fb: FormBuilder,
     private messageService: MessageService,
@@ -110,6 +111,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   }
 
   addMovimiento() {
+    this.disableCarga=true;
       this.movimientoService.busMovimientosRankingPub(this.movimientoForm.get('ci')?.value).subscribe({
         next: (dato) => {
           if (dato){
@@ -120,6 +122,9 @@ export class AddRankingComponent  implements OnInit, OnChanges {
         }, error: (error) => {
           console.log(error);
           this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la movimiento', life: 3000 }); 
+        },
+        complete: () => {
+          console.log('Completo el busqueda de movimiento- colocacion de ranking');
         }
       });
   }

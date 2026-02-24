@@ -46,7 +46,7 @@
 
     <ng-template pTemplate="footer">
         <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
-        <p-button icon="pi pi-add" (click)="addMovimiento()" label="{{modalType}}" styleClass="p-button-text"
+        <p-button icon="pi pi-add" (click)="addMovimiento()" label="{{modalType}}" styleClass="p-button-text" [disabled]="disableCarga"
             [disabled]="movimientoForm.invalid"></p-button>
             <!-- De Carga auxilio <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="cargarMovimientoEvento()">Agregar Todos Mandarina II</button> -->
 
