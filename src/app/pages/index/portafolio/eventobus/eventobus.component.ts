@@ -144,6 +144,7 @@ export class EventobusComponent implements OnInit {
       {
         next: (dato: any) => {
           this.clubes = dato;
+          console.log(this.clubes);
         },
         error: (error) => {
           console.log(error);
@@ -226,7 +227,7 @@ export class EventobusComponent implements OnInit {
     }
     if (this.partici.ci.length >= 6) {
 
-      this.corredorService.pubObtenerCorredorbusCi(this.partici.ci).subscribe({
+      this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
         next: (dato: Corredorbus) => {
 
 
