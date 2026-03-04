@@ -1,0 +1,48 @@
+<p-dialog header="Header" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} Ranking</span>
+    </ng-template>
+
+    
+    <form [formGroup]="movimientoForm" class="movimiento-form">
+
+        
+        <div class="field">
+
+            <label for="fecha">Fecha</label>
+            <p-calendar formControlName="fecha" id="fecha" appendTo="body" autoWidth="false"
+                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"></p-calendar>
+            <small class="p-error" *ngIf="
+            movimientoForm.controls['fecha'].invalid && 
+            movimientoForm.controls['fecha'].dirty">Fecha del movimiento es requerido.</small>
+        </div>
+
+        
+        
+        <div class="field">
+            <label ><h2>{{selectedCorredor?.ci}}</h2></label>
+            <label ><h2>{{selectedCorredor?.corredor}}</h2></label>
+            <label><h2>{{selectedCorredor?.Club}}</h2></label>
+            <label><h2>{{selectedCorredor?.categoria}}</h2></label>
+        </div>
+        
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="entrada">Monto</label>
+            <p-inputNumber inputId="entrada" formControlName="entrada" inputStyleClass="text-right" [required]="true">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        movimientoForm.controls['entrada'].invalid && 
+                        movimientoForm.controls['entrada'].dirty">Km de la principal es
+                        requerido.</small>
+        </div>
+    </form>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="addMovimiento()" label="{{modalType}}" styleClass="p-button-text" [disabled]="disableCarga" ></p-button>
+
+    </ng-template>
+
+</p-dialog>

@@ -31,7 +31,8 @@ export class CorredoruserComponent implements OnInit {
     corredor: '',
     carnetfpc: 0,
     foto: '',
-    puntua: 0
+    puntua: 0,
+    ci: ''
   };
   displaySearch=true;
   buscado:string="";

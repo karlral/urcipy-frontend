@@ -90,6 +90,9 @@ const routes: Routes = [
       },
       {
         path:'ranking', loadChildren:()=> import('./view/ranking/ranking.module').then(m => m.RankingModule)
+      },
+      {
+        path:'rankcorre', loadChildren:()=> import('./view/rankcorre/rankcorre.module').then(m => m.RankcorreModule)
       }
 
     ]
