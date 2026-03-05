@@ -93,6 +93,21 @@ const routes: Routes = [
       },
       {
         path:'rankcorre', loadChildren:()=> import('./view/rankcorre/rankcorre.module').then(m => m.RankcorreModule)
+      },
+      {
+        path:'remera', loadChildren:()=> import('./view/remera/remera.module').then(m => m.RemeraModule)
+      },
+      {
+        path:'eventoremera', loadChildren:()=> import('./view/evento-remera/evento-remera.module').then(m => m.EventoRemeraModule)
+      },
+      {
+        path:'eventocategoria', loadChildren:()=> import('./view/evento-categoria/evento-categoria.module').then(m => m.EventoCategoriaModule)
+      },
+      {
+        path:'tipo', loadChildren:()=> import('./view/tipo/tipo.module').then(m => m.TipoModule)
+      },
+      {
+        path:'eventotipo', loadChildren:()=> import('./view/evento-tipo/evento-tipo.module').then(m => m.EventoTipoModule)
       }
 
     ]

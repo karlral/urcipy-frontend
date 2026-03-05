@@ -1,0 +1,37 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} EventoCategoria</span>
+    </ng-template>
+
+    
+    <form [formGroup]="eventoCategoriaForm" class="eventoCategoria-form">
+
+        
+        
+
+        <div class="field">
+            <label for="evento">Evento</label>
+            <p-dropdown [options]="eventos" formControlName="evento"  placeholder="Seleccionar un evento" autoWidth="false"
+            [filter]="true" [filterBy]="'nomevento'" 
+                [style]="{'width':'100%'}" optionLabel="nomevento" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        <div class="field">
+            <label for="categoria">Categoria</label>
+            <p-dropdown [options]="categorias" formControlName="categoria"  placeholder="Seleccionar una categoria" autoWidth="false"
+            [filter]="true" [filterBy]="'nomcategoria'" 
+                [style]="{'width':'100%'}" optionLabel="nomcategoria" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        
+    </form>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="addEditEventoCategoria()" label="{{modalType}}" styleClass="p-button-text"
+            [disabled]="eventoCategoriaForm.invalid"></p-button>
+    </ng-template>
+
+</p-dialog>

@@ -1,0 +1,52 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="eventoTipoes" [rows]="10" [paginator]="true" [globalFilterFields]="['evento.nomevento','tipo.nomtipo']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="ideventoTipo"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
+            <h2 class="m-0">EventoTipos</h2>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            
+            <th pSortableColumn="evento.nomevento" style="min-width:15rem">Evento <p-sortIcon field="evento.nomevento"></p-sortIcon></th>
+            <th>Tamaños Tipo</th>
+            
+
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-eventoTipo>
+        <tr>
+            <td>{{eventoTipo.evento.nomevento | uppercase}} </td>
+            <td>{{eventoTipo.tipo.nomtipo}}</td>
+            
+            <td>
+                <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                (click)="editEventoTipo(eventoTipo)"></button>
+                <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteEventoTipo(eventoTipo)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+    
+</p-table>
+
+ <app-add-edit-evento-tipo 
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedEventoTipo]="selectedEventoTipo"
+    (clickClose)="hideModal($event)"
+    (clickAddEdit)="saveEventoTipoToList($event)"
+></app-add-edit-evento-tipo> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

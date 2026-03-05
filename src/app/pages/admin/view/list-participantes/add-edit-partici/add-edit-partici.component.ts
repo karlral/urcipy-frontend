@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MessageService } from 'primeng/api';
 
 import { ParticipanteService } from 'src/app/service/participante.service';
-import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 import { DorsalService } from 'src/app/service/dorsal.service';
 import { Dorsal } from 'src/app/domain/dorsal';
 
@@ -15,7 +15,7 @@ import { Dorsal } from 'src/app/domain/dorsal';
 export class AddEditParticiComponent  implements OnInit, OnChanges {
   fecha =new Date();
   @Input() displayAddEditModal: boolean = true;
-  @Input() selectedInscripto: Inscriptos = {
+  @Input() selectedInscripto: Inscripto = {
     id: 0,
     fecha: this.fecha,
     ci: '',
@@ -38,7 +38,14 @@ export class AddEditParticiComponent  implements OnInit, OnChanges {
     tandac: '',
     tanda: 0,
     orden: 0,
-    horario: ''
+    horario: '',
+    pag: '',
+    kit: 0,
+    kittipo: '',
+    tamano: 0,
+    tamanoc: '',
+    logoclub: '',
+    logoevento: ''
   };
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();

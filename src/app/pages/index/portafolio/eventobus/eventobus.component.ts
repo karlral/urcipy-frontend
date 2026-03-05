@@ -55,7 +55,8 @@ export class EventobusComponent implements OnInit{
     trayecto: this.trayecto,
     horario: '',
     modalidad: this.modalidad,
-    codigo: ''
+    codigo: '',
+    nomalternativo: ''
   }
 
   usuario:Usuario={

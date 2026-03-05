@@ -74,7 +74,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     trayecto: this.trayecto,
     horario: '',
     modalidad: this.modalidad,
-    codigo: ''
+    codigo: '',
+    nomalternativo: ''
   };
 
   // para agregar

@@ -40,4 +40,7 @@ export class CategoriaService {
   public listarCategoriaActivoNino():Observable<Categoria[]>{
     return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/nino`);
   }
+  public listarCategoriaesActivoMod(idmodalidad:any):Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${baserUrl}/categoriapub/mod/${idmodalidad}`);
+  }
 }

@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 
-<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['ci','corredor','club','categoria']"
+<p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor', 'ci', 'club', 'categoria']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
 
@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                    placeholder="Buscar Corredor..." />
+                    placeholder="Buscar..." />
             </span>
         </div>
     </ng-template>
@@ -40,6 +40,8 @@
             <th>Categoria</th>
             <th>Km</th>
             <th pSortableColumn="dorsal" >Dorsal <p-sortIcon field="dorsal"></p-sortIcon></th>
+            <th>Kit</th>
+            <th>Pagado</th>
             <th></th>
         </tr>
     </ng-template>
@@ -56,13 +58,18 @@
             <td>{{partici.categoria}}</td>
             <td>{{partici.km}}</td>
             <td>{{partici.dorsal}}</td>
+            <td>{{partici.kittipo}}</td>
+            <td>{{partici.pag}}</td>
             
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                 (click)="editPartici(partici)"></button>
                 
                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
+                
+                <button  pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"
+                    (click)="addPagos(partici)"></button>
               
            </td>
         </tr>
@@ -75,10 +82,11 @@
     (clickClose)="hideModal($event)"
     
 ></app-add-edit-partici>
-    <!-- [displayAddModal]="displayAddModal"
-    (clickClose)="hideModal($event)"
-    (addNomcorredor)="addNomcorredor($event)"
-    (clickAdd)="saveMovimientoToList($event)"
-></app-add-ranking>  -->
+<app-add-pagos
+    [displayPagosModal]="displayPagosModal"
+    [selectedInscripto]="selectedInscripto"
+    [tamanos]="tamanos"
+    (clickPagosClose)="hidePagosModal($event)"
+    ></app-add-pagos>
 
 <p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

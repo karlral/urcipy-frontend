@@ -1,4 +1,4 @@
-export interface Inscriptos {
+export interface Inscripto {
     id: number,
     fecha:Date,
     ci:string,
@@ -22,5 +22,12 @@ export interface Inscriptos {
     horario:string,
     tandac:string,
     sex:string,
+    pag:string,
+    kit:number,
+    kittipo:string,
+    tamano:number,
+    tamanoc:string,
+    logoclub:string,
+    logoevento:string
     
 }
