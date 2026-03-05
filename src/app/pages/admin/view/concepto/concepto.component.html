@@ -12,7 +12,8 @@
 
 <p-table  #dt styleClass="p-datatable-sm" [value]="conceptoes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomconcepto','nacionalidad']" [tableStyle]="{'min-width': '50rem'}"
 [rowHover]="true" dataKey="idconcepto"
-currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+>
 
 <ng-template pTemplate="caption">
 

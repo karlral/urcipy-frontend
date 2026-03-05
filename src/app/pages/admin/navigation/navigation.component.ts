@@ -55,6 +55,7 @@ ngOnInit(): void {
       {label: 'Evento Remera', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventoremera']},
       {label: 'Evento Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventocategoria']},
       {label: 'Evento Tipo', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventotipo']},
+      {label: 'Asignacion', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/asignacion']},
     ]
 }
 ,

@@ -1,14 +1,15 @@
 <p-toast></p-toast>
 
-<p-table #dt [value]="eventoTipoes" [rows]="10" [paginator]="true" [globalFilterFields]="['evento.nomevento','tipo.nomtipo']"
-    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="ideventoTipo"
+<p-table #dt [value]="eventoAsignaciones" [rows]="10" [paginator]="true" [globalFilterFields]="['evento.nomevento','asignacion.nomasignacion']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="ideventoAsignacion"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
     >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
-            <h2 class="m-0">EventoTipos</h2>
+            
+            <h2 class="m-0">EventoAsignacions</h2>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
@@ -21,33 +22,36 @@
         <tr>
             
             <th pSortableColumn="evento.nomevento" style="min-width:15rem">Evento <p-sortIcon field="evento.nomevento"></p-sortIcon></th>
-            <th>Tamaños Tipo</th>
-            
+            <th> Asignacion</th>
+            <th >Corredor </th>
+            <th >Puntaje </th>
 
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-eventoTipo>
+    <ng-template pTemplate="body" let-eventoAsignacion>
         <tr>
-            <td>{{eventoTipo.evento.nomevento | uppercase}} </td>
-            <td>{{eventoTipo.tipo.nomtipo}}</td>
-            
+            <td>{{eventoAsignacion.evento.nomevento | uppercase}} </td>
+            <td>{{eventoAsignacion.asignacion.nomasignacion}}</td>
+            <td>{{eventoAsignacion.corredor.nombre | uppercase}} {{eventoAsignacion.corredor.apellido | uppercase}} </td>
+            <td>{{eventoAsignacion.puntaje}}</td>
+
             <td>
                 <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                (click)="editEventoTipo(eventoTipo)"></button>
+                (click)="editEventoAsignacion(eventoAsignacion)"></button>
                 <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deleteEventoTipo(eventoTipo)"></button> 
+                    (click)="deleteEventoAsignacion(eventoAsignacion)"></button> 
             </td>
         </tr>
     </ng-template>
     
 </p-table>
 
- <app-add-edit-evento-tipo 
+ <app-add-edit-evento-asignacion 
     [displayAddEditModal]="displayAddEditModal"
-    [selectedEventoTipo]="selectedEventoTipo"
+    [selectedEventoAsignacion]="selectedEventoAsignacion"
     (clickClose)="hideModal($event)"
-    (clickAddEdit)="saveEventoTipoToList($event)"
-></app-add-edit-evento-tipo> 
+    (clickAddEdit)="saveEventoAsignacionToList($event)"
+></app-add-edit-evento-asignacion> 
 
 <p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

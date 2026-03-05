@@ -108,6 +108,9 @@ const routes: Routes = [
       },
       {
         path:'eventotipo', loadChildren:()=> import('./view/evento-tipo/evento-tipo.module').then(m => m.EventoTipoModule)
+      },
+      {
+        path:'asignacion', loadChildren:()=> import('./view/asignacion/asignacion.module').then(m => m.AsignacionModule)
       }
 
     ]

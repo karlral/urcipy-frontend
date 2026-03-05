@@ -1,0 +1,38 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} EventoAsignacion</span>
+    </ng-template>
+
+    
+    <form [formGroup]="eventoAsignacionForm" class="eventoAsignacion-form">
+
+        
+        
+
+        <div class="field">
+            <label for="evento">Evento</label>
+            <p-dropdown [options]="eventos" formControlName="evento"  placeholder="Seleccionar un evento" autoWidth="false"
+            [filter]="true" [filterBy]="'nomevento'" 
+                [style]="{'width':'100%'}" optionLabel="nomevento" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        <div class="field">
+            <label for="asignacion"> Asignacions</label>
+            <p-dropdown [options]="asignacions" formControlName="asignacion"  placeholder="Seleccionar un asignacion" autoWidth="false"
+            [filter]="true" [filterBy]="'nomasignacion'" 
+                [style]="{'width':'100%'}" optionLabel="nomasignacion" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        
+    </form>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="addEditEventoAsignacion()" label="{{modalType}}" styleClass="p-button-text"
+            [disabled]="eventoAsignacionForm.invalid"></p-button>
+    </ng-template>
+
+</p-dialog>
+
