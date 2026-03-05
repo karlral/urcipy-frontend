@@ -61,7 +61,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   });
 
    corredores:Puncorredor[]=[];
-    disableCarga=true;
+    disableCarga=false;
    
   constructor(private fb: FormBuilder,
     private messageService: MessageService,
@@ -110,7 +110,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
   }
 
   addMovimiento() {
-    this.disableCarga=false;
+    this.disableCarga=true;
     this.movimientoForm.controls['ci'].setValue(this.selectedCorredor.ci);
     this.corredor.idcorredor=this.selectedCorredor.idcorredor;
     this.movimientoForm.controls['corredor'].setValue(this.corredor);
@@ -128,6 +128,7 @@ export class AddRankingComponent  implements OnInit, OnChanges {
         },
         complete: () => {
           console.log('Completo el busqueda de movimiento- colocacion de ranking');
+          this.disableCarga=false;
         }
       });
   }

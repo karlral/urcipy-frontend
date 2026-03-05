@@ -30,6 +30,9 @@ const routes: Routes = [
         path:'ranking', loadChildren:()=> import('../admin/view/ranking/ranking.module').then(m => m.RankingModule)
       },
       {
+        path:'rankcorre', loadChildren:()=> import('../admin/view/rankcorre/rankcorre.module').then(m => m.RankcorreModule)
+      },
+      {
         path:'evento', loadChildren:()=> import('../admin/view/evento/evento.module').then(m => m.EventoModule)
       }
       ,

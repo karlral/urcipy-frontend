@@ -40,7 +40,7 @@ ngOnInit(): void {
       label: 'Principal',
       items: [
         {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/user/access/evento/evento']},
-        {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/user/access/puntaje']},
+        
         
       ]
   }
@@ -59,7 +59,10 @@ ngOnInit(): void {
     items: [
       {label: 'Concepto', icon: 'pi pi-search', routerLink: ['/user/access/concepto']},
       {label: 'Registro de Movimientos', icon: 'pi pi-search', routerLink: ['/user/access/movimiento']},
-      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/user/access/ranking']},
+      
+      {label: 'Rankear Corredor', icon: 'pi pi-search', routerLink: ['/user/access/rankcorre']},
+      {label: 'Lista Corredor Ranking', icon: 'pi pi-search', routerLink: ['/user/access/ranking']},
+      
     ]
 }
 
