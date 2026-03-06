@@ -59,7 +59,7 @@ modalidad:Modalidad={
   nommodalidad: ''
 }
   eCategoria:Categoria={
-    idcategoria: 0,
+    idcategoria: 15,
     nomcategoria: '',
     activo: false,
     nomcorto: '',
@@ -139,7 +139,7 @@ modalidad:Modalidad={
   }
   ciudad: Ciudad = {
     idciudad: 1,
-    nomciudad: '',
+    nomciudad: 'Coronel Oviedo',
     pais: this.pais
   }
 
@@ -169,7 +169,7 @@ modalidad:Modalidad={
     carnetatras: [''],
     tipocat: [2, Validators.required],
     licencia: [0],
-    modificar: [false],
+    modificar: [true],
     puntua: [0],
     fecmodi: [this.fecha],
     montopuntua: [0],
@@ -272,6 +272,7 @@ modalidad:Modalidad={
         fecmodi:this.fecha,
         verificar:0,
         club:this.club,
+        modificar:true,
         usuario:this.usuario,
         regional:this.regional,
         carnetfpc: 2,
