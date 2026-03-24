@@ -111,6 +111,9 @@ const routes: Routes = [
       },
       {
         path:'asignacion', loadChildren:()=> import('./view/asignacion/asignacion.module').then(m => m.AsignacionModule)
+      },
+      {
+        path:'asignacorre', loadChildren:()=> import('./view/asignacorre/asignacorre.module').then(m => m.AsignacorreModule)
       }
 
     ]

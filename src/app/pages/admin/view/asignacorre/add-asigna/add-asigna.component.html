@@ -1,0 +1,62 @@
+<p-dialog header="Header" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} Puntaje</span>
+    </ng-template>
+
+    
+    <form [formGroup]="eventoAsignacionForm" class="eventoAsignacion-form">
+
+        
+        <div class="field">
+
+            <label for="fecha">Fecha</label>
+            <label for="fecha"><h2>{{eventoAsignacionForm.value.fecha | date:'dd/MM/yyyy'}}</h2></label>
+            
+        </div>
+
+        <div class="field">
+            <label ><h2>Evento</h2></label>
+            <label ><h2>{{eventoActivo?.nomevento}}</h2></label>
+            
+        </div>
+        
+        <div class="field">
+            <label ><h2>{{selectedInscripto?.ci}}</h2></label>
+            <label ><h2>{{selectedInscripto?.corredor}}</h2></label>
+            <label><h2>{{selectedInscripto?.Club}}</h2></label>
+            <label><h2>{{selectedInscripto?.categoria}}</h2></label>
+            <label><h2>Puesto: {{selectedInscripto?.puestocat}}</h2></label>
+            <label><h2>Puntaje: {{selectedInscripto?.puntajeaux}}</h2></label>
+        </div>
+        <div  class="field">
+            <label for="asignacion">Asignacion</label>
+
+            <p-dropdown [options]="asignaciones" formControlName="asignacion" placeholder="Seleccionar un Asignacion" autoWidth="false"
+                 [style]="{'width':'100%'}" optionLabel="nomasignacion" 
+                [showClear]="true" appendTo="body"></p-dropdown>
+                
+        </div>
+        
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="puntaje">{{eventoAsignacionForm.value.asignacion?.nomasignacion}} Puntaje</label>
+            <p-inputNumber inputId="puntaje" formControlName="puntaje" inputStyleClass="text-right" [required]="true" [disabled]="displayCantidad">
+            </p-inputNumber>
+            <small class="p-error" *ngIf="
+                        eventoAsignacionForm.controls['puntaje'].invalid && 
+                        eventoAsignacionForm.controls['puntaje'].dirty">Puntaje es
+                        requerido.</small>
+        </div>
+        <div class="field">
+            <label><h2>Resultado: {{eventoAsignacionForm.value.puntaje}}</h2></label>
+        </div>
+    </form>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-add" (click)="addEventoAsignacion()" label="{{modalType}}" styleClass="p-button-text" [disabled]="disableCarga" ></p-button>
+
+    </ng-template>
+
+</p-dialog>

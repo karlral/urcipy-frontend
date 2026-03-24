@@ -39,7 +39,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         <tr>
             <td>{{asignacion.idasignacion}}</td>
             <td>{{asignacion.nomasignacion}}</td>
-            <td>{{asignacion.tipo ==1 ? 'Suma' : asignacion.tipo ==2 ? 'Multiplicación' : 'Resta'  }}</td>
+            <td>{{asignacion.tipoAsignacion ==1 ? 'Suma' : asignacion.tipoAsignacion ==2 ? 'Multiplicación' : 'Resta'  }}</td>
 
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -65,16 +65,16 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
 
             <div class="flex justify-content-around flex-wrap">
                 <div class="field-radiobutton">
-                    <p-radioButton id="tipo1" name="tipo" value="1" [(ngModel)]="asignacion.tipoasignacion"></p-radioButton>
-                    <label for="tipo1">Suma</label>
+                    <p-radioButton id="tipoAsignacion1" name="tipoAsignacion" value="1" [(ngModel)]="asignacion.tipoAsignacion"></p-radioButton>
+                    <label for="tipoAsignacion1">Suma</label>
                 </div>
                 <div class="field-radiobutton">
-                    <p-radioButton id="tipo2" name="tipo" value="0" [(ngModel)]="asignacion.tipoasignacion" ></p-radioButton>
-                    <label for="tipo2">Resta</label>
+                    <p-radioButton id="tipoAsignacion2" name="tipoAsignacion" value="0" [(ngModel)]="asignacion.tipoAsignacion" ></p-radioButton>
+                    <label for="tipoAsignacion2">Resta</label>
                 </div>
                  <div class="field-radiobutton">
-                    <p-radioButton id="tipo3" name="tipo" value="2" [(ngModel)]="asignacion.tipoasignacion" ></p-radioButton>
-                    <label for="tipo3">Multiplicación</label>
+                    <p-radioButton id="tipoAsignacion3" name="tipoAsignacion" value="2" [(ngModel)]="asignacion.tipoAsignacion" ></p-radioButton>
+                    <label for="tipoAsignacion3">Multiplicación</label>
                 </div>
             </div>
         </div>

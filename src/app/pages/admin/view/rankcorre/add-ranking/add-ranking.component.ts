@@ -4,11 +4,8 @@ import { MessageService } from 'primeng/api';
 
 import { MovimientoService } from 'src/app/service/movimiento.service';
 import { LoginService } from 'src/app/service/login.service';
-import { CorredorService } from 'src/app/service/corredor.service';
 import system from 'src/app/service/helpersys';
 import { Puncorredor } from 'src/app/domain/custom/puncorredor';
-import { ParticipanteService } from 'src/app/service/participante.service';
-import { el } from 'date-fns/locale';
 
 @Component({
   selector: 'app-add-ranking',

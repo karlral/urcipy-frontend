@@ -14,6 +14,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {DropdownModule} from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule } from '@angular/forms';
             DialogModule,
             ConfirmDialogModule,
             DropdownModule,
-            ButtonModule
+            ButtonModule,
+            RadioButtonModule
   ]
 })
 export class AsignacionModule { }

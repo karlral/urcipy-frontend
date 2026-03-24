@@ -2,7 +2,8 @@
 
 <p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor', 'ci', 'club', 'categoria']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
-    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+    >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">

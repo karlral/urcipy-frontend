@@ -12,6 +12,7 @@ import { Participante } from '../domain/participante';
 import baserUrl from './helper';
 import system from './helpersys';
 import { Inscripto } from '../domain/custom/inscripto';
+import { Participuntaje } from '../domain/custom/participuntaje';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ export class ParticipanteService {
 
   public listarParticipantesActivosComple(activo:any):Observable<Inscripto[]>{
     return this.http.get<Inscripto[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
+  }
+
+  public listarParticipantesActivosPuntaje(activo:any):Observable<Participuntaje[]>{
+    return this.http.get<Participuntaje[]>(`${baserUrl}/participante/activopuntaje/${activo}/${system}`);
   }
   
   public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscripto[]>{

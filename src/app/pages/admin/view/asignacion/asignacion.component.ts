@@ -21,7 +21,7 @@ export class AsignacionComponent {
   asignacion: Asignacion = {
     idasignacion: 0,
     nomasignacion: '',
-    tipoasignacion: 1
+    tipoAsignacion: 1
   };
 
 
@@ -36,6 +36,7 @@ export class AsignacionComponent {
       {
         next: (dato: Asignacion[]) => {
           this.asignaciones = dato;
+          console.log(this.asignaciones);
          
         },
         error: (error) => {
@@ -55,7 +56,7 @@ export class AsignacionComponent {
     this.asignacion = {
       idasignacion: 0,
       nomasignacion: "",
-      tipoasignacion: 1
+      tipoAsignacion: 1
       
     }
     this.submitted = false;
@@ -128,7 +129,7 @@ export class AsignacionComponent {
     this.asignacion = {
       idasignacion: 0,
       nomasignacion: "",      
-      tipoasignacion: 1
+      tipoAsignacion: 1
     }
 
   }
@@ -165,7 +166,7 @@ export class AsignacionComponent {
               this.asignacion = {
                 idasignacion: 0,
                 nomasignacion: "",      
-                tipoasignacion: 1
+                tipoAsignacion: 1
               }
               this.messageService.add({ severity: 'success', summary: 'Exitosamente', detail: 'Asignacion Borrado', life: 3000 });
             },
