@@ -76,7 +76,7 @@ export class PrincipalComponent  implements OnInit{
         next: (datos: Evento[]) => {
           this.eventoes = datos;
           this.evento = datos[0];
-         // console.log(this.evento);
+         //console.log(this.evento);
          
          
         },
