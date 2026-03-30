@@ -201,7 +201,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       { label: 'NO',   value: 0 },
       { label: 'SI',  value: 1 },
       { label: 'LISTADO',  value: 2 },
-      { label: 'Link Externo',  value: 3 }
+      { label: 'Link Externo',  value: 3 },
+      { label: 'SI - SIN LISTADO',  value: 4 }
     ];
 
     this.clubService.listarClubes().subscribe(
