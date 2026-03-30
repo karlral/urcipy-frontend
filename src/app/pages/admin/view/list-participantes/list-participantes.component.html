@@ -2,7 +2,8 @@
 
 <p-table  #dt [value]="inscriptos" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor', 'ci', 'club', 'categoria']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="id"
-    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+    >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -65,7 +66,7 @@
                 <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                 (click)="editPartici(partici)"></button>
                 
-               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
+               <button *ngIf="isadministradortime" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
                 
                 <button  pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"

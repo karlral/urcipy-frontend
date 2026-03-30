@@ -70,6 +70,7 @@ export class ListParticipantesComponent implements OnInit {
   displayRemera: boolean = false;
 
   istimepagos: boolean = false;
+  isadministradortime: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -144,6 +145,9 @@ export class ListParticipantesComponent implements OnInit {
 
     if (this.loginService.getUserRole() == "TIMEPAGOS") {
       this.istimepagos = true;
+    }
+    if (this.loginService.getUserRole() == "TIME" || this.loginService.getUserRole() == "ADMINISTRADOR") {
+      this.isadministradortime = true;
     }
   }
 
