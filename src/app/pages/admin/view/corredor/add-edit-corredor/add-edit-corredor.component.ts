@@ -283,7 +283,8 @@ modalidad:Modalidad={
       { label: 'PRINCIPAL', value: 1 },
       { label: 'PRINCIPAL-ELITE', value: 2 },
       { label: 'PROMOCIONAL', value: 3 },
-      { label: 'PROMOCIONAL+100K', value: 4 }
+      { label: 'PROMOCIONAL+100K', value: 4 },
+      { label: 'PROMOCIONAL DUO', value: 15 }
     ];
 
     this.grupos = [
