@@ -284,7 +284,8 @@ modalidad:Modalidad={
       { label: 'PRINCIPAL-ELITE', value: 2 },
       { label: 'PROMOCIONAL', value: 3 },
       { label: 'PROMOCIONAL+100K', value: 4 },
-      { label: 'PROMOCIONAL DUO', value: 15 }
+      { label: 'PROMOCIONAL DUO', value: 15 },
+      { label: 'PROMOCIONAL E-Bike', value: 16 }
     ];
 
     this.grupos = [
