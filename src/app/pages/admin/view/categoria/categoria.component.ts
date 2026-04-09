@@ -138,6 +138,10 @@ modalidad :Modalidad={
       {
         next: (dato: Categoria[]) => {
           this.categoriaes = dato;
+          for(let i=0;i<this.categoriaes.length;i++){
+            this.categoriaes[i].tipocategoria=this.tipos.find(t => t.idtipo === this.categoriaes[i].tipo)?.nomtipo || '';
+            
+          }
         //  console.log(this.categoriaes);
         },
         error: (error) => {
@@ -193,7 +197,7 @@ modalidad :Modalidad={
       return;
     }
     if (this.categoria.modalidad.idmodalidad == 2){
-      if(this.categoria.edadfin>=99){
+      if(this.categoria.edadfin==100){
         this.categoria.nomcategoria= this.categoria.trayecto.nomtrayecto.trim()+' '+this.categoria.edadinicio+' años en adelante';
       }else{
         this.categoria.nomcategoria= this.categoria.trayecto.nomtrayecto.trim()+' '+this.categoria.edadinicio+' a '+this.categoria.edadfin+ ' años';
@@ -203,6 +207,14 @@ modalidad :Modalidad={
         this.categoria.nomcategoria+=' MASCULINO';
       }else if(this.categoria.sexo==0){
         this.categoria.nomcategoria+=' FEMENINO';
+      }
+      if(this.categoria.edadinicio==0 ){
+        this.categoria.nomcategoria="CATEGORIA NO HABILITADA PARA "+
+          this.categoria.trayecto.nomtrayecto.trim(); 
+      }
+      if(this.categoria.edadfin== 101){
+        this.categoria.nomcategoria="CATEGORIA NO HABILITADA PARA "+
+          this.categoria.trayecto.nomtrayecto.trim(); 
       }
       this.categoria.nomcorto=this.categoria.nomcategoria;
       this.categoria.codigo=this.categoria.trayecto.nomtrayecto.trim().toUpperCase().replace(/\s+/g, '')+'-'+this.categoria.edadinicio+'-'+this.categoria.edadfin+'-'+this.categoria.sexo;
