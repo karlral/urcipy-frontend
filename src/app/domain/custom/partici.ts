@@ -1,7 +1,14 @@
 
 export interface Partici{
     idparticipante: number,
+    idevento: number,
+    idcorredor: number,
     idcategoria: number,
     idclub: number,
-    tamano:number
+    ci: string,
+    tamano:number,
+    telefono: string,
+    idregional?: number,
+    modificar?: boolean,
+    tipocat?: number
 }

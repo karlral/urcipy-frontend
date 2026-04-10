@@ -173,10 +173,14 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         </div>
         <div class="field">
             <label for="codigo" >Codigo</label>
-            <input type="text" pInputText id="codigo" [(ngModel)]="categoria.codigo" required autofocus />
+            <input type="text" pInputText id="codigo" [(ngModel)]="categoria.codigo" required  />
             <small class="p-error" *ngIf="submitted && !categoria.codigo">Nombre codigo para control.</small>
         </div> 
-
+        <div class="field">
+            <label for="nomalternativo" >Nom Alternativo</label>
+            <input type="text" pInputText id="nomalternativo" [(ngModel)]="categoria.nomalternativo"  />
+            <small class="p-error" *ngIf="submitted && !categoria.nomalternativo">Nombre alternativo para control.</small>
+        </div> 
         
     </ng-template>
 

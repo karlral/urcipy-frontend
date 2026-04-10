@@ -22,5 +22,6 @@ export interface Inscriptos {
     tamanoc: string,
     pag: string,
     kit: number,
-    kittipo: string
+    kittipo: string,
+    catalternativo?:string
 }

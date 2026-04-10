@@ -8,6 +8,7 @@ import { RegistrocorredorComponent } from './components/registrocorredor/registr
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmadosComponent } from './components/confirmados/confirmados.component';
+import { RegistrocorredorninoComponent } from './components/registrocorredornino/registrocorredornino.component';
 
 
 
@@ -17,7 +18,8 @@ import { ConfirmadosComponent } from './components/confirmados/confirmados.compo
     ClubComponent,
     TandasComponent,
     RegistrocorredorComponent,
-    ConfirmadosComponent
+    ConfirmadosComponent,
+    RegistrocorredorninoComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { ConfirmadosComponent } from './components/confirmados/confirmados.compo
     ClubComponent,
     TandasComponent,
     RegistrocorredorComponent,
-    ConfirmadosComponent
+    ConfirmadosComponent,
+    RegistrocorredorninoComponent
   ]
 })
 export class InscrisharedModule { }

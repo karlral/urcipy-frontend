@@ -60,6 +60,10 @@ public inscribirPartiCi(idevento:any,ci:any){
   return this.http.get(`${baserUrl}/participub/inscrip/${idevento}/${ci}`);
 }
 
+public inscribirPartici(partici:any){
+  return this.http.post(`${baserUrl}/participub/inscrip/`,partici);
+}
+
 public listarParticipantesActivos(activo:any):Observable<Inscripcion[]>{
   return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}/${system}`);
 }
