@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+
+
+
+
+
+<p-table  #dt styleClass="p-datatable-sm" [value]="roles" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']" [tableStyle]="{'min-width': '50rem'}"
+[rowHover]="true" dataKey="idrol"
+currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true" 
+>
+
+<ng-template pTemplate="caption">
+
+    <div class="flex align-items-center justify-content-between">
+        <div class="flex"> 
+            <button type="button"
+            pButton 
+            pRipple 
+            icon="pi pi-file"
+            (click)="dt.exportCSV()" 
+            (click)="toast()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"> 
+            </button> 
+            
+        </div> 
+        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+        <h2 class="m-0">Roles</h2>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+    </div>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Cod.</th>
+            <th pSortableColumn="nombre" style="min-width:15rem">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+            
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rol>
+        <tr>
+            <td>{{rol.idrol}}</td>
+            <td>{{rol.nombre}}</td>
+            
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editRol(rol)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteRol(rol)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- agregar nuevo-->
+<p-dialog [(visible)]="rolDialog" [style]="{width: '450px'}" header="Rol" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        
+
+        
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText id="nombre" [(ngModel)]="rol.nombre" required autofocus />
+            <small class="p-error" *ngIf="submitted && !rol.nombre">Nombre de rol es requerido.</small>
+        </div>
+        
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveRol()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

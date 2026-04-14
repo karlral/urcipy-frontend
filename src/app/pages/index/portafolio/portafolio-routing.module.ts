@@ -16,6 +16,9 @@ const routes: Routes = [
   } ,
   {
     path:'inscripciones',loadChildren:()=> import('./inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
+  },
+  {
+    path:'inscripcionesrun',loadChildren:()=> import('./inscripcionesrun/inscripcionesrun.module').then(m => m.InscripcionesrunModule)
   }
   ,
   {

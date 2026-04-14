@@ -20,7 +20,8 @@
                             </a>
 
                             <!-- -->
-                            <button type="submit" *ngIf="evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
+                            <button type="submit" *ngIf="(evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3)  && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
+                            <button type="submit" *ngIf="(evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3)  && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/inscripcionesrun',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
                             <!-- Inscripciones sin listado-->
                             <button type="submit" *ngIf="evento.preinscrip==4 && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>
                             <button type="submit" *ngIf="evento.preinscrip==4 && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/eventobusrun',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>

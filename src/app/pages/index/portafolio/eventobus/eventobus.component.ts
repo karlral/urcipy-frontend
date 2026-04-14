@@ -14,6 +14,8 @@ import { Corredorbus } from 'src/app/domain/custom/corredorbus';
 import { Remera } from 'src/app/domain/remera';
 import { ClubService } from 'src/app/service/club.service';
 import { Partici } from 'src/app/domain/custom/partici';
+import { Pais } from 'src/app/domain/pais';
+import { PaisService } from 'src/app/service/pais.service';
 
 @Component({
   selector: 'app-eventobus',
@@ -46,10 +48,14 @@ export class EventobusComponent implements OnInit {
   displayRemera: boolean = false;
   displayVerificar: boolean = false;
   displayBotonSubirCat: boolean = false;
+  displayRegCorredor: boolean = false;
   tipos: any[] = [];
+  paises: Pais[] = [];
   idmodalidad = 1;
  
   oldtipocat = 0;
+
+  
 
   corredorbus: Corredorbus = {
     idcorredor: 0,
@@ -71,9 +77,11 @@ export class EventobusComponent implements OnInit {
     verificar: 0,
     idclub: 0,
     tipocat: 0,
-    modificar: false
+    modificar: false,
+    
   };
 
+  fechaant = new Date(2000, 0, 1);
 
   clubes: Club[] = [];
 
@@ -82,10 +90,18 @@ export class EventobusComponent implements OnInit {
     idevento: 0,
     idcorredor: 0,
     idcategoria: 0,
-    idclub: 0,
+    idclub: 1,
     ci: '',
-    tamano: 0,
-    telefono: ''
+    tamano: 5,
+    telefono: '',
+    nombre: '',
+    apellido: '',
+      fecnac: this.fechaant,
+      sexo: 1,
+      nacionalidad: "Paraguaya",
+      tipocat: 3,
+      modificar: false,
+      regcorredor: false
   };
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -96,6 +112,7 @@ export class EventobusComponent implements OnInit {
     private corredorService: CorredorService,
     private eventoRemeraService: EventoRemeraService,
     private clubService: ClubService,
+    private paisService: PaisService
 
   ) { }
 
@@ -107,6 +124,8 @@ export class EventobusComponent implements OnInit {
         next: (e: Evento) => {
           this.evento = e;
           this.rutagrande = this.evento.club.rutagrande;
+          this.partici.idevento = this.evento.idevento;
+          this.partici.idregional = this.evento.regional.idregional;
 
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
@@ -125,7 +144,7 @@ export class EventobusComponent implements OnInit {
         next: (dato: any) => {
           this.tamanos = dato;
           this.displayRemera = this.tamanos.length > 0;
-          this.corredorbus.tamano = 5;
+          this.partici.tamano = 5;
 
           this.tamanos.sort((a, b) => a.idremera - b.idremera);
 
@@ -156,6 +175,20 @@ export class EventobusComponent implements OnInit {
         },
         complete: () => console.info('completo clubes')
       });
+
+      this.paisService.publistarPaises().subscribe(
+      (dato: any) => {
+        this.paises = dato;
+
+      }, (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Pais",
+          detail: "Error al cargar el Pais"
+        });
+      }
+    );
   }
 
   hideModal(isClosed: boolean) {
@@ -178,7 +211,9 @@ export class EventobusComponent implements OnInit {
       });
 
       return;
-    }
+}
+   
+    console.log(this.partici);
 
     this.participanteService.inscribirPartici(this.partici).subscribe(
       {
@@ -230,24 +265,34 @@ export class EventobusComponent implements OnInit {
       this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
         next: (dato: Corredorbus) => {
 
-
           this.corredorbus = dato;
-
+          
           const fecnac = new Date(dato.fecnac);
           this.corredorbus.fecnac = fecnac;
-
-          this.partici.idevento = this.idevento;
-          this.partici.idcorredor = dato.idcorredor;
-          this.partici.idcategoria = dato.idcategoria;
-          this.partici.idclub = dato.idclub;
-          this.partici.tamano = dato.tamano;
-          this.partici.telefono = dato.telefono;
           
+          this.displayRegCorredor = false;
+
+          this.partici.regcorredor = this.displayRegCorredor;
+
+
+
+          this.partici.idcorredor = this.corredorbus.idcorredor;
+          this.partici.idcategoria = this.corredorbus.idcategoria;
+          this.partici.idclub = this.corredorbus.idclub;
+          this.partici.tamano = this.corredorbus.tamano == null ? 0 : this.corredorbus.tamano;
           
-          this.oldtipocat = dato.tipocat;
+
+          this.partici.telefono = this.corredorbus.telefono;
+          this.partici.corredor = this.corredorbus.corredor;
+
+          this.partici.fecnac = this.corredorbus.fecnac;
+          this.partici.sexo = this.corredorbus.sexo;
+          this.partici.tipocat = this.corredorbus.tipocat;
+          this.partici.modificar = this.corredorbus.modificar;
+          this.oldtipocat = this.corredorbus.tipocat;
 
 
-          if (this.corredorbus.modificar) {
+          if (this.partici.modificar) {
 
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Verifique sus datos si estan correctos, puede actualizar si lo desea.', life: 3000 });
           }
@@ -258,7 +303,14 @@ export class EventobusComponent implements OnInit {
           if (this.partici.ci.length == 6){
             console.log('Ci de 6 digitos, no se busca corredor');
           }else{
-            this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
+            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
+              + 'agregue los siguientes datos', life: 3000 });
+              this.resetPartici();
+              this.displayRegCorredor = true;
+              
+
+
+            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
           }
         },
         complete: () => {
@@ -269,27 +321,45 @@ export class EventobusComponent implements OnInit {
     }
   }
 
+  resetPartici() {
+    this.partici.idparticipante = 0;
+    this.partici.idevento = this.evento.idevento;
+    this.partici.idcorredor = 0;
+    this.partici.idcategoria = 1;
+    this.partici.corredor = '';
+    this.partici.idclub = 1;
+    this.partici.tamano = 0;
+    this.partici.telefono = '';
+    this.partici.nombre = '';
+    this.partici.apellido = '';
+      this.partici.fecnac = this.fechaant;
+      this.partici.sexo = 1;
+      this.partici.nacionalidad = "Paraguaya";
+      this.partici.tipocat = 3;
+      this.partici.modificar = false;
+      this.partici.regcorredor = true;
+
+}
+
   cargarCategoria(cat: any) {
     this.partici.idcategoria = cat.idcategoria;
     this.partici.tipocat = cat.tipo;
 
   }
   subirCategoria() {
-    if (this.corredorbus.tipocat == 4) {
-      this.corredorbus.tipocat = 3;
-    } else if (this.corredorbus.tipocat == 3) {
-      this.corredorbus.tipocat = 1;
-    } else if (this.corredorbus.tipocat == 1) {
-      this.corredorbus.tipocat = 2;
-    } else if (this.corredorbus.tipocat == 2) {
-      this.corredorbus.tipocat = 4;
+    if (this.partici.tipocat == 4) {
+      this.partici.tipocat = 3;
+    } else if (this.partici.tipocat == 3) {
+      this.partici.tipocat = 1;
+    } else if (this.partici.tipocat == 1) {
+      this.partici.tipocat = 2;
+    } else if (this.partici.tipocat == 2) {
+      this.partici.tipocat = 4;
     }
 
 
   }
-  revertirCategoria() {
-    this.corredorbus.tipocat = this.oldtipocat;
-  }
+ 
 
 
 }

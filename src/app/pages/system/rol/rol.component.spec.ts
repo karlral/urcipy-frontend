@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModCorredorComponent } from './mod-corredor.component';
+import { RolComponent } from './rol.component';
 
-describe('ModCorredorComponent', () => {
-  let component: ModCorredorComponent;
-  let fixture: ComponentFixture<ModCorredorComponent>;
+describe('RolComponent', () => {
+  let component: RolComponent;
+  let fixture: ComponentFixture<RolComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModCorredorComponent ]
+      declarations: [ RolComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModCorredorComponent);
+    fixture = TestBed.createComponent(RolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

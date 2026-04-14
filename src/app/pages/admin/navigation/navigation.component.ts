@@ -107,7 +107,9 @@ ngOnInit(): void {
 {
   label: 'Usuarios',
   items: [
+    {label: 'Administrar Roles', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/rol']},
     {label: 'Crear Usuario Normal', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/signup']},
+    {label: 'Administrar Usuarios', icon: 'pi pi-user', routerLink: ['/admin/acceso/sistema/usuario-rol']},
     {label: 'Sistema Config', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/sistema']},
   ]
 }

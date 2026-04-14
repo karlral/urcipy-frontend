@@ -10,5 +10,13 @@ export interface Partici{
     telefono: string,
     idregional?: number,
     modificar?: boolean,
-    tipocat?: number
+    tipocat?: number,
+    corredor?: string,
+    nombre?: string,
+    apellido?:string,
+    fecnac?: Date,
+    sexo?: number,
+    nacionalidad?: string,
+    regcorredor?: boolean,
+    
 }

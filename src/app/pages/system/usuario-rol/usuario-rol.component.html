@@ -1,14 +1,14 @@
 <p-toast></p-toast>
 
-<p-table #dt [value]="eventoRemeraes" [rows]="10" [paginator]="true" [globalFilterFields]="['evento.nomevento','remera.nomremera']"
-    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="ideventoRemera"
+<p-table #dt [value]="usuarioRoles" [rows]="10" [paginator]="true" [globalFilterFields]="['usuario.username','rol.nombre']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idusuarioRol"
     currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
     >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
-            <h2 class="m-0">EventoRemeras</h2>
+            <h2 class="m-0">UsuarioRols</h2>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
@@ -20,34 +20,34 @@
     <ng-template pTemplate="header">
         <tr>
             
-            <th pSortableColumn="evento.nomevento" style="min-width:15rem">Evento <p-sortIcon field="evento.nomevento"></p-sortIcon></th>
-            <th>Tamaños Remera</th>
+            <th pSortableColumn="usuario.usuario" style="min-width:15rem">Usuario <p-sortIcon field="usuario.usuario"></p-sortIcon></th>
+            <th>Roles</th>
             
 
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-eventoRemera>
+    <ng-template pTemplate="body" let-usuarioRol>
         <tr>
-            <td>{{eventoRemera.evento.nomevento | uppercase}} </td>
-            <td>{{eventoRemera.remera.nomremera}}</td>
+            <td>{{usuarioRol.usuario.username }} </td>
+            <td>{{usuarioRol.rol.nombre}}</td>
             
             <td>
                 <button  pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                (click)="editEventoRemera(eventoRemera)"></button>
+                (click)="editUsuarioRol(usuarioRol)"></button>
                 <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deleteEventoRemera(eventoRemera)"></button> 
+                    (click)="deleteUsuarioRol(usuarioRol)"></button> 
             </td>
         </tr>
     </ng-template>
     
 </p-table>
 
- <app-add-edit-evento-remera 
+ <app-add-edit-usuario-rol 
     [displayAddEditModal]="displayAddEditModal"
-    [selectedEventoRemera]="selectedEventoRemera"
+    [selectedUsuarioRol]="selectedUsuarioRol"
     (clickClose)="hideModal($event)"
-    (clickAddEdit)="saveEventoRemeraToList($event)"
-></app-add-edit-evento-remera> 
+    (clickAddEdit)="saveUsuarioRolToList($event)"
+></app-add-edit-usuario-rol> 
 
 <p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

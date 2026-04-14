@@ -13,13 +13,13 @@
                         
                         <div class="botones">
                            
-                           <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">CATEGORIA</button>
+                           <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">TODOS</button>
    
-                          <!--button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button-->
+                          <button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button>
 
-                           <button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button>
+                           <!--button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button-->
                            
-                           <button (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
+                           <button *ngIf="evento.modalidad.idmodalidad==1" (click)="buttonSubmit('tanda')" class="btn list nav-btn">TANDA</button>
 
                            
                         </div>
@@ -33,13 +33,13 @@
             [inscripciones]="inscripciones"
             ></app-confirmados-->
 
-            <!--app-categoria *ngIf="visible=='confirmado'"
+            <app-categoria *ngIf="visible=='confirmado'"
             [inscripciones]="inscripciones"
-            ></app-categoria-->
+            ></app-categoria>
 
-            <app-club *ngIf="visible=='club'"
+            <!--app-club *ngIf="visible=='club'"
             [inscripciones]="inscripciones"
-            ></app-club>
+            ></app-club-->
 
             <app-categoria *ngIf="visible=='categoria'"
             [inscripciones]="inscripciones"
