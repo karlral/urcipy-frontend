@@ -13,6 +13,7 @@ import { MessagesModule } from 'primeng/messages';
 import { Toast, ToastModule } from 'primeng/toast';
 import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module';
 import { AddPagosModule } from './add-pagos/add-pagos.module';
+import { AddEditParticipanteModule } from './add-edit-participante/add-edit-participante.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AddPagosModule } from './add-pagos/add-pagos.module';
     MessagesModule,
     ToastModule,
     AddEditParticiModule,
-    AddPagosModule
+    AddPagosModule,
+    AddEditParticipanteModule
 
   ],providers: [authInterceptorProviders]
 })

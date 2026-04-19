@@ -33,7 +33,6 @@
             <th>C.I.</th>
             <th>Fecha</th>
             <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
-            <th>Sexo</th>
             <th>Fecha Nac.</th>
             <th>Club</th>
             <th>Categoria</th>
@@ -50,7 +49,6 @@
             <td>{{partici.ci}}</td>
             <td>{{partici.fecha | date: 'dd/MM/yyyy HH:mm:ss':'UTC'}}</td>
             <td>{{partici.corredor}}</td>
-            <td>{{partici.sex}}</td>
             <td>{{partici.fecnac | date: 'dd/MM/yyyy':'UTC'}}</td>
             <td>{{partici.club}}</td>
             <td>{{partici.categoria}}</td>
@@ -61,6 +59,9 @@
             <td>{{partici.pag}}</td>
             
             <td>
+                <button  pButton pRipple icon="pi pi-user-edit" class="p-button-rounded p-button-success mr-2"
+                (click)="editParticipante(partici)"></button>
+
                 <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                 (click)="editPartici(partici)"></button>
                 
@@ -88,5 +89,14 @@
     (clickPagosClose)="hidePagosModal($event)"
     ></app-add-pagos>
     
+    <app-add-edit-participante
+    [displayAddEditParticipanteModal]="displayAddEditParticipanteModal"
+    [selectedInscripto]="selectedInscripto"
+    [idevento]="idevento"
+    [idmodalidad]="idmodalidad"
+    (clickClose)="hideParticipanteModal($event)"
+    (clickUpdate)="updateParticipante($event)"
+    
+></app-add-edit-participante>
 
 <p-confirmDialog header="Atencion" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

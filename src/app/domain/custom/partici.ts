@@ -14,7 +14,7 @@ export interface Partici{
     corredor?: string,
     nombre?: string,
     apellido?:string,
-    fecnac?: Date,
+    fecnac: Date,
     sexo?: number,
     nacionalidad?: string,
     regcorredor?: boolean,

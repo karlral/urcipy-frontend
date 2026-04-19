@@ -51,7 +51,7 @@ export class ListParticipantesComponent implements OnInit {
     kittipo: ''
   };
   displayAddEditModal = false;
-
+  displayAddEditParticipanteModal = false;
   displayPagosModal = false;
 
   inscriptos!: Inscriptos[];
@@ -59,8 +59,10 @@ export class ListParticipantesComponent implements OnInit {
 
 
  
-   istimepagos: boolean = false;
-idevento!: number;
+  istimepagos: boolean = false;
+  idevento: number=0;
+  idmodalidad: number=0;
+
   constructor(
     private activatedRoute: ActivatedRoute,
 
@@ -95,6 +97,9 @@ idevento!: number;
           next: (e: Evento) => {
             this.evento = e;
             this.idevento=this.evento.idevento;
+            this.idmodalidad=this.evento.modalidad.idmodalidad;
+            console.log("evento");
+            console.log(this.evento);
           },
           error: (error) => {
             console.log(error);
@@ -210,6 +215,11 @@ idevento!: number;
     this.selectedInscripto = editData;
     this.displayAddEditModal = true;
   }
+   editParticipante(editData: Inscriptos) {
+    //console.log(editData);
+    this.selectedInscripto = editData;
+    this.displayAddEditParticipanteModal = true;
+  }
 
   addPagos(editData: Inscriptos) {
     this.selectedInscripto = editData;
@@ -219,6 +229,9 @@ idevento!: number;
   showModal() {
     this.displayAddEditModal = true;
   }
+  showParticipanteModal() {
+    this.displayAddEditParticipanteModal = true;
+  }
   showPagosModal() {
     this.displayPagosModal = true;
   }
@@ -226,9 +239,21 @@ idevento!: number;
   hideModal(isClosed: boolean) {
     this.displayAddEditModal = !isClosed;
   }
+   hideParticipanteModal(isClosed: boolean) {
+    this.displayAddEditParticipanteModal = !isClosed;
+  }
 
   hidePagosModal(isClosed:boolean) {
     this.displayPagosModal=!isClosed;
+  }
+  updateParticipante(updateData: any) {
+    this.inscriptos = this.inscriptos.map((val) => {
+      if (val.id === updateData.id) {
+        return updateData;
+      } else {
+        return val;
+      }
+    });
   }
 
   addAll() {
