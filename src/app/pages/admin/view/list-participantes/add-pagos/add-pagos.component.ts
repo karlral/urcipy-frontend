@@ -40,7 +40,8 @@ export class AddPagosComponent implements OnInit, OnChanges {
     tamanoc: '',
     pag: '',
     kit: 0,
-    kittipo: ''
+    kittipo: '',
+    catalternativo: ''
   };
   pagos: any[] = [];
   kits: any[] = [];

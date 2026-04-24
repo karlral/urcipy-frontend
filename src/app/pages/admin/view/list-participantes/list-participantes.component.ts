@@ -48,20 +48,25 @@ export class ListParticipantesComponent implements OnInit {
     tamanoc: '',
     pag: '',
     kit: 0,
-    kittipo: ''
+    kittipo: '',
+    catalternativo: ''
   };
   displayAddEditModal = false;
   displayAddEditParticipanteModal = false;
   displayPagosModal = false;
 
   inscriptos!: Inscriptos[];
+  // corredorankes2: Pick<Corredorank,  'nomconcepto' |  'corredor' | 'club' | 'categoria' | 'entrada' >[] = [];
+  //dorsal,chip, ci, corredor,fecnac,sex,telefono,ciudad,pais, club, catalternativo,km,kit,kittipo,tamanoc,nrogiro,acobrar, pag
+  inscriptos2: Pick<Inscriptos, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
   evento!: Evento;
 
 
- 
+
   istimepagos: boolean = false;
-  idevento: number=0;
-  idmodalidad: number=0;
+  idevento: number = 0;
+  idmodalidad: number = 0;
+  organizador: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -71,12 +76,12 @@ export class ListParticipantesComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private loginService: LoginService,
     private eventoService: EventoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activo = this.activatedRoute.snapshot.params['activo'];
 
-    
+
 
     this.participanteService
       .listarParticipantesActivosComple(this.activo)
@@ -92,61 +97,76 @@ export class ListParticipantesComponent implements OnInit {
         complete: () => console.info('completo inscriptos'),
       });
 
-      this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
-        {
-          next: (e: Evento) => {
-            this.evento = e;
-            this.idevento=this.evento.idevento;
-            this.idmodalidad=this.evento.modalidad.idmodalidad;
-            console.log("evento");
-            console.log(this.evento);
-          },
-          error: (error) => {
-            console.log(error);
-  
-          },
-          complete: () => console.info('completo evento')
-        });
+    this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
+      {
+        next: (e: Evento) => {
+          this.evento = e;
+          this.idevento = this.evento.idevento;
+          this.idmodalidad = this.evento.modalidad.idmodalidad;
+          this.organizador = this.evento.organizador;
+         // console.log(this.evento);
+        },
+        error: (error) => {
+          console.log(error);
 
-      if (this.loginService.getUserRole() == "TIMEPAGOS") {
-          this.istimepagos = true;
-      }
+        },
+        complete: () => console.info('completo evento')
+      });
+
+    if (this.loginService.getUserRole() == "TIMEPAGOS") {
+      this.istimepagos = true;
+    }
   }
 
   recorrer() {
 
     for (let i in this.inscriptos) {
-            if (this.inscriptos[i].sexo == 1) {
-              this.inscriptos[i].sex = 'M';
-            } else {
-              this.inscriptos[i].sex = 'F';
-            }
+      if (this.inscriptos[i].sexo == 1) {
+        this.inscriptos[i].sex = 'M';
+      } else {
+        this.inscriptos[i].sex = 'F';
+      }
 
-             if (this.inscriptos[i].kit == 1) {
-              this.inscriptos[i].kittipo = 'SI';
-            } else {
-              this.inscriptos[i].kittipo = 'NO';
-            }
+      if (this.inscriptos[i].kit == 1) {
+        this.inscriptos[i].kittipo = 'SI';
+      } else {
+        this.inscriptos[i].kittipo = 'NO';
+      }
 
-            if (this.inscriptos[i].pagado == 2) {
-              this.inscriptos[i].pag = 'SI RETIRADO';
-            } else {
-                if (this.inscriptos[i].pagado == 1) {
-                  this.inscriptos[i].pag = 'SI';
-                } else {
-                  this.inscriptos[i].pag = 'NO';
-                }
-              
-            }
+      if (this.inscriptos[i].pagado == 2) {
+        this.inscriptos[i].pag = 'SI RETIRADO';
+      } else {
+        if (this.inscriptos[i].pagado == 1) {
+          this.inscriptos[i].pag = 'SI';
+        } else {
+          this.inscriptos[i].pag = 'NO';
+        }
 
-           
-          }
+      }
+
+      if (this.idmodalidad==1){
+        this.inscriptos[i].categoria = this.inscriptos[i].catalternativo;
+      }
+
+    }
   }
 
   exportExcel2() {
+
+    if (this.table.filteredValue) {
+      this.inscriptos2 = this.table.filteredValue
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
+    } else {
+      this.inscriptos2 = this.inscriptos
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
+    }
+
+
     import('xlsx').then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(
-        this.table.filteredValue ? this.table.filteredValue : this.inscriptos
+        this.inscriptos2
       );
       const workbook = {
         Sheets: { data: worksheet },
@@ -215,7 +235,7 @@ export class ListParticipantesComponent implements OnInit {
     this.selectedInscripto = editData;
     this.displayAddEditModal = true;
   }
-   editParticipante(editData: Inscriptos) {
+  editParticipante(editData: Inscriptos) {
     //console.log(editData);
     this.selectedInscripto = editData;
     this.displayAddEditParticipanteModal = true;
@@ -239,12 +259,12 @@ export class ListParticipantesComponent implements OnInit {
   hideModal(isClosed: boolean) {
     this.displayAddEditModal = !isClosed;
   }
-   hideParticipanteModal(isClosed: boolean) {
+  hideParticipanteModal(isClosed: boolean) {
     this.displayAddEditParticipanteModal = !isClosed;
   }
 
-  hidePagosModal(isClosed:boolean) {
-    this.displayPagosModal=!isClosed;
+  hidePagosModal(isClosed: boolean) {
+    this.displayPagosModal = !isClosed;
   }
   updateParticipante(updateData: any) {
     this.inscriptos = this.inscriptos.map((val) => {

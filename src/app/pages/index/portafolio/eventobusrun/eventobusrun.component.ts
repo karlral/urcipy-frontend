@@ -9,11 +9,13 @@ import { MessageService } from "primeng/api";
 import { ParticipanteService } from 'src/app/service/participante.service';
 import { CorredorService } from 'src/app/service/corredor.service';
 import { Corredorbus } from 'src/app/domain/custom/corredorbus';
-import { id } from 'date-fns/locale';
+import { el, id } from 'date-fns/locale';
 import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 import { Tipo } from 'src/app/domain/tipo';
 import { Remera } from 'src/app/domain/remera';
+import { Club } from 'src/app/domain/club';
+import { ClubService } from 'src/app/service/club.service';
 
 
 @Component({
@@ -40,21 +42,7 @@ export class EventobusrunComponent implements OnInit {
     { label: 'Primera', value: 1 }
   ];
 
-  // tamanos = [
-  //   // { label: 'Sin Remera', value: 0 },
-  //   { label: 'Tamaño P', value: 1 },
-  //   { label: 'Tamaño M', value: 2 },
-  //   { label: 'Tamaño G', value: 3 },
-  //   //{ label: 'Tamaño XG', value: 4 },
-  //   //  { label: 'Tamaño XXG', value: 5 }
-  // ];
-  // tipos = [
-  //   //{label: '20k', value: 1},
-  //   { label: '10k', value: 2 },
-  //   { label: ' 5k', value: 3 },
-  //   { label: 'NIÑOS', value: 4 }
-
-  // ];
+  clubes: Club[] = [];
 
   tipos: Tipo[] = [];
   tamanos: Remera[] = [];
@@ -71,7 +59,12 @@ export class EventobusrunComponent implements OnInit {
     },
     categoria: {
       idcategoria: 0
-    }
+    },
+    modificar: false,
+    club: {
+      idclub: 0
+    },
+    tipocat: 0
   }
 
   corredorbus: Corredorbus = {
@@ -100,6 +93,8 @@ export class EventobusrunComponent implements OnInit {
   inscripto = 0;
   edad = 0;
   idmodalidad = 2;
+  organizador = 2;
+  modalidad = 'Elige el Club';
   tipo = 3;
   displayRemera: boolean = false;
 
@@ -110,7 +105,8 @@ export class EventobusrunComponent implements OnInit {
     private participanteService: ParticipanteService,
     private corredorService: CorredorService,
     private eventoTipoService: EventoTipoService,
-    private eventoRemeraService: EventoRemeraService
+    private eventoRemeraService: EventoRemeraService,
+    private clubService: ClubService,
 
 
   ) { }
@@ -123,6 +119,14 @@ export class EventobusrunComponent implements OnInit {
         next: (e: Evento) => {
           this.evento = e;
 
+          this.organizador = this.evento.organizador;
+          console.log("organizador " + this.organizador);
+          console.log(this.evento);
+          if (this.organizador == 2) {
+            this.modalidad = 'UNIDAD ACADEMICO';
+
+          }
+
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
             this.ordenevento = this.ordenes[this.evento.orden - 1].label
@@ -132,40 +136,67 @@ export class EventobusrunComponent implements OnInit {
           console.log(error);
 
         },
-        complete: () => console.info('completo evento')
+        complete: () => {
+          console.info('completo evento')
+          this.clubService.publistarClub(this.idmodalidad, this.organizador).subscribe(
+            {
+              next: (dato: any) => {
+                //console.log("clubes");
+                //console.log(dato);      
+                this.clubes = dato.sort((a: Club, b: Club) => a.nomclub.localeCompare(b.nomclub));
+                //console.log(this.clubes);
+              },
+              error: (error) => {
+                console.log(error);
+                this.messageService.add({
+                  severity: "error",
+                  summary: "Club",
+                  detail: "Error al cargar el Club"
+                });
+              },
+              complete: () => console.info('completo clubes')
+            });
+        }
+
       });
-     this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
-      {next:(dato: any) => {
-        this.tipos = dato;
-        console.log("tipos evento");
-        console.log(this.tipos);
-      }, 
-      error: (error) => {
-        console.log(error);
-        this.messageService.add({
+    this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tipos = dato;
+          //       console.log("tipos evento");
+          //     console.log(this.tipos);
+          this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
+          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
             severity: "error",
             summary: "Evento Tipo",
             detail: "Error al cargar el evento tipo"
           });
-      },
-      complete: () => console.info('completo tipos evento')
-  });
+        },
+        complete: () => console.info('completo tipos evento')
+      });
 
-  this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-    {next:(dato: any) => {
-      this.tamanos = dato;
-      this.displayRemera = this.tamanos.length > 0;
-      this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
-    }, 
-    error: (error) => {
-      console.log(error);
-      this.messageService.add({
-          severity: "error",
-          summary: "Evento Remera",
-          detail: "Error al cargar el evento remera"
-        });
-    }
-});
+
+
+    this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tamanos = dato;
+          this.displayRemera = this.tamanos.length > 0;
+          this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Remera",
+            detail: "Error al cargar el evento remera"
+          });
+        }
+      });
   }
 
   hideModal(isClosed: boolean) {
@@ -192,6 +223,8 @@ export class EventobusrunComponent implements OnInit {
       return;
     }
     this.corredor.persona.tamano = this.corredorbus.tamano;
+    this.corredor.club.idclub = this.corredorbus.idclub;
+    this.corredor.tipocat = this.corredorbus.tipocat;
     console.log(this.corredor)
     this.corredorService.actualizarCorredorRun(this.corredor).subscribe({
       next: (dato: any) => {
@@ -247,6 +280,9 @@ export class EventobusrunComponent implements OnInit {
           this.corredor.categoria.idcategoria = dato.idcategoria;
           this.corredor.persona.idpersona = dato.idpersona;
           this.corredor.persona.tamano = dato.tamano;
+          this.corredor.modificar = true;
+          this.corredor.club.idclub = dato.idclub;
+          this.corredor.tipocat = dato.tipocat;
           console.log(this.corredor);
         }
 

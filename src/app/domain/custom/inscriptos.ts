@@ -23,5 +23,5 @@ export interface Inscriptos {
     pag: string,
     kit: number,
     kittipo: string,
-    catalternativo?:string
+    catalternativo:string
 }

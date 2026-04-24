@@ -91,7 +91,8 @@ export class InscripcionesComponent  implements OnInit{
     club: this.club,
     regional: this.regional,
     alianza: 0,
-    modalidad: this.modalidad
+    modalidad: this.modalidad,
+    organizador: 0
   };
 
   inscripciones!:Inscripcion[];
@@ -120,6 +121,7 @@ export class InscripcionesComponent  implements OnInit{
       });
 
       
+      
 
     this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
       {
@@ -139,7 +141,7 @@ export class InscripcionesComponent  implements OnInit{
         {
           next: (p) => {
             this.categorias = p;
-          
+            this.recorrer();
             
           },
           error: (error) => {
@@ -149,6 +151,11 @@ export class InscripcionesComponent  implements OnInit{
           complete: () => console.info('completo categorias activas')
         });
   }
+  recorrer(){
+        for(let i=0; i<this.inscripciones.length;i++){
+          this.inscripciones[i].categoria=this.inscripciones[i].catalternativo;
+        }
+      }
 
   buttonSubmit(visible:string){
 

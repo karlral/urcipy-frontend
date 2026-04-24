@@ -33,5 +33,6 @@ export interface Evento {
     fondo: string,
     club: Club,
     regional:Regional,
-    modalidad:Modalidad
+    modalidad:Modalidad,
+    organizador:number
 }

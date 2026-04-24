@@ -54,13 +54,6 @@
                     <label for="nombreCorredor" class="cblanco"> Corredor</label>
                   </span>
 
-                  <!--div class="flex justify-content-between flex-wrap">
-                    <label for="club" class="flex align-items-center justify-content-center font-bold ">
-                      Club: </label>
-                    <label id="club" class="flex align-items-center justify-content-center  m-2">
-                      {{corredorbus.club}}</label>
-                  </div-->
-
                   <div class="flex justify-content-between flex-wrap">
                     <label for="fecnac" class="flex align-items-center justify-content-center font-bold ">Fecha
                       Nacimiento: </label>
@@ -70,16 +63,23 @@
 
                   <div class="field">
                     <label for="tipo">Distancia: </label>
-                    <p-dropdown [options]="tipos" [(ngModel)]="tipo" id="tipo" placeholder="Elegir Tipo de Categoria"
+                    <p-dropdown [options]="tipos" [(ngModel)]="corredorbus.tipocat" id="tipo" placeholder="Elegir Tipo de Categoria"
                       optionLabel="nomtipo" optionValue="idtipo" [ngModelOptions]="{standalone: true}"
                       [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
                   </div>
 
                   <div class="field">
                     <label for="nombre">Categoria Calculada</label>
-                    <app-cat-corredor [fecnac]="corredorbus.fecnac" [sexo]="corredorbus.sexo" [tipocat]="tipo" [idevento]="evento.idevento"
+                    <app-cat-corredor [fecnac]="corredorbus.fecnac" [sexo]="corredorbus.sexo" [tipocat]="corredorbus.tipocat" [idevento]="evento.idevento"
                       [idmodalidad]="idmodalidad" (emitCategoria)="cargarCategoria($event)">
                     </app-cat-corredor>
+                  </div>
+
+                  <div class="field">
+                    <p-dropdown [options]="clubes" [(ngModel)]="corredorbus.idclub" id="club" placeholder="{{modalidad}}"
+                      autoWidth="false" [style]="{'width':'100%'}" [filter]="true" [filterBy]="'nomclub'"
+                      optionLabel="nomclub" optionValue="idclub" [ngModelOptions]="{standalone: true}"
+                      [showClear]="true" appendTo="body"></p-dropdown>
                   </div>
 
                   <div  *ngIf="displayRemera" class="field">

@@ -40,7 +40,7 @@
   height: 30px;
   
   clip-path: circle();
-  transform: scale(7);
+  transform: scale(9);
 }
 
  /* clip-path: circle(150px at 80% 20%);

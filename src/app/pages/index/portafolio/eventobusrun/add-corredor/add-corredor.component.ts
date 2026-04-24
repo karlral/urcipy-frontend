@@ -463,10 +463,10 @@ export class AddCorredorComponent implements OnInit {
       {
         next: (dato) => {
 
-          const clubControl = this.corredorForm.get('club');
+          /*const clubControl = this.corredorForm.get('club');
           if (clubControl && clubControl.value) {
             this.club = clubControl.value;
-          }
+          }*/
 
           this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'El corredor ha sido agregada con exito', life: 3000 });
 

@@ -36,6 +36,9 @@ export class ClubService {
   public publistarClubes(idmodalidad:number):Observable<Club[]>{
     return this.http.get<Club[]>(`${baserUrl}/clubpub/clubes/${idmodalidad}`);
   }
+  public publistarClub(idmodalidad:number,organizador:number):Observable<Club[]>{
+    return this.http.get<Club[]>(`${baserUrl}/clubpub/clube/${idmodalidad}/${organizador}`);
+  }
   public publistarClube(idmodalidad:number):Observable<Club[]>{
     return this.http.get<Club[]>(`${baserUrl}/clubpub/clube/${idmodalidad}`);
   }

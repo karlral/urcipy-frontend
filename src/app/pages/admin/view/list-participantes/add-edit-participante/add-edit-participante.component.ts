@@ -20,6 +20,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
   fecha = new Date();
   @Input() displayAddEditParticipanteModal: boolean = true;
   @Input() idevento: number = 0;
+  @Input() organizador: number = 0;
   @Input() idmodalidad: number = 0;
   @Input() selectedInscripto: Inscriptos = {
     id: 0,
@@ -45,7 +46,8 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
     tamanoc: '',
     pag: '',
     kit: 0,
-    kittipo: ''
+    kittipo: '',
+    catalternativo: ''
   };
   @Output() clickUpdate: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -83,6 +85,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
 
   oldtipocat = 0;
   realizoclick = false;
+  
 
 
   constructor(
@@ -107,6 +110,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
     if (this.idmodalidad != 0) {
       this.cargarClubes();
     }
+    this.realizoclick = false;
   }
 
   cargarParticipante() {
@@ -154,7 +158,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
   }
 
   cargarClubes() {
-this.clubService.publistarClube(this.idmodalidad).subscribe(
+this.clubService.publistarClub(this.idmodalidad,this.organizador).subscribe(
       {
         next: (dato: any) => {
           this.clubes = dato;

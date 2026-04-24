@@ -197,6 +197,27 @@
             <input type="text" pInputText id="fondocolor" formControlName="fondocolor" placeholder="OnLine" class="prime" />     
         </div>
 
+        <div class="field">
+            <label class="mb-3">Mostrar Clubes</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador1" name="organizador" value="1"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador1">Organizador</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador0" name="organizador" value="0"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador0">Club</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador2" name="organizador" value="2"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador2">Especial</label>
+                </div>
+            </div>
+        </div>
+
         <!-- <div class="field">
             <img [src]="evento.foto =='' ? '/assets/noimagen.png' : mediaLocation+evento.foto"
                 [alt]="evento.foto" class="regional-image" *ngIf="evento.foto">

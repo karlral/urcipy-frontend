@@ -90,7 +90,8 @@ export class InscripcionesrunComponent  implements OnInit{
     club: this.club,
     regional: this.regional,
     alianza: 0,
-    modalidad: this.modalidad
+    modalidad: this.modalidad,
+    organizador: 0
   };
 
   inscripciones!:Inscripcion[];

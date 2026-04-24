@@ -1,28 +1,31 @@
 <p-toast></p-toast>
 
 
-<p-table #dt [value]="clubes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomclub']" [tableStyle]="{'min-width': '50rem'}"
-[rowHover]="true" dataKey="idclub"
-currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+<p-table #dt [value]="clubes" [rows]="10" [paginator]="true" [globalFilterFields]="['nomclub']"
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idclub"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+    >
 
-<ng-template pTemplate="caption">
-    <div class="flex align-items-center justify-content-between">
-        
-        <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-0"
-            (click)="openNew()"></button>
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-0" (click)="openNew()"></button>
             <h2 class="m-0">Clubes</h2>
-        <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
-        </span>
-    </div>
-</ng-template>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..." />
+            </span>
+        </div>
+    </ng-template>
 
     <ng-template pTemplate="header">
         <tr>
             <th>Cod.</th>
             <th pSortableColumn="nomclub" style="min-width:15rem">Nombre <p-sortIcon field="nomclub"></p-sortIcon></th>
             <th>Regional</th>
+            <th>Modalidad</th>
+            <th>Mostrar Club</th>
             <th></th>
         </tr>
     </ng-template>
@@ -31,6 +34,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <td>{{club.idclub}}</td>
             <td>{{club.nomclub}}</td>
             <td>{{club.region.nomregion}}</td>
+            <td>{{club.modalidad.nommodalidad}}</td>
+            <td>{{club.organizador == 1 ? 'Organizador' : club.organizador == 2 ? 'Especial' : 'Club'}}</td>
+
 
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -46,9 +52,9 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
 <p-dialog [(visible)]="clubDialog" [style]="{width: '450px'}" header="Club" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
 
-        
 
-        
+
+
         <div class="field">
             <label for="nomclub">Nombre</label>
             <input type="text" pInputText id="nomclub" [(ngModel)]="club.nomclub" required autofocus />
@@ -84,48 +90,68 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <input type="text" pInputText id="email" [(ngModel)]="club.email" required autofocus />
             <small class="p-error" *ngIf="submitted && !club.email">Nombre de club es requerido.</small>
         </div>
-        
-            <img [src]="club.ruta =='' ? '/assets/noimagen.png' : mediaLocation+club.ruta" [alt]="club.ruta"
+        <div class="field">
+            <label class="mb-3">Organizador</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador1" name="organizador" value="1"
+                        [(ngModel)]="club.organizador"></p-radioButton>
+                    <label for="organizador1">Organizador</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador0" name="organizador" value="0"
+                        [(ngModel)]="club.organizador"></p-radioButton>
+                    <label for="organizador0">Club</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador2" name="organizador" value="2"
+                        [(ngModel)]="club.organizador"></p-radioButton>
+                    <label for="organizador2">Especial</label>
+                </div>
+            </div>
+        </div>
+
+        <img [src]="club.ruta =='' ? '/assets/noimagen.png' : mediaLocation+club.ruta" [alt]="club.ruta"
             class="imagen-carga" *ngIf="club.ruta">
-            <img [src]="preview"  class="imagen-carga" *ngIf="preview">
+        <img [src]="preview" class="imagen-carga" *ngIf="preview">
 
-            <div class="field">
-                <label for="ruta" class="form-label">Seleccionar logo</label>
-                <input id="ruta" name="ruta" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
-                    (change)="selectFile($event)">
-                {{fileName}}
-            </div>
-        
+        <div class="field">
+            <label for="ruta" class="form-label">Seleccionar logo</label>
+            <input id="ruta" name="ruta" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
+                (change)="selectFile($event)">
+            {{fileName}}
+        </div>
 
-        
 
-            <img [src]="club.rutagrande =='' ? '/assets/noimagen.png' : mediaLocation+club.rutagrande" [alt]="club.rutagrande"
-            class="imagen-carga" *ngIf="club.rutagrande">
-            <img [src]="preview2"  class="imagen-carga" *ngIf="preview2">
 
-            <div class="field">
-                <label for="rutagrande" class="form-label">Seleccionar logo Grande</label>
-                <input id="rutagrande" name="rutagrande" class="form-control" accept="image/gif, image/jpeg, image/png" type="file"
-                    (change)="selectFile2($event)">
-                {{fileName2}}
-            </div>
-        
-            <div class="field">
-                <label for="modalidad">Modalidad</label>
-                <p-dropdown [options]="modalidades" [(ngModel)]="club.modalidad" id="modalidad"  
-                placeholder="Elegir Modalidad de la Categoria" 
-                optionLabel="nommodalidad"  [showClear]="true" appendTo="body"></p-dropdown>
-                
-            </div>  
+
+        <img [src]="club.rutagrande =='' ? '/assets/noimagen.png' : mediaLocation+club.rutagrande"
+            [alt]="club.rutagrande" class="imagen-carga" *ngIf="club.rutagrande">
+        <img [src]="preview2" class="imagen-carga" *ngIf="preview2">
+
+        <div class="field">
+            <label for="rutagrande" class="form-label">Seleccionar logo Grande</label>
+            <input id="rutagrande" name="rutagrande" class="form-control" accept="image/gif, image/jpeg, image/png"
+                type="file" (change)="selectFile2($event)">
+            {{fileName2}}
+        </div>
+
+        <div class="field">
+            <label for="modalidad">Modalidad</label>
+            <p-dropdown [options]="modalidades" [(ngModel)]="club.modalidad" id="modalidad"
+                placeholder="Elegir Modalidad de la Categoria" optionLabel="nommodalidad" [showClear]="true"
+                appendTo="body"></p-dropdown>
+
+        </div>
 
 
         <div class="field">
             <label for="regional">Regional</label>
-            <p-dropdown [options]="regiones" [(ngModel)]="club.region" placeholder="Seleccionar un regional" 
-            optionLabel="nomregion" [showClear]="true" appendTo="body"></p-dropdown>
+            <p-dropdown [options]="regiones" [(ngModel)]="club.region" placeholder="Seleccionar un regional"
+                optionLabel="nomregion" [showClear]="true" appendTo="body"></p-dropdown>
 
         </div>
-        
+
 
         <!-- <div class="field">
             <label for="nacionalidad">Nacionalidad</label>

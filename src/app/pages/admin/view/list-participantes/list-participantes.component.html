@@ -65,7 +65,7 @@
                 <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                 (click)="editPartici(partici)"></button>
                 
-               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
+               <button *ngIf="!istimepagos" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
                    (click)="deletePartici(partici)"></button> 
                 
                 <button  pButton pRipple icon="pi pi-money-bill" class="p-button-rounded p-button-info mr-2"
@@ -93,6 +93,7 @@
     [displayAddEditParticipanteModal]="displayAddEditParticipanteModal"
     [selectedInscripto]="selectedInscripto"
     [idevento]="idevento"
+    [organizador]="organizador"
     [idmodalidad]="idmodalidad"
     (clickClose)="hideParticipanteModal($event)"
     (clickUpdate)="updateParticipante($event)"

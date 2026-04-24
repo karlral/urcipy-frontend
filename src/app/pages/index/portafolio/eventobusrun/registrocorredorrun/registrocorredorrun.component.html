@@ -1,10 +1,11 @@
 <div class="wrapperBx">
     <div class="cardBx">
-      <div *ngIf="participante.evento.idevento==126" class="imgBx">
-        <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.evento.club.ruta"  alt="foto club" />
-      </div>
-      <div *ngIf="participante.evento.idevento!=126" class="imgBx2">
-        <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.evento.club.ruta"  alt="foto club" />
+      <!--div *ngIf="participante.evento.idevento==126" class="imgBx">
+        <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.club.ruta"  alt="foto club" />
+      </div-->
+      <div  class="imgBx2">
+        
+        <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.club.ruta"  alt="foto club" />
       </div>
       <div class="contentBx">
         <h2>{{participante.corredor.categoria.trayecto.nomtrayecto}} </h2>

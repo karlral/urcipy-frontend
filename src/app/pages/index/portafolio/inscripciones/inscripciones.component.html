@@ -15,7 +15,7 @@
                            
                            <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">CATEGORIA</button>
    
-                          <!--button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button-->
+                          <button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button>
 
                            <button (click)="buttonSubmit('club')" class="btn list nav-btn">CLUB</button>
                            
@@ -29,13 +29,11 @@
                 </div>
             </div>  
 
-            <!--app-confirmados *ngIf="visible=='confirmado'"
+            <app-confirmados *ngIf="visible=='confirmado'"
             [inscripciones]="inscripciones"
-            ></app-confirmados-->
+            ></app-confirmados>
 
-            <!--app-categoria *ngIf="visible=='confirmado'"
-            [inscripciones]="inscripciones"
-            ></app-categoria-->
+            
 
             <app-club *ngIf="visible=='club'"
             [inscripciones]="inscripciones"
