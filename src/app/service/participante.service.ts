@@ -13,6 +13,7 @@ import baserUrl from './helper';
 import system from './helpersys';
 import { Inscripto } from '../domain/custom/inscripto';
 import { Participuntaje } from '../domain/custom/participuntaje';
+import { Partici } from '../domain/custom/partici';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,9 @@ export class ParticipanteService {
   public obtenerParticipante(idparticipante:any){
     return this.http.get(`${baserUrl}/participante/${idparticipante}`);
   }
+  public obtenerPartici(idparticipante:any):Observable<Partici>{
+    return this.http.get<Partici>(`${baserUrl}/participante/partici/${idparticipante}`);
+  }
 
   public agregarParticipante(participante:any){
     return this.http.post(`${baserUrl}/participante/`,participante);
@@ -36,6 +40,9 @@ export class ParticipanteService {
   }
   public actualizarParticipante(participante:any){
     return this.http.put(`${baserUrl}/participante/`,participante);
+  }
+  public actualizaPartici(partici:any){
+    return this.http.put(`${baserUrl}/participante/actualizapar/`,partici);
   }
 
   public actuaParticiDorsal(partici:any){
@@ -63,9 +70,15 @@ export class ParticipanteService {
 public inscribirPartiCi(idevento:any,ci:any){
   return this.http.get(`${baserUrl}/participub/inscrip/${idevento}/${ci}`);
 }
+public inscribirPartici(partici:any){
+  return this.http.post(`${baserUrl}/participub/inscrip/`,partici);
+}
 
 public listarParticipantesActivos(activo:any):Observable<Inscripcion[]>{
   return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activo/${activo}/${system}`);
+}
+public listarParticipantesActivosPagos(activo:any):Observable<Inscripcion[]>{
+  return this.http.get<Inscripcion[]>(`${baserUrl}/participub/activopagos/${activo}/${system}`);
 }
 
 public listarParticipantesActivosNino(activo:any):Observable<Inscripcion[]>{
@@ -93,4 +106,7 @@ public pubListarPuntosInClub(tipo:any):Observable<Punclub[]>{
 public pubListarPuntosByClubPartici(tipo:any,idclub:any):Observable<Punclubpartici[]>{
   return this.http.get<Punclubpartici[]>(`${baserUrl}/participub/punclubreg/${tipo}/${idclub}/${system}`);
 }
+public actuaParticiClubCat(partici:any){
+    return this.http.put(`${baserUrl}/participub/catclub/`,partici);
+  }
 }
