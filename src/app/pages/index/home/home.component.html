@@ -78,6 +78,9 @@
             <a  *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/eventobus',evento.idevento]"><img  [src]="mediaLocation+evento.fondo" class="hero-image2" [alt]="evento.fondo" /></a>    
             <a  *ngIf="evento.preinscrip==1 && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/eventobusrun',evento.idevento]"><img  [src]="mediaLocation+evento.fondo" class="hero-image2" [alt]="evento.fondo" /></a> 
 
+            <img *ngIf="evento.preinscrip==2 || evento.preinscrip==3" [src]="mediaLocation+evento.fondo" class="hero-image2" [alt]="evento.fondo" />   
+            
+
             <a  *ngIf="evento.preinscrip==4 && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/eventobus',evento.idevento]"><img  [src]="mediaLocation+evento.fondo" class="hero-image2" [alt]="evento.fondo" /></a>    
             <a  *ngIf="evento.preinscrip==4 && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/eventobusrun',evento.idevento]"><img  [src]="mediaLocation+evento.fondo" class="hero-image2" [alt]="evento.fondo" /></a> 
             
