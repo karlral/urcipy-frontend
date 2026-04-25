@@ -58,7 +58,7 @@ export class ListParticipantesComponent implements OnInit {
   inscriptos!: Inscriptos[];
   // corredorankes2: Pick<Corredorank,  'nomconcepto' |  'corredor' | 'club' | 'categoria' | 'entrada' >[] = [];
   //dorsal,chip, ci, corredor,fecnac,sex,telefono,ciudad,pais, club, catalternativo,km,kit,kittipo,tamanoc,nrogiro,acobrar, pag
-  inscriptos2: Pick<Inscriptos, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
+  inscriptos2: Pick<Inscriptos, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'edad' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
   evento!: Evento;
 
 
@@ -147,6 +147,16 @@ export class ListParticipantesComponent implements OnInit {
       if (this.idmodalidad==1){
         this.inscriptos[i].categoria = this.inscriptos[i].catalternativo;
       }
+      if (this.inscriptos[i].fecnac) {
+        const today = new Date();
+        const birthDate = new Date(this.inscriptos[i].fecnac);
+        let age = today.getFullYear() - birthDate.getFullYear();
+      //  const monthDiff = today.getMonth() - birthDate.getMonth();
+      //  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      //    age--;
+      //  }
+        this.inscriptos[i].edad = age;
+      }
 
     }
   }
@@ -155,11 +165,11 @@ export class ListParticipantesComponent implements OnInit {
 
     if (this.table.filteredValue) {
       this.inscriptos2 = this.table.filteredValue
-        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, edad, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, edad, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
         .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
     } else {
       this.inscriptos2 = this.inscriptos
-        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, edad, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, edad, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
         .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
     }
 
