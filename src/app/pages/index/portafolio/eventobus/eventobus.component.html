@@ -71,6 +71,13 @@
                     <label for="telefono" class="cblanco"> N° Cel. p/ envio de resultado</label>
                   </span>
 
+                  <div *ngIf="displayLicencia" class="field">
+                      <label for="licencia" class="mr-5">Licencia FPC</label>
+                      <p-inputNumber inputId="licencia" [style]="{'width':'100%'}" [(ngModel)]="partici.licencia"
+                          inputStyleClass="text-right" class="prime">
+                      </p-inputNumber>
+                  </div>
+
                   <div *ngIf="displayRegCorredor" class="field">
                     <label  for="nacionalidad">Nacionalidad</label>
                     <p-dropdown id="nacionalidad" [options]="paises" [(ngModel)]="partici.nacionalidad" autoWidth="false"

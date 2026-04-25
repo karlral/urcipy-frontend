@@ -18,6 +18,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { EventobusComponent } from './eventobus.component';
 import { InscrisharedModule } from '../inscrishared/inscrishared.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DropdownModule,
     PanelModule,
     RadioButtonModule,
-    CalendarModule
+    CalendarModule,
+    InputNumberModule
         
 
         

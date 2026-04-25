@@ -91,7 +91,9 @@ export class InscripcionesrunComponent  implements OnInit{
     regional: this.regional,
     alianza: 0,
     modalidad: this.modalidad,
-    organizador: 0
+    organizador: 0,
+    conremera: 0,
+    conlicencia: 0
   };
 
   inscripciones!:Inscripcion[];

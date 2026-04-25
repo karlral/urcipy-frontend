@@ -46,7 +46,7 @@ export class EventobusrunComponent implements OnInit {
 
   tipos: Tipo[] = [];
   tamanos: Remera[] = [];
-  tamano = 3;
+  tamano = 12;
   ordenevento = '';
   ci: string = '';
   fecha: Date = new Date();
@@ -55,7 +55,7 @@ export class EventobusrunComponent implements OnInit {
     idcorredor: 0,
     persona: {
       idpersona: 0,
-      tamano: 3,
+      tamano: 12,
     },
     categoria: {
       idcategoria: 0
@@ -81,7 +81,7 @@ export class EventobusrunComponent implements OnInit {
     pais: '',
     carnetfpc: 0,
     puntua: 0,
-    tamano: 3,
+    tamano: 12,
     idpersona: 0,
     idcategoria: 0,
     idclub: 0,
@@ -120,8 +120,9 @@ export class EventobusrunComponent implements OnInit {
           this.evento = e;
 
           this.organizador = this.evento.organizador;
-          console.log("organizador " + this.organizador);
-          console.log(this.evento);
+          this.displayRemera = this.evento.conremera == 1;
+         // console.log("organizador " + this.organizador);
+         // console.log(this.evento);
           if (this.organizador == 2) {
             this.modalidad = 'UNIDAD ACADEMICO';
 
@@ -185,7 +186,7 @@ export class EventobusrunComponent implements OnInit {
       {
         next: (dato: any) => {
           this.tamanos = dato;
-          this.displayRemera = this.tamanos.length > 0;
+         // this.displayRemera = this.tamanos.length > 0;
           this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
         },
         error: (error) => {

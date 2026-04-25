@@ -96,7 +96,9 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     club: [null],
     regional:[this.regional],
     modalidad:[this.modalidad],
-    organizador:[0]
+    organizador:[0],
+    conremera:[0],
+    conlicencia:[0]
   });
 
 

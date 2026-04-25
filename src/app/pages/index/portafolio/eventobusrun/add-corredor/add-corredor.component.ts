@@ -159,7 +159,7 @@ export class AddCorredorComponent implements OnInit {
     citp: '',
     nacionalidad: '',
     ciudad: this.ciudad,
-    tamano: 1
+    tamano: 12
   }
 
 
@@ -207,7 +207,7 @@ export class AddCorredorComponent implements OnInit {
       citp: [''],
       nacionalidad: ['Paraguaya', Validators.required],
       ciudad: this.ciudad,
-      tamano: [1]
+      tamano: [12]
     }),
 
     verificar: [0],
@@ -363,7 +363,7 @@ export class AddCorredorComponent implements OnInit {
         nacionalidad: "Paraguaya",
         sexo: 1,
         ciudad: this.ciudad,
-        tamano: 0
+        tamano: 12
 
       },
       tipocat: 3,

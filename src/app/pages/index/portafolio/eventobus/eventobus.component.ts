@@ -46,6 +46,7 @@ export class EventobusComponent implements OnInit {
   fecha: Date = new Date();
   tamanos: Remera[] = [];
   displayRemera: boolean = false;
+  displayLicencia: boolean = false;
   displayVerificar: boolean = false;
   displayBotonSubirCat: boolean = false;
   displayRegCorredor: boolean = false;
@@ -78,6 +79,7 @@ export class EventobusComponent implements OnInit {
     idclub: 0,
     tipocat: 0,
     modificar: false,
+    licencia: 0
     
   };
 
@@ -103,6 +105,7 @@ export class EventobusComponent implements OnInit {
       modificar: false,
       regcorredor: false
   };
+  organizador = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -123,6 +126,9 @@ export class EventobusComponent implements OnInit {
       {
         next: (e: Evento) => {
           this.evento = e;
+          this.organizador = this.evento.organizador;
+          this.displayRemera = this.evento.conremera == 1;
+          this.displayLicencia = this.evento.conlicencia == 1;
           this.rutagrande = this.evento.club.rutagrande;
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
@@ -143,7 +149,7 @@ export class EventobusComponent implements OnInit {
       {
         next: (dato: any) => {
           this.tamanos = dato;
-          this.displayRemera = this.tamanos.length > 0;
+         // this.displayRemera = this.tamanos.length > 0;
           this.partici.tamano = 5;
 
           this.tamanos.sort((a, b) => a.idremera - b.idremera);
@@ -289,6 +295,7 @@ export class EventobusComponent implements OnInit {
           this.partici.sexo = this.corredorbus.sexo;
           this.partici.tipocat = this.corredorbus.tipocat;
           this.partici.modificar = this.corredorbus.modificar;
+          this.partici.licencia = this.corredorbus.licencia;
           this.oldtipocat = this.corredorbus.tipocat;
 
 

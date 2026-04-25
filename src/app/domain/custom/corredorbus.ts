@@ -19,6 +19,7 @@ export interface Corredorbus {
     verificar:number,
     idclub:number,
     tipocat:number,
-    modificar:boolean
+    modificar:boolean,
+    licencia?: number
     
 }

@@ -34,5 +34,7 @@ export interface Evento {
     club: Club,
     regional:Regional,
     modalidad:Modalidad,
-    organizador:number
+    organizador:number,
+    conremera: number,
+    conlicencia: number
 }

@@ -18,5 +18,6 @@ export interface Partici{
     sexo?: number,
     nacionalidad?: string,
     regcorredor?: boolean,
+    licencia?: number,
     
 }
