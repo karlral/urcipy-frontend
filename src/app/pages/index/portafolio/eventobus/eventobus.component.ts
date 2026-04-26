@@ -218,8 +218,18 @@ export class EventobusComponent implements OnInit {
 
       return;
 }
+if (this.partici.ci.trim().length < 6) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La Cedula de identidad debe tener minimamente 6 numeros  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+}
    
-    console.log(this.partici);
+    //console.log(this.partici);
 
     this.participanteService.inscribirPartici(this.partici).subscribe(
       {

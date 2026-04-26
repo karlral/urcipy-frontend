@@ -95,7 +95,10 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     fondo: [''],
     club: [null],
     regional:[this.regional],
-    modalidad:[this.modalidad]
+    modalidad:[this.modalidad],
+    organizador:[0],
+    conremera:[0],
+    conlicencia:[0]
   });
 
 
@@ -151,6 +154,13 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       { label: '1er Activo',  value: 1 },
       { label: '2do Activo',  value: 2 },
       { label: '3er Activo',  value: 3 },
+      { label: '4er Activo',  value: 4 },
+      { label: '5to Activo',  value: 5 },
+      { label: '6to Activo',  value: 6 },
+      { label: '7mo Activo',  value: 7 },
+      { label: '8vo Activo',  value: 8 },
+      { label: '9no Activo',  value: 9 },
+      { label: '10mo Activo', value: 10 }
     ];
 
     /* this.ordenes = [
@@ -194,7 +204,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       { label: 'NO',   value: 0 },
       { label: 'SI',  value: 1 },
       { label: 'LISTADO',  value: 2 },
-      { label: 'Link Externo',  value: 3 }
+      { label: 'Link Externo',  value: 3 },
+      { label: 'SI - SIN LISTADO',  value: 4 }
     ];
 
     this.clubService.listarClubes().subscribe(

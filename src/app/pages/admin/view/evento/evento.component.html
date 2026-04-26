@@ -2,7 +2,8 @@
 
 <p-table #dt [value]="eventoes" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idevento"
-    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true"
+    >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -22,8 +23,13 @@
             <th>ID</th>
             <th pSortableColumn="nombre" style="min-width:15rem">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
             <th>Club</th>
-            
-            <th></th>
+            <th>Activo</th>
+            <th>Modalidad</th>
+            <th>Inscripcion</th>
+            <th>Con Remera</th>
+            <th>Con Licencia</th>
+            <th>Modo</th>
+            <th>Acciones</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-evento>
@@ -32,8 +38,14 @@
             <td>{{evento.idevento}}</td>
             <td>{{evento.nomevento | uppercase}}</td>
             <td>{{evento.club.nomclub}}</td>
+            <td>{{evento.activo | activosNombre}}</td>
             
-            
+            <td>{{evento.modalidad.nommodalidad}}</td>
+            <td>{{evento.preinscrip | preinscripcionesNombre}}</td>
+                
+            <td>{{evento.conremera ? 'Sí' : 'No'}}</td>
+            <td>{{evento.conlicencia ? 'Sí' : 'No'}}</td>
+            <td>{{evento.modo | modosNombre}}</td>
             <td>
                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                     (click)="editEvento(evento)"></button>

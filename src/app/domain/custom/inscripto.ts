@@ -1,5 +1,5 @@
 export interface Inscripto {
-    id: number,
+   id: number,
     fecha:Date,
     ci:string,
     corredor:string,
@@ -17,17 +17,12 @@ export interface Inscripto {
     dorsal: number,
     nrogiro:string,
     chip:string,
-    tanda:number,
-    orden:number,
-    horario:string,
-    tandac:string,
+    tamano: number,
     sex:string,
-    pag:string,
-    kit:number,
-    kittipo:string,
-    tamano:number,
-    tamanoc:string,
-    logoclub:string,
-    logoevento:string
+    tamanoc: string,
+    pag: string,
+    kit: number,
+    kittipo: string,
+    catalternativo:string
     
 }

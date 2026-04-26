@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Inscripto } from 'src/app/domain/custom/inscripto';
+//import { Inscriptos } from 'src/app/domain/custom/inscriptos';
 import { Evento } from 'src/app/domain/evento';
 import baserUrl from 'src/app/service/helper';
 import { ParticipanteService } from 'src/app/service/participante.service';
@@ -8,9 +8,8 @@ import * as FileSaver from 'file-saver';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/service/login.service';
-import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 import { EventoService } from 'src/app/service/evento.service';
-import { Remera } from 'src/app/domain/remera';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 
 @Component({
   selector: 'app-list-participantes',
@@ -46,30 +45,29 @@ export class ListParticipantesComponent implements OnInit {
     nrogiro: '',
     chip: '',
     sex: '',
+    tamano: 0,
+    tamanoc: '',
     pag: '',
     kit: 0,
     kittipo: '',
-    tamano: 0,
-    tamanoc: '',
-    tandac: '',
-    tanda: 0,
-    orden: 0,
-    horario: '',
-    logoclub: '',
-    logoevento: ''
+    catalternativo: ''
   };
   displayAddEditModal = false;
-
+  displayAddEditParticipanteModal = false;
   displayPagosModal = false;
 
   inscriptos!: Inscripto[];
+  // corredorankes2: Pick<Corredorank,  'nomconcepto' |  'corredor' | 'club' | 'categoria' | 'entrada' >[] = [];
+  //dorsal,chip, ci, corredor,fecnac,sex,telefono,ciudad,pais, club, catalternativo,km,kit,kittipo,tamanoc,nrogiro,acobrar, pag
+  inscriptos2: Pick<Inscripto, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
   evento!: Evento;
-  idevento: number = 0;
 
-  tamanos: Remera[] = [];
-  displayRemera: boolean = false;
+
 
   istimepagos: boolean = false;
+  idevento: number = 0;
+  idmodalidad: number = 0;
+  organizador: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -78,28 +76,21 @@ export class ListParticipantesComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private loginService: LoginService,
-    private eventoRemeraService: EventoRemeraService,
     private eventoService: EventoService
   ) { }
 
   ngOnInit(): void {
     this.activo = this.activatedRoute.snapshot.params['activo'];
 
+
+
     this.participanteService
       .listarParticipantesActivosComple(this.activo)
       .subscribe({
         next: (p: Inscripto[]) => {
           this.inscriptos = p;
-          this.recorrer();
 
-          // for (let i in this.inscriptos) {
-          //   if (this.inscriptos[i].sexo == 1) {
-          //     this.inscriptos[i].sex = 'M';
-          //   } else {
-          //     this.inscriptos[i].sex = 'F';
-          //   }
-          //   this.inscriptos[i].tandac = 'Tanda '+this.inscriptos[i].tanda;
-          // }
+          this.recorrer();
         },
         error: (error) => {
           console.log(error);
@@ -109,38 +100,19 @@ export class ListParticipantesComponent implements OnInit {
 
     this.eventoService.obtenerEventoActivoPub(this.activo).subscribe(
       {
-        next: (data) => {
-          this.evento = data;
-          this.idevento = this.evento.idevento!;
+        next: (e: Evento) => {
+          this.evento = e;
+          this.idevento = this.evento.idevento;
+          this.idmodalidad = this.evento.modalidad.idmodalidad;
+          this.organizador = this.evento.organizador;
+         // console.log(this.evento);
         },
         error: (error) => {
           console.log(error);
+
         },
-        complete: () => {
-          console.log('completo evento actual');
-
-          this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-            {
-              next: (dato: any) => {
-                this.tamanos = dato;
-                this.displayRemera = this.tamanos.length > 0;
-
-
-                this.tamanos.sort((a, b) => a.idremera - b.idremera);
-
-              },
-              error: (error) => {
-                console.log(error);
-                this.messageService.add({
-                  severity: "error",
-                  summary: "Evento Remera",
-                  detail: "Error al cargar el evento remera"
-                });
-              }
-            });
-        },
-      }
-    );
+        complete: () => console.info('completo evento')
+      });
 
     if (this.loginService.getUserRole() == "TIMEPAGOS") {
       this.istimepagos = true;
@@ -173,16 +145,29 @@ export class ListParticipantesComponent implements OnInit {
 
       }
 
-      
-      this.inscriptos[i].tandac = 'Tanda ' + this.inscriptos[i].tanda;
+      if (this.idmodalidad==1){
+        this.inscriptos[i].categoria = this.inscriptos[i].catalternativo;
+      }
 
     }
   }
 
   exportExcel2() {
+
+    if (this.table.filteredValue) {
+      this.inscriptos2 = this.table.filteredValue
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
+    } else {
+      this.inscriptos2 = this.inscriptos
+        .map(({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }) => ({ dorsal, chip, ci, corredor, fecnac, sex, telefono, ciudad, pais, club, catalternativo, km, kit, kittipo, tamanoc, nrogiro, acobrar, pag }))
+        .sort((a, b) => a.catalternativo.localeCompare(b.catalternativo));
+    }
+
+
     import('xlsx').then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(
-        this.table.filteredValue ? this.table.filteredValue : this.inscriptos
+        this.inscriptos2
       );
       const workbook = {
         Sheets: { data: worksheet },
@@ -251,6 +236,11 @@ export class ListParticipantesComponent implements OnInit {
     this.selectedInscripto = editData;
     this.displayAddEditModal = true;
   }
+  editParticipante(editData: Inscripto) {
+    //console.log(editData);
+    this.selectedInscripto = editData;
+    this.displayAddEditParticipanteModal = true;
+  }
 
   addPagos(editData: Inscripto) {
     this.selectedInscripto = editData;
@@ -260,12 +250,31 @@ export class ListParticipantesComponent implements OnInit {
   showModal() {
     this.displayAddEditModal = true;
   }
+  showParticipanteModal() {
+    this.displayAddEditParticipanteModal = true;
+  }
+  showPagosModal() {
+    this.displayPagosModal = true;
+  }
 
   hideModal(isClosed: boolean) {
     this.displayAddEditModal = !isClosed;
   }
+  hideParticipanteModal(isClosed: boolean) {
+    this.displayAddEditParticipanteModal = !isClosed;
+  }
+
   hidePagosModal(isClosed: boolean) {
     this.displayPagosModal = !isClosed;
+  }
+  updateParticipante(updateData: any) {
+    this.inscriptos = this.inscriptos.map((val) => {
+      if (val.id === updateData.id) {
+        return updateData;
+      } else {
+        return val;
+      }
+    });
   }
 
   addAll() {
@@ -279,14 +288,7 @@ export class ListParticipantesComponent implements OnInit {
           .subscribe({
             next: (p: Inscripto[]) => {
               this.inscriptos = p;
-              for (let i in this.inscriptos) {
-                if (this.inscriptos[i].sexo == 1) {
-                  this.inscriptos[i].sex = 'M';
-                } else {
-                  this.inscriptos[i].sex = 'F';
-                }
-                this.inscriptos[i].tandac = 'Tanda ' + this.inscriptos[i].tanda.toString();
-              }
+              this.recorrer();
             },
             error: (error) => {
               console.log(error);

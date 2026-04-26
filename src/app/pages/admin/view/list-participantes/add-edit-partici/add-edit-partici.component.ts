@@ -35,17 +35,12 @@ export class AddEditParticiComponent  implements OnInit, OnChanges {
     nrogiro: '',
     chip: '',
     sex: '',
-    tandac: '',
-    tanda: 0,
-    orden: 0,
-    horario: '',
+    tamano: 0,
+    tamanoc: '',
     pag: '',
     kit: 0,
     kittipo: '',
-    tamano: 0,
-    tamanoc: '',
-    logoclub: '',
-    logoevento: ''
+    catalternativo: ''
   };
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -69,10 +64,16 @@ export class AddEditParticiComponent  implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
       this.modalType="Asignar";
+      
   }
 
   ngOnInit(): void {
-    
+    this.dorsal={
+    iddorsal: 0,
+    chip: '',
+    color: '',
+    activo: false
+  };
   }
   
   closeModal() {
@@ -117,6 +118,8 @@ export class AddEditParticiComponent  implements OnInit, OnChanges {
         if (dato){
           //console.log(dato);
           this.dorsal=dato;
+          this.selectedInscripto.dorsal=this.dorsal.iddorsal;
+          this.selectedInscripto.chip=this.dorsal.chip;
           this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Dorsal encontrado', life: 3000 });
         }else{
           this.messageService.add({ severity: 'info', summary: 'Informacion', detail: 'No se a encontrado Nro de Dorsal ', life: 3000 });

@@ -10,10 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
-import { Toast, ToastModule } from 'primeng/toast';
+import {  ToastModule } from 'primeng/toast';
 import { AddEditParticiModule } from './add-edit-partici/add-edit-partici.module';
-
 import { AddPagosModule } from './add-pagos/add-pagos.module';
+import { AddEditParticipanteModule } from './add-edit-participante/add-edit-participante.module';
 
 
 @NgModule({
@@ -24,7 +24,6 @@ import { AddPagosModule } from './add-pagos/add-pagos.module';
   imports: [
     CommonModule,
     ListParticipantesRoutingModule,
-    AddPagosModule,
     FormsModule,
     InputTextModule,
     TableModule,
@@ -32,7 +31,9 @@ import { AddPagosModule } from './add-pagos/add-pagos.module';
     ConfirmDialogModule,
     MessagesModule,
     ToastModule,
-    AddEditParticiModule
+    AddEditParticiModule,
+    AddPagosModule,
+    AddEditParticipanteModule
 
   ],providers: [authInterceptorProviders]
 })

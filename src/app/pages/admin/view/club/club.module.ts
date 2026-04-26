@@ -13,6 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ButtonModule } from 'primeng/button';
         ConfirmDialogModule,
         DropdownModule,
         ButtonModule,
+        RadioButtonModule
   ]
 })
 export class ClubModule { }

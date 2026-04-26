@@ -19,9 +19,6 @@ const routes: Routes = [
   }
   ,
   {
-    path:'eventobusnino',loadChildren:()=> import('./eventobusnino/eventobusnino.module').then(m => m.EventobusninoModule)
-  } ,
-  {
     path:'inscripcionesnino',loadChildren:()=> import('./inscripcionesnino/inscripcionesnino.module').then(m => m.InscripcionesninoModule)
   } 
   

@@ -1,0 +1,86 @@
+<p-dialog header="Header" [(visible)]="displayAddEditParticipanteModal" [modal]="true" [style]="{width: '400px' }"
+  (onHide)="closeModal()">
+
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">{{modalType}} Participante</span>
+  </ng-template>
+
+  <div class="field">
+    <label for="nombre">Nombre</label>
+    <input type="text" pInputText id="nombre" [(ngModel)]="partici.nombre" required class="prime UPPERCASE"
+      [style]="{'width':'100%'}" />
+  </div>
+
+  <div class="field">
+    <label for="apellido">Apellidos</label>
+    <input type="text" pInputText id="apellido" [(ngModel)]="partici.apellido" required class="prime UPPERCASE"
+      [style]="{'width':'100%'}" />
+  </div>
+
+  <div class="field">
+    <label for="telefono">Telefono</label>
+    <input type="text" pInputText id="telefono" [(ngModel)]="partici.telefono" required class="prime"
+      [style]="{'width':'100%'}" />
+  </div>
+
+  <div class="field">
+    <label for="nacionalidad">Nacionalidad</label>
+    <p-dropdown id="nacionalidad" [options]="paises" [(ngModel)]="partici.nacionalidad" autoWidth="false"
+      [style]="{'width':'100%'}" placeholder="Seleccionar la nacionalidad" optionLabel="nacionalidad"
+      optionValue="nacionalidad" [showClear]="true" appendTo="body" [ngModelOptions]="{standalone: true}"></p-dropdown>
+  </div>
+
+  <div class="field">
+    <label for="fecnac">Fecha Nacimiento</label>
+    <p-calendar id="fecnac" [(ngModel)]="partici.fecnac" appendTo="body" autoWidth="false" [style]="{'width':'100%'}"
+      dateFormat="dd/mm/yy" [ngModelOptions]="{standalone: true}"></p-calendar>
+  </div>
+
+
+  <div class="field">
+    <label class="mb-3">Sexo</label>
+    <div class="flex justify-content-around flex-wrap">
+      <div class="field-radiobutton">
+        <p-radioButton id="sexo1" name="sexo" value="1" [(ngModel)]="partici.sexo"
+          [ngModelOptions]="{standalone: true}"></p-radioButton>
+        <label for="sexo1">Masculino</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton id="sexo2" name="sexo" value="0" [(ngModel)]="partici.sexo"
+          [ngModelOptions]="{standalone: true}"></p-radioButton>
+        <label for="sexo2">Femenino</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+      <label for="tipo">Tipo de Categoria</label>
+      <p-dropdown [options]="tipos" [(ngModel)]="partici.tipocat" id="tipo"
+          placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
+          optionLabel="nomtipo" optionValue="idtipo" [showClear]="true" appendTo="body"></p-dropdown>
+  </div>
+
+  <div class="field bg-cyan-300 border-round cyan-border border-3">
+    <app-cat-corredor [fecnac]="partici.fecnac" [sexo]="partici.sexo" [tipocat]="partici.tipocat"
+      [idmodalidad]="idmodalidad" (emitCategoria)="cargarCategoria($event)">
+    </app-cat-corredor>
+  </div>
+
+  
+
+  <div class="field">
+    <p-dropdown [options]="clubes" [(ngModel)]="partici.idclub" id="club" placeholder="Seleccionar club"
+      autoWidth="false" [style]="{'width':'100%'}" [filter]="true" [filterBy]="'nomclub'" optionLabel="nomclub"
+      optionValue="idclub" [ngModelOptions]="{standalone: true}" [showClear]="true" appendTo="body"></p-dropdown>
+  </div>
+
+
+
+
+  <ng-template pTemplate="footer">
+    <!-- <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button> -->
+    <p-button icon="pi pi-add" (click)="updateData()" label="{{modalType}}" styleClass="p-button-text"
+      [disabled]="realizoclick"></p-button>
+  </ng-template>
+
+</p-dialog>

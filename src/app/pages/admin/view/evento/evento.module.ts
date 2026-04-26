@@ -12,11 +12,18 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
+import { FormsModule } from "@angular/forms";
+import { ActivosNombrePipe } from './pipes/activos-nombre.pipe';
+import { PreinscripcionesNombrePipe } from './pipes/preinscripciones-nombre.pipe';
+import { ModosNombrePipe } from './pipes/modos-nombre.pipe';
 
 
 @NgModule({
   declarations: [
-    EventoComponent
+    EventoComponent,
+    ActivosNombrePipe,
+    PreinscripcionesNombrePipe,
+    ModosNombrePipe
   ],
   imports: [
     CommonModule,
@@ -27,7 +34,10 @@ import { authInterceptorProviders } from 'src/app/service/auth.interceptor';
     ButtonModule,
     ConfirmDialogModule,
     AddEditEventoModule,
-    EventoRoutingModule
-  ],  providers: [authInterceptorProviders]
+    EventoRoutingModule,
+    
+    
+    FormsModule
+],  providers: [authInterceptorProviders]
 })
 export class EventoModule { }
