@@ -187,6 +187,9 @@
       padding: 0;
       text-align: center;
   }
+  .centro{  
+    padding: 0px;
+  } 
   .row{
     padding: 0;
   }

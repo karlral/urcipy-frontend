@@ -2,28 +2,27 @@
     (onHide)="closeModal()">
 
     <ng-template pTemplate="header">
-        <span class="text-xl font-bold">{{modalType}} UsuarioRol</span>
+        <span class="text-xl font-bold">{{modalType}}</span>
     </ng-template>
 
     
     <form [formGroup]="usuarioRolForm" class="usuarioRol-form">
 
-        
-        
 
-        <div class="field">
-            <label for="usuario">Usuario</label>
-            <p-dropdown [options]="usuarios" formControlName="usuario"  placeholder="Seleccionar un usuario" autoWidth="false"
-            [filter]="true" [filterBy]="'username'" 
-                [style]="{'width':'100%'}" optionLabel="username" [showClear]="true" appendTo="body"></p-dropdown>
-        </div>
         
         <div class="field">
-            <label for="rol">Roles</label>
-            <p-dropdown [options]="roles" formControlName="rol"  placeholder="Seleccionar un rol" autoWidth="false"
-            [filter]="true" [filterBy]="'nomrol'" 
-                [style]="{'width':'100%'}" optionLabel="nomrol" [showClear]="true" appendTo="body"></p-dropdown>
+            <label for="rol">Rol</label>
+            <p-dropdown [options]="roles" formControlName="rol"  placeholder="Seleccionar un rol" 
+            autoWidth="false" [filter]="true" [filterBy]="'nombre'" 
+                [style]="{'width':'100%'}" optionLabel="nombre" [showClear]="true" appendTo="body"></p-dropdown>
         </div>
+        
+        <fieldset formGroupName="usuario" class="mr-2">
+            <div class="field flex align-items-center justify-content-evenly flex-wrap">
+                    <label for="enabled" class="mr-2">Activar</label>
+                    <p-inputSwitch id="enabled" formControlName="enabled"></p-inputSwitch>
+            </div>
+        </fieldset>
         
         
     </form>

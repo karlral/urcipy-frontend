@@ -3,8 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 import { UsuarioRolService } from 'src/app/service/usuario-rol.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
-import { RolService } from 'src/app/service/rol.service';
+import { Usuario } from 'src/app/domain/usuario';
 
 @Component({
   selector: 'app-add-edit-usuario-rol',
@@ -14,6 +13,8 @@ import { RolService } from 'src/app/service/rol.service';
 export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
   @Input() displayAddEditModal: boolean = true;
   @Input() selectedUsuarioRol:any=null;
+  @Input() usuarios: Usuario[] = [];
+  @Input() roles: any[] = [];
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
@@ -24,18 +25,25 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
   
   usuario={
     idusuario: 0,
+      username: '',
+      enabled: false,
     
   };
   rol={
     idrol: 0,
+    nombre: '',
     
   };
-  usuarios:any[]=[];
-  roles:any[]=[];
+  
+ 
 
   usuarioRolForm = this.fb.group({
     idusuarioRol:[null],
-    usuario: [this.usuario],
+    usuario: this.fb.group({
+      idusuario: [this.usuario.idusuario],
+      username: [this.usuario.username],
+      enabled: [this.usuario.enabled],
+    }),
     rol:[this.rol],
    
   });
@@ -45,8 +53,7 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
   constructor(private fb: FormBuilder,
     private messageService: MessageService,
     private usuarioRolService: UsuarioRolService,
-    private usuarioService: UsuarioService,
-    private rolService: RolService
+    
 
   ) { }
 
@@ -54,10 +61,10 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
     
 
     if (this.selectedUsuarioRol){
-      this.modalType="Guardar";
+      this.modalType="Modificar Usuario: "+this.selectedUsuarioRol.usuario.username;
 
       this.usuarioRolForm.patchValue(this.selectedUsuarioRol);
-      console.log(this.selectedUsuarioRol);
+      //console.log(this.selectedUsuarioRol);
     
     }else{
       
@@ -74,47 +81,14 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
+console.log(this.selectedUsuarioRol);
+    this.usuarioRolForm.reset({
+        usuario:this.usuario,
+        rol:this.rol,
 
-    this.usuarioService.listarUsuarioes().subscribe(
-      {next:  (datos: any) => {
-        this.usuarios=datos;
-        this.usuario = datos[0];
+      });
 
-      }, error:(error) => {
-        console.log(error);
-        this.messageService.add({
-          severity: "error",
-          summary: "Usuario",
-          detail: "Error al cargar el Usuario"
-        }
-      );
-      },
-      complete: () => {
-        console.log('Completo usuarios');
-
-      }
-    
-  });
-
-  this.rolService.listarRoles().subscribe(
-    {next:  (datos: any) => {
-      this.roles=datos;
-      this.rol = datos[0];
-
-    }, error:(error) => {
-      console.log(error);
-      this.messageService.add({
-        severity: "error",
-        summary: "Rol",
-        detail: "Error al cargar el Rol"
-      }
-    );
-    },
-    complete: () => {
-      console.log('Completo roles');
-
-    }
-  });
+ 
 
   }
   
@@ -130,7 +104,7 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
 
   addEditUsuarioRol() {
 
-    console.log(this.usuarioRolForm.value);
+   // console.log(this.usuarioRolForm.value);
 
     if (this.selectedUsuarioRol){
 
@@ -142,7 +116,7 @@ export class AddEditUsuarioRolComponent  implements OnInit, OnChanges {
             this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'La usuario ha sido actualizada con exito', life: 3000 });
             this.closeModal();
           }, error: (error) => {
-            console.log("ERROR AL GUARDAR EL UsuarioRol"+error);
+            // console.log("ERROR AL GUARDAR EL UsuarioRol"+error);
             this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Error al guardar la actualizacion de usuario', life: 3000 });
 
           },

@@ -46,6 +46,8 @@
  <app-add-edit-usuario-rol 
     [displayAddEditModal]="displayAddEditModal"
     [selectedUsuarioRol]="selectedUsuarioRol"
+    [usuarios]="usuarios"
+    [roles]="roles"
     (clickClose)="hideModal($event)"
     (clickAddEdit)="saveUsuarioRolToList($event)"
 ></app-add-edit-usuario-rol> 

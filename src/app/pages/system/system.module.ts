@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RolComponent } from './rol/rol.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 
@@ -43,6 +44,7 @@ import { RolComponent } from './rol/rol.component';
     DialogModule,
     ReactiveFormsModule,
     DropdownModule,
+    InputSwitchModule
   ]
 })
 export class SystemModule { }

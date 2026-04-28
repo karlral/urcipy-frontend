@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Usuario } from 'src/app/domain/usuario';
 import { UsuarioRol } from 'src/app/domain/usuarioRol';
 import { UsuarioRolService } from 'src/app/service/usuario-rol.service';
 
@@ -16,6 +17,8 @@ export class UsuarioRolComponent  implements OnInit {
   displayAddEditModal=false;
   entradas:number=0;
   salidas:number=0;
+   usuarios: Usuario[] = [];
+   roles:any[]=[];
 
  
 
@@ -32,10 +35,16 @@ export class UsuarioRolComponent  implements OnInit {
     this.usuarioRolService.listarUsuarioRoles().subscribe(
       {
         next: (datos: UsuarioRol[]) => {
-          this.usuarioRoles = datos;
-          console.log(datos);
-          
-         
+          this.usuarioRoles = datos.filter(ur => ur.rol.idrol !== 1);
+          //console.log(datos);
+          this.usuarios = this.usuarioRoles.map(ur => ur.usuario);
+         // console.log(this.usuarios);
+
+          this.roles = this.usuarioRoles.map(ur => ur.rol);
+         // console.log(this.roles);
+          this.roles = this.roles.filter((rol, index, self) => 
+             index === self.findIndex((r) => r.idrol === rol.idrol));
+        // console.log(this.roles);
         },
         error: (error) => {
           console.log(error);
