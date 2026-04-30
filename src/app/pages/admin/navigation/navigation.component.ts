@@ -84,6 +84,7 @@ ngOnInit(): void {
   items: [
     {label: 'Cargar Historial', icon: 'pi pi-search', routerLink: ['/admin/acceso/cargahistorial']},
     {label: 'Procesar Campeones', icon: 'pi pi-search', routerLink: ['/admin/acceso/procesarcampeon']},
+    {label: 'Procesar Resultado', icon: 'pi pi-search', routerLink: ['/admin/acceso/procesarResultado']},
   ]
 },
 {
