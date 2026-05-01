@@ -12,12 +12,12 @@ export interface Partici{
     modificar?: boolean,
     tipocat?: number,
     corredor?: string,
-    nombre?: string,
-    apellido?:string,
+    nombre: string,
+    apellido:string,
     fecnac: Date,
     sexo?: number,
     nacionalidad?: string,
     regcorredor?: boolean,
-    licencia?: number,
+    licencia?: number
     
 }

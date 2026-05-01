@@ -16,6 +16,7 @@ import { ClubService } from 'src/app/service/club.service';
 import { Partici } from 'src/app/domain/custom/partici';
 import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
+import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 
 @Component({
   selector: 'app-eventobus',
@@ -106,6 +107,9 @@ export class EventobusComponent implements OnInit {
       regcorredor: false
   };
   organizador = 0;
+  tipocat=0;
+  recorrertipocat_i = 0;
+  cantidadtipocat = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -114,6 +118,7 @@ export class EventobusComponent implements OnInit {
     private participanteService: ParticipanteService,
     private corredorService: CorredorService,
     private eventoRemeraService: EventoRemeraService,
+    private eventoTipoService: EventoTipoService,
     private clubService: ClubService,
     private paisService: PaisService
 
@@ -143,6 +148,28 @@ export class EventobusComponent implements OnInit {
 
         },
         complete: () => console.info('completo evento')
+      });
+
+      this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tipos = dato;
+          //       console.log("tipos evento");
+          //     console.log(this.tipos);
+          this.cantidadtipocat = this.tipos.length;
+          this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
+          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
+          this.tipocat = this.corredorbus.tipocat;
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Tipo",
+            detail: "Error al cargar el evento tipo"
+          });
+        },
+        complete: () => console.info('completo tipos evento')
       });
 
     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
@@ -228,6 +255,36 @@ if (this.partici.ci.trim().length < 6) {
 
       return;
 }
+ if (this.partici.nombre.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El nombre debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.apellido.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El apellido debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.telefono.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El telefono debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
    
     //console.log(this.partici);
 
@@ -297,7 +354,9 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.idclub = this.corredorbus.idclub;
           this.partici.tamano = this.corredorbus.tamano == null ? 0 : this.corredorbus.tamano;
           
-
+          this.partici.nombre = this.corredorbus.nombre ? this.corredorbus.nombre : this.corredorbus.corredor.split(' ')[0];
+          this.partici.apellido = this.corredorbus.apellido ? this.corredorbus.apellido : this.corredorbus.corredor.split(' ').slice(1).join(' ');
+          
           this.partici.telefono = this.corredorbus.telefono;
           this.partici.corredor = this.corredorbus.corredor;
 
@@ -323,6 +382,7 @@ if (this.partici.ci.trim().length < 6) {
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
               + 'agregue los siguientes datos', life: 3000 });
               this.resetPartici();
+              
               this.displayRegCorredor = true;
               
 
@@ -352,7 +412,7 @@ if (this.partici.ci.trim().length < 6) {
       this.partici.fecnac = this.fechaant;
       this.partici.sexo = 1;
       this.partici.nacionalidad = "Paraguaya";
-      this.partici.tipocat = 3;
+      this.partici.tipocat = this.tipocat;
       this.partici.modificar = false;
       this.partici.regcorredor = true;
 
@@ -364,15 +424,12 @@ if (this.partici.ci.trim().length < 6) {
 
   }
   subirCategoria() {
-    if (this.partici.tipocat == 4) {
-      this.partici.tipocat = 3;
-    } else if (this.partici.tipocat == 3) {
-      this.partici.tipocat = 1;
-    } else if (this.partici.tipocat == 1) {
-      this.partici.tipocat = 2;
-    } else if (this.partici.tipocat == 2) {
-      this.partici.tipocat = 4;
-    }
+    
+        this.partici.tipocat = this.tipos[this.recorrertipocat_i].idtipo;
+        this.recorrertipocat_i++;
+        if (this.recorrertipocat_i >= this.cantidadtipocat) {
+          this.recorrertipocat_i = 0;
+        }
 
 
   }
