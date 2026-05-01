@@ -57,7 +57,10 @@ export class PrincipalComponent  implements OnInit{
     dosier: '',
     facebook: '',
     instagram: '',
-    hoteles: ''
+    hoteles: '',
+    organizador: 0,
+    conremera: 0,
+    conlicencia: 0
   };
   
 

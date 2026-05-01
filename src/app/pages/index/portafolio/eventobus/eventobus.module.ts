@@ -10,19 +10,20 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { DropdownModule } from 'primeng/dropdown';
+import { PanelModule } from 'primeng/panel';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CalendarModule } from 'primeng/calendar';
 
 import { EventobusComponent } from './eventobus.component';
 import { InscrisharedModule } from '../inscrishared/inscrishared.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { DropdownModule } from 'primeng/dropdown';
-import { PanelModule } from 'primeng/panel';
-import { ModCorredorComponent } from './mod-corredor/mod-corredor.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
   declarations: [
-    EventobusComponent,
-    ModCorredorComponent
+    EventobusComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +40,9 @@ import { ModCorredorComponent } from './mod-corredor/mod-corredor.component';
     SharedModule,
     DropdownModule,
     PanelModule,
+    RadioButtonModule,
+    CalendarModule,
+    InputNumberModule
         
 
         

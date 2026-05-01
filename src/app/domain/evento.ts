@@ -41,5 +41,8 @@ export interface Evento {
     instagram:string,
     club: Club,
     regional:Regional,
-    modalidad:Modalidad
+    modalidad:Modalidad,
+    organizador:number,
+    conremera: number,
+    conlicencia: number
 }

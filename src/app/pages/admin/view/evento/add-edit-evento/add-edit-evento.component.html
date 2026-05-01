@@ -17,12 +17,11 @@
 
             <label for="fecha">Fecha Evento</label>
             <p-calendar formControlName="fecha" id="fecha" appendTo="body" autoWidth="false"
-                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"  utc="true"></p-calendar>
+                [style]="{'width':'100%'}" dateFormat="dd/mm/yy"></p-calendar>
             <small class="p-error" *ngIf="
             eventoForm.controls['fecha'].invalid && 
             eventoForm.controls['fecha'].dirty">Fecha del evento es requerido.</small>
-            
-           
+        
         </div>
 
         <div class="field">
@@ -181,43 +180,9 @@
             <input type="text" pInputText id="urlcategoria" formControlName="urlcategoria" placeholder="Direccion URL de inscripcion externo" class="prime" />     
         </div>
         <div class="field">
-            <label for="ubicacion">Ubicacion Concentración</label>
-            <input type="text" pInputText id="ubicacion" formControlName="ubicacion" placeholder="Ubicacion Concentración" class="prime" />     
-        </div>
-                <div class="field">
-            <label for="ubidorsal">Entrega Dorsal </label>
-            <input type="text" pInputText id="ubidorsal" formControlName="ubidorsal" placeholder="Direccion entrega Dorsal" class="prime" />     
-        </div>
-        <div class="field">
             <label for="urlpromocional">URL Mapa </label>
             <input type="text" pInputText id="urlpromocional" formControlName="urlpromocional" placeholder="Direccion del mapa promo." class="prime" />     
         </div>
-        <div class="field">
-            <label for="gpxprincipal">GPX Principal </label>
-            <input type="text" pInputText id="gpxprincipal" formControlName="gpxprincipal" placeholder="GPX principal" class="prime" />     
-        </div>
-        <div class="field">
-            <label for="gpxpromocional">GPX Promocional </label>
-            <input type="text" pInputText id="gpxpromocional" formControlName="gpxpromocional" placeholder="GPX promocional" class="prime" />     
-        </div>
-        <div class="field">
-            <label for="dosier">Dosier </label>
-            <input type="text" pInputText id="dosier" formControlName="dosier" placeholder="Dosier " class="prime" />     
-        </div>
-        <div class="field">
-            <label for="hoteles">Hoteles </label>
-            <input type="text" pInputText id="hoteles" formControlName="hoteles" placeholder="Hoteles" class="prime" />     
-        </div>
-        <div class="field">
-            <label for="facebook">facebook </label>
-            <input type="text" pInputText id="facebook" formControlName="facebook" placeholder="facebook" class="prime" />     
-        </div>
-        <div class="field">
-            <label for="instagram">Instagram </label>
-            <input type="text" pInputText id="instagram" formControlName="instagram" placeholder="Instagram" class="prime" />     
-        </div>
-        
-        
         <div class="field">
             <label for="contacto">Contacto Informatico</label>
             <input type="text" pInputText id="contacto" formControlName="contacto" required placeholder="Whatsapp del contacto"
@@ -232,6 +197,59 @@
             <input type="text" pInputText id="fondocolor" formControlName="fondocolor" placeholder="OnLine" class="prime" />     
         </div>
 
+        <div class="field">
+            <label class="mb-3">Mostrar Clubes</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador1" name="organizador" value="1"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador1">Organizador</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador0" name="organizador" value="0"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador0">Club</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="organizador2" name="organizador" value="2"
+                        formControlName="organizador"></p-radioButton>
+                    <label for="organizador2">Especial</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Mostrar Remeras</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="conremera1" name="conremera" value="1"
+                        formControlName="conremera"></p-radioButton>
+                    <label for="conremera1">Con Remera</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="conremera0" name="conremera" value="0"
+                        formControlName="conremera"></p-radioButton>
+                    <label for="conremera0">Sin Remera</label>
+                </div>
+               
+            </div>
+        </div>
+        <div class="field">
+            <label class="mb-3">Mostrar Licencia Nacional</label>
+            <div class="flex justify-content-around flex-wrap">
+                <div class="field-radiobutton">
+                    <p-radioButton id="conlicencia1" name="conlicencia" value="1"
+                        formControlName="conlicencia"></p-radioButton>
+                    <label for="conlicencia1">Con Licencia</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton id="conlicencia0" name="conlicencia" value="0"
+                        formControlName="conlicencia"></p-radioButton>
+                    <label for="conlicencia0">Sin Licencia</label>
+                </div>
+               
+            </div>
+        </div>
         <!-- <div class="field">
             <img [src]="evento.foto =='' ? '/assets/noimagen.png' : mediaLocation+evento.foto"
                 [alt]="evento.foto" class="regional-image" *ngIf="evento.foto">

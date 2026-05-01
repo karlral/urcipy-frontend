@@ -12,6 +12,7 @@ import { Participante } from '../domain/participante';
 import baserUrl from './helper';
 import system from './helpersys';
 import { Inscripto } from '../domain/custom/inscripto';
+import { Partici } from '../domain/custom/partici';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,18 @@ export class ParticipanteService {
   public obtenerParticipante(idparticipante:any){
     return this.http.get(`${baserUrl}/participante/${idparticipante}`);
   }
+    public obtenerPartici(idparticipante:any):Observable<Partici>{
+    return this.http.get<Partici>(`${baserUrl}/participante/partici/${idparticipante}`);
+  }
 
   public agregarParticipante(participante:any){
     return this.http.post(`${baserUrl}/participante/`,participante);
   }
   public eliminarParticipante(idparticipante:any){
     return this.http.delete(`${baserUrl}/participante/${idparticipante}`);
+  }
+    public actualizaPartici(partici:any){
+    return this.http.put(`${baserUrl}/participante/actualizapar/`,partici);
   }
   public actualizarParticipante(participante:any){
     return this.http.put(`${baserUrl}/participante/`,participante);

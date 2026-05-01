@@ -14,6 +14,9 @@ import { Corredorbus } from 'src/app/domain/custom/corredorbus';
 import { Remera } from 'src/app/domain/remera';
 import { ClubService } from 'src/app/service/club.service';
 import { Partici } from 'src/app/domain/custom/partici';
+import { Pais } from 'src/app/domain/pais';
+import { PaisService } from 'src/app/service/pais.service';
+import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 
 @Component({
   selector: 'app-eventobus',
@@ -44,12 +47,17 @@ export class EventobusComponent implements OnInit {
   fecha: Date = new Date();
   tamanos: Remera[] = [];
   displayRemera: boolean = false;
+  displayLicencia: boolean = false;
   displayVerificar: boolean = false;
   displayBotonSubirCat: boolean = false;
+  displayRegCorredor: boolean = false;
   tipos: any[] = [];
+  paises: Pais[] = [];
   idmodalidad = 1;
- 
+
   oldtipocat = 0;
+
+
 
   corredorbus: Corredorbus = {
     idcorredor: 0,
@@ -71,9 +79,12 @@ export class EventobusComponent implements OnInit {
     verificar: 0,
     idclub: 0,
     tipocat: 0,
-    modificar: false
+    modificar: false,
+    licencia: 0
+
   };
 
+  fechaant = new Date(2000, 0, 1);
 
   clubes: Club[] = [];
 
@@ -82,11 +93,23 @@ export class EventobusComponent implements OnInit {
     idevento: 0,
     idcorredor: 0,
     idcategoria: 0,
-    idclub: 0,
+    idclub: 1,
     ci: '',
-    tamano: 0,
-    telefono: ''
+    tamano: 5,
+    telefono: '',
+    nombre: '',
+    apellido: '',
+    fecnac: this.fechaant,
+    sexo: 1,
+    nacionalidad: "Paraguaya",
+    tipocat: 3,
+    modificar: false,
+    regcorredor: false
   };
+  organizador = 0;
+  tipocat=0;
+  recorrertipocat_i = 0;
+  cantidadtipocat = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -95,7 +118,9 @@ export class EventobusComponent implements OnInit {
     private participanteService: ParticipanteService,
     private corredorService: CorredorService,
     private eventoRemeraService: EventoRemeraService,
+    private eventoTipoService: EventoTipoService,
     private clubService: ClubService,
+    private paisService: PaisService
 
   ) { }
 
@@ -106,7 +131,12 @@ export class EventobusComponent implements OnInit {
       {
         next: (e: Evento) => {
           this.evento = e;
+          this.organizador = this.evento.organizador;
+          this.displayRemera = this.evento.conremera == 1;
+          this.displayLicencia = this.evento.conlicencia == 1;
           this.rutagrande = this.evento.club.rutagrande;
+          this.partici.idevento = this.evento.idevento;
+          this.partici.idregional = this.evento.regional.idregional;
 
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
@@ -120,12 +150,34 @@ export class EventobusComponent implements OnInit {
         complete: () => console.info('completo evento')
       });
 
+       this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+      {
+        next: (dato: any) => {
+          this.tipos = dato;
+          //       console.log("tipos evento");
+          //     console.log(this.tipos);
+          this.cantidadtipocat = this.tipos.length;
+          this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
+          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
+          this.tipocat = this.corredorbus.tipocat;
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Evento Tipo",
+            detail: "Error al cargar el evento tipo"
+          });
+        },
+        complete: () => console.info('completo tipos evento')
+      });
+
     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
       {
         next: (dato: any) => {
           this.tamanos = dato;
-          this.displayRemera = this.tamanos.length > 0;
-          this.corredorbus.tamano = 5;
+          // this.displayRemera = this.tamanos.length > 0;
+          this.partici.tamano = 5;
 
           this.tamanos.sort((a, b) => a.idremera - b.idremera);
 
@@ -144,7 +196,7 @@ export class EventobusComponent implements OnInit {
       {
         next: (dato: any) => {
           this.clubes = dato;
-         
+
         },
         error: (error) => {
           console.log(error);
@@ -156,6 +208,20 @@ export class EventobusComponent implements OnInit {
         },
         complete: () => console.info('completo clubes')
       });
+
+    this.paisService.publistarPaises().subscribe(
+      (dato: any) => {
+        this.paises = dato;
+
+      }, (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Pais",
+          detail: "Error al cargar el Pais"
+        });
+      }
+    );
   }
 
   hideModal(isClosed: boolean) {
@@ -164,7 +230,7 @@ export class EventobusComponent implements OnInit {
     this.inscripto = 0;
   }
 
- 
+
 
   formSubmit() {
 
@@ -179,6 +245,48 @@ export class EventobusComponent implements OnInit {
 
       return;
     }
+
+    if (this.partici.ci.trim().length < 6) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La Cedula de identidad debe tener minimamente 6 numeros  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.nombre.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El nombre debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.apellido.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El apellido debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.telefono.trim().length < 4) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "El telefono debe tener minimamente 4 caracteres  o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    console.log(this.partici);
 
     this.participanteService.inscribirPartici(this.partici).subscribe(
       {
@@ -202,7 +310,7 @@ export class EventobusComponent implements OnInit {
         }, complete: () => {
           console.log('completo inscripcion participante');
 
-         
+
 
         }
       });
@@ -214,7 +322,7 @@ export class EventobusComponent implements OnInit {
   onChange(valor: string) {
     console.log(valor);
     this.partici.ci = valor.replace(/[^0-9]/g, "");
-   
+
     if (this.partici.ci.trim() == '' || this.partici.ci.trim() == null) {
 
       this.messageService.add({
@@ -230,24 +338,37 @@ export class EventobusComponent implements OnInit {
       this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
         next: (dato: Corredorbus) => {
 
-
           this.corredorbus = dato;
 
           const fecnac = new Date(dato.fecnac);
           this.corredorbus.fecnac = fecnac;
 
-          this.partici.idevento = this.idevento;
-          this.partici.idcorredor = dato.idcorredor;
-          this.partici.idcategoria = dato.idcategoria;
-          this.partici.idclub = dato.idclub;
-          this.partici.tamano = dato.tamano;
-          this.partici.telefono = dato.telefono;
-          
-          
-          this.oldtipocat = dato.tipocat;
+          this.displayRegCorredor = false;
+
+          this.partici.regcorredor = this.displayRegCorredor;
 
 
-          if (this.corredorbus.modificar) {
+
+          this.partici.idcorredor = this.corredorbus.idcorredor;
+          this.partici.idcategoria = this.corredorbus.idcategoria;
+          this.partici.idclub = this.corredorbus.idclub;
+          this.partici.tamano = this.corredorbus.tamano == null ? 0 : this.corredorbus.tamano;
+
+          this.partici.nombre = this.corredorbus.nombre ? this.corredorbus.nombre : this.corredorbus.corredor.split(' ')[0];
+          this.partici.apellido = this.corredorbus.apellido ? this.corredorbus.apellido : this.corredorbus.corredor.split(' ').slice(1).join(' ');
+          this.partici.telefono = this.corredorbus.telefono;
+          this.partici.corredor = this.corredorbus.corredor;
+
+
+          this.partici.fecnac = this.corredorbus.fecnac;
+          this.partici.sexo = this.corredorbus.sexo;
+          this.partici.tipocat = this.corredorbus.tipocat;
+          this.partici.modificar = this.corredorbus.modificar;
+          this.partici.licencia = this.corredorbus.licencia;
+          this.oldtipocat = this.corredorbus.tipocat;
+
+
+          if (this.partici.modificar) {
 
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Verifique sus datos si estan correctos, puede actualizar si lo desea.', life: 3000 });
           }
@@ -255,10 +376,20 @@ export class EventobusComponent implements OnInit {
 
         }, error: (error) => {
           console.log(error);
-          if (this.partici.ci.length == 6){
+          if (this.partici.ci.length == 6) {
             console.log('Ci de 6 digitos, no se busca corredor');
-          }else{
-            this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
+          } else {
+            this.messageService.add({
+              severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
+                + 'agregue los siguientes datos', life: 3000
+            });
+            this.resetPartici();
+            this.partici.modificar = true;
+            this.displayRegCorredor = true;
+
+
+
+            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
           }
         },
         complete: () => {
@@ -269,26 +400,60 @@ export class EventobusComponent implements OnInit {
     }
   }
 
+  resetPartici() {
+    this.partici.idparticipante = 0;
+    this.partici.idevento = this.evento.idevento;
+    this.partici.idcorredor = 0;
+    this.partici.idcategoria = 1;
+    this.partici.corredor = '';
+    this.partici.idclub = 1;
+    this.partici.tamano = 0;
+    this.partici.telefono = '';
+    this.partici.nombre = '';
+    this.partici.apellido = '';
+    this.partici.fecnac = this.fechaant;
+    this.partici.sexo = 1;
+    this.partici.nacionalidad = "Paraguaya";
+    this.partici.tipocat = this.tipocat;
+    this.partici.modificar = false;
+    this.partici.regcorredor = true;
+
+  }
+
   cargarCategoria(cat: any) {
     this.partici.idcategoria = cat.idcategoria;
+    this.partici.tipocat = cat.tipo;
 
   }
   subirCategoria() {
-    if (this.corredorbus.tipocat == 4) {
-      this.corredorbus.tipocat = 3;
-    } else if (this.corredorbus.tipocat == 3) {
-      this.corredorbus.tipocat = 1;
-    } else if (this.corredorbus.tipocat == 1) {
-      this.corredorbus.tipocat = 2;
-    } else if (this.corredorbus.tipocat == 2) {
-      this.corredorbus.tipocat = 1;
-    }
+    
+        this.partici.tipocat = this.tipos[this.recorrertipocat_i].idtipo;
+        this.recorrertipocat_i++;
+        if (this.recorrertipocat_i >= this.cantidadtipocat) {
+          this.recorrertipocat_i = 0;
+        }
+      //  this.messageService.add({ severity: 'info', summary: 'Categoria', detail: 'Categoria seleccionada: ' + this.tipos.find((t) => t.idtipo === this.partici.tipocat)?.nomtipo, life: 3000 });
+       
+        
+      
+    
+   /* if (this.partici.tipocat == 4) {
+      this.partici.tipocat = 3;
+    } else if (this.partici.tipocat == 3) {
+      this.partici.tipocat = 1;
+    } else if (this.partici.tipocat == 1) {
+      this.partici.tipocat = 2;
+    } else if (this.partici.tipocat == 2) {
+      if (this.partici.modificar) {
+        this.partici.tipocat = 4;
+      } else {
+        this.partici.tipocat = 1;
+      }
+    }*/
 
 
   }
-  revertirCategoria() {
-    this.corredorbus.tipocat = this.oldtipocat;
-  }
+
 
 
 }

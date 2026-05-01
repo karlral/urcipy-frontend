@@ -50,7 +50,7 @@
   margin-right: auto;
 }
 .logo-image{
-  width: 70%;
+  width: 100%;
 }
 .box-text {
 
@@ -178,6 +178,9 @@ h3{
       font-size: 20px;
       padding: 0;
       text-align: center;
+  }
+  .centro{
+    padding: 10px;
   }
   .row{
     padding: 0;

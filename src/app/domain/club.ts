@@ -14,5 +14,6 @@ export interface Club {
     rutagrande:string,
     region:Region,
     modalidad:Modalidad,
-    cantidad?:number
+    cantidad?:number,
+    organizador?:number
 }

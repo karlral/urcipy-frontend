@@ -28,6 +28,8 @@ export interface Inscripto {
     tamano:number,
     tamanoc:string,
     logoclub:string,
-    logoevento:string
+    logoevento:string,
+    catalternativo:string,
+    edad?: number
     
 }

@@ -98,7 +98,10 @@ export class InscripcionesComponent  implements OnInit{
     dosier: '',
     facebook: '',
     instagram: '',
-    hoteles: ''
+    hoteles: '',
+    organizador: 0,
+    conremera: 0,
+    conlicencia: 0
   };
 
   inscripciones!:Inscripcion[];
