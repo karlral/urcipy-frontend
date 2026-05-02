@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 import { Evento } from 'src/app/domain/evento';
 import baserUrl from 'src/app/service/helper';
 import { ParticipanteService } from 'src/app/service/participante.service';
@@ -24,7 +24,7 @@ export class ListParticipantesComponent implements OnInit {
   activo!: number;
   visible: any;
   mediaLocation = `${baserUrl}/media/`;
-  selectedInscripto: Inscriptos = {
+  selectedInscripto: Inscripto = {
     id: 0,
     fecha: this.fecha,
     ci: '',
@@ -55,10 +55,10 @@ export class ListParticipantesComponent implements OnInit {
   displayAddEditParticipanteModal = false;
   displayPagosModal = false;
 
-  inscriptos!: Inscriptos[];
+  inscriptos!: Inscripto[];
   // corredorankes2: Pick<Corredorank,  'nomconcepto' |  'corredor' | 'club' | 'categoria' | 'entrada' >[] = [];
   //dorsal,chip, ci, corredor,fecnac,sex,telefono,ciudad,pais, club, catalternativo,km,kit,kittipo,tamanoc,nrogiro,acobrar, pag
-  inscriptos2: Pick<Inscriptos, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'edad' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
+  inscriptos2: Pick<Inscripto, 'dorsal' | 'chip' | 'ci' | 'corredor' | 'fecnac' | 'sex' | 'telefono' | 'ciudad' | 'pais' | 'club' | 'catalternativo' | 'edad' | 'km' | 'kit' | 'kittipo' | 'tamanoc' | 'nrogiro' | 'acobrar' | 'pag'>[] = [];
   evento!: Evento;
 
 
@@ -86,7 +86,7 @@ export class ListParticipantesComponent implements OnInit {
     this.participanteService
       .listarParticipantesActivosComple(this.activo)
       .subscribe({
-        next: (p: Inscriptos[]) => {
+        next: (p: Inscripto[]) => {
           this.inscriptos = p;
 
           this.recorrer();
@@ -240,18 +240,18 @@ export class ListParticipantesComponent implements OnInit {
     });
   }
 
-  editPartici(editData: Inscriptos) {
+  editPartici(editData: Inscripto) {
     //console.log(editData);
     this.selectedInscripto = editData;
     this.displayAddEditModal = true;
   }
-  editParticipante(editData: Inscriptos) {
+  editParticipante(editData: Inscripto) {
     //console.log(editData);
     this.selectedInscripto = editData;
     this.displayAddEditParticipanteModal = true;
   }
 
-  addPagos(editData: Inscriptos) {
+  addPagos(editData: Inscripto) {
     this.selectedInscripto = editData;
     this.displayPagosModal = true;
   }
@@ -295,7 +295,7 @@ export class ListParticipantesComponent implements OnInit {
         this.participanteService
           .listarAsigDorsalesParticipantesActivosComple(this.activo)
           .subscribe({
-            next: (p: Inscriptos[]) => {
+            next: (p: Inscripto[]) => {
               this.inscriptos = p;
               this.recorrer();
             },

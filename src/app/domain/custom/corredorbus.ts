@@ -20,6 +20,8 @@ export interface Corredorbus {
     idclub:number,
     tipocat:number,
     modificar:boolean,
-    licencia?: number
+    licencia?: number,
+    nombre?: string,
+    apellido?: string,
     
 }

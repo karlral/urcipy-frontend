@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MessageService } from 'primeng/api';
 
 import { ParticipanteService } from 'src/app/service/participante.service';
-import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 import { EventoRemeraService } from 'src/app/service/evento-remera.service';
 
 
@@ -16,7 +16,7 @@ export class AddPagosComponent implements OnInit, OnChanges {
   fecha = new Date();
   @Input() displayPagosModal: boolean = true;
   @Input() idevento!: number;
-  @Input() selectedInscripto: Inscriptos = {
+  @Input() selectedInscripto: Inscripto = {
     id: 0,
     fecha: this.fecha,
     ci: '',

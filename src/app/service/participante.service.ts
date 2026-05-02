@@ -11,7 +11,7 @@ import { Resultado } from '../domain/custom/resultado';
 import { Participante } from '../domain/participante';
 import baserUrl from './helper';
 import system from './helpersys';
-import { Inscriptos } from '../domain/custom/inscriptos';
+import { Inscripto } from '../domain/custom/inscripto';
 import { Partici } from '../domain/custom/partici';
 
 @Injectable({
@@ -52,12 +52,12 @@ export class ParticipanteService {
     return this.http.put(`${baserUrl}/participante/pagos/`,partici);
   }
 
-  public listarParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
-    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
+  public listarParticipantesActivosComple(activo:any):Observable<Inscripto[]>{
+    return this.http.get<Inscripto[]>(`${baserUrl}/participante/activo/${activo}/${system}`);
   }
   
-  public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscriptos[]>{
-    return this.http.get<Inscriptos[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
+  public listarAsigDorsalesParticipantesActivosComple(activo:any):Observable<Inscripto[]>{
+    return this.http.get<Inscripto[]>(`${baserUrl}/participante/asigdorsal/${activo}/${system}`);
   }
 
 

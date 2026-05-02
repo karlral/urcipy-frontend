@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MessageService } from 'primeng/api';
 
 import { ParticipanteService } from 'src/app/service/participante.service';
-import { Inscriptos } from 'src/app/domain/custom/inscriptos';
+import { Inscripto } from 'src/app/domain/custom/inscripto';
 import { Club } from 'src/app/domain/club';
 import { Partici } from 'src/app/domain/custom/partici';
 import { Pais } from 'src/app/domain/pais';
@@ -22,7 +22,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
   @Input() idevento: number = 0;
   @Input() organizador: number = 0;
   @Input() idmodalidad: number = 0;
-  @Input() selectedInscripto: Inscriptos = {
+  @Input() selectedInscripto: Inscripto = {
     id: 0,
     fecha: this.fecha,
     ci: '',

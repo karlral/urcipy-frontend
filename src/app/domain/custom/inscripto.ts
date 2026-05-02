@@ -1,4 +1,4 @@
-export interface Inscriptos {
+export interface Inscripto {
     id: number,
     fecha:Date,
     ci:string,
