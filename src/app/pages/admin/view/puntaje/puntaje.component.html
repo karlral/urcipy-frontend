@@ -2,7 +2,8 @@
 
 <p-table #dt [value]="puntajees" [rows]="10" [paginator]="true" 
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idpuntaje"
-    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true" 
+    >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -14,18 +15,19 @@
 
     <ng-template pTemplate="header">
         <tr>
+
+            <th>Tipo de Puntos</th>
             <th>Posicion</th>
             <th>Puntos</th>
-            
             <th></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-puntaje>
         <tr>
 
+            <td class="centro">{{puntaje.tipopuntos.nomtipopuntos}}</td>
             <td class="centro">{{puntaje.posicion}}</td>
             <td class="centro">{{puntaje.puntos}}</td>
-            
             
             <td>
                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -40,6 +42,7 @@
  <app-add-edit-puntaje 
     [displayAddEditModal]="displayAddEditModal"
     [selectedPuntaje]="selectedPuntaje"
+    [tipopuntoses]="tipopuntoses"
     (clickClose)="hideModal($event)"
     (clickAddEdit)="savePuntajeToList($event)"
 ></app-add-edit-puntaje> 

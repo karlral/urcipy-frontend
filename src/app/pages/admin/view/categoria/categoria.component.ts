@@ -217,6 +217,7 @@ modalidad :Modalidad={
           this.categoria.trayecto.nomtrayecto.trim(); 
       }
       this.categoria.nomcorto=this.categoria.nomcategoria;
+      this.categoria.nomalternativo=this.categoria.nomcategoria;
       this.categoria.codigo=this.categoria.trayecto.nomtrayecto.trim().toUpperCase().replace(/\s+/g, '')+'-'+this.categoria.edadinicio+'-'+this.categoria.edadfin+'-'+this.categoria.sexo;
 
     }

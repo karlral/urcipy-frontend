@@ -246,52 +246,6 @@ export class AddCorredorComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /*this.tamanos = [
-      //{ label: 'Sin Remera', value: 0 },
-      { label: 'Tamaño P', value: 1 },
-      { label: 'Tamaño M', value: 2 },
-      { label: 'Tamaño G', value: 3 }
-    ];*/
-
-//     this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
-//       {next:(dato: any) => {
-//         this.tipos = dato;
-//       }, 
-//       error: (error) => {
-//         console.log(error);
-//         this.messageService.add({
-//             severity: "error",
-//             summary: "Evento Tipo",
-//             detail: "Error al cargar el evento tipo"
-//           });
-//       }
-//   });
-
-//   this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
-//     {next:(dato: any) => {
-//       this.tamanos = dato;
-//       this.displayRemera = this.tamanos.length > 0;
-//       this.tamanos.sort((a: any, b: any) => a.idremera - b.idremera);
-//     }, 
-//     error: (error) => {
-//       console.log(error);
-//       this.messageService.add({
-//           severity: "error",
-//           summary: "Evento Remera",
-//           detail: "Error al cargar el evento remera"
-//         });
-//     }
-// });
-
-
-  /*    this.tipos = [
-      // {label: '20k', value: 1},
-      { label: '10k', value: 2 },
-      { label: ' 5k', value: 3 },
-      { label: 'NIÑOS', value: 4 }
-
-    ];*/
-
     
 
     this.grupos = [
@@ -379,66 +333,7 @@ export class AddCorredorComponent implements OnInit {
     });
     this.modalType = "Registrar";
 
-  /*  if (this.idevento == 144) {
-      this.tipos = [
-
-        // {label: '20k', value: 1},
-      { label: '11k', value: 2 },
-      { label: ' 6k', value: 3 },
-
-      ];
-    }
-    if (this.idevento == 132 || this.idevento == 140) {
-      this.tipos = [
-
-        { label: ' 5k  ', value: 3 },
-
-
-      ];
-
-      this.tamanos = [
-        //{ label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-        { label: 'Tamaño GG', value: 4 },
-      ];
-    }
-    if (this.idevento == 134) {
-      this.corredorForm.get('tipocat')?.setValue(6);
-      this.tipos = [
-
-        { label: ' GENERAL 5k  ', value: 6 },
-
-
-      ];
-
-      this.tamanos = [
-        { label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-        //{ label: 'Tamaño GG', value: 4 },
-      ];
-    }
-    if (this.idevento == 135) {
-      this.corredorForm.get('tipocat')?.setValue(5);
-      this.tipos = [
-        { label: 'NIÑOS', value: 4 },
-        { label: ' 7k  ', value: 5 },
-
-
-      ];
-      this.tamanos = [
-        { label: 'Sin Remera', value: 0 },
-        { label: 'Tamaño P', value: 1 },
-        { label: 'Tamaño M', value: 2 },
-        { label: 'Tamaño G', value: 3 },
-        { label: 'Tamaño GG', value: 4 },
-        //  { label: 'Tamaño XXG', value: 5 }
-      ];
-    }
-      */
+  
 
     this.cargarCategoria(this.eCategoria);
   }
@@ -455,6 +350,32 @@ export class AddCorredorComponent implements OnInit {
 
   addEditCorredor() {
 
+    const ci = this.corredorForm.get('persona')?.get('ci')?.value;
+
+    if (ci == '' || ci == null) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "Complete su Cedula de identidad sin puntos"
+      });
+
+      return;
+    }
+    let ci2 = this.extractNumberString(ci).trim();
+    if (ci2.length < 6) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La Cedula de identidad debe tener al menos 6 numeros sin puntos"
+      });
+
+      return;
+    }
+
+    
+    this.corredorForm.get('persona')?.get('ci')?.setValue(ci2);
 
     this.corredorForm.get('usuario')?.setValue(this.usuario);
     this.corredorForm.get('regional')?.setValue(this.regional);
@@ -494,7 +415,7 @@ export class AddCorredorComponent implements OnInit {
   }
 
   formSubmit() {
-    let ci = this.corredorForm.get('persona')?.get('ci')?.value;
+    let ci = this.corredorForm.get('persona')?.get('ci')?.value?.trim();
     this.participanteService.inscribirPartiCi(this.idevento, ci).subscribe(
       (data: any) => {
 
@@ -534,8 +455,22 @@ export class AddCorredorComponent implements OnInit {
 
       return;
     }
+    let ci2 = this.extractNumberString(ci).trim();
+    if (ci2.length < 6) {
 
-    this.personaService.pubobtenerPersonaCi(ci).subscribe({
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La Cedula de identidad debe tener al menos 6 numeros sin puntos"
+      });
+
+      return;
+    }
+
+    
+    this.corredorForm.get('persona')?.get('ci')?.setValue(ci2);
+
+    this.personaService.pubobtenerPersonaCi(ci2).subscribe({
       next: (dato) => {
 
         if (dato) {

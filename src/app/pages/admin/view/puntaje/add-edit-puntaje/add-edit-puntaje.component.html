@@ -5,7 +5,14 @@
     </ng-template>
     <form [formGroup]="puntajeForm" class="puntaje-form">
 
-                
+        <div class="field">
+                <label for="tipopuntos">Tipo Puntuación</label>
+                <p-dropdown [options]="tipopuntoses" formControlName="tipopuntos" id="tipopuntos"  
+                placeholder="Elegir Tipo de Categoria"  autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="nomtipopuntos"  
+                [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
         <div class="field flex align-items-center justify-content-evenly flex-wrap">
             <label for="posicion">Posicion</label>
             <p-inputNumber inputId="posicion" formControlName="posicion" inputStyleClass="text-right" [required]="true">
@@ -24,6 +31,7 @@
                         puntajeForm.controls['puntos'].dirty">Puntos  es
                         requerido.</small>
         </div>
+
 
        
 

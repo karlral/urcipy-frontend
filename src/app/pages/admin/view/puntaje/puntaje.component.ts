@@ -3,6 +3,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Puntaje } from 'src/app/domain/puntaje';
 import { PuntajeService } from 'src/app/service/puntaje.service';
 import baserUrl from 'src/app/service/helper';
+import { Tipopuntos } from 'src/app/domain/tipopuntos';
+import { TipopuntosService } from 'src/app/service/tipopuntos.service';
 
 @Component({
   selector: 'app-puntaje',
@@ -15,14 +17,38 @@ export class PuntajeComponent implements OnInit {
   puntajees: Puntaje[] = [];
   selectedPuntaje:any=null;
   displayAddEditModal=false;
+  tipopuntoses: Tipopuntos[] = [];
 
   constructor( private messageService: MessageService,
     private puntajeService: PuntajeService,
-    private confirmationService:ConfirmationService
+    private confirmationService:ConfirmationService,
+    private tipopuntosService: TipopuntosService,
     
     ) { }
   ngOnInit(): void {
     this.rellenarDataTable();
+    this.cargarTipopuntoses();
+
+  }
+
+  cargarTipopuntoses(){
+    this.tipopuntosService.listarTipopuntos().subscribe(
+      {
+        next: (datos: Tipopuntos[]) => {
+          this.tipopuntoses = datos;
+         
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Puntaje",
+            detail: "Error al cargar los tipos de puntos"
+          });
+        },
+        complete: () => console.info('completo tipos de puntos')
+      });
+
   }
 
   rellenarDataTable(){

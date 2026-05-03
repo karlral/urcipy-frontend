@@ -112,6 +112,12 @@ const routes: Routes = [
       },
       {
         path:'procesarResultado', loadChildren:()=> import('./view/procesar-resultado/procesar-resultado.module').then(m => m.ProcesarResultadoModule)
+      },
+      {
+        path:'tipopuntos', loadChildren:()=> import('./view/tipopuntos/tipopuntos.module').then(m => m.TipopuntosModule)
+      },
+      {
+        path:'modalidad', loadChildren:()=> import('./view/modalidad/modalidad.module').then(m => m.ModalidadModule)
       }
 
     ]

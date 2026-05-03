@@ -94,7 +94,11 @@ export class InscripcionesComponent  implements OnInit{
     modalidad: this.modalidad,
     organizador: 0,
     conremera: 0,
-    conlicencia: 0
+    conlicencia: 0,
+    tipopuntos: {
+      idtipopuntos: 0,
+      nomtipopuntos: ''
+    }
   };
 
   inscripciones!:Inscripcion[];

@@ -23,78 +23,8 @@ export class InscripcionesrunComponent  implements OnInit{
   visible:any;
   mediaLocation = `${baserUrl}/media/`;
 
-  regional:Regional={
-    idregional: 0,
-    nomregional: '',
-    nomcorto: '',
-    logo: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: ''
-  }
-  region:Region={
-    idregion: 0,
-    nomregion: '',
-    nomcorto: '',
-    logo: ''
-  }
-  modalidad:Modalidad={
-    idmodalidad: 0,
-    nommodalidad: ''
-  };
-  club:Club={
-    idclub: 0,
-    nomclub: '',
-    presidente: '',
-    telepresi: '',
-    vicepresidente: '',
-    telvice: '',
-    telefono: '',
-    email: '',
-    ruta: '',
-    rutagrande: '',
-    region: this.region,
-    modalidad: this.modalidad
-  }
   
-  evento:Evento={
-    idevento: 0,
-    fecha: new Date,
-    nomevento: '',
-    activo: 0,
-    direccion: '',
-    orden: 0,
-    tipoevento: 0,
-    modo: 0,
-    verencuesta: 0,
-    ranqueable: 0,
-    preinscrip: 0,
-    doble: 0,
-    km: 0,
-    kmpromo: 0,
-    kmmenor: 0,
-    informacion: '',
-    locales: '',
-    deposito: '',
-    urlpromocional: '',
-    urlcategoria: '',
-    contacto: '',
-    montopric: 0,
-    montopris: 0,
-    montomenc: 0,
-    montomens: 0,
-    fondocolor: '',
-    fondo: '',
-    club: this.club,
-    regional: this.regional,
-    alianza: 0,
-    modalidad: this.modalidad,
-    organizador: 0,
-    conremera: 0,
-    conlicencia: 0
-  };
+  evento:any;
 
   inscripciones!:Inscripcion[];
 

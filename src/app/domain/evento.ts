@@ -1,6 +1,7 @@
 import { Club } from "./club";
 import { Modalidad } from "./modalidad";
 import { Regional } from "./regional";
+import { Tipopuntos } from "./tipopuntos";
 
 export interface Evento {
     idevento: number,
@@ -36,5 +37,6 @@ export interface Evento {
     modalidad:Modalidad,
     organizador:number,
     conremera: number,
-    conlicencia: number
+    conlicencia: number,
+    tipopuntos: Tipopuntos
 }
