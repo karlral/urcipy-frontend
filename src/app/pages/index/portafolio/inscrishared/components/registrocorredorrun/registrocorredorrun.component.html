@@ -1,0 +1,20 @@
+<div class="wrapperBx">
+    <div class="cardBx">
+      <!--div *ngIf="participante.evento.idevento==126" class="imgBx">
+        <img class="logo-image" *ngIf="participante.corredor.persona.nombre!=''" [src]="mediaLocation+participante.club.ruta"  alt="foto club" />
+      </div-->
+      <div  class="imgBx2">
+        
+        <img  *ngIf="inscriptoparticipante.corredor!=''" [src]="mediaLocation+inscriptoparticipante.logoclub"  alt="foto club" />
+      </div>
+      <div class="contentBx">
+        <h2>{{inscriptoparticipante.corredor}}</h2>
+        <h3>{{inscriptoparticipante.catalternativo || inscriptoparticipante.categoria}}</h3>
+        <h3>INSCRIPTO</h3>
+      
+      </div>
+      <div class="color">
+          <img  *ngIf="inscriptoparticipante.logoevento!=''" [src]="mediaLocation+inscriptoparticipante.logoevento" [alt]="inscriptoparticipante.logoevento" />
+      </div>
+    </div>
+  </div>

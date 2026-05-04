@@ -116,7 +116,7 @@
                     class=" btn-box p-button-raised p-button-primary mb-1" (click)="subirCategoria()"></button>
 
                   <div class="field">
-                    <p-dropdown [options]="clubes" [(ngModel)]="partici.idclub" id="club" placeholder="Seleccionar club"
+                    <p-dropdown [options]="clubes" [(ngModel)]="partici.idclub" id="club" placeholder="{{tipoorganizador}}"
                       autoWidth="false" [style]="{'width':'100%'}" [filter]="true" [filterBy]="'nomclub'"
                       optionLabel="nomclub" optionValue="idclub" [ngModelOptions]="{standalone: true}"
                       [showClear]="true" appendTo="body"></p-dropdown>
@@ -180,8 +180,10 @@
 
       </div>
 
-      <app-registrocorredor *ngIf="inscripto==1" [inscriptoparticipante]="inscriptoparticipante"></app-registrocorredor>
-
+      <app-registrocorredor *ngIf="inscripto==1" [inscriptoparticipante]="inscriptoparticipante" >
+      </app-registrocorredor>
+      <app-registrocorredorrun *ngIf="inscripto==2" [inscriptoparticipante]="inscriptoparticipante" >
+      </app-registrocorredorrun>
       
 
     </div>

@@ -41,7 +41,7 @@ export class EventobusComponent implements OnInit {
 
   ordenevento = '';
   selectedTerminos: boolean = false;
-  inscripto = 0; // 0 no inscripto, 1 inscripto, 2 editar datos
+  inscripto = 0; // 0 no inscripto, 1 inscripto ciclismo, 2 runner inscripto
   inscriptoparticipante: any = null;
 
   fecha: Date = new Date();
@@ -110,6 +110,7 @@ export class EventobusComponent implements OnInit {
   tipocat=0;
   recorrertipocat_i = 0;
   cantidadtipocat = 0;
+tipoorganizador: string = 'Elige el Club';
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -137,6 +138,10 @@ export class EventobusComponent implements OnInit {
           this.rutagrande = this.evento.club.rutagrande;
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
+          this.idmodalidad = this.evento.modalidad.idmodalidad;
+          if (this.organizador == 2) {
+            this.tipoorganizador = 'Elige Unidad Academica'; 
+          } 
 
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
@@ -147,7 +152,31 @@ export class EventobusComponent implements OnInit {
           console.log(error);
 
         },
-        complete: () => console.info('completo evento')
+        complete: () => {
+          console.info('completo evento');
+
+          this.clubService.publistarClub(this.idmodalidad, this.organizador).subscribe(
+            {
+              next: (dato: any) => {
+                //console.log("clubes");
+                //console.log(dato);      
+                this.clubes = dato.sort((a: Club, b: Club) => a.nomclub.localeCompare(b.nomclub));
+                this.partici.idclub = this.clubes.length > 0 ? this.clubes[0].idclub : 1;
+                //console.log(this.clubes);
+              },
+              error: (error) => {
+                console.log(error);
+                this.messageService.add({
+                  severity: "error",
+                  summary: "Club",
+                  detail: "Error al cargar el Club"
+                });
+              },
+              complete: () => console.info('completo clubes')
+            });
+        }
+
+
       });
        this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
       {
@@ -191,7 +220,7 @@ export class EventobusComponent implements OnInit {
         }
       });
 
-    this.clubService.publistarClube(this.idmodalidad).subscribe(
+   /* this.clubService.publistarClube(this.idmodalidad).subscribe(
       {
         next: (dato: any) => {
           this.clubes = dato;
@@ -206,7 +235,7 @@ export class EventobusComponent implements OnInit {
           });
         },
         complete: () => console.info('completo clubes')
-      });
+      });*/
 
       this.paisService.publistarPaises().subscribe(
       (dato: any) => {
@@ -293,7 +322,20 @@ if (this.partici.ci.trim().length < 6) {
 
           //this.router.navigate(['eventobus']);
           this.inscriptoparticipante = data;
-          this.inscripto = 1;
+          if (this.idmodalidad == 2) {
+            this.inscripto = 2;
+          } else {
+            this.inscripto = 1;
+          }
+          this.messageService.add({
+            severity: "success",
+            summary: "Inscripcion correcta",
+            detail: "El corredor se inscribio correctamente"
+          });
+         // console.log("participante inscripto");
+         // console.log(data);
+         // console.log(this.inscriptoparticipante);
+         // console.log(this.partici);
 
 
         }, error: (error) => {
@@ -333,14 +375,82 @@ if (this.partici.ci.trim().length < 6) {
       return;
     }
     if (this.partici.ci.length >= 6) {
+      if (this.idmodalidad==2) {
+        this.buscarcorredorrun(this.partici.ci);
+      } else {
+        this.buscarcorredor(this.partici.ci);
+      }
 
-      this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
+      
+    }
+  }
+  buscarcorredor(ci: string) {
+    this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
         next: (dato: Corredorbus) => {
 
           this.corredorbus = dato;
-          
           const fecnac = new Date(dato.fecnac);
           this.corredorbus.fecnac = fecnac;
+          this.cargarpartici();
+
+
+        }, error: (error) => {
+          console.log(error);
+          if (this.partici.ci.length == 6){
+            console.log('Ci de 6 digitos, no se busca corredor');
+          }else{
+            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
+              + 'agregue los siguientes datos', life: 3000 });
+              this.resetPartici();
+              this.partici.modificar=true;
+              this.displayRegCorredor = true;
+              
+
+
+            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
+          }
+        },
+        complete: () => {
+          console.log('Completo la busqueda de Corredor');
+
+        }
+      });
+  }
+  
+  buscarcorredorrun(ci: string) {
+    this.corredorService.pubObtenerCorredorbusxCiRun(this.partici.ci).subscribe({
+        next: (dato: Corredorbus) => {
+
+          this.corredorbus = dato;
+          const fecnac = new Date(dato.fecnac);
+          this.corredorbus.fecnac = fecnac;
+          this.cargarpartici();
+          
+          
+
+        }, error: (error) => {
+          console.log(error);
+          if (this.partici.ci.length == 6){
+            console.log('Ci de 6 digitos, no se busca corredor');
+          }else{
+            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
+              + 'agregue los siguientes datos', life: 3000 });
+              this.resetPartici();
+              this.partici.modificar=true;
+              this.displayRegCorredor = true;
+              
+            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
+          }
+        },
+        complete: () => {
+          console.log('Completo la busqueda de Corredor');
+
+        }
+      });
+  }
+
+  cargarpartici() {
+    
           
           this.displayRegCorredor = false;
 
@@ -365,6 +475,8 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.modificar = this.corredorbus.modificar;
           this.partici.licencia = this.corredorbus.licencia;
           this.oldtipocat = this.corredorbus.tipocat;
+          this.partici.idmodalidad = this.idmodalidad;
+          this.partici.idusuario = 91; //usuario de prueba, luego se setea con el del login
 
 
           if (this.partici.modificar) {
@@ -372,29 +484,6 @@ if (this.partici.ci.trim().length < 6) {
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Verifique sus datos si estan correctos, puede actualizar si lo desea.', life: 3000 });
           }
 
-
-        }, error: (error) => {
-          console.log(error);
-          if (this.partici.ci.length == 6){
-            console.log('Ci de 6 digitos, no se busca corredor');
-          }else{
-            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
-              + 'agregue los siguientes datos', life: 3000 });
-              this.resetPartici();
-              this.partici.modificar=true;
-              this.displayRegCorredor = true;
-              
-
-
-            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
-          }
-        },
-        complete: () => {
-          console.log('Completo la busqueda de Corredor');
-
-        }
-      });
-    }
   }
 
   resetPartici() {

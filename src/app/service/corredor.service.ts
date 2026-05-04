@@ -62,6 +62,9 @@ export class CorredorService {
    public pubObtenerCorredorbusxCi(ci:any):Observable<Corredorbus>{
     return this.http.get<Corredorbus>(`${baserUrl}/correpub/corbusci/${ci}/${system}`);
   }
+  public pubObtenerCorredorbusxCiRun(ci:any):Observable<Corredorbus>{
+    return this.http.get<Corredorbus>(`${baserUrl}/correpub/corbusci/${ci}/4`);
+  }
   public pubObtenerCorredorbusCiRun(ci:any):Observable<Corredorbus>{
     return this.http.get<Corredorbus>(`${baserUrl}/correpub/busci/${ci}/4`);
   }
