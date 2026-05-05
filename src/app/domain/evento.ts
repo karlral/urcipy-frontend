@@ -1,3 +1,4 @@
+import { Campeonato } from "./campeonato";
 import { Club } from "./club";
 import { Modalidad } from "./modalidad";
 import { Regional } from "./regional";
@@ -38,5 +39,6 @@ export interface Evento {
     organizador:number,
     conremera: number,
     conlicencia: number,
-    tipopuntos: Tipopuntos
+    tipopuntos: Tipopuntos,
+    campeonato:Campeonato
 }

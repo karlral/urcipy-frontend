@@ -57,6 +57,7 @@ ngOnInit(): void {
       {label: 'Tipo Puntos', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/tipopuntos']},
       {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},
       {label: 'Modalidad', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/modalidad']},
+      {label: 'Campeonato', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/campeonato']}
 
       
     ]

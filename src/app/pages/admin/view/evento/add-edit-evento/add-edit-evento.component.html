@@ -87,6 +87,13 @@
                 [showClear]="true" appendTo="body"></p-dropdown>
         </div>
         <div class="field">
+                <label for="campeonato">Campeonato</label>
+                <p-dropdown [options]="campeonatos" formControlName="campeonato" id="campeonato"  
+                placeholder="Elegir Campeonato"  autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="nomcampeonato"  
+                [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
             <label for="modo">Modo</label>
             <p-dropdown [options]="modos" formControlName="modo" id="modo" 
                     placeholder="Seleccionar modo del evento" autoWidth="false" [style]="{'width':'100%'}"

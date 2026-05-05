@@ -6,6 +6,7 @@ import { Club } from 'src/app/domain/club';
 import { Modalidad } from 'src/app/domain/modalidad';
 import { Regional } from 'src/app/domain/regional';
 import { Tipopuntos } from 'src/app/domain/tipopuntos';
+import { CampeonatoService } from 'src/app/service/campeonato.service';
 import { ClubService } from 'src/app/service/club.service';
 import { Datasys } from 'src/app/service/datasys';
 import { EventoService } from 'src/app/service/evento.service';
@@ -48,6 +49,10 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
   tipopuntos: Tipopuntos={
   idtipopuntos: 0,
     nomtipopuntos: ''
+  };
+  campeonato:any={
+  idcampeonato: 0,
+    nomcampeonato: ''
   };
 
   clubes: Club[] = [];
@@ -105,9 +110,11 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     organizador:[0],
     conremera:[0],
     conlicencia:[0],
-    tipopuntos: [this.tipopuntos]
+    tipopuntos: [this.tipopuntos],
+    campeonato: [this.campeonato]
   });
   tipopuntoses: Tipopuntos[] = [];
+  campeonatos:any[]=[];
 
 
   constructor(private fb: FormBuilder,
@@ -117,12 +124,15 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     private eventoService: EventoService,
     private tipopuntosService: TipopuntosService,
     private modalidadService: ModalidadService,
+    private campeonatoService: CampeonatoService,
     private datasys:Datasys,
 
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedEvento){
+      console.log('evento a actualizar');
+      console.log(this.selectedEvento);
       this.modalType="Guardar";
       
       this.eventoForm.patchValue(this.selectedEvento);
@@ -172,18 +182,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       { label: '10mo Activo', value: 10 }
     ];
 
-    /* this.ordenes = [
-      { label: 'Primera', value: 1 },
-      { label: 'Segunda', value: 2 },
-      { label: 'Tercera', value: 3 },
-      { label: 'Cuarta',  value: 4 },
-      { label: 'Quinta',  value: 5 },
-      { label: 'Sexta',   value: 6 },
-      { label: 'Septima', value: 7 },
-      { label: 'Octava',  value: 8 },
-      { label: 'Novena',  value: 9 },
-      { label: 'Decima',  value: 10 }
-    ]; */
+    
 
     this.datasys.getOrdenes().then(data =>{
       this.ordenes=data;
@@ -244,6 +243,21 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
             });       
           }
       });
+
+      this.campeonatoService.listarCampeonatoes().subscribe(
+        {next:(dato:any) => {
+          this.campeonatos=dato;
+        //  console.log(this.tipopuntoses);
+        },
+        error:(error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Campeonato",
+            detail: "Error al cargar el Campeonato"
+          });       
+        }
+  });
 
     this.clubService.listarClubes().subscribe(
       (dato: any) => {
@@ -313,7 +327,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
 
     if (this.selectedEvento) {
 
-
+      console.log('evento a actualizar');
+      console.log(this.eventoForm.value);
       this.eventoService.actualizarEvento(this.eventoForm.value).subscribe(
         {
           next: (dato) => {

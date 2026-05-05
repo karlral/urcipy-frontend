@@ -118,6 +118,9 @@ const routes: Routes = [
       },
       {
         path:'modalidad', loadChildren:()=> import('./view/modalidad/modalidad.module').then(m => m.ModalidadModule)
+      },
+      {
+        path:'campeonato', loadChildren:()=> import('./view/campeonato/campeonato.module').then(m => m.CampeonatoModule)
       }
 
     ]
