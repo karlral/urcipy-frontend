@@ -14,6 +14,7 @@ import system from 'src/app/service/helpersys';
 export class AddEditPuntajeComponent implements  OnChanges {
   @Input() displayAddEditModal: boolean = true;
   @Input() selectedPuntaje:any=null;
+  @Input() tipopuntoses:any=null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
@@ -36,7 +37,8 @@ export class AddEditPuntajeComponent implements  OnChanges {
     idpuntaje:[null],
     posicion: [0],
     puntos: [0],
-    regional:[this.regional]
+    regional:[this.regional],
+    tipopuntos: [null]
   });
 
   constructor(private fb: FormBuilder,

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PuntajeRoutingModule } from './puntaje-routing.module';
-import { AddEditPuntajeComponent } from './add-edit-puntaje/add-edit-puntaje.component';
+import { CampeonatoRoutingModule } from './campeonato-routing.module';
+import { CampeonatoComponent } from './campeonato.component';
+import { AddEditCampeonatoComponent } from './add-edit-campeonato/add-edit-campeonato.component';
 
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,7 +11,6 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { PuntajeComponent } from './puntaje.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,14 +19,14 @@ import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    PuntajeComponent,
-    AddEditPuntajeComponent
+    CampeonatoComponent,
+    AddEditCampeonatoComponent
   ],
   imports: [
     CommonModule,
-    PuntajeRoutingModule,
-    
-    TableModule,
+    CampeonatoRoutingModule,
+
+     TableModule,
         InputTextModule,
         MessagesModule,
         ToastModule,
@@ -36,7 +36,6 @@ import { DropdownModule } from 'primeng/dropdown';
         DialogModule,
         ReactiveFormsModule,
         DropdownModule
-        
   ]
 })
-export class PuntajeModule { }
+export class CampeonatoModule { }

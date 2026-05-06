@@ -117,7 +117,18 @@ const routes: Routes = [
       },
       {
         path:'procesarResultado', loadChildren:()=> import('./view/procesar-resultado/procesar-resultado.module').then(m => m.ProcesarResultadoModule)
-      }
+      },
+        {
+          path:'modalidad', loadChildren:()=> import('./view/modalidad/modalidad.module').then(m => m.ModalidadModule)
+      },
+      {
+        path:'tipopuntos', loadChildren:()=> import('./view/tipopuntos/tipopuntos.module').then(m => m.TipopuntosModule)
+      },
+        {
+          path:'campeonato', loadChildren:()=> import('./view/campeonato/campeonato.module').then(m => m.CampeonatoModule)
+      },
+      
+
 
     ]
 

@@ -1,0 +1,36 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{width: '400px' }"
+    (onHide)="closeModal()">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">{{modalType}} Modalidad</span>
+    </ng-template>
+    <form [formGroup]="modalidadForm" class="modalidad-form">
+
+                
+        <div class="field flex align-items-center justify-content-evenly flex-wrap">
+            <label for="nommodalidad">Modalidad Categoria</label>
+            <input type="text" pInputText id="nommodalidad" formControlName="nommodalidad"  required 
+                placeholder="Modalidad" class="prime"
+                [style]="{'width':'100%'}"  />
+            <small class="p-error" *ngIf="
+                        modalidadForm.controls['nommodalidad'].invalid && 
+                        modalidadForm.controls['nommodalidad'].dirty">La modalidad es
+                        requerido.</small>
+        </div>
+
+       
+
+
+    </form>
+
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-cancel" (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        
+        <p-button icon="pi pi-add" (click)="addEditModalidad()" label="{{modalType}}" styleClass="p-button-text"
+            [disabled]="modalidadForm.invalid"></p-button>
+
+
+    </ng-template>
+
+</p-dialog>

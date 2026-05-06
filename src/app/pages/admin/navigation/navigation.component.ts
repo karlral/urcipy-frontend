@@ -57,6 +57,9 @@ ngOnInit(): void {
       {label: 'Evento Tipo', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventotipo']},
       {label: 'Asignacion', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/asignacion']},
       {label: 'Asignacion Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/asignacorre']},
+      {label: 'Tipo Puntos', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/tipopuntos']},
+      {label: 'Modalidad', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/modalidad']},
+      {label: 'Campeonato', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/campeonato']},
     ]
 }
 ,
