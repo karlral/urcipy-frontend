@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PuntajeRoutingModule } from './puntaje-routing.module';
-import { AddEditPuntajeComponent } from './add-edit-puntaje/add-edit-puntaje.component';
+import { ModalidadRoutingModule } from './modalidad-routing.module';
+import { ModalidadComponent } from './modalidad.component';
+import { AddEditModalidadComponent } from './add-edit-modalidad/add-edit-modalidad.component';
 
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,33 +11,29 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { PuntajeComponent } from './puntaje.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [
-    PuntajeComponent,
-    AddEditPuntajeComponent
+    ModalidadComponent,
+    AddEditModalidadComponent
   ],
   imports: [
     CommonModule,
-    PuntajeRoutingModule,
-    
+    ModalidadRoutingModule,
+
     TableModule,
-        InputTextModule,
-        MessagesModule,
-        ToastModule,
-        ButtonModule,
-        ConfirmDialogModule,
-        InputNumberModule,
-        DialogModule,
-        ReactiveFormsModule,
-        DropdownModule
-        
+    InputTextModule,
+    MessagesModule,
+    ToastModule,
+    ButtonModule,
+    ConfirmDialogModule,
+    InputNumberModule,
+    DialogModule,
+    ReactiveFormsModule,
   ]
 })
-export class PuntajeModule { }
+export class ModalidadModule { }

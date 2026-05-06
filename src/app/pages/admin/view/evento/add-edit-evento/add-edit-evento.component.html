@@ -73,10 +73,25 @@
                 [style]="{'width':'100%'}" optionLabel="nommodalidad" [showClear]="true" appendTo="body"></p-dropdown>
         </div>
         <div class="field">
-            <label for="tipoevento">Tipo Carrera</label>
+            <label for="tipoevento">Sub Categoria</label>
             <p-dropdown [options]="tipoeventos" formControlName="tipoevento" id="tipoevento" 
                     placeholder="Seleccionar tipo de carrera" autoWidth="false" [style]="{'width':'100%'}"
                     optionLabel="label" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        
+        <div class="field">
+                <label for="tipopuntos">Tipo Puntuación</label>
+                <p-dropdown [options]="tipopuntoses" formControlName="tipopuntos" id="tipopuntos"  
+                placeholder="Elegir Tipo de Puntuacion"  autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="nomtipopuntos"  
+                [showClear]="true" appendTo="body"></p-dropdown>
+        </div>
+        <div class="field">
+                <label for="campeonato">Campeonato</label>
+                <p-dropdown [options]="campeonatos" formControlName="campeonato" id="campeonato"  
+                placeholder="Elegir Campeonato"  autoWidth="false" [style]="{'width':'100%'}"
+                optionLabel="nomcampeonato"  
+                [showClear]="true" appendTo="body"></p-dropdown>
         </div>
         <div class="field">
             <label for="modo">Modo</label>

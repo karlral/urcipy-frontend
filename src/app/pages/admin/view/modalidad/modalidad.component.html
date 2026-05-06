@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="modalidades" [rows]="10" [paginator]="true" [globalFilterFields]="['nommodalidad']" 
+    [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idmodalidad"
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" (click)="showModal()"></button>
+            <h2 class="m-0">Modalidads</h2>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+            </span>
+            
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Modalidad</th>
+            
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-modalidad>
+        <tr>
+
+            <td class="centro">{{modalidad.idmodalidad}}</td>
+            <td class="centro">{{modalidad.nommodalidad}}</td>
+            
+            
+            <td>
+                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    (click)="editModalidad(modalidad)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteModalidad(modalidad)"></button> 
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+ <app-add-edit-modalidad 
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedModalidad]="selectedModalidad"
+    (clickClose)="hideModal($event)"
+    (clickAddEdit)="saveModalidadToList($event)"
+></app-add-edit-modalidad> 
+
+<p-confirmDialog header="Borrar" [style]="{width: '50vw'}" icon="pi pi-exclamation-triangle"></p-confirmDialog>

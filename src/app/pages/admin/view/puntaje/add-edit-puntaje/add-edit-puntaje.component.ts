@@ -14,30 +14,24 @@ import system from 'src/app/service/helpersys';
 export class AddEditPuntajeComponent implements  OnChanges {
   @Input() displayAddEditModal: boolean = true;
   @Input() selectedPuntaje:any=null;
+  @Input() tipopuntoses:any=null;
 
   @Output() clickClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() clickAddEdit: EventEmitter<any> = new EventEmitter<any>();
 
   modalType="Agregar";
 
-  regional:Regional={
+  regional:any={
     idregional: system,
-    nomregional: '',
-    nomcorto: '',
-    logo: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    frenteabajo1: ''
+   
   };
 
   puntajeForm = this.fb.group({
     idpuntaje:[null],
     posicion: [0],
     puntos: [0],
-    regional:[this.regional]
+    regional:[this.regional],
+    tipopuntos: [null]
   });
 
   constructor(private fb: FormBuilder,

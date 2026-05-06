@@ -5,6 +5,8 @@ import { MessageService } from 'primeng/api';
 import { Club } from 'src/app/domain/club';
 import { Modalidad } from 'src/app/domain/modalidad';
 import { Regional } from 'src/app/domain/regional';
+import { Tipopuntos } from 'src/app/domain/tipopuntos';
+import { CampeonatoService } from 'src/app/service/campeonato.service';
 import { ClubService } from 'src/app/service/club.service';
 import { Datasys } from 'src/app/service/datasys';
 import { EventoService } from 'src/app/service/evento.service';
@@ -12,6 +14,7 @@ import baserUrl from 'src/app/service/helper';
 import system from 'src/app/service/helpersys';
 import { MediaService } from 'src/app/service/media.service';
 import { ModalidadService } from 'src/app/service/modalidad.service';
+import { TipopuntosService } from 'src/app/service/tipopuntos.service';
 
 @Component({
   selector: 'app-add-edit-evento',
@@ -32,17 +35,17 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     nommodalidad: '',
   }
 
-  regional:Regional={
+  regional:any={
     idregional: system,
-    nomregional: '',
-    nomcorto: '',
-    logo: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-    ano: 0,
-    presentacion: '',
-    frenteabajo1: ''
+    
+  };
+  tipopuntos: Tipopuntos={
+  idtipopuntos: 0,
+    nomtipopuntos: ''
+  };
+  campeonato:any={
+  idcampeonato: 0,
+    nomcampeonato: ''
   };
 
   clubes: Club[] = [];
@@ -99,8 +102,12 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     modalidad:[this.modalidad],
     organizador:[0],
     conremera:[0],
-    conlicencia:[0]
+    conlicencia:[0],
+    tipopuntos: [this.tipopuntos],
+    campeonato: [this.campeonato]
   });
+  tipopuntoses: Tipopuntos[] = [];
+  campeonatos:any[]=[];
 
 
   constructor(private fb: FormBuilder,
@@ -108,13 +115,17 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     private messageService: MessageService,
     private mediaService: MediaService,
     private eventoService: EventoService,
+    private tipopuntosService: TipopuntosService,
     private modalidadService: ModalidadService,
+    private campeonatoService: CampeonatoService,
     private datasys:Datasys,
 
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedEvento){
+      console.log('evento a actualizar');
+      console.log(this.selectedEvento);
       this.modalType="Guardar";
       
       this.eventoForm.patchValue(this.selectedEvento);
@@ -164,18 +175,7 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
       { label: '10mo Activo', value: 10 }
     ];
 
-    /* this.ordenes = [
-      { label: 'Primera', value: 1 },
-      { label: 'Segunda', value: 2 },
-      { label: 'Tercera', value: 3 },
-      { label: 'Cuarta',  value: 4 },
-      { label: 'Quinta',  value: 5 },
-      { label: 'Sexta',   value: 6 },
-      { label: 'Septima', value: 7 },
-      { label: 'Octava',  value: 8 },
-      { label: 'Novena',  value: 9 },
-      { label: 'Decima',  value: 10 }
-    ]; */
+    
 
     this.datasys.getOrdenes().then(data =>{
       this.ordenes=data;
@@ -184,7 +184,19 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     this.tipoeventos = [
       { label: 'XCM',   value: 0 },
       { label: 'XCO',  value: 1 },
-      { label: 'RUTA',  value: 2 }
+      { label: 'RUTA',  value: 2 },
+      { label: 'Pista',  value: 3 },
+      { label: 'BMX',  value: 4 },
+      { label: 'CICLOCROSS',  value: 5 },
+      { label: 'TRIAL',  value: 6 },
+      { label: 'DHI',  value: 7 },
+      { label: 'ENDURO',  value: 8 },
+      { label: 'ESCALADA',  value: 9 },
+      { label: 'MARATON',  value: 10 },
+      { label: 'XCE',  value: 11 },
+      { label: 'XCC',  value: 12 },
+      { label: 'XCS',  value: 13 },
+      { label: 'XCP',  value: 14 }
     ];
     this.modos = [
       { label: 'EN PROCESO',   value: 0 },
@@ -204,10 +216,41 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
     this.preinscripciones = [
       { label: 'NO',   value: 0 },
       { label: 'SI',  value: 1 },
-      { label: 'LISTADO',  value: 2 },
+      { label: 'Listado',  value: 2 },
       { label: 'Link Externo',  value: 3 },
-      { label: 'SI - SIN LISTADO',  value: 4 }
+      { label: 'Si - Sin Listado',  value: 4 },
+      { label: 'Resultados',  value: 5 }
     ];
+
+    this.tipopuntosService.listarTipopuntos().subscribe(
+          {next:(dato:Tipopuntos[]) => {
+            this.tipopuntoses=dato;
+          //  console.log(this.tipopuntoses);
+          },
+          error:(error) => {
+            console.log(error);
+            this.messageService.add({
+              severity: "error",
+              summary: "Tipo",
+              detail: "Error al cargar el Tipo"
+            });       
+          }
+      });
+
+      this.campeonatoService.listarCampeonatoes().subscribe(
+        {next:(dato:any) => {
+          this.campeonatos=dato;
+        //  console.log(this.tipopuntoses);
+        },
+        error:(error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Campeonato",
+            detail: "Error al cargar el Campeonato"
+          });       
+        }
+  });
 
     this.clubService.listarClubes().subscribe(
       (dato: any) => {
@@ -277,7 +320,8 @@ export class AddEditEventoComponent implements OnInit, OnChanges {
 
     if (this.selectedEvento) {
 
-
+      console.log('evento a actualizar');
+      console.log(this.eventoForm.value);
       this.eventoService.actualizarEvento(this.eventoForm.value).subscribe(
         {
           next: (dato) => {

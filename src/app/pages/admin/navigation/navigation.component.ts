@@ -49,12 +49,15 @@ ngOnInit(): void {
       {label: 'Dorsal', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/dorsal']},
       {label: 'Corredor', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/corredor/corre']},
       {label: 'Evento', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/evento/evento']},
-      {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},
       {label: 'Remeras', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/remera']},
       {label: 'Tipo', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/tipo']},
       {label: 'Evento Remera', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventoremera']},
       {label: 'Evento Categoria', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventocategoria']},
       {label: 'Evento Tipo', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/eventotipo']},
+      {label: 'Tipo Puntos', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/tipopuntos']},
+      {label: 'Puntajes', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/puntaje']},
+      {label: 'Modalidad', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/modalidad']},
+      {label: 'Campeonato', icon: 'pi pi-repeat', routerLink: ['/admin/acceso/campeonato']}
     ]
 }
 ,
