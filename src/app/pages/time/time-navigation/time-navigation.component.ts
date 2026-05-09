@@ -42,6 +42,7 @@ ngOnInit(): void {
         {label: 'Inicio', icon: 'pi pi-home', routerLink: ['/time/access']},
         {label: 'Club', icon: 'pi pi-prime', routerLink: ['/time/access/club']},
         {label: 'Eventos', icon: 'pi pi-building-columns', routerLink: ['/time/access/evento/evento']},
+        {label: 'Dorsales ', icon: 'pi pi-calendar', routerLink: ['/time/access/dorsal']},
         //{label: 'Corredor x ci MTB', icon: 'pi pi-search', routerLink: ['/time/access/correci']},
        // {label: 'Corredor x ci RUN', icon: 'pi pi-search', routerLink: ['/time/access/correrunci']},
         {label: 'Cerrar Sesión', icon: 'pi pi-sign-out', command: () => this.logout()},
@@ -50,12 +51,10 @@ ngOnInit(): void {
   }
   ,
 {
-    label: 'Lista Dorsales y Pagos',
+    label: 'Inscripciones Tardias y Pagos',
     items: [
-      {label: 'Dorsales ', icon: 'pi pi-calendar', routerLink: ['/time/access/dorsal']},
-      {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/1']},
-      {label: 'Lista Inscriptos Evento 2', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/2']},
-      {label: 'Lista Inscriptos Evento 3', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/3']},
+      {label: 'Eventos Activos', icon: 'pi pi-calendar', routerLink: ['/time/access/inscriptardio']},
+      
     ]
 }
 ];

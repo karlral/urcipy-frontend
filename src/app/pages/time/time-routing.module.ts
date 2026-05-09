@@ -33,8 +33,10 @@ const routes: Routes = [
       {
         path:'listpart', loadChildren:()=> import('../admin/view/list-participantes/list-participantes.module').then(m => m.ListParticipantesModule)
       },
+      {
+        path:'inscriptardio', loadChildren:()=> import('./view/inscriptardio/inscriptardio.module').then(m => m.InscriptardioModule)
+      }
 
-        
   
       ]
       

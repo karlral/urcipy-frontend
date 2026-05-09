@@ -94,6 +94,8 @@ export class EventobusComponent implements OnInit {
     idcorredor: 0,
     idcategoria: 0,
     idclub: 1,
+    idusuario: 91,
+    idmodalidad: 2,
     ci: '',
     tamano: 5,
     telefono: '',
@@ -135,10 +137,14 @@ tipoorganizador: string = 'Elige el Club';
           this.organizador = this.evento.organizador;
           this.displayRemera = this.evento.conremera == 1;
           this.displayLicencia = this.evento.conlicencia == 1;
-          this.rutagrande = this.evento.club.rutagrande;
+          this.rutagrande = this.evento.club.rutagrande; 
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
           this.idmodalidad = this.evento.modalidad.idmodalidad;
+          this.partici.idmodalidad = this.evento.modalidad.idmodalidad;
+          console.log("modalidad evento: " + this.idmodalidad);
+          console.log("modalidad partici: " + this.partici.idmodalidad);
+          
           if (this.organizador == 2) {
             this.tipoorganizador = 'Elige Unidad Academica'; 
           } 
@@ -314,8 +320,9 @@ if (this.partici.ci.trim().length < 6) {
       return;
     }
    
-    console.log(this.partici);
-
+  //  console.log(this.partici);
+  //  console.log("modalidad: " + this.partici.idmodalidad);
+   
     this.participanteService.inscribirPartici(this.partici).subscribe(
       {
         next: (data: any) => {
@@ -380,7 +387,8 @@ if (this.partici.ci.trim().length < 6) {
       } else {
         this.buscarcorredor(this.partici.ci);
       }
-
+ //     console.log("modalidad: " + this.idmodalidad);
+//      console.log("partici modalidad: " + this.partici.idmodalidad);
       
     }
   }
@@ -398,6 +406,9 @@ if (this.partici.ci.trim().length < 6) {
           console.log(error);
           if (this.partici.ci.length == 6){
             console.log('Ci de 6 digitos, no se busca corredor');
+            this.resetPartici();
+              this.partici.modificar=true;
+              this.displayRegCorredor = true;
           }else{
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
               + 'agregue los siguientes datos', life: 3000 });
@@ -476,6 +487,9 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.licencia = this.corredorbus.licencia;
           this.oldtipocat = this.corredorbus.tipocat;
           this.partici.idmodalidad = this.idmodalidad;
+//          console.log("en carga partici modalidad evento: " + this.idmodalidad);
+//          console.log("en carga partici modalidad: " + this.partici.idmodalidad);
+
           this.partici.idusuario = 91; //usuario de prueba, luego se setea con el del login
 
 
@@ -503,6 +517,8 @@ if (this.partici.ci.trim().length < 6) {
       this.partici.tipocat = 3;
       this.partici.modificar = false;
       this.partici.regcorredor = true;
+      this.partici.licencia = 0;
+      this.partici.idmodalidad = this.idmodalidad;
 
 }
 
