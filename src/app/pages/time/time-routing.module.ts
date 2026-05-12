@@ -35,9 +35,11 @@ const routes: Routes = [
       },
       {
         path:'inscriptardio', loadChildren:()=> import('./view/inscriptardio/inscriptardio.module').then(m => m.InscriptardioModule)
+      },
+      {
+        path:'procesardorsal', loadChildren:()=> import('./view/procesar-dorsal/procesar-dorsal.module').then(m => m.ProcesarDorsalModule)
       }
 
-  
       ]
       
     }

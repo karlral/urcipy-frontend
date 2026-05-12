@@ -43,6 +43,7 @@ ngOnInit(): void {
         {label: 'Club', icon: 'pi pi-prime', routerLink: ['/time/access/club']},
         {label: 'Eventos', icon: 'pi pi-building-columns', routerLink: ['/time/access/evento/evento']},
         {label: 'Dorsales ', icon: 'pi pi-calendar', routerLink: ['/time/access/dorsal']},
+        {label: 'Procesar Dorsales', icon: 'pi pi-calendar-plus', routerLink: ['/time/access/procesardorsal']},
         //{label: 'Corredor x ci MTB', icon: 'pi pi-search', routerLink: ['/time/access/correci']},
        // {label: 'Corredor x ci RUN', icon: 'pi pi-search', routerLink: ['/time/access/correrunci']},
         {label: 'Cerrar Sesión', icon: 'pi pi-sign-out', command: () => this.logout()},

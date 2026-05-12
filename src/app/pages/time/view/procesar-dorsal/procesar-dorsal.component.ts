@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
-import { ResultimioService } from 'src/app/service/resultimio.service';
+import { DorsalService } from 'src/app/service/dorsal.service';
+
 @Component({
-  selector: 'app-procesar-resultado',
-  templateUrl: './procesar-resultado.component.html',
-  styleUrls: ['./procesar-resultado.component.css'],
+  selector: 'app-procesar-dorsal',
+  templateUrl: './procesar-dorsal.component.html',
+  styleUrls: ['./procesar-dorsal.component.css'],
   providers: [ConfirmationService, MessageService]
 })
-export class ProcesarResultadoComponent {
+export class ProcesarDorsalComponent {
   submitted = false;
   eventoDialog = true;
 
@@ -18,12 +19,12 @@ export class ProcesarResultadoComponent {
   currentFile?: File;
   fileName = '';
   preview= '';
-  resultimios: any;
+  dorsales: any;
 
   displayTable: boolean = false;
 
   constructor(private messageService: MessageService,
-    private resultimioService:ResultimioService,
+    private dorsalService:DorsalService,
     private confirmationService: ConfirmationService) { }
 
   procesarResultados(){
@@ -33,7 +34,7 @@ export class ProcesarResultadoComponent {
         header: 'Confirmar',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-        this.resultimioService.agregarResultado(this.resultimios).subscribe(
+        this.dorsalService.agregarDorsales(this.dorsales).subscribe(
 
           {
             next: (dato) => {
@@ -52,31 +53,7 @@ export class ProcesarResultadoComponent {
       });
    }
 
-    inscribirTodos(){
-
-      this.confirmationService.confirm({
-        message: 'Estas seguro de que quieres inscribir a todos los participantes?',
-        header: 'Confirmar',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-        this.resultimioService.inscribirTodos(this.resultimios).subscribe(
-
-          {
-            next: (dato) => {
-
-              this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Se inscribieron todos los participantes', life: 3000 });
-            }, error: (error) => {
-              console.log(error.error);
-              this.messageService.add({ severity: 'success', summary: 'Error', detail: error.error || 'Error al inscribir participantes', life: 6000 });
-
-            },
-            complete: () => {
-              console.log('Completo el proceso');
-            }
-          });
-        }
-      });
-   }
+    
 
    selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
@@ -96,22 +73,16 @@ export class ProcesarResultadoComponent {
         const lines = text.split('\n').slice(1, -1); // Divide por líneas y omite la primera (cabecera) y la última (vacía)
         const result = lines.map((line: string) => line.split(',')); // Divide cada línea por comas
         //console.log('Array bidimensional:', result);
-        this.resultimios=result.map((item: any) => {
+        this.dorsales=result.map((item: any) => {
 
           return {
-            idevento: parseInt(item[0]),
-            nomparticipante: item[1],
-            poscategoria: parseInt(item[2]),
-            tiempos: item[3],
-            dorsal: parseInt(item[4]),
-            ci: item[5],
-            distancia: parseInt(item[6]),
-            categoria: item[7],
-            club: item[8],
-            promedio: parseFloat(item[9])
+            iddorsal: parseInt(item[0]),
+            chip: item[1],
+            color: item[2],
+            activo: true
           };
         });
-        //console.log('Array de objetos:', this.resultimios);
+        //console.log('Array de objetos:', this.dorsales);
         this.displayTable = true;
       };
 

@@ -22,6 +22,9 @@ export class DorsalService {
   public agregarDorsal(dorsal:any){
     return this.http.post(`${baserUrl}/dorsal/`,dorsal);
   }
+  public agregarDorsales(dorsales:any){
+    return this.http.post(`${baserUrl}/dorsal/dorsales/`,dorsales);
+  }
   public eliminarDorsal(iddorsal:any){
     return this.http.delete(`${baserUrl}/dorsal/${iddorsal}`);
   }
