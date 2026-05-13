@@ -56,7 +56,7 @@ export class AddCorredorComponent  implements OnInit {
     km: 0
   }
   modalidad: Modalidad = {
-    idmodalidad: 1,
+    idmodalidad: 2,
     nommodalidad: ''
   }
   eCategoria:Categoria={
@@ -180,7 +180,8 @@ export class AddCorredorComponent  implements OnInit {
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: true
+    catalianza: true,
+    modalidad: this.modalidad
   };
 
   idmodalidad = 2;
@@ -223,7 +224,8 @@ export class AddCorredorComponent  implements OnInit {
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [false]
+    catalianza: [false],
+      modalidad: [this.modalidad]
     
   });
 

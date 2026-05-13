@@ -55,7 +55,7 @@ export class AddEditCorredorComponent implements OnInit, OnChanges {
     km: 0
   }
 modalidad:Modalidad={
-  idmodalidad: 0,
+  idmodalidad: 1,
   nommodalidad: ''
 }
   eCategoria:Categoria={
@@ -181,6 +181,7 @@ modalidad:Modalidad={
     regional: [this.regional],
     catalianza: [false],
     idmodalidad: [1],
+    modalidad: [this.modalidad]
     
   });
 
@@ -225,7 +226,8 @@ modalidad:Modalidad={
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: true
+    catalianza: true,
+    modalidad: this.modalidad
   };
 
  idmodalidad=1;
@@ -275,6 +277,7 @@ modalidad:Modalidad={
         modificar:true,
         usuario:this.usuario,
         regional:this.regional,
+        modalidad:this.modalidad,
         carnetfpc: 2,
         categoria:this.eCategoria,
         catalianza:true
