@@ -1,5 +1,6 @@
 import { Categoria } from "./categoria";
 import { Club } from "./club";
+import { Modalidad } from "./modalidad";
 import { Persona } from "./persona";
 import { Regional } from "./regional";
 import { Usuario } from "./usuario";
@@ -11,6 +12,7 @@ export interface Corredor {
     categoria: Categoria,
     usuario: Usuario,
     regional:Regional,
+    modalidad: Modalidad,
     verificar: number,
     carnet: string,
     carnetatras:string,

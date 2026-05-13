@@ -17,6 +17,7 @@ import { Usuario } from 'src/app/domain/usuario';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
+import { ModalidadService } from 'src/app/service/modalidad.service';
 import { PaisService } from 'src/app/service/pais.service';
 import { ParticipanteService } from 'src/app/service/participante.service';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -182,7 +183,8 @@ export class AddCorredorComponent implements OnInit {
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: true
+    catalianza: true,
+    modalidad: this.modalidad
   };
 
   idmodalidad = 2;
@@ -225,9 +227,12 @@ export class AddCorredorComponent implements OnInit {
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [false]
+    catalianza: [false],
+    modalidad: [this.modalidad]
 
   });
+
+  modalidades: Modalidad[] = [];
 
 
 
@@ -238,7 +243,8 @@ export class AddCorredorComponent implements OnInit {
     private messageService: MessageService,
     private corredorService: CorredorService,
     private personaService: PersonaService,
-    private participanteService: ParticipanteService
+    private participanteService: ParticipanteService,
+    private modalidadService: ModalidadService
    
 
   ) { }
@@ -259,6 +265,20 @@ export class AddCorredorComponent implements OnInit {
       { label: 'RH (AB+)', value: 'RH (AB+)' }
     ];
 
+    this.modalidadService.listarModalidades().subscribe(
+      (dato: any) => {
+        this.modalidades = dato;
+        this.modalidad = dato[0];
+      }
+      , (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Modalidad",
+          detail: "Error al cargar la Modalidad"
+        });
+      }
+    );
 
     this.ciudadService.publistarCiudades().subscribe(
       {

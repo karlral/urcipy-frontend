@@ -135,6 +135,12 @@
                     placeholder="Seleccionar tipo de categoria" autoWidth="false" [style]="{'width':'100%'}"
                     optionLabel="nomtipo" optionValue="idtipo" [showClear]="true" appendTo="body"></p-dropdown>
             </div>
+            <div class="field">
+                <label for="modalidad">Modalidad</label>
+                <p-dropdown [options]="modalidades" formControlName="modalidad" id="modalidad"
+                    placeholder="Seleccionar modalidad" autoWidth="false" [style]="{'width':'100%'}"
+                    optionLabel="nommodalidad"  [showClear]="true" appendTo="body"></p-dropdown>
+            </div>
 
 
             <div class="field">
@@ -143,7 +149,7 @@
                     [fecnac]="corredorForm.value.persona?.fecnac" 
                     [sexo]="corredorForm.value.persona?.sexo"
                     [tipocat]="corredorForm.value.tipocat"
-                    [idmodalidad]="idmodalidad"
+                    [idmodalidad]="corredorForm.value.modalidad?.idmodalidad"
                     (emitCategoria)="cargarCategoria($event)">
                 </app-cat-corredor>
 

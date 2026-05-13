@@ -10,5 +10,6 @@ export interface Corredormen {
     corredor: string,
     carnetfpc: number,
     foto: string,
-    puntua: number
+    puntua: number,
+    nommodalidad?:string
 }

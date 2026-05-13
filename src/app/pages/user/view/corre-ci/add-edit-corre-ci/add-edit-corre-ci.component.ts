@@ -20,6 +20,7 @@ import baserUrl from 'src/app/service/helper';
 import system from 'src/app/service/helpersys';
 import { LoginService } from 'src/app/service/login.service';
 import { MediaService } from 'src/app/service/media.service';
+import { ModalidadService } from 'src/app/service/modalidad.service';
 import { PaisService } from 'src/app/service/pais.service';
 import { PersonaService } from 'src/app/service/persona.service';
 import { TipoService } from 'src/app/service/tipo.service';
@@ -179,7 +180,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [false]
+    catalianza: [false],
+    modalidad: [this.modalidad],
     
   });
 
@@ -224,10 +226,13 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: true
+    catalianza: true,
+    modalidad: this.modalidad
   };
+  modalidades: Modalidad[] = [];
+  
 
-  idmodalidad = 1;
+  
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
@@ -238,7 +243,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     private mediaService: MediaService,
     private corredorService: CorredorService,
         private personaService:PersonaService,
-        private tipoService: TipoService
+        private tipoService: TipoService,
+        private modalidadService: ModalidadService
 
   ) { }
 
@@ -270,6 +276,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
         club:this.club,
         usuario:this.usuario,
         regional:this.regional,
+        modalidad:this.modalidad,
         carnetfpc: 2,
         categoria:this.eCategoria,
         catalianza:true
@@ -294,6 +301,22 @@ this.tipoService.listarTipoes().subscribe(
           severity: "error",
           summary: "Tipo",
           detail: "Error al cargar el Tipo"
+        });       
+      }
+  });
+  this.modalidadService.listarModalidades().subscribe(
+    {
+      next:(dato:Modalidad[]) => {
+        this.modalidades=dato;
+        this.modalidad=this.modalidades[0];
+        // console.log(this.tipos);
+      },
+      error:(error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: "error",
+          summary: "Modalidad",
+          detail: "Error al cargar la Modalidad"
         });       
       }
   });

@@ -17,6 +17,7 @@ import { Partici } from 'src/app/domain/custom/partici';
 import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
 import { EventoTipoService } from 'src/app/service/evento-tipo.service';
+import system from 'src/app/service/helpersys';
 
 @Component({
   selector: 'app-eventobus',
@@ -140,6 +141,7 @@ tipoorganizador: string = 'Elige el Club';
           this.rutagrande = this.evento.club.rutagrande; 
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
+          this.partici.idusuario = system; // en inscripciones
           this.idmodalidad = this.evento.modalidad.idmodalidad;
           this.partici.idmodalidad = this.evento.modalidad.idmodalidad;
           console.log("modalidad evento: " + this.idmodalidad);
@@ -382,18 +384,18 @@ if (this.partici.ci.trim().length < 6) {
       return;
     }
     if (this.partici.ci.length >= 6) {
-      if (this.idmodalidad==2) {
-        this.buscarcorredorrun(this.partici.ci);
-      } else {
+    //  if (this.idmodalidad==2) {
+    //    this.buscarcorredorrun(this.partici.ci);
+    //  } else {
         this.buscarcorredor(this.partici.ci);
-      }
+    //  }
  //     console.log("modalidad: " + this.idmodalidad);
 //      console.log("partici modalidad: " + this.partici.idmodalidad);
       
     }
   }
   buscarcorredor(ci: string) {
-    this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
+    this.corredorService.pubObtenerCorredorbusxCi(this.partici).subscribe({
         next: (dato: Corredorbus) => {
 
           this.corredorbus = dato;
@@ -489,8 +491,8 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.idmodalidad = this.idmodalidad;
 //          console.log("en carga partici modalidad evento: " + this.idmodalidad);
 //          console.log("en carga partici modalidad: " + this.partici.idmodalidad);
-
-          this.partici.idusuario = 91; //usuario de prueba, luego se setea con el del login
+          this.partici.idusuario = system;
+          
 
 
           if (this.partici.modificar) {
@@ -519,6 +521,7 @@ if (this.partici.ci.trim().length < 6) {
       this.partici.regcorredor = true;
       this.partici.licencia = 0;
       this.partici.idmodalidad = this.idmodalidad;
+      this.partici.idusuario = system;
 
 }
 

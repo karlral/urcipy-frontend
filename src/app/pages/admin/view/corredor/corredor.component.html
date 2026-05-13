@@ -9,7 +9,8 @@
 
 <p-table *ngIf="!displaySearch" #dt [value]="corredoresmen" [rows]="10" [paginator]="true" [globalFilterFields]="['corredor']"
     [tableStyle]="{'min-width': '50rem'}" [rowHover]="true" dataKey="idcorredor"
-    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true">
+    currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [showCurrentPageReport]="true" 
+    >
 
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -32,6 +33,7 @@
             <th pSortableColumn="corredor" style="min-width:15rem">Corredor <p-sortIcon field="corredor"></p-sortIcon></th>
             <th>Categoria</th>
             <th>Club</th>
+            <th style="width: 8rem">Modalidad</th>
             <th></th>
         </tr>
     </ng-template>
@@ -41,7 +43,7 @@
             <td>{{corredor.corredor}}</td>
             <td>{{corredor.categoria}}</td>
             <td>{{corredor.club}}</td>
-            
+            <td>{{corredor.nommodalidad}}</td>
             
             <td>
                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"

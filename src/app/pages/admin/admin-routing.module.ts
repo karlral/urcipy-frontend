@@ -121,6 +121,12 @@ const routes: Routes = [
       },
       {
         path:'campeonato', loadChildren:()=> import('./view/campeonato/campeonato.module').then(m => m.CampeonatoModule)
+      },
+      {
+        path:'procesardorsal', loadChildren:()=> import('../time/view/procesar-dorsal/procesar-dorsal.module').then(m => m.ProcesarDorsalModule)
+      },
+      {
+        path:'inscriptardio', loadChildren:()=> import('../time/view/inscriptardio/inscriptardio.module').then(m => m.InscriptardioModule)
       }
 
     ]

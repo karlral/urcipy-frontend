@@ -14,8 +14,8 @@
                            <button type="submit"  [routerLink]="['/portfolio/eventobus',evento.idevento]" class="btn inscrip nav-btn">INSCRIBETE</button>
 
                             <!--  {label: 'Lista Inscriptos Evento 1', icon: 'pi pi-list-check', routerLink: ['/time/access/listpart/1']}, -->
-                            <button type="submit"  [routerLink]="['/time/access/listpart',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
-                            
+                            <button *ngIf="permitido" type="submit"  [routerLink]="['/time/access/listpart',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
+                            <button *ngIf="!permitido" type="submit"  [routerLink]="['/admin/acceso/listpart',evento.activo]" class="btn list nav-btn">LISTA DE INSCRIPTOS</button> 
                         </div>
                     </div>
                 </div>
