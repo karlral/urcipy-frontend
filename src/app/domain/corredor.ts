@@ -1,5 +1,6 @@
 import { Categoria } from "./categoria";
 import { Club } from "./club";
+import { Modalidad } from "./modalidad";
 import { Persona } from "./persona";
 import { Regional } from "./regional";
 import { Usuario } from "./usuario";
@@ -24,6 +25,7 @@ export interface Corredor {
     carnetfpc: number,
     observacion: string,
     catalianza:boolean,
+    modalidad:Modalidad
  
 }
 

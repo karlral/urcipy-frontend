@@ -17,6 +17,7 @@ import { Partici } from 'src/app/domain/custom/partici';
 import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
 import { EventoTipoService } from 'src/app/service/evento-tipo.service';
+import system from 'src/app/service/helpersys';
 
 @Component({
   selector: 'app-eventobus',
@@ -137,6 +138,9 @@ export class EventobusComponent implements OnInit {
           this.rutagrande = this.evento.club.rutagrande;
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
+          this.partici.idusuario = system; // en inscripciones
+          this.idmodalidad = this.evento.modalidad.idmodalidad;
+          this.partici.idmodalidad = this.evento.modalidad.idmodalidad;
 
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
@@ -335,7 +339,7 @@ if (this.partici.ci.trim().length < 6) {
     }
     if (this.partici.ci.length >= 6) {
 
-      this.corredorService.pubObtenerCorredorbusxCi(this.partici.ci).subscribe({
+      this.corredorService.pubObtenerCorredorbusxCi(this.partici).subscribe({
         next: (dato: Corredorbus) => {
 
           this.corredorbus = dato;
@@ -366,6 +370,8 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.modificar = this.corredorbus.modificar;
           this.partici.licencia = this.corredorbus.licencia;
           this.oldtipocat = this.corredorbus.tipocat;
+          this.partici.idusuario = system; // en inscripciones
+          this.partici.idmodalidad = this.idmodalidad;
 
 
           if (this.partici.modificar) {
@@ -415,6 +421,8 @@ if (this.partici.ci.trim().length < 6) {
       this.partici.tipocat = this.tipocat;
       this.partici.modificar = false;
       this.partici.regcorredor = true;
+      this.partici.idusuario = system; // en inscripciones
+          this.partici.idmodalidad = this.idmodalidad;
 
 }
 

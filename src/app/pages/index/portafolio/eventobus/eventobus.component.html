@@ -74,7 +74,7 @@
                   <div *ngIf="displayLicencia" class="field">
                       <label for="licencia" class="mr-5">Licencia FPC</label>
                       <p-inputNumber inputId="licencia" [style]="{'width':'100%'}" [(ngModel)]="partici.licencia"
-                          inputStyleClass="text-right" class="prime">
+                          inputStyleClass="text-right" class="prime" [ngModelOptions]="{standalone: true}">
                       </p-inputNumber>
                   </div>
 

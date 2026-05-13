@@ -5,6 +5,8 @@ export interface Partici{
     idcorredor: number,
     idcategoria: number,
     idclub: number,
+    idmodalidad?: number,
+    idusuario?: number,
     ci: string,
     tamano:number,
     telefono: string,

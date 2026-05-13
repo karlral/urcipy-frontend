@@ -175,7 +175,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     categoria: [this.eCategoria],
     usuario: [this.usuario],
     regional: [this.regional],
-    catalianza: [false]
+    catalianza: [false],
+    modalidad: [this.modalidad]
     
   });
 
@@ -220,7 +221,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     montopuntua: 0,
     carnetfpc: 0,
     observacion: '',
-    catalianza: true
+    catalianza: true,
+    modalidad: this.modalidad
   };
 
   idmodalidad = 1;
@@ -267,7 +269,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
         regional:this.regional,
         carnetfpc: 2,
         categoria:this.eCategoria,
-        catalianza:true
+        catalianza:true,    
+            modalidad:this.modalidad
 
       });
       this.modalType="Agregar";

@@ -6,6 +6,7 @@ import baserUrl from './helper';
 import { Corredormen } from '../domain/custom/corredormen';
 import { Corredorbus } from '../domain/custom/corredorbus';
 import system from './helpersys';
+import { Partici } from '../domain/custom/partici';
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +57,8 @@ export class CorredorService {
   public pubObtenerCorredorbusCi(ci:any):Observable<Corredorbus>{
     return this.http.get<Corredorbus>(`${baserUrl}/correpub/busci/${ci}/${system}`);
   }
-  public pubObtenerCorredorbusxCi(ci:any):Observable<Corredorbus>{
-    return this.http.get<Corredorbus>(`${baserUrl}/correpub/corbusci/${ci}/${system}`);
+  public pubObtenerCorredorbusxCi(partici:Partici):Observable<Corredorbus>{
+    return this.http.get<Corredorbus>(`${baserUrl}/correpub/corbusci/${partici.ci}/${system}/${partici.idmodalidad}`);
   }
   public pubObtenerCorredorbusCiRun(ci:any):Observable<Corredorbus>{
     return this.http.get<Corredorbus>(`${baserUrl}/correpub/busci/${ci}/4`);
