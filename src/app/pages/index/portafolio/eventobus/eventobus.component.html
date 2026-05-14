@@ -107,8 +107,8 @@
                   </div>
 
                   <div class="field bg-cyan-300 border-round cyan-border border-3">
-                    <app-cat-corredor [fecnac]="partici.fecnac" [sexo]="partici.sexo" [tipocat]="partici.tipocat"
-                      [idmodalidad]="idmodalidad" (emitCategoria)="cargarCategoria($event)">
+                    <app-cat-corredor [fecnac]="partici.fecnac" [sexo]="partici.sexo" [tipocat]="partici.tipocat" [ci]="partici.ci"
+                      [idmodalidad]="idmodalidad"  [categorias]="categorias"  (emitCategoria)="cargarCategoria($event)">
                     </app-cat-corredor>
                   </div>
 

@@ -18,6 +18,7 @@ import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
 import { EventoTipoService } from 'src/app/service/evento-tipo.service';
 import system from 'src/app/service/helpersys';
+import { Categoria } from 'src/app/domain/categoria';
 
 @Component({
   selector: 'app-eventobus',
@@ -42,7 +43,7 @@ export class EventobusComponent implements OnInit {
 
   ordenevento = '';
   selectedTerminos: boolean = false;
-  inscripto = 0; // 0 no inscripto, 1 inscripto, 2 editar datos
+  inscripto = 0; // 0 no inscripto, 1 inscripto ciclismo, 2 runner inscripto
   inscriptoparticipante: any = null;
 
   fecha: Date = new Date();
@@ -95,6 +96,8 @@ export class EventobusComponent implements OnInit {
     idcorredor: 0,
     idcategoria: 0,
     idclub: 1,
+    idusuario: 2,
+    idmodalidad: 1,
     ci: '',
     tamano: 5,
     telefono: '',
@@ -111,6 +114,12 @@ export class EventobusComponent implements OnInit {
   tipocat=0;
   recorrertipocat_i = 0;
   cantidadtipocat = 0;
+tipoorganizador: string = 'Elige el Club';
+edadminima = 1;
+idclub=0;
+tamano=0;
+idcategoria=0;
+categorias: Categoria[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -135,12 +144,17 @@ export class EventobusComponent implements OnInit {
           this.organizador = this.evento.organizador;
           this.displayRemera = this.evento.conremera == 1;
           this.displayLicencia = this.evento.conlicencia == 1;
-          this.rutagrande = this.evento.club.rutagrande;
+          this.rutagrande = this.evento.club.rutagrande; 
           this.partici.idevento = this.evento.idevento;
           this.partici.idregional = this.evento.regional.idregional;
           this.partici.idusuario = system; // en inscripciones
           this.idmodalidad = this.evento.modalidad.idmodalidad;
           this.partici.idmodalidad = this.evento.modalidad.idmodalidad;
+          
+          
+          if (this.organizador == 2) {
+            this.tipoorganizador = 'Elige Unidad Academica'; 
+          } 
 
           this.datasys.getOrdenes().then(data => {
             this.ordenes = data;
@@ -151,15 +165,40 @@ export class EventobusComponent implements OnInit {
           console.log(error);
 
         },
-        complete: () => console.info('completo evento')
-      });
+        complete: () => {
+          console.info('completo evento');
 
-      this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
+          this.clubService.publistarClub(this.idmodalidad, this.organizador).subscribe(
+            {
+              next: (dato: any) => {
+                     
+                this.clubes = dato.sort((a: Club, b: Club) => a.nomclub.localeCompare(b.nomclub));
+                this.partici.idclub = this.clubes.length > 0 ? this.clubes[0].idclub : 0;
+                this.idclub = this.partici.idclub;
+
+                
+              },
+              error: (error) => {
+                console.log(error);
+                this.messageService.add({
+                  severity: "error",
+                  summary: "Club",
+                  detail: "Error al cargar el Club"
+                });
+              },
+              complete: () => console.info('completo clubes')
+            });
+
+            
+        }
+
+
+      });
+       this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
       {
         next: (dato: any) => {
           this.tipos = dato;
-          //       console.log("tipos evento");
-          //     console.log(this.tipos);
+          
           this.cantidadtipocat = this.tipos.length;
           this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
           this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
@@ -173,7 +212,12 @@ export class EventobusComponent implements OnInit {
             detail: "Error al cargar el evento tipo"
           });
         },
-        complete: () => console.info('completo tipos evento')
+
+          complete: () => {
+            console.info('completo tipos evento');
+            this.cargarCategorias(this.idevento);
+          }
+        
       });
 
     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
@@ -181,9 +225,13 @@ export class EventobusComponent implements OnInit {
         next: (dato: any) => {
           this.tamanos = dato;
          // this.displayRemera = this.tamanos.length > 0;
-          this.partici.tamano = 5;
 
           this.tamanos.sort((a, b) => a.idremera - b.idremera);
+          const sinTamanos = this.tamanos.filter((remera) => remera.nomremera.substring(0, 3) === "Sin");
+          if (sinTamanos.length > 0) {
+            this.partici.tamano = sinTamanos[0].idremera;
+            this.tamano = this.partici.tamano;
+          }
 
         },
         error: (error) => {
@@ -196,22 +244,7 @@ export class EventobusComponent implements OnInit {
         }
       });
 
-    this.clubService.publistarClube(this.idmodalidad).subscribe(
-      {
-        next: (dato: any) => {
-          this.clubes = dato;
-         
-        },
-        error: (error) => {
-          console.log(error);
-          this.messageService.add({
-            severity: "error",
-            summary: "Club",
-            detail: "Error al cargar el Club"
-          });
-        },
-        complete: () => console.info('completo clubes')
-      });
+   
 
       this.paisService.publistarPaises().subscribe(
       (dato: any) => {
@@ -228,6 +261,28 @@ export class EventobusComponent implements OnInit {
     );
   }
 
+  cargarCategorias(idevento: any) {
+      this.eventoTipoService.listarCategoriasEvento(idevento).subscribe(
+        (data: Categoria[]) => {
+          this.categorias = data;
+          let edad = 100;
+          for (let index = 0; index < this.categorias.length; index++) {
+            const element = this.categorias[index];
+            if (element.edadinicio < edad) {
+              edad = element.edadinicio;
+            }
+          }
+          this.edadminima = edad;
+  
+       
+        },
+        (error) => {
+          console.error('Error al cargar las categorias', error);
+        }
+      );
+    }
+
+
   hideModal(isClosed: boolean) {
     this.selectedCorredor = null;
     this.displaySearch = isClosed;
@@ -237,8 +292,10 @@ export class EventobusComponent implements OnInit {
  
 
   formSubmit() {
-
+   
     console.log("agregamos el click de " + this.partici.ci + " ID EVENTO " + this.evento.idevento);
+    
+
     if (this.partici.ci.trim() == '' || this.partici.ci.trim() == null) {
 
       this.messageService.add({
@@ -258,8 +315,8 @@ if (this.partici.ci.trim().length < 6) {
       });
 
       return;
-}
- if (this.partici.nombre.trim().length < 4) {
+    }
+    if (this.partici.nombre.trim().length < 4) {
 
       this.messageService.add({
         severity: "error",
@@ -289,16 +346,69 @@ if (this.partici.ci.trim().length < 6) {
 
       return;
     }
-   
-    //console.log(this.partici);
+    var edad = this.calcularEdad(this.partici.fecnac);
+    if (edad < this.edadminima) {
 
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La edad minima para participar es de " + this.edadminima + " años o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+
+    if (edad > 100) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "La edad maxima para participar es de 100 años o contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    
+    if (this.partici.idcategoria == 0) {
+
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "No se encontro una categoria para el corredor, contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    if (this.partici.idclub == 0) {
+      
+      this.messageService.add({
+        severity: "error",
+        summary: "Atencion",
+        detail: "No se encontro un club para el corredor, contactese con la organizacion del evento al numero: " + this.evento.contacto
+      });
+
+      return;
+    }
+    
+
+   
     this.participanteService.inscribirPartici(this.partici).subscribe(
       {
         next: (data: any) => {
 
           //this.router.navigate(['eventobus']);
           this.inscriptoparticipante = data;
-          this.inscripto = 1;
+          if (this.idmodalidad == 2) {
+            this.inscripto = 2;
+          } else {
+            this.inscripto = 1;
+          }
+          this.messageService.add({
+            severity: "success",
+            summary: "Inscripcion correcta",
+            detail: "El corredor se inscribio correctamente"
+          });
+         
 
 
         }, error: (error) => {
@@ -322,9 +432,16 @@ if (this.partici.ci.trim().length < 6) {
 
   }
 
+  calcularEdad(fechaNac: Date): number {
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - fechaNac.getFullYear();
+    return edad;
+    
+  }
+
 
   onChange(valor: string) {
-    console.log(valor);
+    
     this.partici.ci = valor.replace(/[^0-9]/g, "");
    
     if (this.partici.ci.trim() == '' || this.partici.ci.trim() == null) {
@@ -338,14 +455,47 @@ if (this.partici.ci.trim().length < 6) {
       return;
     }
     if (this.partici.ci.length >= 6) {
+        //forzar cambiar datos de categoria
+        this.buscarcorredor();
+      
+    }
+  }
 
-      this.corredorService.pubObtenerCorredorbusxCi(this.partici).subscribe({
+  buscarcorredor() {
+    this.corredorService.pubObtenerCorredorbusxCi(this.partici).subscribe({
         next: (dato: Corredorbus) => {
 
           this.corredorbus = dato;
-          
           const fecnac = new Date(dato.fecnac);
           this.corredorbus.fecnac = fecnac;
+          this.cargarpartici();
+
+
+        }, error: (error) => {
+          
+          this.resetPartici();
+          this.partici.modificar=true;
+          this.displayRegCorredor = true;
+          if (this.partici.ci.length == 6){
+            console.log('Ci de 6 digitos, se busca corredor');
+            
+          }else{
+            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
+              + 'agregue los siguientes datos', life: 3000 });
+             
+          }
+        },
+        complete: () => {
+          console.log('Completo la busqueda de Corredor');
+
+        }
+      });
+  }
+  
+  
+
+  cargarpartici() {
+    
           
           this.displayRegCorredor = false;
 
@@ -358,9 +508,9 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.idclub = this.corredorbus.idclub;
           this.partici.tamano = this.corredorbus.tamano == null ? 0 : this.corredorbus.tamano;
           
-          this.partici.nombre = this.corredorbus.nombre ? this.corredorbus.nombre : this.corredorbus.corredor.split(' ')[0];
+        this.partici.nombre = this.corredorbus.nombre ? this.corredorbus.nombre : this.corredorbus.corredor.split(' ')[0];
           this.partici.apellido = this.corredorbus.apellido ? this.corredorbus.apellido : this.corredorbus.corredor.split(' ').slice(1).join(' ');
-          
+  
           this.partici.telefono = this.corredorbus.telefono;
           this.partici.corredor = this.corredorbus.corredor;
 
@@ -370,8 +520,10 @@ if (this.partici.ci.trim().length < 6) {
           this.partici.modificar = this.corredorbus.modificar;
           this.partici.licencia = this.corredorbus.licencia;
           this.oldtipocat = this.corredorbus.tipocat;
-          this.partici.idusuario = system; // en inscripciones
           this.partici.idmodalidad = this.idmodalidad;
+
+          this.partici.idusuario = system;
+          
 
 
           if (this.partici.modificar) {
@@ -379,50 +531,32 @@ if (this.partici.ci.trim().length < 6) {
             this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Verifique sus datos si estan correctos, puede actualizar si lo desea.', life: 3000 });
           }
 
-
-        }, error: (error) => {
-          console.log(error);
-          if (this.partici.ci.length == 6){
-            console.log('Ci de 6 digitos, no se busca corredor');
-          }else{
-            this.messageService.add({ severity: 'info', summary: 'Atencion', detail: 'Corredor no encuentra con CI: ' + this.partici.ci
-              + 'agregue los siguientes datos', life: 3000 });
-              this.resetPartici();
-              
-              this.displayRegCorredor = true;
-              
-
-
-            //this.messageService.add({ severity: 'error', summary: 'Atencion', detail: 'El corredor no se encuentra o contactese con la organizacion del evento al numero: ' + this.evento.contacto, life: 5000 });
-          }
-        },
-        complete: () => {
-          console.log('Completo la busqueda de Corredor');
-
-        }
-      });
-    }
   }
 
   resetPartici() {
-    this.partici.idparticipante = 0;
-    this.partici.idevento = this.evento.idevento;
-    this.partici.idcorredor = 0;
-    this.partici.idcategoria = 1;
-    this.partici.corredor = '';
-    this.partici.idclub = 1;
-    this.partici.tamano = 0;
-    this.partici.telefono = '';
-    this.partici.nombre = '';
-    this.partici.apellido = '';
-      this.partici.fecnac = this.fechaant;
-      this.partici.sexo = 1;
-      this.partici.nacionalidad = "Paraguaya";
-      this.partici.tipocat = this.tipocat;
-      this.partici.modificar = false;
-      this.partici.regcorredor = true;
-      this.partici.idusuario = system; // en inscripciones
-          this.partici.idmodalidad = this.idmodalidad;
+    // Bien (fuerza la detección)
+this.partici = { ...this.partici, 
+  idparticipante: 0,
+  idevento: this.idevento,
+  idcorredor: 0,
+  corredor: '',
+  idclub: this.idclub,
+  tamano: this.tamano,
+  telefono: '',
+  nombre: '',
+  apellido: '',
+   fecnac: this.fechaant,
+   sexo: 1,
+   nacionalidad: "Paraguaya",
+   tipocat: this.tipocat,
+   modificar: false,
+   regcorredor: true,
+   licencia: 0,
+   idmodalidad: this.idmodalidad,
+   idusuario: system
+};
+
+
 
 }
 
