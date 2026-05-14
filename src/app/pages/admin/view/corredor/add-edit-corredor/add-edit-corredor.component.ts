@@ -7,6 +7,7 @@ import { Club } from 'src/app/domain/club';
 import { Modalidad } from 'src/app/domain/modalidad';
 import { Pais } from 'src/app/domain/pais';
 import { Tipo } from 'src/app/domain/tipo';
+import { CategoriaService } from 'src/app/service/categoria.service';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
@@ -140,6 +141,7 @@ modalidad:Modalidad={
     
   };
   modalidades: Modalidad[] = [];
+  categorias: Categoria[] = [];
 
 
 
@@ -154,6 +156,7 @@ modalidad:Modalidad={
     private personaService:PersonaService,
     private tipoService: TipoService,
     private modalidadService: ModalidadService,
+    private categoriaService: CategoriaService
     
   ) { }
 
@@ -229,6 +232,21 @@ modalidad:Modalidad={
             });       
           }
       });
+      this.categoriaService.listarCategoriaActivo().subscribe(
+        {
+          next:(dato: Categoria[]) => {
+            this.categorias = dato;
+          },
+          error:(error) => {
+            console.log(error);
+            this.messageService.add({
+              severity: "error",
+              summary: "Categoria",
+              detail: "Error al cargar la Categoria"
+            });
+          }
+        }
+      );
     // this.tipos = [
     //   { label: 'PRINCIPAL', value: 1 },
     //   { label: 'PRINCIPAL-ELITE', value: 2 },

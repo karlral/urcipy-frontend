@@ -166,6 +166,9 @@ h3{
   color: white;
 }
 
+.blueborder{
+  border: 1px solid var(--blue-800);
+}
 /* Result*/
 
 @media (max-width: 450px){
