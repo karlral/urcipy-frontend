@@ -9,6 +9,7 @@ import { Pais } from 'src/app/domain/pais';
 import { PaisService } from 'src/app/service/pais.service';
 import { ClubService } from 'src/app/service/club.service';
 import { EventoTipoService } from 'src/app/service/evento-tipo.service';
+import { Categoria } from 'src/app/domain/categoria';
 
 
 @Component({
@@ -91,6 +92,8 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
 
   oldtipocat = 0;
   realizoclick = false;
+
+  categorias: Categoria[]=[];
   
 
 
@@ -111,6 +114,7 @@ export class AddEditParticipanteComponent implements OnInit, OnChanges {
     }
     if (this.idevento != 0) {
       this.cargarTipoEvento(); 
+      this.cargarCategorias(this.idevento);
     }
 
     if (this.idmodalidad != 0) {
@@ -181,6 +185,25 @@ this.clubService.publistarClub(this.idmodalidad,this.organizador).subscribe(
         complete: () => console.info('completo clubes')
       });
   }
+
+  cargarCategorias(idevento: any) {
+        this.eventoTipoService.listarCategoriasEvento(idevento).subscribe(
+          (data: Categoria[]) => {
+            this.categorias = data;
+            let edad = 100;
+            for (let index = 0; index < this.categorias.length; index++) {
+              const element = this.categorias[index];
+              if (element.edadinicio < edad) {
+                edad = element.edadinicio;
+              }
+            }
+            
+          },
+          (error) => {
+            console.error('Error al cargar las categorias', error);
+          }
+        );
+      }
 
   ngOnInit(): void {
 

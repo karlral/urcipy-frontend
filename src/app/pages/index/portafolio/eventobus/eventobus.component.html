@@ -74,7 +74,7 @@
                   <div *ngIf="displayLicencia" class="field">
                       <label for="licencia" class="mr-5">Licencia FPC</label>
                       <p-inputNumber inputId="licencia" [style]="{'width':'100%'}" [(ngModel)]="partici.licencia"
-                          inputStyleClass="text-right" class="prime">
+                          inputStyleClass="text-right" class="prime" [ngModelOptions]="{standalone: true}">
                       </p-inputNumber>
                   </div>
 
@@ -107,15 +107,15 @@
                   </div>
 
                   <div class="field bg-cyan-300 border-round cyan-border border-3">
-                    <app-cat-corredor [fecnac]="partici.fecnac" [sexo]="partici.sexo" [tipocat]="partici.tipocat"
-                      [idmodalidad]="idmodalidad" (emitCategoria)="cargarCategoria($event)">
+                    <app-cat-corredor [fecnac]="partici.fecnac" [sexo]="partici.sexo" [tipocat]="partici.tipocat" [ci]="partici.ci"
+                      [idmodalidad]="idmodalidad"  [categorias]="categorias"  (emitCategoria)="cargarCategoria($event)">
                     </app-cat-corredor>
                   </div>
 
-                  <button *ngIf="partici.modificar" pButton pRipple label="ELEGIR CATEGORIA" type="button"
+                  <button pButton pRipple label="ELEGIR CATEGORIA" type="button"
                     class=" btn-box p-button-raised p-button-primary mb-1" (click)="subirCategoria()"></button>
 
-                  <div *ngIf="partici.modificar" class="field">
+                  <div class="field">
                     <p-dropdown [options]="clubes" [(ngModel)]="partici.idclub" id="club" placeholder="Seleccionar club"
                       autoWidth="false" [style]="{'width':'100%'}" [filter]="true" [filterBy]="'nomclub'"
                       optionLabel="nomclub" optionValue="idclub" [ngModelOptions]="{standalone: true}"
