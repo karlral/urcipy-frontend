@@ -12,6 +12,7 @@ import { Region } from 'src/app/domain/region';
 import { Regional } from 'src/app/domain/regional';
 import { Trayecto } from 'src/app/domain/trayecto';
 import { Usuario } from 'src/app/domain/usuario';
+import { CategoriaService } from 'src/app/service/categoria.service';
 import { CiudadService } from 'src/app/service/ciudad.service';
 import { ClubService } from 'src/app/service/club.service';
 import { CorredorService } from 'src/app/service/corredor.service';
@@ -226,6 +227,7 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
   };
 
   idmodalidad = 1;
+  categorias: Categoria[] = [];
 
   constructor(private fb: FormBuilder,
     private ciudadService: CiudadService,
@@ -235,7 +237,8 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
     public login: LoginService,
     private mediaService: MediaService,
     private corredorService: CorredorService,
-        private personaService:PersonaService
+        private personaService:PersonaService,
+        private categoriaService:CategoriaService
 
   ) { }
 
@@ -280,6 +283,23 @@ export class AddEditCorreCiComponent  implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+
+    this.categoriaService.listarCategoriaesActivoMod(this.idmodalidad).subscribe(
+      {
+        next: (dato: Categoria[]) => {
+          this.categorias = dato;
+       
+        },
+        error: (error) => {
+          console.log(error);
+          this.messageService.add({
+            severity: "error",
+            summary: "Categoria",
+            detail: "Error al cargar la categoria"
+          });
+        },
+        complete: () => console.info('completo categoria')
+      });
 
 
     this.tipos = [
