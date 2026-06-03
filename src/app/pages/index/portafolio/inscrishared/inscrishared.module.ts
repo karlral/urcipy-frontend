@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmadosComponent } from './components/confirmados/confirmados.component';
 import { RegistrocorredorninoComponent } from './components/registrocorredornino/registrocorredornino.component';
 import { RegistrocorredorrunComponent } from './components/registrocorredorrun/registrocorredorrun.component';
+import { RegistrocorredorlocoComponent } from './components/registrocorredorloco/registrocorredorloco.component';
 
 
 
@@ -21,7 +22,8 @@ import { RegistrocorredorrunComponent } from './components/registrocorredorrun/r
     RegistrocorredorComponent,
     ConfirmadosComponent,
     RegistrocorredorninoComponent,
-    RegistrocorredorrunComponent
+    RegistrocorredorrunComponent,
+    RegistrocorredorlocoComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { RegistrocorredorrunComponent } from './components/registrocorredorrun/r
     RegistrocorredorComponent,
     ConfirmadosComponent,
     RegistrocorredorninoComponent,
-    RegistrocorredorrunComponent
+    RegistrocorredorrunComponent,
+    RegistrocorredorlocoComponent
   ]
 })
 export class InscrisharedModule { }

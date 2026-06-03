@@ -136,7 +136,7 @@
                     <p-scrollPanel
                       [style]="{ width: '100%', height: '200px','color':'bisque','border-color':'bisque','border-width': '2px' ,'border-style': 'solid' }">
                       <p>
-                        <strong>Termino 1:</strong> Reconozco que participar de la Competencia de Ciclismo, es una
+                        <strong>Termino 1:</strong> Reconozco que participar de la Competencia de {{evento.nomevento | uppercase}}, es una
                         actividad con alto riesgo. Por lo tanto, declaro que me encuentro realmente apto/a y
                         adecuadamente entrenado/a para participar en esta prueba. Acepto toda decisión de un Oficial de
                         la carrera respecto a mi capacidad de poder completar o no la competencia. Asimismo, acepto la
@@ -184,6 +184,8 @@
       </app-registrocorredor>
       <app-registrocorredorrun *ngIf="inscripto==2" [inscriptoparticipante]="inscriptoparticipante" >
       </app-registrocorredorrun>
+      <app-registrocorredorloco *ngIf="inscripto==3" [inscriptoparticipante]="inscriptoparticipante" >
+      </app-registrocorredorloco>
       
 
     </div>

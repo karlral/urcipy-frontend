@@ -401,7 +401,11 @@ if (this.partici.ci.trim().length < 6) {
           if (this.idmodalidad == 2) {
             this.inscripto = 2;
           } else {
-            this.inscripto = 1;
+            if (this.idmodalidad == 3) {
+              this.inscripto = 3;
+            }else{
+              this.inscripto = 1;
+            }
           }
           this.messageService.add({
             severity: "success",
