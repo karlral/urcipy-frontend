@@ -86,7 +86,8 @@
                 
                 <button class="btn" type="submit" *ngIf="(evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3)  && evento.modalidad.idmodalidad==1" [routerLink]="['/portfolio/inscripciones',evento.activo]" class="btn list nav-btn">Lista de Inscriptos</button> 
                 <button class="btn" type="submit" *ngIf="(evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3)  && evento.modalidad.idmodalidad==2" [routerLink]="['/portfolio/inscripcionesrun',evento.activo]" class="btn list nav-btn">Lista de Inscriptos</button> 
-
+                <button class="btn" type="submit" *ngIf="(evento.preinscrip==1  || evento.preinscrip==2 || evento.preinscrip==3)  && evento.modalidad.idmodalidad==3" [routerLink]="['/portfolio/inscripcionesrun',evento.activo]" class="btn list nav-btn">Lista de Inscriptos</button>
+                
                 <button class="btn" *ngIf="evento.preinscrip==4" [routerLink]="['/portfolio/eventobus',evento.idevento]">Inscripcion {{evento.nomevento | uppercase}}</button>    
                    
                 <button *ngIf="evento.preinscrip==5" class="btn" role="link"

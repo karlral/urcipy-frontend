@@ -13,7 +13,7 @@
                         
                         <div class="botones">
                            
-                           <button (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">TODOS</button>
+                           <button *ngIf="evento.modalidad.idmodalidad==1 ||  evento.modalidad.idmodalidad==2"  (click)="buttonSubmit('categoria')" class="btn inscrip nav-btn">TODOS</button>
    
                           <button (click)="buttonSubmit('confirmado')" class="btn list nav-btn">CONFIRMADOS</button>
 
