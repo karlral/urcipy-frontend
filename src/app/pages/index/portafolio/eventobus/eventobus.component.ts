@@ -194,6 +194,8 @@ categorias: Categoria[] = [];
 
 
       });
+
+
        this.eventoTipoService.listarTiposEvento(this.idevento).subscribe(
       {
         next: (dato: any) => {
@@ -201,8 +203,11 @@ categorias: Categoria[] = [];
           
           this.cantidadtipocat = this.tipos.length;
           this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
-          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
-          this.tipocat = this.corredorbus.tipocat;
+
+          this.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
+          
+          console.log("Tipo",this.tipocat);
+          this.partici.tipocat=this.tipocat;
         },
         error: (error) => {
           console.log(error);
@@ -219,6 +224,7 @@ categorias: Categoria[] = [];
           }
         
       });
+
 
     this.eventoRemeraService.listarRemerasEvento(this.idevento).subscribe(
       {
@@ -241,24 +247,35 @@ categorias: Categoria[] = [];
             summary: "Evento Remera",
             detail: "Error al cargar el evento remera"
           });
-        }
+        },
+
+          complete: () => {
+            console.info('completo remeras evento');
+            
+          }
       });
 
    
 
-      this.paisService.publistarPaises().subscribe(
-      (dato: any) => {
+      this.paisService.publistarPaises().subscribe({
+      next: (dato: any) => {
         this.paises = dato;
 
-      }, (error) => {
+      }, 
+      error: (error) => {
         console.log(error);
         this.messageService.add({
           severity: "error",
           summary: "Pais",
           detail: "Error al cargar el Pais"
         });
-      }
-    );
+      },
+
+          complete: () => {
+            console.info('completo paises');
+            
+          }
+  });
   }
 
   cargarCategorias(idevento: any) {
@@ -566,7 +583,7 @@ this.partici = { ...this.partici,
 
   cargarCategoria(cat: any) {
     this.partici.idcategoria = cat.idcategoria;
-    this.partici.tipocat = cat.tipo;
+  //  this.partici.tipocat = cat.tipo;
 
   }
   subirCategoria() {
@@ -581,5 +598,10 @@ this.partici = { ...this.partici,
   }
  
 
+  onFechaCambiada(nuevaFecha: Date) {
+  console.log('Fecha actualizada:', nuevaFecha);
+  // Fuerza la detección de cambios si estás usando OnPush
+  // this.cdRef.detectChanges(); 
+}
 
 }
