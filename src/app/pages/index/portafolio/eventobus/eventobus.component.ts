@@ -201,8 +201,8 @@ categorias: Categoria[] = [];
           
           this.cantidadtipocat = this.tipos.length;
           this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
-          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
-          this.tipocat = this.corredorbus.tipocat;
+          this.tipocat = 3;
+          this.partici.tipocat = this.tipocat;
         },
         error: (error) => {
           console.log(error);
@@ -562,7 +562,7 @@ this.partici = { ...this.partici,
 
   cargarCategoria(cat: any) {
     this.partici.idcategoria = cat.idcategoria;
-    this.partici.tipocat = cat.tipo;
+   // this.partici.tipocat = cat.tipo;
 
   }
   subirCategoria() {

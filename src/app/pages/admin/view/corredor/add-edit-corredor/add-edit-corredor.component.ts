@@ -76,7 +76,8 @@ modalidad:Modalidad={
     horario: '',
     modalidad: this.modalidad,
     codigo: '',
-    nomalternativo: ''
+    nomalternativo: '',
+    tipocategoria: 0
   };
 
   // para agregar

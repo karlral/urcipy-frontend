@@ -19,4 +19,5 @@ export interface Categoria {
         codigo:string,
         modalidad:Modalidad,
         nomalternativo:string,
+        tipocategoria:number
 }
