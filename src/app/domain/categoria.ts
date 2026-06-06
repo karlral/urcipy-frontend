@@ -18,5 +18,6 @@ export interface Categoria {
         horario:string,
         codigo:string,
         modalidad:Modalidad,
-        nomalternativo:string
+        nomalternativo:string,
+        tipocategoria:number
 }

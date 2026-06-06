@@ -41,8 +41,8 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <td>{{categoria.edadinicio}}</td>
             <td>{{categoria.edadfin}}</td>
             <td>{{categoria.sexo==1 ? 'M' :'F'}}</td>
-            <td>{{categoria.modalidad.nommodalidad}}</td>
-            <td >{{tipos[categoria.tipo-1].nomtipo}}</td>
+            <td>{{categoria.modalidad.nommodalidad}} </td>
+            <td >{{categoria.tipocategoria}}</td>
             <td>{{categoria.trayecto.km}}</td>
             <td>{{categoria.activo  ? 'S' :'N'}}</td>
             <td>
@@ -86,7 +86,7 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
             <div class="field col-12 md:col-3">
                 <label for="edadfin" style="display: block">Hasta</label>
                 <p-inputNumber [(ngModel)]="categoria.edadfin" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="edadfin"
-                [min]="0" [max]="100"
+                [min]="0" [max]="101"
                 decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
                 </p-inputNumber>
             </div>
@@ -173,10 +173,14 @@ currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} totales" [
         </div>
         <div class="field">
             <label for="codigo" >Codigo</label>
-            <input type="text" pInputText id="codigo" [(ngModel)]="categoria.codigo" required autofocus />
+            <input type="text" pInputText id="codigo" [(ngModel)]="categoria.codigo" required  />
             <small class="p-error" *ngIf="submitted && !categoria.codigo">Nombre codigo para control.</small>
         </div> 
-
+        <div class="field">
+            <label for="nomalternativo" >Nom Alternativo</label>
+            <input type="text" pInputText id="nomalternativo" [(ngModel)]="categoria.nomalternativo"  />
+            <small class="p-error" *ngIf="submitted && !categoria.nomalternativo">Nombre alternativo para control.</small>
+        </div> 
         
     </ng-template>
 

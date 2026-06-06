@@ -76,7 +76,8 @@ export class AddCorredorComponent  implements OnInit {
     horario: '',
     modalidad: this.modalidad,
     codigo: '',
-    nomalternativo: ''
+    nomalternativo: '',
+    tipocategoria: 0
   };
 
   

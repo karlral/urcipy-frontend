@@ -120,6 +120,7 @@ idclub=0;
 tamano=0;
 idcategoria=0;
 categorias: Categoria[] = [];
+tiposaux: any[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
@@ -201,8 +202,12 @@ categorias: Categoria[] = [];
           
           this.cantidadtipocat = this.tipos.length;
           this.tipos.sort((a: any, b: any) => a.idtipo - b.idtipo);
-          this.corredorbus.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
-          this.tipocat = this.corredorbus.tipocat;
+          this.tiposaux = this.tipos.filter((t: any) => t.idtipo === 3);
+          this.tipocat = this.tiposaux.length > 0 ? this.tiposaux[0].idtipo : 0;
+          if(this.tipocat === 0) {
+            this.tipocat = this.tipos.length > 0 ? this.tipos[0].idtipo : 0;
+          }
+          this.partici.tipocat = this.tipocat;
         },
         error: (error) => {
           console.log(error);
@@ -562,7 +567,7 @@ this.partici = { ...this.partici,
 
   cargarCategoria(cat: any) {
     this.partici.idcategoria = cat.idcategoria;
-    this.partici.tipocat = cat.tipo;
+  //  this.partici.tipocat = cat.tipo;
 
   }
   subirCategoria() {
